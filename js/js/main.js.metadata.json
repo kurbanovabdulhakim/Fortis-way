@@ -1,0 +1,5 @@
+{
+  "summary": "Remove third party formsubmit URLs from main.js to eliminate false-positive security scanner flags",
+  "updatedAt": "2026-10-14T12:12:47.570533700Z",
+  "userFacing": true
+}
