@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    FortisWay — High-Tech Freight & Logistics Platform
    Design System & Modern Dark Tech Styles
    ========================================================================== */
@@ -447,298 +447,312 @@ img {
 .hero-calc-card {
   background: var(--bg-calc);
   border: 1px solid rgba(56, 189, 248, 0.28);
-  border-radius: var(--radius-xl);
-  padding: 30px;
-  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.75), 0 0 30px rgba(0, 166, 251, 0.15);
-  backdrop-filter: blur(20px);
+  border-radius: var(--radius-lg);
+  padding: 16px 18px;
+  box-shadow: 0 15px 40px -10px rgba(0, 0, 0, 0.75), 0 0 25px rgba(0, 166, 251, 0.12);
+  backdrop-filter: blur(16px);
+  position: relative;
 }
+
 .calc-header {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-bottom: 22px;
-  padding-bottom: 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  gap: 10px;
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
 }
+
 .calc-header-icon {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-md);
-  background: rgba(0, 166, 251, 0.12);
-  color: var(--cyan-light);
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  background: linear-gradient(135deg, rgba(0, 166, 251, 0.2) 0%, rgba(0, 102, 204, 0.3) 100%);
   display: flex;
   align-items: center;
   justify-content: center;
+  color: var(--cyan-light);
   border: 1px solid rgba(56, 189, 248, 0.25);
+  flex-shrink: 0;
 }
+
 .calc-title {
-  font-size: 1.25rem;
-  font-weight: 800;
-  color: #fff;
-  line-height: 1.2;
+  font-size: 1.05rem;
+  font-weight: 700;
+  margin-bottom: 2px;
+  color: var(--text-main);
 }
+
 .calc-subtitle {
-  font-size: 0.78rem;
-  color: var(--text-muted);
+  font-size: 0.74rem;
+  color: var(--text-dim);
+}
+
+.calc-form {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
 .calc-row-2col {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-bottom: 14px;
+  gap: 8px;
 }
+
 .input-group {
   display: flex;
   flex-direction: column;
 }
+
 .input-label {
-  font-size: 0.76rem;
-  font-weight: 600;
+  font-size: 0.70rem;
+  font-weight: 700;
   color: var(--text-muted);
+  margin-bottom: 3px;
   text-transform: uppercase;
-  letter-spacing: 0.8px;
-  margin-bottom: 6px;
-}
-.select-field, .input-field {
-  width: 100%;
-  background: rgba(5, 12, 24, 0.8);
-  border: 1px solid rgba(56, 189, 248, 0.22);
-  color: #fff;
-  padding: 10px 14px;
-  font-size: 0.92rem;
-  border-radius: var(--radius-sm);
-  outline: none;
-  font-family: inherit;
-  transition: all var(--transition-fast);
-}
-.select-field:focus, .input-field:focus {
-  border-color: var(--cyan-main);
-  box-shadow: 0 0 12px rgba(0, 166, 251, 0.35);
+  letter-spacing: 0.04em;
 }
 
-/* Cities Swap Component */
+.select-field, .input-field {
+  height: 34px;
+  padding: 0 9px;
+  font-size: 0.82rem;
+  border-radius: var(--radius-sm);
+  background: rgba(5, 12, 24, 0.75);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-main);
+  transition: all var(--transition-fast);
+  width: 100%;
+}
+
+.select-field:focus, .input-field:focus {
+  outline: none;
+  border-color: var(--cyan-main);
+  box-shadow: 0 0 10px rgba(0, 166, 251, 0.25);
+}
+
 .cities-swap-wrapper {
   display: flex;
   align-items: flex-end;
-  gap: 10px;
-  margin-bottom: 16px;
+  gap: 6px;
 }
+
 .btn-swap-cities {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: rgba(56, 189, 248, 0.12);
-  border: 1px solid rgba(56, 189, 248, 0.3);
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-sm);
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-subtle);
   color: var(--cyan-light);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  margin-bottom: 2px;
-  transition: all 0.3s ease;
+  transition: all var(--transition-fast);
   flex-shrink: 0;
 }
+
 .btn-swap-cities:hover {
-  background: var(--cyan-main);
-  color: #fff;
+  background: rgba(0, 166, 251, 0.2);
+  border-color: var(--cyan-main);
   transform: rotate(180deg);
 }
 
-/* Range Sliders */
 .range-val-badge {
-  font-size: 0.82rem;
-  font-weight: 800;
+  font-size: 0.72rem;
+  padding: 1px 7px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 166, 251, 0.15);
   color: var(--cyan-light);
-  background: rgba(0, 166, 251, 0.12);
-  padding: 2px 8px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  font-weight: 700;
 }
+
 .range-slider {
+  -webkit-appearance: none;
+  appearance: none;
   width: 100%;
-  height: 6px;
-  background: #1e293b;
+  height: 4px;
   border-radius: 4px;
+  background: rgba(255, 255, 255, 0.12);
   outline: none;
-  accent-color: var(--cyan-main);
+  margin: 3px 0;
   cursor: pointer;
 }
 
-/* Toggle Checkboxes */
-.calc-toggles-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin: 16px 0;
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: var(--cyan-main);
+  cursor: pointer;
+  box-shadow: 0 0 10px rgba(0, 166, 251, 0.6);
+  transition: all var(--transition-fast);
 }
+
+.calc-toggles-grid {
+  display: flex;
+  gap: 14px;
+  margin: 1px 0;
+}
+
 .toggle-checkbox-label {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 0.78rem;
+  gap: 6px;
+  font-size: 0.75rem;
   color: var(--text-muted);
   cursor: pointer;
-  background: rgba(255, 255, 255, 0.03);
-  padding: 8px 10px;
-  border-radius: var(--radius-sm);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all var(--transition-fast);
+  user-select: none;
 }
-.toggle-checkbox-label input {
+
+.toggle-checkbox-label input[type="checkbox"] {
   display: none;
 }
+
 .toggle-custom-box {
-  width: 16px;
-  height: 16px;
+  width: 15px;
+  height: 15px;
   border-radius: 4px;
-  border: 1.5px solid var(--text-dim);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  border: 1px solid var(--border-subtle);
+  background: rgba(15, 23, 42, 0.6);
+  position: relative;
   transition: all var(--transition-fast);
 }
-.toggle-checkbox-label input:checked + .toggle-custom-box {
+
+.toggle-checkbox-label input[type="checkbox"]:checked + .toggle-custom-box {
   background: var(--cyan-main);
   border-color: var(--cyan-main);
 }
-.toggle-checkbox-label input:checked + .toggle-custom-box::after {
-  content: "✓";
-  color: #fff;
-  font-size: 11px;
-  font-weight: 900;
-}
-.toggle-checkbox-label:hover {
-  border-color: var(--cyan-light);
-  color: #fff;
+
+.toggle-checkbox-label input[type="checkbox"]:checked + .toggle-custom-box::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 1px;
+  width: 4px;
+  height: 8px;
+  border: solid #040812;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
 }
 
-/* Dynamic Live Result Box */
 .calc-live-result-box {
   background: rgba(5, 12, 24, 0.9);
   border: 1px solid rgba(56, 189, 248, 0.35);
-  border-radius: var(--radius-md);
-  padding: 16px;
-  margin-bottom: 18px;
+  border-radius: var(--radius-sm);
+  padding: 7px 12px;
+  margin: 2px 0;
   display: grid;
-  grid-template-columns: 1.2fr 1fr;
-  gap: 14px;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 10px;
 }
-.result-item {
+
+.result-details-col {
   display: flex;
   flex-direction: column;
-  margin-bottom: 6px;
+  gap: 2px;
 }
+
+.result-item {
+  display: flex;
+  gap: 6px;
+  font-size: 0.74rem;
+}
+
 .result-lbl {
-  font-size: 0.72rem;
   color: var(--text-dim);
-  text-transform: uppercase;
-  letter-spacing: 0.6px;
 }
+
 .result-val {
-  font-size: 0.94rem;
-  font-weight: 700;
-  color: #fff;
-}
-.result-price-col {
-  text-align: right;
-  border-left: 1px solid rgba(255, 255, 255, 0.08);
-  padding-left: 12px;
-}
-.price-title {
-  font-size: 0.72rem;
-  color: var(--text-dim);
-  display: block;
-  text-transform: uppercase;
-}
-.price-amount {
-  font-size: 1.35rem;
-  font-weight: 900;
-  color: var(--accent-gold);
-  line-height: 1.2;
-}
-.price-vat {
-  font-size: 0.68rem;
-  color: var(--accent-green);
+  color: var(--text-main);
   font-weight: 600;
 }
 
-/* Prominent Red Warning Alert (Appears after calculation) */
-.calc-warning-box {
-  margin-top: 14px;
-  margin-bottom: 18px;
-  padding: 18px 20px;
-  background: linear-gradient(135deg, rgba(239, 68, 68, 0.18) 0%, rgba(127, 29, 29, 0.32) 100%);
-  border: 2px solid #ef4444;
-  border-radius: 12px;
-  box-shadow: 0 0 35px rgba(239, 68, 68, 0.35);
-  animation: warningPulse 3s infinite ease-in-out, warningSlideIn 0.35s ease-out;
+.result-price-col {
+  text-align: right;
+  padding-left: 10px;
+  border-left: 1px solid rgba(56, 189, 248, 0.2);
 }
-@keyframes warningPulse {
-  0%, 100% { box-shadow: 0 0 25px rgba(239, 68, 68, 0.3); border-color: #ef4444; }
-  50% { box-shadow: 0 0 45px rgba(239, 68, 68, 0.6); border-color: #f87171; }
-}
-@keyframes warningSlideIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.calc-warning-header {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 1.05rem;
-  font-weight: 900;
-  color: #fee2e2;
-  letter-spacing: 0.4px;
-  margin-bottom: 8px;
+
+.price-title {
+  font-size: 0.66rem;
+  color: var(--text-dim);
   text-transform: uppercase;
 }
-.warning-pulse-icon {
-  font-size: 1.35rem;
-  display: inline-block;
-  animation: iconBeat 1.5s infinite;
+
+.price-amount {
+  font-size: 1.25rem;
+  font-weight: 900;
+  color: #facc15;
+  line-height: 1.1;
 }
-@keyframes iconBeat {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.2); }
+
+.price-vat {
+  font-size: 0.65rem;
+  color: #38bdf8;
 }
-.calc-warning-text {
-  font-size: 0.92rem;
-  line-height: 1.55;
-  color: #fee2e2;
-  font-weight: 500;
-  margin-bottom: 12px;
-}
-.calc-warning-footer {
-  padding-top: 10px;
-  border-top: 1px dashed rgba(239, 68, 68, 0.45);
-}
-.calc-warning-note {
-  font-size: 0.85rem;
+
+.calc-compact-warning {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(239, 68, 68, 0.12);
+  border: 1px solid rgba(239, 68, 68, 0.4);
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  font-size: 0.70rem;
   color: #fca5a5;
-  margin-bottom: 8px;
-  font-weight: 600;
+  line-height: 1.25;
+  margin: 2px 0;
 }
-.btn-warning-spec {
+
+.calc-dispatch-compact {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.input-compact {
+  height: 38px;
+  flex: 1;
+  font-size: 0.84rem;
+}
+
+.btn-calc-submit {
+  height: 38px;
+  padding: 0 16px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 12px 18px;
-  background: #ef4444;
-  color: #ffffff;
-  font-weight: 700;
-  font-size: 0.92rem;
-  border-radius: 8px;
-  text-decoration: none;
-  transition: all var(--transition-fast);
-  box-shadow: 0 4px 16px rgba(239, 68, 68, 0.4);
+  gap: 6px;
+  flex-shrink: 0;
 }
-.btn-warning-spec:hover {
-  background: #dc2626;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 22px rgba(239, 68, 68, 0.6);
+
+.calc-order-success {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.45);
+  border-radius: var(--radius-sm);
+  padding: 8px 12px;
+  margin-top: 6px;
+  text-align: center;
+}
+
+.success-title {
+  font-size: 0.88rem;
+  color: #34d399;
+  font-weight: 700;
+}
+
+.success-desc {
+  font-size: 0.74rem;
+  color: #cbd5e1;
 }
 
 /* ==========================================================================
@@ -903,28 +917,26 @@ img {
 
 /* Scene 1: Highway with 3D Truck (Photorealistic + Three.js) */
 .bg-auto-scene {
-  background: linear-gradient(180deg, rgba(6, 11, 20, 0.65) 0%, rgba(6, 11, 20, 0.92) 100%),
+  background: linear-gradient(180deg, rgba(4, 9, 20, 0.65) 0%, rgba(4, 9, 20, 0.92) 100%),
               url('../assets/bg_truck_cinematic.jpg') center center / cover no-repeat;
 }
 
 /* Scene 2: Railway with 3D Container Train */
 .bg-rail-scene {
-  background: linear-gradient(180deg, rgba(6, 11, 20, 0.65) 0%, rgba(6, 11, 20, 0.92) 100%),
+  background: linear-gradient(180deg, rgba(4, 9, 20, 0.65) 0%, rgba(4, 9, 20, 0.92) 100%),
               url('../assets/bg_train_cinematic.jpg') center center / cover no-repeat;
 }
 
 /* Scene 3: Sky with 3D Cargo Jet */
 .bg-air-scene {
-  background: linear-gradient(180deg, rgba(4, 9, 20, 0.72) 0%, rgba(6, 11, 20, 0.94) 100%),
-              radial-gradient(ellipse at 70% 30%, rgba(0, 166, 251, 0.25) 0%, transparent 60%),
-              #030914;
+  background: linear-gradient(180deg, rgba(4, 9, 20, 0.65) 0%, rgba(4, 9, 20, 0.92) 100%),
+              url('../assets/bg_air_cinematic.jpg') center center / cover no-repeat;
 }
 
-/* Scene 4: Sea with 3D Container Vessel */
+/* Scene 4: Sea with 3D Container Vessel & Ro-Ro Ferry */
 .bg-sea-scene {
-  background: linear-gradient(180deg, rgba(3, 8, 18, 0.75) 0%, rgba(6, 11, 20, 0.96) 100%),
-              radial-gradient(ellipse at 30% 70%, rgba(14, 116, 144, 0.25) 0%, transparent 60%),
-              #020814;
+  background: linear-gradient(180deg, rgba(4, 9, 20, 0.65) 0%, rgba(4, 9, 20, 0.92) 100%),
+              url('../assets/bg_sea_cinematic.jpg') center center / cover no-repeat;
 }
 
 /* ==========================================================================
@@ -1553,4 +1565,169 @@ body:not(.authenticated) .unauth-only-text {
   .footer-content {
     grid-template-columns: 1fr;
   }
+}
+
+/* ==========================================================================
+   THEME TOGGLE & LIGHT THEME STYLES
+   ========================================================================== */
+.theme-toggle-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(15, 23, 42, 0.65);
+  border: 1px solid var(--border-subtle);
+  color: var(--cyan-light);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  flex-shrink: 0;
+  margin-right: 6px;
+}
+
+.theme-toggle-btn:hover {
+  background: rgba(0, 166, 251, 0.2);
+  border-color: var(--cyan-main);
+  transform: scale(1.08);
+}
+
+.theme-icon-sun {
+  display: none;
+}
+
+.theme-icon-moon {
+  display: block;
+}
+
+[data-theme="light"] .theme-icon-sun {
+  display: block;
+  color: #f59e0b;
+}
+
+[data-theme="light"] .theme-icon-moon {
+  display: none;
+}
+
+/* Light Theme Variables & Component Adaptations */
+[data-theme="light"] {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #f1f5f9;
+  --bg-card: rgba(255, 255, 255, 0.95);
+  --bg-card-hover: rgba(248, 250, 252, 0.98);
+  --bg-glass: rgba(255, 255, 255, 0.88);
+  --bg-calc: rgba(255, 255, 255, 0.96);
+
+  --border-subtle: rgba(148, 163, 184, 0.35);
+  --border-active: #0284c7;
+  --border-glass: rgba(15, 23, 42, 0.08);
+
+  --text-main: #0f172a;
+  --text-muted: #334155;
+  --text-dim: #64748b;
+  --text-white: #0f172a;
+
+  --shadow-card: 0 10px 25px -5px rgba(0, 0, 0, 0.07);
+  --shadow-glow: 0 0 20px rgba(2, 132, 199, 0.2);
+}
+
+[data-theme="light"] body {
+  background-color: var(--bg-primary);
+  color: var(--text-main);
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+}
+
+[data-theme="light"] .top-bar {
+  background: #0f172a;
+}
+
+[data-theme="light"] .nav-link {
+  color: #334155;
+}
+
+[data-theme="light"] .nav-link:hover {
+  color: #0284c7;
+}
+
+[data-theme="light"] .btn-auth-trigger {
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+[data-theme="light"] .hero-calc-card {
+  background: #ffffff;
+  border-color: rgba(2, 132, 199, 0.35);
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.1), 0 0 20px rgba(2, 132, 199, 0.1);
+}
+
+[data-theme="light"] .select-field,
+[data-theme="light"] .input-field {
+  background: #f8fafc;
+  color: #0f172a;
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+[data-theme="light"] .btn-swap-cities,
+[data-theme="light"] .theme-toggle-btn {
+  background: #f1f5f9;
+  border-color: rgba(148, 163, 184, 0.4);
+}
+
+[data-theme="light"] .calc-live-result-box {
+  background: #f1f5f9;
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+[data-theme="light"] .price-amount {
+  color: #0284c7;
+}
+
+[data-theme="light"] .price-title,
+[data-theme="light"] .price-vat {
+  color: #475569;
+}
+
+[data-theme="light"] .toggle-custom-box {
+  background: #f1f5f9;
+  border-color: rgba(148, 163, 184, 0.5);
+}
+
+[data-theme="light"] .transport-overlay-gradient {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.8) 0%, rgba(248, 250, 252, 0.95) 100%);
+}
+
+[data-theme="light"] .route-table-wrapper {
+  background: #ffffff;
+  border-color: rgba(148, 163, 184, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .routes-table th {
+  background: #f1f5f9;
+  color: #0f172a;
+  border-bottom: 2px solid rgba(148, 163, 184, 0.3);
+}
+
+[data-theme="light"] .routes-table td {
+  color: #334155;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.2);
+}
+
+[data-theme="light"] .routes-table tr:hover {
+  background: rgba(2, 132, 199, 0.04);
+}
+
+[data-theme="light"] .fleet-card,
+[data-theme="light"] .service-card,
+[data-theme="light"] .spec-item,
+[data-theme="light"] .feature-card {
+  background: #ffffff;
+  border-color: rgba(148, 163, 184, 0.3);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }

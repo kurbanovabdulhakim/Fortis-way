@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
@@ -69,10 +69,7 @@
 
       <nav>
         <ul class="nav-links">
-          <li><a href="#auto-freight" class="nav-link">Автоперевозки</a></li>
-          <li><a href="#rail-freight" class="nav-link">Ж/Д транспорт</a></li>
-          <li><a href="#air-freight" class="nav-link">Авиадоставка</a></li>
-          <li><a href="#sea-freight" class="nav-link">Мультимодал</a></li>
+          <li><a href="#auto-freight" class="nav-link">Грузоперевозки</a></li>
           <li><a href="#routes-matrix" class="nav-link">Тарифы & Направления</a></li>
           <li><a href="#requisites" class="nav-link">Реквизиты</a></li>
           <li><a href="#contacts" class="nav-link">Контакты</a></li>
@@ -80,6 +77,11 @@
       </nav>
 
       <div class="nav-actions">
+        <!-- Theme Toggle Button -->
+        <button class="theme-toggle-btn" id="themeToggleBtn" aria-label="Переключить тему" title="Светлая / Темная тема">
+          <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
         <button class="btn-auth-trigger" id="navAuthBtn" onclick="openAuthModal()">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           <span>ЛК / Реквизиты</span>
@@ -157,11 +159,11 @@
       <div class="hero-calc-card" id="hero-calc">
         <div class="calc-header">
           <div class="calc-header-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
           </div>
           <div>
             <h3 class="calc-title">Калькулятор стоимости</h3>
-            <span class="calc-subtitle">Моментальный расчёт тарифа и автоподбор транспорта</span>
+            <span class="calc-subtitle">Моментальный онлайн-расчёт рейса</span>
           </div>
         </div>
 
@@ -169,25 +171,25 @@
           <!-- Countries Selection -->
           <div class="calc-row-2col">
             <div class="input-group">
-              <label class="input-label">Страна отправления</label>
+              <label class="input-label">Откуда (Страна)</label>
               <select class="select-field" id="countryFrom">
                 <option value="UZ" selected>🇺🇿 Узбекистан</option>
                 <option value="RU">🇷🇺 Россия</option>
                 <option value="KZ">🇰🇿 Казахстан</option>
                 <option value="TR">🇹🇷 Турция</option>
                 <option value="CN">🇨🇳 Китай</option>
-                <option value="EU">🇪🇺 Страны Европы</option>
+                <option value="EU">🇪🇺 Европа</option>
               </select>
             </div>
             <div class="input-group">
-              <label class="input-label">Страна назначения</label>
+              <label class="input-label">Куда (Страна)</label>
               <select class="select-field" id="countryTo">
                 <option value="RU" selected>🇷🇺 Россия</option>
                 <option value="UZ">🇺🇿 Узбекистан</option>
                 <option value="KZ">🇰🇿 Казахстан</option>
                 <option value="TR">🇹🇷 Турция</option>
                 <option value="CN">🇨🇳 Китай</option>
-                <option value="EU">🇪🇺 Страны Европы</option>
+                <option value="EU">🇪🇺 Европа</option>
               </select>
             </div>
           </div>
@@ -197,17 +199,17 @@
             <div class="input-group" style="flex: 1;">
               <label class="input-label">Город отправления</label>
               <select class="select-field" id="cityFrom">
-                <option value="Ташкент" data-lat="41.2995" data-lng="69.2401">Ташкент</option>
+                <option value="Ташкент" selected>Ташкент</option>
                 <option value="Самарканд">Самарканд</option>
                 <option value="Фергана">Фергана</option>
                 <option value="Бухара">Бухара</option>
-                <option value="Навои">Навои</option>
+                <option value="Наманган">Наманган</option>
               </select>
             </div>
 
             <!-- Swap Button -->
-            <button type="button" class="btn-swap-cities" id="btnSwapCities" title="Поменять направления местами" aria-label="Поменять направления">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 5h18"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 19H3"></path></svg>
+            <button type="button" class="btn-swap-cities" id="btnSwapCities" title="Поменять местами" aria-label="Поменять местами">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 5h18"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 19H3"></path></svg>
             </button>
 
             <div class="input-group" style="flex: 1;">
@@ -215,9 +217,9 @@
               <select class="select-field" id="cityTo">
                 <option value="Москва" selected>Москва</option>
                 <option value="Санкт-Петербург">Санкт-Петербург</option>
-                <option value="Самара">Самара</option>
                 <option value="Казань">Казань</option>
                 <option value="Екатеринбург">Екатеринбург</option>
+                <option value="Новосибирск">Новосибирск</option>
                 <option value="Алматы">Алматы</option>
                 <option value="Стамбул">Стамбул</option>
                 <option value="Урумчи">Урумчи</option>
@@ -228,33 +230,33 @@
           <!-- Weight & Volume Inputs -->
           <div class="calc-row-2col">
             <div class="input-group">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <label class="input-label" style="margin-bottom: 0;">Вес груза (т)</label>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                <label class="input-label" style="margin-bottom: 0;">Вес (тонн)</label>
                 <span class="range-val-badge" id="weightVal">10.0 т</span>
               </div>
               <input type="range" class="range-slider" id="cargoWeight" min="0.5" max="25" step="0.5" value="10">
             </div>
 
             <div class="input-group">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
-                <label class="input-label" style="margin-bottom: 0;">Объём кузова (м³)</label>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                <label class="input-label" style="margin-bottom: 0;">Объём (м³)</label>
                 <span class="range-val-badge" id="volumeVal">45 м³</span>
               </div>
               <input type="range" class="range-slider" id="cargoVolume" min="3" max="120" step="1" value="45">
             </div>
           </div>
 
-          <!-- Cargo Options Toggles (UzPochta Style) -->
+          <!-- Cargo Options Toggles -->
           <div class="calc-toggles-grid">
             <label class="toggle-checkbox-label">
               <input type="checkbox" id="checkOversized">
               <span class="toggle-custom-box"></span>
-              <span>Негабаритный груз (+трал)</span>
+              <span>Негабарит (+трал)</span>
             </label>
             <label class="toggle-checkbox-label">
               <input type="checkbox" id="checkRef">
               <span class="toggle-custom-box"></span>
-              <span>Температурный режим (Реф)</span>
+              <span>Темп. режим (Реф)</span>
             </label>
           </div>
 
@@ -263,11 +265,11 @@
             <div class="result-details-col">
               <div class="result-item">
                 <span class="result-lbl">Транспорт:</span>
-                <span class="result-val" id="resTruckClass">Еврофура Тент (20т)</span>
+                <span class="result-val" id="resTruckClass">Еврофура (20т)</span>
               </div>
               <div class="result-item">
-                <span class="result-lbl">Срок в пути:</span>
-                <span class="result-val" id="resTransitDays">5 – 7 дней</span>
+                <span class="result-lbl">Срок:</span>
+                <span class="result-val" id="resTransitDays">5 - 7 дней</span>
               </div>
               <div class="result-item">
                 <span class="result-lbl">Базовая ставка:</span>
@@ -275,57 +277,31 @@
               </div>
             </div>
             <div class="result-price-col">
-              <span class="price-title">Ориентировочно за рейс:</span>
+              <span class="price-title">Ориентировочно:</span>
               <div class="price-amount" id="resTotalTrip">~1 750 $</div>
               <span class="price-vat">Официальный договор с НДС</span>
             </div>
           </div>
 
-          <!-- Prominent Red Warning Alert (Appears strictly after calculation) -->
-          <div class="calc-warning-box" id="calcWarningBox" style="display: none;">
-            <div class="calc-warning-header">
-              <span class="warning-pulse-icon">⚠️</span>
-              <span>ВНИМАНИЕ: СТОИМОСТЬ ЯВЛЯЕТСЯ ОРИЕНТИРОВОЧНОЙ!</span>
-            </div>
-            <p class="calc-warning-text">
-              Данный расчёт является примерным и служит исключительно для общего понимания наших курсов и ориентиров по направлениям поставок. Точная окончательная цена формируется с учётом специфики груза, актуальных очередей на границах, сезонности и таможенного оформления.<br>
-              <strong>Для получения точной цены и официального КП свяжитесь с дежурным специалистом FortisWay.</strong>
-            </p>
+          <!-- Compact Informational Notice -->
+          <div class="calc-compact-warning" id="calcWarningBox">
+            <span class="warning-icon-mini">⚠️</span>
+            <span class="warning-text-mini"><strong>Ориентировочный расчёт.</strong> Точная ставка с НДС фиксируется по договору.</span>
           </div>
 
-          <!-- Contact Inputs for Instant Dispatch -->
-          <div class="calc-client-inputs" style="margin-top: 14px; margin-bottom: 14px; background: rgba(15, 23, 42, 0.4); padding: 12px; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);">
-            <div class="calc-row-2col">
-              <div class="input-group">
-                <label class="input-label" style="font-size: 0.8rem;">Контактное лицо / Компания</label>
-                <input type="text" class="input-field" id="calcClientName" placeholder="Ваше имя / ООО" style="padding: 9px 12px; font-size: 0.88rem;">
-              </div>
-              <div class="input-group">
-                <label class="input-label" style="font-size: 0.8rem;">Телефон / Telegram <span style="color: var(--accent-red);">*</span></label>
-                <input type="tel" class="input-field" id="calcClientPhone" placeholder="+998 (90) 123-45-67" style="padding: 9px 12px; font-size: 0.88rem;" required>
-              </div>
-            </div>
-          </div>
-
-          <!-- Action Buttons -->
-          <div style="display: flex; gap: 10px; flex-direction: column;">
-            <button type="button" class="btn-primary" onclick="triggerCalculatorAction()" style="width: 100%; justify-content: center; font-size: 1.02rem; padding: 14px;">
-              Рассчитать стоимость перевозки ↵
-            </button>
-            <button type="button" class="btn-secondary" id="btnSubmitCalcOrder" onclick="submitCalcOrderSilently(event)" style="width: 100%; justify-content: center; font-size: 0.94rem; padding: 13px; font-weight: 600; background: linear-gradient(135deg, rgba(2, 132, 199, 0.25) 0%, rgba(3, 105, 161, 0.35) 100%); border: 1px solid rgba(56, 189, 248, 0.5); color: #fff;">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right: 6px;"><path d="M22 2L11 13"></path><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
-              Заказать точный расчёт с официальным КП
+          <!-- Single Compact Contact & Submit Row -->
+          <div class="calc-dispatch-compact">
+            <input type="tel" class="input-field input-compact" id="calcClientPhone" placeholder="Телефон / Telegram *" required>
+            <button type="submit" class="btn-primary btn-calc-submit" id="btnSubmitCalcOrder" onclick="submitCalcOrderSilently(event)">
+              <span>Заказать расчёт</span>
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
             </button>
           </div>
 
-          <!-- Silent Order Success Confirmation Card -->
-          <div class="calc-order-success" id="calcOrderSuccess" style="display: none; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.45); border-radius: var(--radius-md); padding: 16px; margin-top: 14px; text-align: center;">
-            <div style="font-size: 1.15rem; color: #34d399; font-weight: 700; margin-bottom: 6px;">
-              ✓ Заявка принята в обработку
-            </div>
-            <div style="font-size: 0.88rem; color: #cbd5e1; line-height: 1.5;">
-              Параметры вашего груза переданы дежурному логисту FortisWay. Мы свяжемся с вами в течение 10–15 минут по указанному контакту для предоставления точной ставки и графика подачи транспорта.
-            </div>
+          <!-- Order Success Notice -->
+          <div class="calc-order-success" id="calcOrderSuccess" style="display: none;">
+            <div class="success-title">✓ Заявка передана логисту FortisWay</div>
+            <div class="success-desc">Свяжемся в течение 10–15 минут с точной ставкой и договором.</div>
           </div>
         </form>
       </div>

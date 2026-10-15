@@ -1,3 +1,8 @@
+﻿// Immediate theme initialization to prevent flash
+(function() {
+  const savedTheme = localStorage.getItem('fortisway_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+})();
 /**
  * FortisWay — High-Tech Freight & Logistics Platform
  * Core Application Logic, Calculator & B2B Auth System
@@ -539,6 +544,16 @@ WhatsApp: +998 93 555 22 62
    4. GENERAL UI (Fast Order Modal, Feedback, Back to Top, Toast)
    ========================================================================== */
 function initGeneralUI() {
+  // Theme Toggle Button
+  const themeToggleBtn = document.getElementById('themeToggleBtn');
+  if (themeToggleBtn) {
+    themeToggleBtn.addEventListener('click', () => {
+      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', newTheme);
+      localStorage.setItem('fortisway_theme', newTheme);
+    });
+  }
   // Back to Top Button
   const backToTopBtn = document.getElementById('backToTopBtn');
   window.addEventListener('scroll', () => {
