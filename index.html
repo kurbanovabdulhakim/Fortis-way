@@ -184,7 +184,7 @@
     }
   </script>
   <!-- Stylesheet with Cache Busting -->
-  <link rel="stylesheet" href="css/style.css?v=6.8">
+  <link rel="stylesheet" href="css/style.css?v=7.0">
   <style>
     /* Immediate cache-proof override for Step 2 Warning Alert */
     .calc-warning-box-step2 {
@@ -351,7 +351,7 @@
 }
 
   </style>
-  <link rel="icon" type="image/jpeg" href="assets/logo_brand.jpg?v=6.7">
+  <link rel="icon" type="image/jpeg" href="assets/logo_brand.jpg?v=7.0">
 </head>
 <body>
 
@@ -388,29 +388,39 @@
   <header class="navbar" id="navbar">
     <div class="container nav-container">
       <a href="#" class="brand-logo" aria-label="FortisWay главная">
-        <img src="assets/logo_brand.jpg?v=6.8" alt="ООО FORTISWAY" class="brand-logo-img">
+        <img src="assets/logo_brand.jpg?v=7.0" alt="ООО FORTISWAY" class="brand-logo-img">
         <div>
           <div class="logo-text">Fortis<span>Way</span></div>
           <span class="logo-tag">International Freight & Logistics</span>
         </div>
       </a>
 
+      <!-- Desktop Nav & Mobile Drawer Container -->
       <nav class="nav-menu" id="navMenu">
         <ul class="nav-links" id="navLinks">
-          <li><a href="#auto-freight" class="nav-link">Грузоперевозки</a></li>
-          <li><a href="#routes-matrix" class="nav-link">Тарифы&nbsp;и&nbsp;Направления</a></li>
-          <li><a href="#requisites" class="nav-link">Реквизиты</a></li>
-          <li><a href="#contacts" class="nav-link">Контакты</a></li>
+          <li><a href="#auto-freight" class="nav-link" onclick="window.closeMobileNav && window.closeMobileNav()">🚛 Грузоперевозки</a></li>
+          <li><a href="#routes-matrix" class="nav-link" onclick="window.closeMobileNav && window.closeMobileNav()">🗺️ Тарифы и Направления</a></li>
+          <li><a href="#requisites" class="nav-link" onclick="window.closeMobileNav && window.closeMobileNav()">📜 Реквизиты</a></li>
+          <li><a href="#contacts" class="nav-link" onclick="window.closeMobileNav && window.closeMobileNav()">📞 Контакты</a></li>
         </ul>
         <div class="mobile-drawer-actions" id="mobileDrawerActions">
-          <a href="#freight-calculator" class="btn-primary" onclick="window.closeMobileNav && window.closeMobileNav()">🧮 Рассчитать рейс</a>
-          <button class="btn-auth-trigger" onclick="window.closeMobileNav && window.closeMobileNav(); openAuthModal()">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
-            <span>ЛК / Реквизиты</span>
+          <a href="#freight-calculator" class="btn-primary mobile-drawer-btn" onclick="window.closeMobileNav && window.closeMobileNav()">🧮 Рассчитать рейс онлайн</a>
+          <button class="btn-auth-trigger mobile-drawer-btn" onclick="window.closeMobileNav && window.closeMobileNav(); openAuthModal()">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+            <span>ЛК / Реквизиты партнёра</span>
           </button>
+          <button class="bg-mode-toggle-btn mobile-drawer-btn" onclick="toggleBgMode()" aria-label="Режим фона">
+            <span class="bg-mode-label-video">🎬 Режим фона: Видео 0.5x</span>
+            <span class="bg-mode-label-photo">🖼️ Режим фона: 4K Фото</span>
+          </button>
+          <a href="tel:+998935552262" class="mobile-drawer-phone">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+            <span>+998 (93) 555-22-62 (Дежурный логист)</span>
+          </a>
         </div>
       </nav>
 
+      <!-- Desktop Nav Actions (On mobile, only theme button stays visible) -->
       <div class="nav-actions">
         <!-- Background Mode Toggle (Video 0.5x vs 4K Photo) -->
         <button class="bg-mode-toggle-btn" id="bgModeToggleBtn" onclick="toggleBgMode()" aria-label="Режим фона" title="Переключить фон: Видео 0.5x / 4K Фото">
@@ -418,7 +428,7 @@
           <span class="bg-mode-label-photo">🖼️ 4K Фото</span>
         </button>
 
-        <!-- Theme Toggle Button -->
+        <!-- Theme Toggle Button (Always visible on desktop and mobile) -->
         <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Переключить тему" title="Светлая / Темная тема">
           <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
           <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
@@ -434,8 +444,10 @@
         <a href="#freight-calculator" class="btn-primary" title="Рассчитать стоимость рейса">🧮 Рассчитать</a>
       </div>
 
-      <button class="mobile-toggle" id="mobileToggle" aria-label="Открыть меню">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      <!-- Mobile Hamburger Button -->
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Открыть меню" aria-expanded="false">
+        <svg class="hamburger-icon-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <svg class="hamburger-icon-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
       </button>
     </div>
   </header>
@@ -910,9 +922,6 @@
         </form>
       </div>
     </div>
-  </section>
-
-  >
   </section>
 
   <!-- ==========================================================================
@@ -1522,7 +1531,7 @@
     <div class="container footer-content">
       <div class="footer-col-brand">
         <a href="#" class="brand-logo">
-          <img src="assets/logo_brand.jpg?v=6.7" alt="FortisWay" class="brand-logo-img">
+          <img src="assets/logo_brand.jpg?v=7.0" alt="FortisWay" class="brand-logo-img">
           <div>
             <div class="logo-text">Fortis<span>Way</span></div>
             <span class="logo-tag">Freight & Logistics</span>
@@ -1720,7 +1729,7 @@
 
   <!-- Scripts -->
   <script src="js/three-scenes.js?v=5.0"></script>
-  <script src="js/main.js?v=6.8"></script>
+  <script src="js/main.js?v=7.0"></script>
   <!-- Sticky Floating Mobile Quick-Action Bar (< 768px only) -->
   <div class="mobile-bottom-bar" id="mobileBottomBar">
     <a href="tel:+998935552262" class="mobile-bar-btn bar-call" aria-label="Позвонить логисту">

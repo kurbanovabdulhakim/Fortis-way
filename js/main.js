@@ -1383,3 +1383,63 @@ document.addEventListener('DOMContentLoaded', function() {
     handleScroll();
   }
 });
+
+
+// ==========================================================================
+// MOBILE DRAWER NAVIGATION CONTROLLER (v7.0)
+// ==========================================================================
+(function() {
+  function initMobileNav() {
+    const mobileToggle = document.getElementById('mobileToggle');
+    const navMenu = document.getElementById('navMenu');
+    const navbar = document.getElementById('navbar');
+
+    window.closeMobileNav = function() {
+      if (navMenu) navMenu.classList.remove('mobile-open');
+      if (navbar) navbar.classList.remove('mobile-active');
+      if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'false');
+    };
+
+    window.toggleMobileNav = function() {
+      if (!navMenu) return;
+      const isOpen = navMenu.classList.contains('mobile-open');
+      if (isOpen) {
+        window.closeMobileNav();
+      } else {
+        navMenu.classList.add('mobile-open');
+        if (navbar) navbar.classList.add('mobile-active');
+        if (mobileToggle) mobileToggle.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    if (mobileToggle) {
+      mobileToggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        window.toggleMobileNav();
+      });
+    }
+
+    // Close when tapping anywhere outside navbar
+    document.addEventListener('click', function(e) {
+      if (navMenu && navMenu.classList.contains('mobile-open')) {
+        if (!navMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+          window.closeMobileNav();
+        }
+      }
+    });
+
+    // Close on ESC key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        window.closeMobileNav();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileNav);
+  } else {
+    initMobileNav();
+  }
+})();
