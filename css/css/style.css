@@ -2995,3 +2995,27 @@ html[data-bg-mode="photo"] .scroll-tracker-container {
   background: rgba(217, 119, 6, 0.12);
   border-color: rgba(217, 119, 6, 0.3);
 }
+
+
+/* Styling for Country/City Select Dropdowns and Optgroups */
+.select-field optgroup {
+  background: #0f172a !important;
+  color: #38bdf8 !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  padding: 4px 0 !important;
+}
+.select-field option {
+  background: #090e1a !important;
+  color: #f1f5f9 !important;
+  font-weight: 400 !important;
+  padding: 4px 8px !important;
+}
+[data-theme="light"] .select-field optgroup {
+  background: #e2e8f0 !important;
+  color: #0369a1 !important;
+}
+[data-theme="light"] .select-field option {
+  background: #ffffff !important;
+  color: #1e293b !important;
+}

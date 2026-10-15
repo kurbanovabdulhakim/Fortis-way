@@ -128,8 +128,200 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /* ==========================================================================
-   1. EXPRESS CALCULATOR WITH SWAP BUTTON & TELEGRAM DISPATCH
+   1. EXTENSIVE LOGISTICS GEOGRAPHY & DYNAMIC CALCULATOR LOGIC
    ========================================================================== */
+const LOGISTICS_GEOGRAPHY = {
+  cis: {
+    label: "СНГ",
+    countries: {
+      UZ: { name: "Узбекистан", flag: "🇺🇿", cities: ["Ташкент", "Самарканд", "Бухара", "Фергана", "Андижан", "Наманган", "Навои", "Термез", "Нукус", "Карши", "Ургенч", "Коканд", "Алмалык", "Чирчик", "Джизак", "Гулистан"] },
+      RU: { name: "Россия", flag: "🇷🇺", cities: ["Москва", "Санкт-Петербург", "Екатеринбург", "Казань", "Новосибирск", "Нижний Новгород", "Самара", "Челябинск", "Омск", "Ростов-на-Дону", "Уфа", "Красноярск", "Воронеж", "Пермь", "Волгоград", "Краснодар", "Саратов", "Тюмень", "Тольятти", "Барнаул", "Ижевск", "Хабаровск", "Владивосток", "Ярославль", "Махачкала", "Оренбург", "Новокузнецк", "Кемерово", "Рязань", "Томск", "Астрахань", "Пенза", "Набережные Челны", "Липецк", "Тула", "Киров", "Чебоксары", "Калининград", "Брянск", "Курск", "Иваново", "Магнитогорск", "Тверь", "Ставрополь", "Симферополь", "Белгород", "Сочи", "Сургут", "Владимир", "Калуга", "Смоленск"] },
+      KZ: { name: "Казахстан", flag: "🇰🇿", cities: ["Алматы", "Астана", "Шымкент", "Актобе", "Караганда", "Тараз", "Павлодар", "Усть-Каменогорск", "Семей", "Атырау", "Костанай", "Кызылорда", "Уральск", "Петропавловск", "Актау", "Темиртау", "Туркестан", "Кокшетау"] },
+      BY: { name: "Беларусь", flag: "🇧🇾", cities: ["Минск", "Гомель", "Могилёв", "Витебск", "Гродно", "Брест", "Барановичи", "Бобруйск", "Пинск", "Борисов"] },
+      KG: { name: "Кыргызстан", flag: "🇰🇬", cities: ["Бишкек", "Ош", "Джалал-Абад", "Каракол", "Токмок", "Узген", "Балыкчы", "Нарын", "Талас", "Баткен"] },
+      TJ: { name: "Таджикистан", flag: "🇹🇯", cities: ["Душанбе", "Худжанд", "Бохтар", "Куляб", "Истаравшан", "Турсунзаде", "Канибадам", "Исфара", "Пенджикент"] },
+      AZ: { name: "Азербайджан", flag: "🇦🇿", cities: ["Баку", "Гянджа", "Сумгаит", "Мингечевир", "Ширван", "Нахчыван", "Шеки", "Ленкорань", "Евлах"] },
+      AM: { name: "Армения", flag: "🇦🇲", cities: ["Ереван", "Гюмри", "Ванадзор", "Вагаршапат", "Абовян", "Капан", "Раздан"] },
+      GE: { name: "Грузия", flag: "🇬🇪", cities: ["Тбилиси", "Батуми", "Кутаиси", "Рустави", "Поти", "Зугдиди", "Гори", "Телави"] },
+      MD: { name: "Молдова", flag: "🇲🇩", cities: ["Кишинёв", "Бельцы", "Тирасполь", "Бендеры", "Рыбница", "Кагул", "Унгены"] },
+      TM: { name: "Туркменистан", flag: "🇹🇲", cities: ["Ашхабад", "Туркменабат", "Дашогуз", "Мары", "Туркменбаши", "Балканабат"] }
+    }
+  },
+  asia: {
+    label: "Азия",
+    countries: {
+      CN: { name: "Китай", flag: "🇨🇳", cities: ["Урумчи", "Гуанчжоу", "Иу", "Шанхай", "Пекин", "Шэньчжэнь", "Нинбо", "Циндао", "Тяньцзинь", "Ханчжоу", "Чэнду", "Чунцин", "Сиань", "Фошань", "Дунгуань", "Сямэнь", "Далянь", "Сучжоу", "Ухань", "Чжэнчжоу", "Харбин", "Кашгар"] },
+      TR: { name: "Турция", flag: "🇹🇷", cities: ["Стамбул", "Анкара", "Измир", "Бурса", "Анталья", "Мерсин", "Газиантеп", "Конья", "Адана", "Кайсери", "Трабзон", "Самсун", "Денизли", "Эскишехир", "Коджаэли", "Гебзе"] },
+      AE: { name: "ОАЭ", flag: "🇦🇪", cities: ["Дубай", "Абу-Даби", "Шарджа", "Джебель-Али", "Аджман", "Рас-эль-Хайма", "Фуджейра"] },
+      IR: { name: "Иран", flag: "🇮🇷", cities: ["Тегеран", "Мешхед", "Исфахан", "Тебриз", "Шираз", "Бендер-Аббас", "Решт", "Ахваз", "Кум", "Энзели"] },
+      IN: { name: "Индия", flag: "🇮🇳", cities: ["Мумбаи", "Дели", "Ченнаи", "Бангалор", "Калькутта", "Хайдарабад", "Ахмадабад", "Пуна", "Нава-Шева", "Сурат"] },
+      PK: { name: "Пакистан", flag: "🇵🇰", cities: ["Карачи", "Лахор", "Исламабад", "Равалпинди", "Фейсалабад", "Пешавар", "Гвадар"] },
+      AF: { name: "Афганистан", flag: "🇦🇫", cities: ["Кабул", "Герат", "Мазари-Шариф", "Кандагар", "Хайратон"] },
+      KR: { name: "Южная Корея", flag: "🇰🇷", cities: ["Сеул", "Пусан", "Инчхон", "Тэгу", "Кванджу", "Ульсан"] },
+      JP: { name: "Япония", flag: "🇯🇵", cities: ["Токио", "Йокогама", "Осака", "Нагоя", "Кобе", "Фукуока"] },
+      VN: { name: "Вьетнам", flag: "🇻🇳", cities: ["Ханой", "Хошимин", "Хайфон", "Дананг"] },
+      TH: { name: "Таиланд", flag: "🇹🇭", cities: ["Бангкок", "Лаем Чабанг", "Чиангмай", "Пхукет"] },
+      MY: { name: "Малайзия", flag: "🇲🇾", cities: ["Куала-Лумпур", "Порт-Кланг", "Пенанг", "Джохор-Бару"] },
+      SG: { name: "Сингапур", flag: "🇸🇬", cities: ["Сингапур"] },
+      ID: { name: "Индонезия", flag: "🇮🇩", cities: ["Джакарта", "Сурабая", "Медан", "Семаранг"] },
+      SA: { name: "Саудовская Аравия", flag: "🇸🇦", cities: ["Эр-Рияд", "Джидда", "Даммам", "Мекка", "Медина"] },
+      QA: { name: "Катар", flag: "🇶🇦", cities: ["Доха", "Аль-Вакра"] },
+      KW: { name: "Кувейт", flag: "🇰🇼", cities: ["Эль-Кувейт", "Шувайх"] },
+      OM: { name: "Оман", flag: "🇴🇲", cities: ["Маскат", "Салала", "Сохар"] },
+      IL: { name: "Израиль", flag: "🇮🇱", cities: ["Тель-Авив", "Хайфа", "Ашдод", "Иерусалим"] }
+    }
+  },
+  europe: {
+    label: "Европа",
+    countries: {
+      DE: { name: "Германия", flag: "🇩🇪", cities: ["Берлин", "Гамбург", "Франкфурт-на-Майне", "Мюнхен", "Кёльн", "Дюссельдорф", "Штутгарт", "Лейпциг", "Бремен", "Дортмунд", "Нюрнберг", "Ганновер"] },
+      PL: { name: "Польша", flag: "🇵🇱", cities: ["Варшава", "Лодзь", "Краков", "Вроцлав", "Познань", "Гданьск", "Щецин", "Катовице", "Люблин", "Белосток", "Бяла-Подляска"] },
+      IT: { name: "Италия", flag: "🇮🇹", cities: ["Милан", "Рим", "Болонья", "Верона", "Турин", "Неаполь", "Генуя", "Флоренция", "Венеция", "Бари", "Триест"] },
+      LT: { name: "Литва", flag: "🇱🇹", cities: ["Вильнюс", "Каунас", "Клайпеда", "Шяуляй", "Паневежис"] },
+      LV: { name: "Латвия", flag: "🇱🇻", cities: ["Рига", "Даугавпилс", "Лиепая", "Вентспилс", "Елгава"] },
+      EE: { name: "Эстония", flag: "🇪🇪", cities: ["Таллин", "Тарту", "Нарва", "Пярну"] },
+      NL: { name: "Нидерланды", flag: "🇳🇱", cities: ["Роттердам", "Амстердам", "Гаага", "Утрехт", "Эйндховен", "Тилбург"] },
+      BE: { name: "Бельгия", flag: "🇧🇪", cities: ["Антверпен", "Брюссель", "Гент", "Льеж", "Брюгге"] },
+      FR: { name: "Франция", flag: "🇫🇷", cities: ["Париж", "Лион", "Марсель", "Тулуза", "Бордо", "Лилль", "Гавр", "Страсбург", "Нант"] },
+      ES: { name: "Испания", flag: "🇪🇸", cities: ["Мадрид", "Барселона", "Валенсия", "Севилья", "Сарагоса", "Малага", "Бильбао"] },
+      CZ: { name: "Чехия", flag: "🇨🇿", cities: ["Прага", "Брно", "Острава", "Пльзень"] },
+      AT: { name: "Австрия", flag: "🇦🇹", cities: ["Вена", "Грац", "Линц", "Зальцбург", "Инсбрук"] },
+      HU: { name: "Венгрия", flag: "🇭🇺", cities: ["Будапешт", "Дебрецен", "Сегед", "Мишкольц", "Дьёр"] },
+      RO: { name: "Румыния", flag: "🇷🇴", cities: ["Бухарест", "Клуж-Напока", "Тимишоара", "Яссы", "Констанца"] },
+      BG: { name: "Болгария", flag: "🇧🇬", cities: ["София", "Пловдив", "Варна", "Бургас", "Русе"] },
+      GB: { name: "Великобритания", flag: "🇬🇧", cities: ["Лондон", "Бирмингем", "Манчестер", "Ливерпуль", "Лидс", "Глазго", "Саутгемптон", "Феликстоу"] },
+      FI: { name: "Финляндия", flag: "🇫🇮", cities: ["Хельсинки", "Эспоо", "Тампере", "Турку", "Оулу", "Котка"] },
+      SE: { name: "Швеция", flag: "🇸🇪", cities: ["Стокгольм", "Гётеборг", "Мальмё", "Хельсингборг"] },
+      NO: { name: "Норвегия", flag: "🇳🇴", cities: ["Осло", "Берген", "Ставангер", "Тронхейм"] },
+      DK: { name: "Дания", flag: "🇩🇰", cities: ["Копенгаген", "Орхус", "Оденсе", "Ольборг"] },
+      CH: { name: "Швейцария", flag: "🇨🇭", cities: ["Цюрих", "Женева", "Базель", "Берн", "Лозанна"] },
+      SK: { name: "Словакия", flag: "🇸🇰", cities: ["Братислава", "Кошице", "Жилина"] },
+      SI: { name: "Словения", flag: "🇸🇮", cities: ["Любляна", "Марибор", "Копер"] },
+      HR: { name: "Хорватия", flag: "🇭🇷", cities: ["Загреб", "Сплит", "Риека"] },
+      RS: { name: "Сербия", flag: "🇷🇸", cities: ["Белград", "Нови-Сад", "Ниш", "Крагуевац"] },
+      GR: { name: "Греция", flag: "🇬🇷", cities: ["Афины", "Салоники", "Пирей", "Патры"] },
+      PT: { name: "Португалия", flag: "🇵🇹", cities: ["Лиссабон", "Порту", "Лейрия", "Сетубал"] }
+    }
+  }
+};
+
+// Helper: Find country code and region by city name
+function findCountryByCity(cityName) {
+  if (!cityName) return null;
+  for (const [regionKey, region] of Object.entries(LOGISTICS_GEOGRAPHY)) {
+    for (const [countryCode, country] of Object.entries(region.countries)) {
+      if (country.cities.includes(cityName)) {
+        return { countryCode, regionKey, country };
+      }
+    }
+  }
+  return null;
+}
+
+// Helper: Find country details by country code
+function findCountryByCode(code) {
+  if (!code) return null;
+  for (const [regionKey, region] of Object.entries(LOGISTICS_GEOGRAPHY)) {
+    if (region.countries[code]) {
+      return { countryCode: code, regionKey, country: region.countries[code] };
+    }
+  }
+  return null;
+}
+
+// Populate city <select> based on country code
+function populateCitiesSelect(countryCode, citySelectElem, preferredCity) {
+  if (!citySelectElem) return;
+  const found = findCountryByCode(countryCode);
+  const cities = found ? found.country.cities : ["Ташкент"];
+
+  citySelectElem.innerHTML = '';
+  cities.forEach(city => {
+    const opt = document.createElement('option');
+    opt.value = city;
+    opt.textContent = city;
+    if (preferredCity && city === preferredCity) {
+      opt.selected = true;
+    }
+    citySelectElem.appendChild(opt);
+  });
+
+  if (!preferredCity || !cities.includes(preferredCity)) {
+    if (citySelectElem.options.length > 0) {
+      citySelectElem.selectedIndex = 0;
+    }
+  }
+}
+
+// ==========================================================================
+// TARIFF & RATE CALCULATION MATRIX (READY FOR USER-PROVIDED PRICING TABLE)
+// ==========================================================================
+const CUSTOM_RATES_MATRIX = {
+  // User will supply custom rates here, e.g.:
+  // "Ташкент-Москва": { km: 3400, daysAuto: "5 – 7 дней", baseRateUsd: 175 }
+};
+
+function getRouteEstimate(fromCountry, fromCity, toCountry, toCity) {
+  const routeKey1 = `${fromCity}-${toCity}`;
+  const routeKey2 = `${toCity}-${fromCity}`;
+
+  if (CUSTOM_RATES_MATRIX[routeKey1]) return CUSTOM_RATES_MATRIX[routeKey1];
+  if (CUSTOM_RATES_MATRIX[routeKey2]) return CUSTOM_RATES_MATRIX[routeKey2];
+
+  // Specific city benchmarks
+  const cityBenchmarks = {
+    'Москва': { km: 3400, daysAuto: '5 – 7 дней', baseRateUsd: 175 },
+    'Санкт-Петербург': { km: 4100, daysAuto: '7 – 9 дней', baseRateUsd: 205 },
+    'Самара': { km: 2300, daysAuto: '4 – 5 дней', baseRateUsd: 165 },
+    'Казань': { km: 2600, daysAuto: '4 – 6 дней', baseRateUsd: 175 },
+    'Екатеринбург': { km: 2300, daysAuto: '4 – 5 дней', baseRateUsd: 180 },
+    'Новосибирск': { km: 2500, daysAuto: '5 – 7 дней', baseRateUsd: 190 },
+    'Алматы': { km: 810, daysAuto: '24 – 48 часов', baseRateUsd: 100 },
+    'Астана': { km: 1400, daysAuto: '3 – 4 дня', baseRateUsd: 125 },
+    'Стамбул': { km: 4800, daysAuto: '10 – 14 дней', baseRateUsd: 235 },
+    'Урумчи': { km: 1200, daysAuto: '3 – 5 дней', baseRateUsd: 155 },
+    'Гуанчжоу': { km: 6200, daysAuto: '12 – 16 дней', baseRateUsd: 260 },
+    'Иу': { km: 5800, daysAuto: '11 – 15 дней', baseRateUsd: 250 },
+    'Берлин': { km: 5200, daysAuto: '10 – 14 дней', baseRateUsd: 240 },
+    'Варшава': { km: 4500, daysAuto: '8 – 12 дней', baseRateUsd: 215 },
+    'Милан': { km: 5700, daysAuto: '11 – 15 дней', baseRateUsd: 265 },
+    'Вильнюс': { km: 4200, daysAuto: '8 – 11 дней', baseRateUsd: 210 },
+    'Рига': { km: 4300, daysAuto: '8 – 12 дней', baseRateUsd: 215 },
+    'Минск': { km: 3900, daysAuto: '7 – 10 дней', baseRateUsd: 195 },
+    'Баку': { km: 2200, daysAuto: '5 – 7 дней', baseRateUsd: 160 },
+    'Тбилиси': { km: 2700, daysAuto: '6 – 8 дней', baseRateUsd: 175 },
+    'Душанбе': { km: 450, daysAuto: '24 – 36 часов', baseRateUsd: 75 },
+    'Бишкек': { km: 550, daysAuto: '24 – 36 часов', baseRateUsd: 80 },
+    'Дубай': { km: 3800, daysAuto: '9 – 13 дней', baseRateUsd: 230 },
+    'Тегеран': { km: 1900, daysAuto: '4 – 6 дней', baseRateUsd: 160 }
+  };
+
+  if (cityBenchmarks[toCity]) return cityBenchmarks[toCity];
+  if (cityBenchmarks[fromCity]) return cityBenchmarks[fromCity];
+
+  // Regional Fallback
+  const fromInfo = findCountryByCode(fromCountry);
+  const toInfo = findCountryByCode(toCountry);
+
+  const regFrom = fromInfo ? fromInfo.regionKey : 'cis';
+  const regTo = toInfo ? toInfo.regionKey : 'cis';
+
+  if (fromCountry === toCountry) {
+    return { km: 600, daysAuto: '24 – 48 часов', baseRateUsd: 70 };
+  }
+  if (regFrom === 'cis' && regTo === 'cis') {
+    return { km: 2800, daysAuto: '5 – 8 дней', baseRateUsd: 165 };
+  }
+  if ((regFrom === 'cis' && regTo === 'asia') || (regFrom === 'asia' && regTo === 'cis')) {
+    return { km: 4500, daysAuto: '8 – 14 дней', baseRateUsd: 210 };
+  }
+  if ((regFrom === 'cis' && regTo === 'europe') || (regFrom === 'europe' && regTo === 'cis')) {
+    return { km: 5000, daysAuto: '9 – 14 дней', baseRateUsd: 235 };
+  }
+  return { km: 6500, daysAuto: '12 – 18 дней', baseRateUsd: 265 };
+}
+
+
 function initCalculator() {
   const countryFrom = document.getElementById('countryFrom');
   const countryTo = document.getElementById('countryTo');
@@ -154,7 +346,15 @@ function initCalculator() {
 
   if (!cargoWeight || !cargoVolume) return;
 
-  // Dynamic Slider Track Progress Fill (Cyan active line up to thumb)
+  // Initialize dynamic cities on page load
+  if (countryFrom && cityFrom) {
+    populateCitiesSelect(countryFrom.value || 'UZ', cityFrom, 'Ташкент');
+  }
+  if (countryTo && cityTo) {
+    populateCitiesSelect(countryTo.value || 'RU', cityTo, 'Москва');
+  }
+
+  // Dynamic Slider Track Progress Fill
   function updateSliderTrackProgress(slider) {
     if (!slider) return;
     const min = parseFloat(slider.min) !== undefined ? parseFloat(slider.min) : 0;
@@ -173,19 +373,6 @@ function initCalculator() {
   window.updateAllSliderProgress = function() {
     updateSliderTrackProgress(cargoWeight);
     updateSliderTrackProgress(cargoVolume);
-  };
-
-
-  // Route Database: +$10-$20 above reference market rates (Unity-Trans benchmarks)
-  const routeDistances = {
-    'Москва': { km: 3400, daysAuto: '5 – 7 дней', daysRail: '8 – 11 дней', baseRateUsd: 175 },
-    'Санкт-Петербург': { km: 4100, daysAuto: '7 – 9 дней', daysRail: '10 – 13 дней', baseRateUsd: 205 },
-    'Самара': { km: 2300, daysAuto: '4 – 5 дней', daysRail: '6 – 8 дней', baseRateUsd: 165 },
-    'Казань': { km: 2600, daysAuto: '4 – 6 дней', daysRail: '7 – 9 дней', baseRateUsd: 175 },
-    'Екатеринбург': { km: 2300, daysAuto: '4 – 5 дней', daysRail: '6 – 8 дней', baseRateUsd: 180 },
-    'Алматы': { km: 810, daysAuto: '24 – 48 часов', daysRail: '3 – 4 дня', baseRateUsd: 100 },
-    'Стамбул': { km: 4800, daysAuto: '10 – 14 дней', daysRail: '14 – 18 дней', baseRateUsd: 235 },
-    'Урумчи': { km: 1200, daysAuto: '3 – 5 дней', daysRail: '5 – 7 дней', baseRateUsd: 155 }
   };
 
   function updateCalculation(isUserAction = false) {
@@ -215,11 +402,15 @@ function initCalculator() {
       vehicle = 'Isuzu NPR (среднетоннажный до 5т)';
     }
 
-    // Rate Calculation (+10-20$ above reference sites)
-    const targetCity = cityTo ? cityTo.value : 'Москва';
-    const routeInfo = routeDistances[targetCity] || { km: 3400, daysAuto: '5 – 7 дней', baseRateUsd: 175 };
+    // Dynamic Route Details from Extensible Matrix / Regional Engine
+    const cFrom = countryFrom ? countryFrom.value : 'UZ';
+    const cTo = countryTo ? countryTo.value : 'RU';
+    const targetCityFrom = cityFrom ? cityFrom.value : 'Ташкент';
+    const targetCityTo = cityTo ? cityTo.value : 'Москва';
 
-    let ratePerTon = routeInfo.baseRateUsd;
+    const routeInfo = getRouteEstimate(cFrom, targetCityFrom, cTo, targetCityTo);
+
+    let ratePerTon = routeInfo.baseRateUsd || 175;
     if (isRef) ratePerTon += 45;
     if (isOversized) ratePerTon += 65;
 
@@ -238,20 +429,147 @@ function initCalculator() {
     }
 
     if (resTruckClass) resTruckClass.textContent = vehicle;
-    if (resTransitDays) resTransitDays.textContent = routeInfo.daysAuto;
+    if (resTransitDays) resTransitDays.textContent = routeInfo.daysAuto || '5 – 7 дней';
     if (resRateAmount) resRateAmount.textContent = `от ${ratePerTon} $ / т`;
-    if (resTotalTrip) resTotalTrip.textContent = `~${totalTripUsd.toLocaleString('ru-RU')} $`;
+    if (resTotalTrip) resTotalTrip.textContent = `~${totalTripUsd.toLocaleString('ru-RU')} // Immediate theme initialization to prevent flash
+window.toggleTheme = function() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('fortisway_theme', newTheme);
+  console.log('[FortisWay] Theme toggled to:', newTheme);
+  if (window.updateAllSliderProgress) window.updateAllSliderProgress();
+};
+
+(function() {
+  const savedTheme = localStorage.getItem('fortisway_theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', savedTheme);
+})();
+
+/* ==========================================================================
+   SEAMLESS 2X TIME-LAPSE DUAL-VIDEO CROSSFADE CONTROLLER
+   ========================================================================== */
+function initSeamlessBackgroundVideos() {
+  const containers = document.querySelectorAll('.seamless-video-container');
+  if (!containers.length) return;
+
+  containers.forEach(container => {
+    const vidA = container.querySelector('.layer-a');
+    const vidB = container.querySelector('.layer-b');
+    if (!vidA || !vidB) return;
+
+    const speed = parseFloat(container.dataset.speed) || 0.5;
+    const fadeDurationSec = 1.2;
+    const crossfadeLeadTime = fadeDurationSec * speed; // 2.4s in video timeline
+
+    let active = vidA;
+    let inactive = vidB;
+    let crossfading = false;
+    let isVisible = false;
+
+    // Apply 2x speed and initial display states
+    vidA.playbackRate = speed;
+    vidB.playbackRate = speed;
+    vidA.classList.add('active');
+    vidB.classList.remove('active');
+
+    function startPlayback() {
+      if (!isVisible) return;
+      active.playbackRate = speed;
+      active.classList.add('active');
+      active.play().catch(() => {});
+    }
+
+    function pauseAll() {
+      vidA.pause();
+      vidB.pause();
+    }
+
+    function triggerCrossfade() {
+      if (crossfading) return;
+      crossfading = true;
+
+      inactive.currentTime = 0;
+      inactive.playbackRate = speed;
+      inactive.classList.add('active');
+      active.classList.remove('active');
+      inactive.play().catch(() => {});
+
+      // After 1.2s crossfade completes, reset inactive and swap pointers
+      setTimeout(() => {
+        active.pause();
+        active.currentTime = 0;
+        const temp = active;
+        active = inactive;
+        inactive = temp;
+        crossfading = false;
+      }, (fadeDurationSec * 1000) + 50);
+    }
+
+    function checkCrossfade() {
+      if (!isVisible || crossfading) return;
+      const dur = active.duration;
+      const cur = active.currentTime;
+
+      if (dur && !isNaN(dur) && dur > crossfadeLeadTime && cur >= (dur - crossfadeLeadTime)) {
+        triggerCrossfade();
+      }
+    }
+
+    vidA.addEventListener('timeupdate', checkCrossfade);
+    vidB.addEventListener('timeupdate', checkCrossfade);
+
+    function onEnded() {
+      if (!crossfading) {
+        triggerCrossfade();
+      }
+    }
+    vidA.addEventListener('ended', onEnded);
+    vidB.addEventListener('ended', onEnded);
+
+    // IntersectionObserver for 60fps performance & battery savings
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            startPlayback();
+          } else {
+            pauseAll();
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(container.closest('.transport-section') || container);
+    } else {
+      isVisible = true;
+      startPlayback();
+    }
+  });
+}
+/**
+ * FortisWay — High-Tech Freight & Logistics Platform
+ * Core Application Logic, Calculator & B2B Auth System
+ */
+
+document.addEventListener('DOMContentLoaded', () => {
+  initScrollTransportTrackers();
+  initSeamlessBackgroundVideos();
+  initCalculator();
+  initTransportScrollAnimations();
+  initRequisitesAuth();
+  initGeneralUI();
+});
+
+;
 
     updateSliderTrackProgress(cargoWeight);
     updateSliderTrackProgress(cargoVolume);
 
-    // Step 2 Warning Box remains permanently and fully visible
+    // Step 2 Warning Box remains visible
     const warnBox = document.getElementById('calcWarningBox');
     if (warnBox) {
       warnBox.style.display = 'block';
     }
-
-    // Silent submission handler is available via submitCalcOrderSilently
   }
 
   // Explicit calculation button trigger
@@ -259,7 +577,7 @@ function initCalculator() {
     updateCalculation(true);
   };
 
-  // Silent Lead Submission Handler (Direct background transmission to Manager via AJAX / Telegram)
+  // Silent Lead Submission Handler
   window.submitCalcOrderSilently = async function(event) {
     if (event) event.preventDefault();
     updateCalculation(true);
@@ -282,22 +600,22 @@ function initCalculator() {
       return;
     }
 
-    // Set button loading state
     if (submitBtn) {
       submitBtn.disabled = true;
       submitBtn.innerHTML = `<span style="display:inline-block; width:14px; height:14px; border:2px solid #fff; border-top-color:transparent; border-radius:50%; animation:spin 0.6s linear infinite; margin-right:8px; vertical-align:middle;"></span> Отправка заявки...`;
     }
 
-    // Prepare lead parameters
+    const cFrom = countryFrom ? countryFrom.value : 'UZ';
+    const cTo = countryTo ? countryTo.value : 'RU';
     const from = cityFrom ? cityFrom.value : 'Ташкент';
     const to = cityTo ? cityTo.value : 'Москва';
     const weight = parseFloat(cargoWeight.value);
     const volume = parseInt(cargoVolume.value, 10);
     const isOversized = checkOversized ? checkOversized.checked : false;
     const isRef = checkRef ? checkRef.checked : false;
-    const routeInfo = routeDistances[to] || { km: 3400, daysAuto: '5 – 7 дней', baseRateUsd: 175 };
+    const routeInfo = getRouteEstimate(cFrom, from, cTo, to);
     
-    let ratePerTon = routeInfo.baseRateUsd;
+    let ratePerTon = routeInfo.baseRateUsd || 175;
     if (isRef) ratePerTon += 45;
     if (isOversized) ratePerTon += 65;
 
@@ -307,67 +625,34 @@ function initCalculator() {
     } else {
       totalTripUsd = Math.round(weight * ratePerTon);
       const minVolExpected = weight * 4.2;
-      if (volume > minVolExpected) {
-        totalTripUsd += Math.round((volume - minVolExpected) * 16);
-      }
+      if (volume > minVolExpected) totalTripUsd += Math.round((volume - minVolExpected) * 16);
       if (totalTripUsd < 450) totalTripUsd = 450;
     }
 
-    const modeStr = isRef ? 'Рефрижератор (-20..+12°C)' : (isOversized ? 'Негабаритный спецтрал' : 'Стандартный тент');
-    const timestamp = new Date().toLocaleString('ru-RU');
-
-    const leadDossier = {
-      source: 'Онлайн-калькулятор FortisWay',
-      dateTime: timestamp,
-      route: `${from} → ${to} (~${routeInfo.km} км)`,
-      weight: `${weight >= 1 ? weight + ' т' : (weight * 1000) + ' кг'}`,
-      volume: `${volume} м³`,
-      mode: modeStr,
-      transitEstimate: routeInfo.daysAuto,
-      calculatedRate: `от ${ratePerTon} $ / т`,
-      totalEstimatedTrip: `~${totalTripUsd} $`,
+    const leadData = {
+      timestamp: new Date().toISOString(),
       clientName: name || 'Не указано',
-      clientContact: phone
+      clientPhone: phone,
+      route: `${from} (${cFrom}) → ${to} (${cTo})`,
+      weight: `${weight} т`,
+      volume: `${volume} м³`,
+      specifics: `${isOversized ? 'Негабарит ' : ''}${isRef ? 'Рефрижератор ' : ''}`.trim() || 'Стандарт',
+      estimatedTrip: `~${totalTripUsd} USD`,
+      transitTime: routeInfo.daysAuto || 'По согласованию',
+      source: 'Калькулятор FortisWay'
     };
 
-    // Save lead to local storage backup
     try {
-      const storedLeads = JSON.parse(localStorage.getItem('fortisway_leads') || '[]');
-      storedLeads.push(leadDossier);
-      localStorage.setItem('fortisway_leads', JSON.stringify(storedLeads));
-    } catch(e) {}
-
-    // 1. Silent Local & Internal Dispatch
-    console.log('[FortisWay Lead Dispatch]', leadDossier);
-
-    // 2. Telegram Bot silent webhook dispatch if configured
-    if (window.FORTIS_TELEGRAM_CONFIG && window.FORTIS_TELEGRAM_CONFIG.botToken && window.FORTIS_TELEGRAM_CONFIG.chatId) {
-      const tgText = `🔔 ЗАЯВКА НА РАСЧЁТ ПЕРЕВОЗКИ (FortisWay)\n\n` +
-        `📍 Маршрут: ${from} → ${to} (~${routeInfo.km} км)\n` +
-        `⚖️ Вес: ${leadDossier.weight} | Объём: ${leadDossier.volume}\n` +
-        `🚛 Режим: ${modeStr}\n` +
-        `💵 Расчёт: ~${totalTripUsd} $ (ставка от ${ratePerTon} $/т)\n` +
-        `⏱ Срок: ${routeInfo.daysAuto}\n` +
-        `👤 Клиент: ${name || 'Клиент'}\n` +
-        `📞 Телефон/Связь: ${phone}\n` +
-        `⏰ Время: ${timestamp}`;
-
-      fetch(`https://api.telegram.org/bot${window.FORTIS_TELEGRAM_CONFIG.botToken}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          chat_id: window.FORTIS_TELEGRAM_CONFIG.chatId,
-          text: tgText
-        })
-      }).catch(() => {});
+      if (window.TelegramBot && typeof window.TelegramBot.sendLead === 'function') {
+        await window.TelegramBot.sendLead(leadData);
+      }
+    } catch (err) {
+      console.warn('Telegram lead submission fallback:', err);
     }
-
-    // Smooth UI update
-    await new Promise(r => setTimeout(r, 600));
 
     if (submitBtn) {
       submitBtn.disabled = false;
-      submitBtn.innerHTML = `✓ Заявка передана логисту`;
+      submitBtn.innerHTML = `✓ Заявка отправлена менеджеру`;
       submitBtn.style.background = 'linear-gradient(135deg, #059669 0%, #047857 100%)';
       submitBtn.style.borderColor = '#10b981';
     }
@@ -383,34 +668,45 @@ function initCalculator() {
   // Swap Button Handler (⇄)
   if (btnSwap) {
     btnSwap.addEventListener('click', () => {
+      const oldCountryFrom = countryFrom ? countryFrom.value : 'UZ';
+      const oldCountryTo = countryTo ? countryTo.value : 'RU';
+      const oldCityFrom = cityFrom ? cityFrom.value : 'Ташкент';
+      const oldCityTo = cityTo ? cityTo.value : 'Москва';
+
       if (countryFrom && countryTo) {
-        const tempCountry = countryFrom.value;
-        countryFrom.value = countryTo.value;
-        countryTo.value = tempCountry;
+        countryFrom.value = oldCountryTo;
+        countryTo.value = oldCountryFrom;
       }
 
-      const fromVal = cityFrom.value;
-      const toVal = cityTo.value;
-
-      let hasFromInTo = Array.from(cityTo.options).some(o => o.value === fromVal);
-      if (!hasFromInTo) {
-        cityTo.add(new Option(fromVal, fromVal));
-      }
-      let hasToInFrom = Array.from(cityFrom.options).some(o => o.value === toVal);
-      if (!hasToInFrom) {
-        cityFrom.add(new Option(toVal, toVal));
-      }
-
-      cityFrom.value = toVal;
-      cityTo.value = fromVal;
+      populateCitiesSelect(countryFrom ? countryFrom.value : 'RU', cityFrom, oldCityTo);
+      populateCitiesSelect(countryTo ? countryTo.value : 'UZ', cityTo, oldCityFrom);
 
       updateCalculation(true);
-      showToast(`Направление изменено: ${toVal} → ${fromVal}`);
+      showToast(`Направление изменено: ${oldCityTo} → ${oldCityFrom}`);
     });
   }
 
-  // Bind Listeners with immediate slider fill update
+  // Bind Listeners
   const onUserChange = () => updateCalculation(true);
+
+  if (countryFrom) {
+    countryFrom.addEventListener('change', () => {
+      populateCitiesSelect(countryFrom.value, cityFrom);
+      updateCalculation(true);
+      const selName = countryFrom.options[countryFrom.selectedIndex]?.text || countryFrom.value;
+      showToast(`Отправление: ${selName}`);
+    });
+  }
+
+  if (countryTo) {
+    countryTo.addEventListener('change', () => {
+      populateCitiesSelect(countryTo.value, cityTo);
+      updateCalculation(true);
+      const selName = countryTo.options[countryTo.selectedIndex]?.text || countryTo.value;
+      showToast(`Назначение: ${selName}`);
+    });
+  }
+
   cargoWeight.addEventListener('input', () => {
     updateSliderTrackProgress(cargoWeight);
     updateCalculation(true);
@@ -429,7 +725,7 @@ function initCalculator() {
   if (clientNameIn) clientNameIn.addEventListener('input', onUserChange);
   if (clientPhoneIn) clientPhoneIn.addEventListener('input', onUserChange);
 
-  // Initial slider fill and calculation without showing warning until user interacts
+  // Initial slider fill and calculation
   updateSliderTrackProgress(cargoWeight);
   updateSliderTrackProgress(cargoVolume);
   updateCalculation(false);
@@ -437,32 +733,52 @@ function initCalculator() {
 
 // Global Route Setter from Table Matrix
 window.applyRoute = function(from, to) {
+  const countryFrom = document.getElementById('countryFrom');
+  const countryTo = document.getElementById('countryTo');
   const cityFrom = document.getElementById('cityFrom');
   const cityTo = document.getElementById('cityTo');
-  const heroCalc = document.getElementById('hero-calc');
+  const heroCalc = document.getElementById('freight-calculator') || document.getElementById('hero-calc');
 
-  if (cityFrom && cityTo) {
-    let hasFrom = Array.from(cityFrom.options).some(o => o.value === from);
-    if (!hasFrom) cityFrom.add(new Option(from, from));
-    cityFrom.value = from;
+  if (countryFrom && cityFrom) {
+    const fCountry = findCountryByCity(from);
+    if (fCountry) {
+      countryFrom.value = fCountry.countryCode;
+      populateCitiesSelect(fCountry.countryCode, cityFrom, from);
+    } else {
+      let hasFrom = Array.from(cityFrom.options).some(o => o.value === from);
+      if (!hasFrom) cityFrom.add(new Option(from, from));
+      cityFrom.value = from;
+    }
+  }
 
-    let hasTo = Array.from(cityTo.options).some(o => o.value === to);
-    if (!hasTo) cityTo.add(new Option(to, to));
-    cityTo.value = to;
+  if (countryTo && cityTo) {
+    const tCountry = findCountryByCity(to);
+    if (tCountry) {
+      countryTo.value = tCountry.countryCode;
+      populateCitiesSelect(tCountry.countryCode, cityTo, to);
+    } else {
+      let hasTo = Array.from(cityTo.options).some(o => o.value === to);
+      if (!hasTo) cityTo.add(new Option(to, to));
+      cityTo.value = to;
+    }
+  }
 
-    cityFrom.dispatchEvent(new Event('change'));
+  const cityFromEl = document.getElementById('cityFrom');
+  if (cityFromEl) {
+    cityFromEl.dispatchEvent(new Event('change'));
   }
 
   if (heroCalc) {
     heroCalc.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    heroCalc.style.transform = 'scale(1.02)';
-    heroCalc.style.boxShadow = '0 0 40px rgba(0, 166, 251, 0.6)';
+    heroCalc.style.transform = 'scale(1.01)';
+    heroCalc.style.boxShadow = '0 0 40px rgba(0, 166, 251, 0.4)';
     setTimeout(() => {
       heroCalc.style.transform = '';
       heroCalc.style.boxShadow = '';
     }, 1200);
   }
 };
+
 
 /* ==========================================================================
    2. SCROLL-DRIVEN AMBIENT VEHICLE ANIMATIONS (IntersectionObserver)
