@@ -56,6 +56,88 @@
       background: #ffffff !important;
       color: #1e293b !important;
     }
+  /* Styling for Country/City Select Dropdowns and Optgroups */
+.select-field optgroup {
+  background: #0f172a !important;
+  color: #38bdf8 !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  padding: 4px 0 !important;
+}
+.select-field option {
+  background: #090e1a !important;
+  color: #f1f5f9 !important;
+  font-weight: 400 !important;
+  padding: 4px 8px !important;
+}
+[data-theme="light"] .select-field optgroup {
+  background: #e2e8f0 !important;
+  color: #0369a1 !important;
+}
+[data-theme="light"] .select-field option {
+  background: #ffffff !important;
+  color: #1e293b !important;
+}
+
+/* Range Sliders Active Track Fill & Glowing Thumb */
+.range-slider {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 100% !important;
+  height: 5px !important;
+  border-radius: 5px !important;
+  background: linear-gradient(to right, #00a6fb 0%, #00a6fb var(--range-pct, 38%), rgba(255, 255, 255, 0.18) var(--range-pct, 38%), rgba(255, 255, 255, 0.18) 100%) !important;
+  outline: none !important;
+  margin: 6px 0 !important;
+  cursor: pointer !important;
+}
+[data-theme="light"] .range-slider {
+  background: linear-gradient(to right, #00a6fb 0%, #00a6fb var(--range-pct, 38%), rgba(0, 0, 0, 0.14) var(--range-pct, 38%), rgba(0, 0, 0, 0.14) 100%) !important;
+}
+.range-slider::-webkit-slider-runnable-track {
+  height: 5px !important;
+  border-radius: 5px !important;
+  background: transparent !important;
+}
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 17px !important;
+  height: 17px !important;
+  border-radius: 50% !important;
+  background: #00a6fb !important;
+  border: 2px solid #ffffff !important;
+  cursor: pointer !important;
+  box-shadow: 0 0 12px rgba(0, 166, 251, 0.95) !important;
+  margin-top: -6px !important;
+  transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+}
+.range-slider::-webkit-slider-thumb:hover,
+.range-slider::-webkit-slider-thumb:active {
+  transform: scale(1.25) !important;
+  box-shadow: 0 0 18px rgba(0, 166, 251, 1) !important;
+}
+.range-slider::-moz-range-track {
+  height: 5px !important;
+  border-radius: 5px !important;
+  background: transparent !important;
+}
+.range-slider::-moz-range-progress {
+  background: #00a6fb !important;
+  height: 5px !important;
+  border-radius: 5px !important;
+  box-shadow: 0 0 8px rgba(0, 166, 251, 0.8) !important;
+}
+.range-slider::-moz-range-thumb {
+  width: 17px !important;
+  height: 17px !important;
+  border-radius: 50% !important;
+  background: #00a6fb !important;
+  border: 2px solid #ffffff !important;
+  cursor: pointer !important;
+  box-shadow: 0 0 12px rgba(0, 166, 251, 0.95) !important;
+}
+
   </style>
   <!-- Immediate Theme Initializer -->
   <script>
@@ -82,7 +164,7 @@
     }
   </script>
   <!-- Stylesheet with Cache Busting -->
-  <link rel="stylesheet" href="css/style.css?v=6.1">
+  <link rel="stylesheet" href="css/style.css?v=6.2">
   <style>
     /* Immediate cache-proof override for Step 2 Warning Alert */
     .calc-warning-box-step2 {
@@ -166,6 +248,88 @@
       background: #ffffff !important;
       color: #1e293b !important;
     }
+  /* Styling for Country/City Select Dropdowns and Optgroups */
+.select-field optgroup {
+  background: #0f172a !important;
+  color: #38bdf8 !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  padding: 4px 0 !important;
+}
+.select-field option {
+  background: #090e1a !important;
+  color: #f1f5f9 !important;
+  font-weight: 400 !important;
+  padding: 4px 8px !important;
+}
+[data-theme="light"] .select-field optgroup {
+  background: #e2e8f0 !important;
+  color: #0369a1 !important;
+}
+[data-theme="light"] .select-field option {
+  background: #ffffff !important;
+  color: #1e293b !important;
+}
+
+/* Range Sliders Active Track Fill & Glowing Thumb */
+.range-slider {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 100% !important;
+  height: 5px !important;
+  border-radius: 5px !important;
+  background: linear-gradient(to right, #00a6fb 0%, #00a6fb var(--range-pct, 38%), rgba(255, 255, 255, 0.18) var(--range-pct, 38%), rgba(255, 255, 255, 0.18) 100%) !important;
+  outline: none !important;
+  margin: 6px 0 !important;
+  cursor: pointer !important;
+}
+[data-theme="light"] .range-slider {
+  background: linear-gradient(to right, #00a6fb 0%, #00a6fb var(--range-pct, 38%), rgba(0, 0, 0, 0.14) var(--range-pct, 38%), rgba(0, 0, 0, 0.14) 100%) !important;
+}
+.range-slider::-webkit-slider-runnable-track {
+  height: 5px !important;
+  border-radius: 5px !important;
+  background: transparent !important;
+}
+.range-slider::-webkit-slider-thumb {
+  -webkit-appearance: none !important;
+  appearance: none !important;
+  width: 17px !important;
+  height: 17px !important;
+  border-radius: 50% !important;
+  background: #00a6fb !important;
+  border: 2px solid #ffffff !important;
+  cursor: pointer !important;
+  box-shadow: 0 0 12px rgba(0, 166, 251, 0.95) !important;
+  margin-top: -6px !important;
+  transition: transform 0.12s ease, box-shadow 0.12s ease !important;
+}
+.range-slider::-webkit-slider-thumb:hover,
+.range-slider::-webkit-slider-thumb:active {
+  transform: scale(1.25) !important;
+  box-shadow: 0 0 18px rgba(0, 166, 251, 1) !important;
+}
+.range-slider::-moz-range-track {
+  height: 5px !important;
+  border-radius: 5px !important;
+  background: transparent !important;
+}
+.range-slider::-moz-range-progress {
+  background: #00a6fb !important;
+  height: 5px !important;
+  border-radius: 5px !important;
+  box-shadow: 0 0 8px rgba(0, 166, 251, 0.8) !important;
+}
+.range-slider::-moz-range-thumb {
+  width: 17px !important;
+  height: 17px !important;
+  border-radius: 50% !important;
+  background: #00a6fb !important;
+  border: 2px solid #ffffff !important;
+  cursor: pointer !important;
+  box-shadow: 0 0 12px rgba(0, 166, 251, 0.95) !important;
+}
+
   </style>
 </head>
 <body>
@@ -520,6 +684,21 @@
                 <label class="input-label">Город отправления</label>
                 <select class="select-field" id="cityFrom">
                   <option value="Ташкент" selected>Ташкент</option>
+                  <option value="Самарканд">Самарканд</option>
+                  <option value="Бухара">Бухара</option>
+                  <option value="Фергана">Фергана</option>
+                  <option value="Андижан">Андижан</option>
+                  <option value="Наманган">Наманган</option>
+                  <option value="Навои">Навои</option>
+                  <option value="Термез">Термез</option>
+                  <option value="Нукус">Нукус</option>
+                  <option value="Карши">Карши</option>
+                  <option value="Ургенч">Ургенч</option>
+                  <option value="Коканд">Коканд</option>
+                  <option value="Алмалык">Алмалык</option>
+                  <option value="Чирчик">Чирчик</option>
+                  <option value="Джизак">Джизак</option>
+                  <option value="Гулистан">Гулистан</option>
                 </select>
               </div>
 
@@ -532,6 +711,56 @@
                 <label class="input-label">Город назначения</label>
                 <select class="select-field" id="cityTo">
                   <option value="Москва" selected>Москва</option>
+                  <option value="Санкт-Петербург">Санкт-Петербург</option>
+                  <option value="Екатеринбург">Екатеринбург</option>
+                  <option value="Казань">Казань</option>
+                  <option value="Новосибирск">Новосибирск</option>
+                  <option value="Нижний Новгород">Нижний Новгород</option>
+                  <option value="Самара">Самара</option>
+                  <option value="Челябинск">Челябинск</option>
+                  <option value="Омск">Омск</option>
+                  <option value="Ростов-на-Дону">Ростов-на-Дону</option>
+                  <option value="Уфа">Уфа</option>
+                  <option value="Красноярск">Красноярск</option>
+                  <option value="Воронеж">Воронеж</option>
+                  <option value="Пермь">Пермь</option>
+                  <option value="Волгоград">Волгоград</option>
+                  <option value="Краснодар">Краснодар</option>
+                  <option value="Саратов">Саратов</option>
+                  <option value="Тюмень">Тюмень</option>
+                  <option value="Тольятти">Тольятти</option>
+                  <option value="Барнаул">Барнаул</option>
+                  <option value="Ижевск">Ижевск</option>
+                  <option value="Хабаровск">Хабаровск</option>
+                  <option value="Владивосток">Владивосток</option>
+                  <option value="Ярославль">Ярославль</option>
+                  <option value="Махачкала">Махачкала</option>
+                  <option value="Оренбург">Оренбург</option>
+                  <option value="Новокузнецк">Новокузнецк</option>
+                  <option value="Кемерово">Кемерово</option>
+                  <option value="Рязань">Рязань</option>
+                  <option value="Томск">Томск</option>
+                  <option value="Астрахань">Астрахань</option>
+                  <option value="Пенза">Пенза</option>
+                  <option value="Набережные Челны">Набережные Челны</option>
+                  <option value="Липецк">Липецк</option>
+                  <option value="Тула">Тула</option>
+                  <option value="Киров">Киров</option>
+                  <option value="Чебоксары">Чебоксары</option>
+                  <option value="Калининград">Калининград</option>
+                  <option value="Брянск">Брянск</option>
+                  <option value="Курск">Курск</option>
+                  <option value="Иваново">Иваново</option>
+                  <option value="Магнитогорск">Магнитогорск</option>
+                  <option value="Тверь">Тверь</option>
+                  <option value="Ставрополь">Ставрополь</option>
+                  <option value="Симферополь">Симферополь</option>
+                  <option value="Белгород">Белгород</option>
+                  <option value="Сочи">Сочи</option>
+                  <option value="Сургут">Сургут</option>
+                  <option value="Владимир">Владимир</option>
+                  <option value="Калуга">Калуга</option>
+                  <option value="Смоленск">Смоленск</option>
                 </select>
               </div>
             </div>
@@ -1447,6 +1676,6 @@
 
   <!-- Scripts -->
   <script src="js/three-scenes.js?v=5.0"></script>
-  <script src="js/main.js?v=6.1"></script>
+  <script src="js/main.js?v=6.2"></script>
 </body>
 </html>
