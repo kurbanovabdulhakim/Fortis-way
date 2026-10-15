@@ -1,4 +1,12 @@
-﻿// Immediate theme initialization to prevent flash
+// Immediate theme initialization to prevent flash
+window.toggleTheme = function() {
+  const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+  const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+  document.documentElement.setAttribute('data-theme', newTheme);
+  localStorage.setItem('fortisway_theme', newTheme);
+  console.log('[FortisWay] Theme toggled to:', newTheme);
+};
+
 (function() {
   const savedTheme = localStorage.getItem('fortisway_theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
@@ -572,12 +580,7 @@ function initGeneralUI() {
   // Theme Toggle Button
   const themeToggleBtn = document.getElementById('themeToggleBtn');
   if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
-      const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-      const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-      document.documentElement.setAttribute('data-theme', newTheme);
-      localStorage.setItem('fortisway_theme', newTheme);
-    });
+    themeToggleBtn.onclick = window.toggleTheme;
   }
   // Back to Top Button
   const backToTopBtn = document.getElementById('backToTopBtn');

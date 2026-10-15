@@ -1,4 +1,4 @@
-﻿/* ==========================================================================
+/* ==========================================================================
    FortisWay — High-Tech Freight & Logistics Platform
    Design System & Modern Dark Tech Styles
    ========================================================================== */
@@ -253,20 +253,29 @@ img {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: rgba(6, 11, 20, 0.88);
+  background: rgba(6, 11, 20, 0.92);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border-subtle);
-  padding: 14px 0;
+  height: 72px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  transition: background var(--transition-normal), border-color var(--transition-normal);
 }
 .nav-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 100%;
+  height: 100%;
+  gap: 20px;
 }
 .brand-logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 12px;
+  text-decoration: none;
+  flex-shrink: 0;
 }
 .brand-logo-img {
   width: 44px;
@@ -291,35 +300,53 @@ img {
   box-shadow: var(--shadow-glow);
 }
 .logo-text {
-  font-size: 1.4rem;
+  font-size: 1.35rem;
   font-weight: 900;
   letter-spacing: -0.5px;
   color: #fff;
+  line-height: 1.1;
+  transition: color var(--transition-fast);
 }
 .logo-text span {
   color: var(--cyan-light);
 }
 .logo-tag {
   display: block;
-  font-size: 0.68rem;
+  font-size: 0.65rem;
   text-transform: uppercase;
-  letter-spacing: 1.8px;
+  letter-spacing: 1.6px;
   color: var(--text-dim);
-  margin-top: -3px;
+  margin-top: 2px;
+  line-height: 1;
+  transition: color var(--transition-fast);
 }
 
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: clamp(14px, 1.8vw, 26px);
   list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: nowrap;
+}
+.nav-links li {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
 .nav-link {
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   font-weight: 500;
   color: var(--text-muted);
+  white-space: nowrap !important;
+  line-height: 1;
+  padding: 8px 4px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
   transition: all var(--transition-fast);
-  padding: 6px 4px;
 }
 .nav-link:hover {
   color: var(--cyan-light);
@@ -328,26 +355,80 @@ img {
 .nav-actions {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 10px;
+  flex-shrink: 0;
 }
+.theme-toggle-btn {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(15, 23, 42, 0.75) !important;
+  border: 1px solid rgba(56, 189, 248, 0.3) !important;
+  color: #38bdf8 !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  flex-shrink: 0 !important;
+  transition: all 0.25s ease !important;
+  outline: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box !important;
+}
+.theme-toggle-btn:hover {
+  background: rgba(56, 189, 248, 0.2) !important;
+  border-color: #38bdf8 !important;
+  color: #ffffff !important;
+  transform: scale(1.08);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.45);
+}
+.theme-toggle-btn svg {
+  display: block;
+}
+.theme-icon-sun {
+  display: none !important;
+}
+.theme-icon-moon {
+  display: block !important;
+}
+
 .btn-auth-trigger {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 8px;
+  height: 40px;
+  box-sizing: border-box;
   background: rgba(56, 189, 248, 0.1);
   border: 1px solid var(--border-subtle);
   color: var(--cyan-light);
   font-weight: 600;
   font-size: 0.88rem;
-  padding: 10px 16px;
+  padding: 0 16px;
   border-radius: var(--radius-md);
   cursor: pointer;
   transition: all var(--transition-fast);
+  white-space: nowrap;
 }
 .btn-auth-trigger:hover {
   background: rgba(56, 189, 248, 0.2);
   border-color: var(--cyan-light);
   color: #fff;
+}
+.nav-actions .btn-primary {
+  height: 40px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  font-weight: 700;
+  line-height: 1;
 }
 
 .mobile-toggle {
@@ -357,6 +438,7 @@ img {
   color: #fff;
   cursor: pointer;
 }
+
 
 /* ==========================================================================
    HERO SECTION (Dual-Column Layout with Floating Calculator)
@@ -1481,6 +1563,8 @@ img {
   border-radius: 50%;
   background: var(--cyan-light);
   box-shadow: 0 0 8px var(--cyan-light);
+}
+
 /* Protected data state toggle across page */
 body.authenticated .unauth-only-text {
   display: none !important;
@@ -1610,6 +1694,22 @@ body:not(.authenticated) .unauth-only-text {
 }
 
 /* Light Theme Variables & Component Adaptations */
+[data-theme="light"] .logo-text {
+  color: #0f172a !important;
+}
+[data-theme="light"] .logo-tag {
+  color: #64748b !important;
+}
+[data-theme="light"] .mobile-toggle {
+  color: #0f172a !important;
+}
+[data-theme="light"] .nav-link {
+  color: #334155 !important;
+}
+[data-theme="light"] .nav-link:hover {
+  color: #0284c7 !important;
+}
+
 [data-theme="light"] {
   --bg-primary: #f8fafc;
   --bg-secondary: #f1f5f9;
