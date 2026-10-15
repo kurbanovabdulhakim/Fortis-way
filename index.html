@@ -49,7 +49,7 @@
     }
   </script>
   <!-- Stylesheet with Cache Busting -->
-  <link rel="stylesheet" href="css/style.css?v=4.5">
+  <link rel="stylesheet" href="css/style.css?v=4.6">
 </head>
 <body>
 
@@ -379,10 +379,20 @@
               </div>
             </div>
 
-            <div class="calc-compact-warning" id="calcWarningBox">
-              <span class="warning-icon-mini">⚠️</span>
-              <span class="warning-text-mini"><strong>Внимание: расчёт ориентировочный!</strong> Точная ставка с НДС закрепляется в договоре после проверки характеристик груза.</span>
+                        <!-- Prominent Warning Alert (Appears strictly after user calculates/interacts) -->
+            <div class="calc-warning-box" id="calcWarningBox" style="display: none;">
+              <div class="calc-warning-header">
+                <span class="warning-pulse-icon">⚠️</span>
+                <span>ВНИМАНИЕ: СТОИМОСТЬ ЯВЛЯЕТСЯ ОРИЕНТИРОВОЧНОЙ!</span>
+              </div>
+              <p class="calc-warning-text">
+                Данный онлайн-расчёт носит предварительный информационный характер для общего понимания базовых тарифов по направлениям. Точная итоговая стоимость рейса формируется с учётом специфики и класса груза, очередей на пограничных пунктах, сезонности, температурного режима и таможенных формальностей.
+              </p>
+              <div class="calc-warning-footer">
+                Фиксированная ставка с НДС и сроки подачи транспорта закрепляются в официальном договоре-заявке с логистом FortisWay.
+              </div>
             </div>
+
 
             <div class="calc-dispatch-box" style="margin-top: 14px;">
               <label class="input-label">Получить точный расчёт и официальное КП у логиста</label>
@@ -1404,7 +1414,7 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/three-scenes.js?v=4.5"></script>
-  <script src="js/main.js?v=4.5"></script>
+  <script src="js/three-scenes.js?v=4.6"></script>
+  <script src="js/main.js?v=4.6"></script>
 </body>
 </html>
