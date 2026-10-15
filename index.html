@@ -86,7 +86,7 @@
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
           <span>ЛК / Реквизиты</span>
         </button>
-        <a href="#hero-calc" class="btn-primary">Рассчитать рейс</a>
+        <a href="#freight-calculator" class="btn-primary">Рассчитать рейс</a>
       </div>
 
       <button class="mobile-toggle" id="mobileToggle" aria-label="Открыть меню">
@@ -97,215 +97,289 @@
 
   <!-- ==========================================================================
        HERO SECTION (Inspired by UzPochta.ru + Unity-Trans.uz)
+       ========================================================================  <!-- ==========================================================================
+       HERO SECTION (Full-Width Representative Showcase - Unity-Trans Style)
        ========================================================================== -->
-  <section class="hero-section" id="hero">
-    <!-- Ambient highway background with moving truck silhouette -->
-    <div class="hero-backdrop">
+  <section class="hero-section hero-fullwidth" id="hero">
+    <!-- Ambient Parallax Backdrop -->
+    <div class="hero-backdrop" data-parallax="0.2">
       <div class="hero-glow-blob"></div>
-      <div class="hero-road-horizon"></div>
+      <div class="hero-globe-overlay"></div>
     </div>
 
-    <div class="container hero-grid">
-      <!-- Left Column: High-Impact Offer & Value Proposition -->
-      <div class="hero-content">
-        <div class="section-tag">Международная & Региональная логистика</div>
-        <h1 class="hero-title">
-          Грузоперевозки <br>
-          <span class="gradient-text">Узбекистан ⇄ СНГ,</span> <br>
-          Турция, Европа и Китай
-        </h1>
-        <p class="hero-desc">
-          Организуем оперативную и надёжную доставку комплектных (FTL), сборных (LTL), железнодорожных, авиа и негабаритных грузов. Фиксированные ставки, персональный логист и онлайн GPS-контроль на каждом километре пути.
-        </p>
+    <div class="container hero-container-wide">
+      <div class="hero-main-row">
+        <!-- Main Headline & Value Proposition -->
+        <div class="hero-content">
+          <div class="hero-status-pill">
+            <span class="live-dot"></span>
+            <span>Международная & Региональная логистика • Диспетчерская 24/7</span>
+          </div>
 
-        <!-- Trust Badges Row -->
-        <div class="hero-badges-row">
-          <div class="hero-badge-pill">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Официальный договор с НДС
+          <h1 class="hero-title">
+            Грузоперевозки <br>
+            <span class="gradient-text">Узбекистан ⇄ СНГ,</span> <br>
+            Турция, Европа и Китай
+          </h1>
+
+          <p class="hero-desc">
+            Организуем оперативную и надёжную доставку комплектных (FTL), сборных (LTL), железнодорожных, авиа и негабаритных грузов. Фиксированные ставки, персональный логист и онлайн GPS-контроль на каждом километре пути.
+          </p>
+
+          <!-- Trust Badges -->
+          <div class="hero-badges-row">
+            <div class="hero-badge-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Официальный договор с НДС
+            </div>
+            <div class="hero-badge-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              GPS-трекинг 24/7
+            </div>
+            <div class="hero-badge-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Автопарк 30+ машин
+            </div>
+            <div class="hero-badge-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Без скрытых платежей
+            </div>
           </div>
-          <div class="hero-badge-pill">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            GPS-трекинг 24/7
-          </div>
-          <div class="hero-badge-pill">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Автопарк 30+ машин
-          </div>
-          <div class="hero-badge-pill">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
-            Без скрытых платежей
+
+          <!-- Direct CTA Buttons -->
+          <div class="hero-buttons">
+            <a href="#freight-calculator" class="btn-primary hero-btn-main" style="padding: 16px 32px; font-size: 1.05rem;">
+              <span>Рассчитать стоимость онлайн ↓</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            </a>
+            <a href="tel:+998935552262" class="btn-secondary" style="padding: 15px 24px; font-size: 0.98rem;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              +998 (93) 555-22-62
+            </a>
+            <a href="https://t.me/LogisticsFortisway" target="_blank" class="btn-secondary" style="padding: 15px 22px; font-size: 0.98rem;" title="Связь в Telegram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+              Telegram
+            </a>
           </div>
         </div>
 
-        <!-- Direct CTA Buttons -->
-        <div class="hero-buttons">
-          <a href="#hero-calc" class="btn-primary" style="padding: 15px 32px; font-size: 1.05rem;">
-            Рассчитать перевозку
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-          </a>
-          <a href="tel:+998935552262" class="btn-secondary" style="padding: 15px 26px; font-size: 1rem;">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            +998 (93) 555-22-62
-          </a>
-          <a href="https://t.me/LogisticsFortisway" target="_blank" class="btn-secondary" style="padding: 15px 22px; font-size: 1rem;" title="Написать в Telegram">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
-            Telegram
-          </a>
+        <!-- Right Side: Representative Division Cards (Unity-Trans Style) -->
+        <div class="hero-divisions-col">
+          <div class="division-card">
+            <div class="division-card-header">
+              <div class="division-icon-badge" style="background: rgba(0, 166, 251, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: var(--cyan-light);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+              </div>
+              <h3 class="division-title">Fortis Logistic</h3>
+            </div>
+            <p class="division-desc">
+              Международные FTL и LTL автоперевозки, контейнерные ж/д поезда, авиарейсы и прямая доставка в Узбекистан с контролем погрузки.
+            </p>
+            <div class="division-tags">
+              <span class="div-tag">FTL / LTL</span>
+              <span class="div-tag">Рефрижераторы</span>
+              <span class="div-tag">Контейнеры 40'HQ</span>
+            </div>
+          </div>
+
+          <div class="division-card">
+            <div class="division-card-header">
+              <div class="division-icon-badge" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(52, 211, 153, 0.4); color: #34d399;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <h3 class="division-title">Fortis Trade & Customs</h3>
+            </div>
+            <p class="division-desc">
+              Комплексное таможенное оформление в РФ, Казахстане и Узбекистане, ВЭД-сопровождение, сертификация и 100% страхование грузов.
+            </p>
+            <div class="division-tags">
+              <span class="div-tag">Таможенная очистка</span>
+              <span class="div-tag">ВЭД-аутсорсинг</span>
+              <span class="div-tag">Договор с НДС</span>
+            </div>
+          </div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Right Column: UzPochta-Style Floating Express Calculator Card -->
-      <div class="hero-calc-card" id="hero-calc">
-        <div class="calc-header">
-          <div class="calc-header-icon">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M16 10h.01"></path><path d="M12 10h.01"></path><path d="M8 10h.01"></path><path d="M12 14h.01"></path><path d="M8 14h.01"></path><path d="M12 18h.01"></path><path d="M8 18h.01"></path></svg>
-          </div>
-          <div>
-            <h3 class="calc-title">Калькулятор стоимости</h3>
-            <span class="calc-subtitle">Моментальный онлайн-расчёт рейса</span>
-          </div>
-        </div>
+  <!-- ==========================================================================
+       DEDICATED CALCULATOR SECTION (Positioned Directly Below Hero)
+       ========================================================================== -->
+  <section class="calculator-section" id="freight-calculator">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-badge-pill">Онлайн-сервис FortisWay</span>
+        <h2 class="section-title-large">Калькулятор стоимости доставки</h2>
+        <p class="section-subtitle-text">
+          Рассчитайте ориентировочный тариф и срок перевозки вашего груза по направлениям Узбекистан ⇄ СНГ, Турция, Европа
+        </p>
+      </div>
 
-        <form id="expressCalcForm" class="calc-form">
-          <!-- Countries Selection -->
-          <div class="calc-row-2col">
-            <div class="input-group">
-              <label class="input-label">Откуда (Страна)</label>
-              <select class="select-field" id="countryFrom">
-                <option value="UZ" selected>🇺🇿 Узбекистан</option>
-                <option value="RU">🇷🇺 Россия</option>
-                <option value="KZ">🇰🇿 Казахстан</option>
-                <option value="TR">🇹🇷 Турция</option>
-                <option value="CN">🇨🇳 Китай</option>
-                <option value="EU">🇪🇺 Европа</option>
-              </select>
-            </div>
-            <div class="input-group">
-              <label class="input-label">Куда (Страна)</label>
-              <select class="select-field" id="countryTo">
-                <option value="RU" selected>🇷🇺 Россия</option>
-                <option value="UZ">🇺🇿 Узбекистан</option>
-                <option value="KZ">🇰🇿 Казахстан</option>
-                <option value="TR">🇹🇷 Турция</option>
-                <option value="CN">🇨🇳 Китай</option>
-                <option value="EU">🇪🇺 Европа</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Cities Selection with Swap Button -->
-          <div class="cities-swap-wrapper">
-            <div class="input-group" style="flex: 1;">
-              <label class="input-label">Город отправления</label>
-              <select class="select-field" id="cityFrom">
-                <option value="Ташкент" selected>Ташкент</option>
-                <option value="Самарканд">Самарканд</option>
-                <option value="Фергана">Фергана</option>
-                <option value="Бухара">Бухара</option>
-                <option value="Наманган">Наманган</option>
-              </select>
+      <div class="calculator-wide-card">
+        <form id="expressCalcForm" class="calc-grid-layout">
+          <!-- Left Column: Route & Cargo Parameters -->
+          <div class="calc-col-params">
+            <div class="calc-block-title">
+              <span class="calc-step-num">1</span>
+              <span>Маршрут перевозки</span>
             </div>
 
-            <!-- Swap Button -->
-            <button type="button" class="btn-swap-cities" id="btnSwapCities" title="Поменять местами" aria-label="Поменять местами">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 5h18"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 19H3"></path></svg>
-            </button>
-
-            <div class="input-group" style="flex: 1;">
-              <label class="input-label">Город назначения</label>
-              <select class="select-field" id="cityTo">
-                <option value="Москва" selected>Москва</option>
-                <option value="Санкт-Петербург">Санкт-Петербург</option>
-                <option value="Казань">Казань</option>
-                <option value="Екатеринбург">Екатеринбург</option>
-                <option value="Новосибирск">Новосибирск</option>
-                <option value="Алматы">Алматы</option>
-                <option value="Стамбул">Стамбул</option>
-                <option value="Урумчи">Урумчи</option>
-              </select>
-            </div>
-          </div>
-
-          <!-- Weight & Volume Inputs -->
-          <div class="calc-row-2col">
-            <div class="input-group">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-                <label class="input-label" style="margin-bottom: 0;">Вес (тонн)</label>
-                <span class="range-val-badge" id="weightVal">10.0 т</span>
+            <!-- Countries Selection -->
+            <div class="calc-row-2col">
+              <div class="input-group">
+                <label class="input-label">Откуда (Страна)</label>
+                <select class="select-field" id="countryFrom">
+                  <option value="UZ" selected>🇺🇿 Узбекистан</option>
+                  <option value="RU">🇷🇺 Россия</option>
+                  <option value="KZ">🇰🇿 Казахстан</option>
+                  <option value="TR">🇹🇷 Турция</option>
+                  <option value="CN">🇨🇳 Китай</option>
+                  <option value="EU">🇪🇺 Европа</option>
+                </select>
               </div>
-              <input type="range" class="range-slider" id="cargoWeight" min="0.5" max="25" step="0.5" value="10">
-            </div>
-
-            <div class="input-group">
-              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-                <label class="input-label" style="margin-bottom: 0;">Объём (м³)</label>
-                <span class="range-val-badge" id="volumeVal">45 м³</span>
-              </div>
-              <input type="range" class="range-slider" id="cargoVolume" min="3" max="120" step="1" value="45">
-            </div>
-          </div>
-
-          <!-- Cargo Options Toggles -->
-          <div class="calc-toggles-grid">
-            <label class="toggle-checkbox-label">
-              <input type="checkbox" id="checkOversized">
-              <span class="toggle-custom-box"></span>
-              <span>Негабарит (+трал)</span>
-            </label>
-            <label class="toggle-checkbox-label">
-              <input type="checkbox" id="checkRef">
-              <span class="toggle-custom-box"></span>
-              <span>Темп. режим (Реф)</span>
-            </label>
-          </div>
-
-          <!-- Dynamic Result Box -->
-          <div class="calc-live-result-box">
-            <div class="result-details-col">
-              <div class="result-item">
-                <span class="result-lbl">Транспорт:</span>
-                <span class="result-val" id="resTruckClass">Еврофура (20т)</span>
-              </div>
-              <div class="result-item">
-                <span class="result-lbl">Срок:</span>
-                <span class="result-val" id="resTransitDays">5 - 7 дней</span>
-              </div>
-              <div class="result-item">
-                <span class="result-lbl">Базовая ставка:</span>
-                <span class="result-val" id="resRateAmount" style="color: var(--cyan-light); font-weight: 700;">от 175 $ / т</span>
+              <div class="input-group">
+                <label class="input-label">Куда (Страна)</label>
+                <select class="select-field" id="countryTo">
+                  <option value="RU" selected>🇷🇺 Россия</option>
+                  <option value="UZ">🇺🇿 Узбекистан</option>
+                  <option value="KZ">🇰🇿 Казахстан</option>
+                  <option value="TR">🇹🇷 Турция</option>
+                  <option value="CN">🇨🇳 Китай</option>
+                  <option value="EU">🇪🇺 Европа</option>
+                </select>
               </div>
             </div>
-            <div class="result-price-col">
-              <span class="price-title">Ориентировочно:</span>
-              <div class="price-amount" id="resTotalTrip">~1 750 $</div>
-              <span class="price-vat">Официальный договор с НДС</span>
+
+            <!-- Cities Selection with Swap Button -->
+            <div class="cities-swap-wrapper">
+              <div class="input-group" style="flex: 1;">
+                <label class="input-label">Город отправления</label>
+                <select class="select-field" id="cityFrom">
+                  <option value="Ташкент" selected>Ташкент</option>
+                  <option value="Самарканд">Самарканд</option>
+                  <option value="Фергана">Фергана</option>
+                  <option value="Бухара">Бухара</option>
+                  <option value="Наманган">Наманган</option>
+                </select>
+              </div>
+
+              <!-- Swap Button -->
+              <button type="button" class="btn-swap-cities" id="btnSwapCities" title="Поменять местами" aria-label="Поменять местами">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 5h18"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 19H3"></path></svg>
+              </button>
+
+              <div class="input-group" style="flex: 1;">
+                <label class="input-label">Город назначения</label>
+                <select class="select-field" id="cityTo">
+                  <option value="Москва" selected>Москва</option>
+                  <option value="Санкт-Петербург">Санкт-Петербург</option>
+                  <option value="Казань">Казань</option>
+                  <option value="Екатеринбург">Екатеринбург</option>
+                  <option value="Новосибирск">Новосибирск</option>
+                  <option value="Алматы">Алматы</option>
+                  <option value="Стамбул">Стамбул</option>
+                  <option value="Урумчи">Урумчи</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="calc-block-title" style="margin-top: 18px;">
+              <span class="calc-step-num">2</span>
+              <span>Параметры и специфика груза</span>
+            </div>
+
+            <!-- Weight & Volume Inputs -->
+            <div class="calc-row-2col">
+              <div class="input-group">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <label class="input-label" style="margin-bottom: 0;">Вес (тонн)</label>
+                  <span class="range-val-badge" id="weightVal">10.0 т</span>
+                </div>
+                <input type="range" class="range-slider" id="cargoWeight" min="0.5" max="25" step="0.5" value="10">
+              </div>
+
+              <div class="input-group">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <label class="input-label" style="margin-bottom: 0;">Объём (м³)</label>
+                  <span class="range-val-badge" id="volumeVal">45 м³</span>
+                </div>
+                <input type="range" class="range-slider" id="cargoVolume" min="3" max="120" step="1" value="45">
+              </div>
+            </div>
+
+            <!-- Cargo Options Toggles -->
+            <div class="calc-toggles-grid" style="margin-top: 10px;">
+              <label class="toggle-checkbox-label">
+                <input type="checkbox" id="checkOversized">
+                <span class="toggle-custom-box"></span>
+                <span>Негабаритный груз (+трал)</span>
+              </label>
+              <label class="toggle-checkbox-label">
+                <input type="checkbox" id="checkRef">
+                <span class="toggle-custom-box"></span>
+                <span>Температурный режим (Реф)</span>
+              </label>
             </div>
           </div>
 
-          <!-- Compact Informational Notice -->
-          <div class="calc-compact-warning" id="calcWarningBox">
-            <span class="warning-icon-mini">⚠️</span>
-            <span class="warning-text-mini"><strong>Ориентировочный расчёт.</strong> Точная ставка с НДС фиксируется по договору.</span>
-          </div>
+          <!-- Right Column: Results & Dispatch -->
+          <div class="calc-col-result">
+            <div class="calc-block-title">
+              <span class="calc-step-num">3</span>
+              <span>Предварительный расчёт</span>
+            </div>
 
-          <!-- Single Compact Contact & Submit Row -->
-          <div class="calc-dispatch-compact">
-            <input type="tel" class="input-field input-compact" id="calcClientPhone" placeholder="Телефон / Telegram *" required>
-            <button type="submit" class="btn-primary btn-calc-submit" id="btnSubmitCalcOrder" onclick="submitCalcOrderSilently(event)">
-              <span>Заказать расчёт</span>
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
-            </button>
-          </div>
+            <div class="calc-live-result-box calc-result-large">
+              <div class="result-details-col">
+                <div class="result-item">
+                  <span class="result-lbl">Рекомендуемый транспорт:</span>
+                  <span class="result-val" id="resTruckClass">Еврофура Тент (20 тонн / 92 м³)</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-lbl">Срок в пути:</span>
+                  <span class="result-val" id="resTransitDays">5 - 7 дней</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-lbl">Базовая ставка:</span>
+                  <span class="result-val" id="resRateAmount" style="color: var(--cyan-light); font-weight: 700;">от 175 $ / т</span>
+                </div>
+              </div>
 
-          <!-- Order Success Notice -->
-          <div class="calc-order-success" id="calcOrderSuccess" style="display: none;">
-            <div class="success-title">✓ Заявка передана логисту FortisWay</div>
-            <div class="success-desc">Свяжемся в течение 10–15 минут с точной ставкой и договором.</div>
+              <div class="result-price-col">
+                <span class="price-title">Ориентировочно за рейс:</span>
+                <div class="price-amount" id="resTotalTrip">~1 750 $</div>
+                <span class="price-vat">Официальный договор с НДС</span>
+              </div>
+            </div>
+
+            <div class="calc-compact-warning" id="calcWarningBox">
+              <span class="warning-icon-mini">⚠️</span>
+              <span class="warning-text-mini"><strong>Внимание: расчёт ориентировочный!</strong> Точная ставка с НДС закрепляется в договоре после проверки характеристик груза.</span>
+            </div>
+
+            <div class="calc-dispatch-box" style="margin-top: 14px;">
+              <label class="input-label">Получить точный расчёт и официальное КП у логиста</label>
+              <div class="calc-dispatch-compact">
+                <input type="tel" class="input-field input-compact" id="calcClientPhone" placeholder="Ваш телефон или @Telegram *" required>
+                <button type="submit" class="btn-primary btn-calc-submit" id="btnSubmitCalcOrder" onclick="submitCalcOrderSilently(event)">
+                  <span>Заказать расчёт</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="calc-order-success" id="calcOrderSuccess" style="display: none;">
+              <div class="success-title">✓ Заявка передана логисту FortisWay</div>
+              <div class="success-desc">Свяжемся с вами в течение 10–15 минут по указанному контакту.</div>
+            </div>
           </div>
         </form>
       </div>
     </div>
+  </section>
+
+  >
   </section>
 
   <!-- ==========================================================================
@@ -313,7 +387,7 @@
        ========================================================================== -->
   <section class="transport-section" id="auto-freight" data-transport="auto">
     <!-- 3D Highway Parallax Backdrop with Three.js WebGL Canvas -->
-    <div class="transport-bg-backdrop bg-auto-scene">
+    <div class="transport-bg-backdrop bg-auto-scene" data-parallax="0.25">
       <canvas class="three-transport-canvas" id="canvasAuto"></canvas>
       <div class="transport-overlay-gradient"></div>
     </div>
@@ -338,7 +412,7 @@
             <li>Погрузка: <strong>Боковая, верхняя, задняя</strong></li>
             <li>Сроки Ташкент–Москва: <strong>5 – 7 дней</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Заказать фуру 20т →</a>
+          <a href="#freight-calculator" class="card-btn">Заказать фуру 20т →</a>
         </div>
 
         <div class="transport-card highlighted-card">
@@ -350,7 +424,7 @@
             <li>Режимы: <strong>Deep Freeze / Охлаждение</strong></li>
             <li>Допуск: <strong>Санитарная обработка кузова</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Заказать рефрижератор →</a>
+          <a href="#freight-calculator" class="card-btn">Заказать рефрижератор →</a>
         </div>
 
         <div class="transport-card">
@@ -362,7 +436,7 @@
             <li>Вместимость: <strong>до 34 европаллет</strong></li>
             <li>Экономия: <strong>до 25% на объёме</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Заказать мегатрейлер →</a>
+          <a href="#freight-calculator" class="card-btn">Заказать мегатрейлер →</a>
         </div>
       </div>
     </div>
@@ -373,7 +447,7 @@
        ========================================================================== -->
   <section class="transport-section" id="rail-freight" data-transport="rail">
     <!-- 3D Railway Parallax Backdrop with Three.js WebGL Canvas -->
-    <div class="transport-bg-backdrop bg-rail-scene">
+    <div class="transport-bg-backdrop bg-rail-scene" data-parallax="0.25">
       <canvas class="three-transport-canvas" id="canvasRail"></canvas>
       <div class="transport-overlay-gradient"></div>
     </div>
@@ -398,7 +472,7 @@
             <li>Отслеживание: <strong>По номеру контейнера 24/7</strong></li>
             <li>Тариф: <strong>от 130 $ / тонна</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Рассчитать Ж/Д контейнер →</a>
+          <a href="#freight-calculator" class="card-btn">Рассчитать Ж/Д контейнер →</a>
         </div>
 
         <div class="transport-card">
@@ -410,7 +484,7 @@
             <li>Оформление: <strong>СМГС (SMGS) / накладные</strong></li>
             <li>Направления: <strong>РФ, Казахстан, КНР</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Заказать вагон →</a>
+          <a href="#freight-calculator" class="card-btn">Заказать вагон →</a>
         </div>
 
         <div class="transport-card">
@@ -422,7 +496,7 @@
             <li>Перегруз: <strong>Узкая ⇄ широкая колея</strong></li>
             <li>Безопасность: <strong>Пломбировка и военизированная охрана</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Консультация Ж/Д логиста →</a>
+          <a href="#freight-calculator" class="card-btn">Консультация Ж/Д логиста →</a>
         </div>
       </div>
     </div>
@@ -432,8 +506,15 @@
        SECTION 3: АВИАПЕРЕВОЗКИ (С летящим грузовым самолётом)
        ========================================================================== -->
   <section class="transport-section" id="air-freight" data-transport="air">
-    <!-- 3D Sky Parallax Backdrop with Three.js WebGL Canvas -->
-    <div class="transport-bg-backdrop bg-air-scene">
+    <!-- 3D Sky Parallax Backdrop with Animated Clouds & Glowing Sun -->
+    <div class="transport-bg-backdrop bg-air-scene" data-parallax="0.3">
+      <!-- Animated Celestial Sun & Sky Atmosphere -->
+      <div class="animated-sky-container">
+        <div class="sky-sun-orb"></div>
+        <div class="sky-sun-flare"></div>
+        <div class="sky-cloud-layer sky-cloud-layer-1"></div>
+        <div class="sky-cloud-layer sky-cloud-layer-2"></div>
+      </div>
       <canvas class="three-transport-canvas" id="canvasAir"></canvas>
       <div class="transport-overlay-gradient"></div>
     </div>
@@ -458,7 +539,7 @@
             <li>Аэропорты: <strong>TAS, SVO, DME, IST, DXB, FRA</strong></li>
             <li>Вес партии: <strong>от 30 кг до 15 тонн</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Заказать авиаперевозку →</a>
+          <a href="#freight-calculator" class="card-btn">Заказать авиаперевозку →</a>
         </div>
 
         <div class="transport-card">
@@ -470,7 +551,7 @@
             <li>Безопасность: <strong>Пломбировка ценных отправлений</strong></li>
             <li>Таможня: <strong>Очистка в грузовом терминале</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Рассчитать спецгруз →</a>
+          <a href="#freight-calculator" class="card-btn">Рассчитать спецгруз →</a>
         </div>
 
         <div class="transport-card">
@@ -482,7 +563,7 @@
             <li>Маршрут: <strong>Любая точка мира ⇄ Ташкент</strong></li>
             <li>Доступность: <strong>Подача борта за 48 часов</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Запросить чартер →</a>
+          <a href="#freight-calculator" class="card-btn">Запросить чартер →</a>
         </div>
       </div>
     </div>
@@ -493,7 +574,7 @@
        ========================================================================== -->
   <section class="transport-section" id="sea-freight" data-transport="sea">
     <!-- 3D Ocean Parallax Backdrop with Three.js WebGL Canvas -->
-    <div class="transport-bg-backdrop bg-sea-scene">
+    <div class="transport-bg-backdrop bg-sea-scene" data-parallax="0.25">
       <canvas class="three-transport-canvas" id="canvasSea"></canvas>
       <div class="transport-overlay-gradient"></div>
     </div>
@@ -518,7 +599,7 @@
             <li>Сроки транзита: <strong>Оптимальный путь в обход заторов</strong></li>
             <li>Экономия: <strong>Минимизация сухопутных границ</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Узнать график паромов →</a>
+          <a href="#freight-calculator" class="card-btn">Узнать график паромов →</a>
         </div>
 
         <div class="transport-card highlighted-card">
@@ -530,7 +611,7 @@
             <li>Терминал: <strong>Складская перетарка и таможня</strong></li>
             <li>Сервис: <strong>Единый договор с НДС</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Рассчитать мультимодал →</a>
+          <a href="#freight-calculator" class="card-btn">Рассчитать мультимодал →</a>
         </div>
 
         <div class="transport-card">
@@ -542,7 +623,7 @@
             <li>Доставка: <strong>Автотранспортом до Ташкента</strong></li>
             <li>Отслеживание: <strong>GPS-пломбировка на всем пути</strong></li>
           </ul>
-          <a href="#hero-calc" class="card-btn">Запросить ставку Бендер-Аббас →</a>
+          <a href="#freight-calculator" class="card-btn">Запросить ставку Бендер-Аббас →</a>
         </div>
       </div>
     </div>

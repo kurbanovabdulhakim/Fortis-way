@@ -350,6 +350,31 @@ function initTransportScrollAnimations() {
   }, observerOptions);
 
   transportSections.forEach(section => observer.observe(section));
+
+  // High-Performance Parallax Scroll Effect for Backdrops
+  const parallaxBackdrops = document.querySelectorAll('[data-parallax]');
+  if (parallaxBackdrops.length) {
+    let ticking = false;
+    window.addEventListener('scroll', () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          parallaxBackdrops.forEach(el => {
+            const speed = parseFloat(el.getAttribute('data-parallax')) || 0.2;
+            const parent = el.closest('section') || el.parentElement;
+            if (parent) {
+              const rect = parent.getBoundingClientRect();
+              if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const yPos = (window.innerHeight - rect.top) * speed * 0.25;
+                el.style.transform = 	ranslate3d(0,  + yPos.toFixed(1) + px, 0);
+              }
+            }
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }, { passive: true });
+  }
 }
 
 /* ==========================================================================

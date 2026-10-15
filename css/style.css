@@ -1731,3 +1731,388 @@ body:not(.authenticated) .unauth-only-text {
   border-color: rgba(148, 163, 184, 0.3);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
+/* ==========================================================================
+   FULL-WIDTH HERO SECTION (Unity-Trans Style)
+   ========================================================================== */
+.hero-fullwidth {
+  min-height: 88vh;
+  padding: 60px 0 80px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.hero-container-wide {
+  max-width: 1360px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.hero-main-row {
+  display: grid;
+  grid-template-columns: 1.25fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 166, 251, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--cyan-light);
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.hero-divisions-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.division-card {
+  background: rgba(10, 20, 38, 0.72);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 24px 26px;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  transition: all var(--transition-normal);
+  box-shadow: 0 15px 35px -10px rgba(0, 0, 0, 0.5);
+}
+
+.division-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--cyan-main);
+  box-shadow: 0 20px 45px -10px rgba(0, 166, 251, 0.25);
+}
+
+.division-card-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+
+.division-icon-badge {
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.division-title {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+}
+
+.division-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+
+.division-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.div-tag {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--cyan-light);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================================
+   DEDICATED CALCULATOR SECTION
+   ========================================================================== */
+.calculator-section {
+  padding: 85px 0 95px;
+  position: relative;
+  background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-primary) 100%);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-header-center {
+  text-align: center;
+  max-width: 780px;
+  margin: 0 auto 36px auto;
+}
+
+.section-badge-pill {
+  display: inline-block;
+  padding: 5px 14px;
+  border-radius: var(--radius-full);
+  background: rgba(0, 166, 251, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  color: var(--cyan-light);
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 12px;
+}
+
+.section-title-large {
+  font-size: 2.3rem;
+  font-weight: 900;
+  color: var(--text-white);
+  letter-spacing: -0.02em;
+  margin-bottom: 12px;
+}
+
+.section-subtitle-text {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.calculator-wide-card {
+  background: var(--bg-calc);
+  border: 1px solid rgba(56, 189, 248, 0.28);
+  border-radius: var(--radius-xl);
+  padding: 34px 38px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7), 0 0 40px rgba(0, 166, 251, 0.12);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.calc-grid-layout {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 36px;
+}
+
+.calc-block-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-white);
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.calc-step-num {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--cyan-main);
+  color: #040812;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.calc-col-params {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.calc-col-result {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  background: rgba(4, 9, 20, 0.65);
+  padding: 24px;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-subtle);
+}
+
+.calc-result-large {
+  grid-template-columns: 1fr;
+  gap: 14px;
+  background: rgba(10, 20, 38, 0.85);
+  padding: 18px 20px;
+  border-radius: var(--radius-md);
+}
+
+.calc-result-large .result-price-col {
+  text-align: left;
+  border-left: none;
+  padding-left: 0;
+  padding-top: 14px;
+  border-top: 1px dashed rgba(56, 189, 248, 0.3);
+}
+
+.calc-result-large .price-amount {
+  font-size: 2.1rem;
+  color: #facc15;
+  margin: 4px 0;
+}
+
+/* ==========================================================================
+   ANIMATED SKY & CLOUDS ATMOSPHERE (Aviation Section)
+   ========================================================================== */
+.animated-sky-container {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.sky-sun-orb {
+  position: absolute;
+  top: 12%;
+  right: 18%;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff7ed 0%, #fed7aa 35%, #fb923c 65%, transparent 85%);
+  box-shadow: 0 0 90px 40px rgba(251, 146, 60, 0.45), 0 0 160px 80px rgba(245, 158, 11, 0.25);
+  animation: sunDrift 28s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+.sky-sun-flare {
+  position: absolute;
+  top: 0%;
+  right: 5%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(254, 215, 170, 0.35) 0%, rgba(245, 158, 11, 0.15) 45%, transparent 70%);
+  filter: blur(40px);
+  animation: sunFlarePulse 6s ease-in-out infinite alternate;
+  z-index: 1;
+}
+
+@keyframes sunDrift {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(-30px, 15px) scale(1.08); }
+  100% { transform: translate(25px, -10px) scale(0.96); }
+}
+
+@keyframes sunFlarePulse {
+  0% { opacity: 0.6; transform: scale(0.95); }
+  100% { opacity: 0.95; transform: scale(1.1); }
+}
+
+.sky-cloud-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300%;
+  height: 100%;
+  background-repeat: repeat-x;
+  background-size: 1600px 100%;
+  z-index: 2;
+  opacity: 0.55;
+}
+
+.sky-cloud-layer-1 {
+  background-image: radial-gradient(ellipse at 25% 45%, rgba(255, 255, 255, 0.25) 0%, transparent 45%),
+                    radial-gradient(ellipse at 65% 35%, rgba(255, 255, 255, 0.22) 0%, transparent 50%),
+                    radial-gradient(ellipse at 85% 60%, rgba(224, 242, 254, 0.2) 0%, transparent 40%);
+  animation: cloudsMoveSlow 65s linear infinite;
+}
+
+.sky-cloud-layer-2 {
+  background-image: radial-gradient(ellipse at 40% 60%, rgba(255, 255, 255, 0.18) 0%, transparent 45%),
+                    radial-gradient(ellipse at 80% 40%, rgba(254, 215, 170, 0.22) 0%, transparent 55%);
+  animation: cloudsMoveMedium 42s linear infinite;
+  opacity: 0.45;
+  z-index: 3;
+}
+
+@keyframes cloudsMoveSlow {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes cloudsMoveMedium {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Light Theme Adaptations for New Components */
+[data-theme="light"] .hero-status-pill {
+  background: rgba(2, 132, 199, 0.1);
+  color: #0284c7;
+  border-color: rgba(2, 132, 199, 0.3);
+}
+
+[data-theme="light"] .division-card {
+  background: #ffffff;
+  border-color: rgba(148, 163, 184, 0.35);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+[data-theme="light"] .division-title {
+  color: #0f172a;
+}
+
+[data-theme="light"] .division-desc {
+  color: #475569;
+}
+
+[data-theme="light"] .div-tag {
+  background: #f1f5f9;
+  color: #0284c7;
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+[data-theme="light"] .calculator-section {
+  background: #f8fafc;
+}
+
+[data-theme="light"] .calculator-wide-card {
+  background: #ffffff;
+  border-color: rgba(2, 132, 199, 0.3);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+[data-theme="light"] .calc-col-result {
+  background: #f8fafc;
+  border-color: rgba(148, 163, 184, 0.35);
+}
+
+[data-theme="light"] .calc-result-large {
+  background: #ffffff;
+}
+
+[data-theme="light"] .section-title-large {
+  color: #0f172a;
+}
+
+[data-theme="light"] .calc-block-title {
+  color: #0f172a;
+  border-bottom-color: rgba(148, 163, 184, 0.3);
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .hero-main-row {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+  .calc-grid-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
