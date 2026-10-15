@@ -1,4 +1,4 @@
-/* ==========================================================================
+﻿/* ==========================================================================
    FortisWay — High-Tech Freight & Logistics Platform
    Design System & Modern Dark Tech Styles
    ========================================================================== */
@@ -1000,25 +1000,25 @@ img {
 /* Scene 1: Highway with 3D Truck (Photorealistic + Live Traffic Light Trails) */
 .bg-auto-scene {
   background: linear-gradient(180deg, rgba(4, 9, 20, 0.45) 0%, rgba(4, 9, 20, 0.82) 100%),
-              url('../assets/bg_auto_traffic.gif') center center / cover no-repeat;
+              url('../assets/bg_auto_pro.jpg') center center / cover no-repeat;
 }
 
 /* Scene 2: Railway Freight with Live GIF */
 .bg-rail-scene {
   background: linear-gradient(180deg, rgba(4, 9, 20, 0.45) 0%, rgba(4, 9, 20, 0.8) 100%),
-              url('../assets/bg_train_night.gif') center center / cover no-repeat;
+              url('../assets/bg_rail_pro.jpg') center center / cover no-repeat;
 }
 
 /* Scene 3: Sky with 3D Cargo Jet */
 .bg-air-scene {
   background: linear-gradient(180deg, rgba(4, 9, 20, 0.65) 0%, rgba(4, 9, 20, 0.92) 100%),
-              url('../assets/bg_air_cinematic.jpg') center center / cover no-repeat;
+              url('../assets/bg_air_pro.jpg') center center / cover no-repeat;
 }
 
 /* Scene 4: Sea with 3D Container Vessel & Ro-Ro Ferry */
 .bg-sea-scene {
   background: linear-gradient(180deg, rgba(4, 9, 20, 0.65) 0%, rgba(4, 9, 20, 0.92) 100%),
-              url('../assets/bg_sea_cinematic.jpg') center center / cover no-repeat;
+              url('../assets/bg_sea_pro.jpg') center center / cover no-repeat;
 }
 
 /* ==========================================================================
@@ -1880,23 +1880,23 @@ body:not(.authenticated) .unauth-only-text {
 }
 
 [data-theme="light"] .bg-auto-scene {
-  background: linear-gradient(180deg, rgba(250, 246, 240, 0.28) 0%, rgba(241, 233, 220, 0.6) 100%),
-              url('../assets/bg_auto_traffic.gif') center center / cover no-repeat !important;
+  background: linear-gradient(180deg, rgba(250, 246, 240, 0.38) 0%, rgba(241, 233, 220, 0.72) 100%),
+              url('../assets/bg_auto_pro.jpg') center center / cover no-repeat !important;
 }
 
 [data-theme="light"] .bg-rail-scene {
-  background: linear-gradient(180deg, rgba(250, 246, 240, 0.28) 0%, rgba(241, 233, 220, 0.6) 100%),
-              url('../assets/bg_train_night.gif') center center / cover no-repeat !important;
+  background: linear-gradient(180deg, rgba(250, 246, 240, 0.38) 0%, rgba(241, 233, 220, 0.72) 100%),
+              url('../assets/bg_rail_pro.jpg') center center / cover no-repeat !important;
 }
 
 [data-theme="light"] .bg-air-scene {
-  background: linear-gradient(180deg, rgba(250, 246, 240, 0.22) 0%, rgba(241, 233, 220, 0.52) 100%),
-              url('../assets/bg_air_cinematic.jpg') center center / cover no-repeat !important;
+  background: linear-gradient(180deg, rgba(250, 246, 240, 0.35) 0%, rgba(241, 233, 220, 0.68) 100%),
+              url('../assets/bg_air_pro.jpg') center center / cover no-repeat !important;
 }
 
 [data-theme="light"] .bg-sea-scene {
-  background: linear-gradient(180deg, rgba(250, 246, 240, 0.28) 0%, rgba(241, 233, 220, 0.6) 100%),
-              url('../assets/bg_sea_cinematic.jpg') center center / cover no-repeat !important;
+  background: linear-gradient(180deg, rgba(250, 246, 240, 0.38) 0%, rgba(241, 233, 220, 0.72) 100%),
+              url('../assets/bg_sea_pro.jpg') center center / cover no-repeat !important;
 }
 
 [data-theme="light"] .transport-header {
