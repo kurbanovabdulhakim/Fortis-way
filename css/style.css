@@ -4008,3 +4008,67 @@ html, body {
   color: #0f172a !important;
   font-weight: 600 !important;
 }
+
+
+
+/* ==========================================================================
+   FIXES: HERO TITLE LIGHT THEME CONTRAST & DESKTOP NAVBAR CLEANUP (v6.7)
+   ========================================================================== */
+
+/* 1. Prevent Mobile Drawer Actions from showing on Desktop */
+.mobile-drawer-actions {
+  display: none !important;
+}
+
+@media (max-width: 992px) {
+  .nav-links.mobile-open .mobile-drawer-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 8px !important;
+    margin-top: 10px !important;
+    padding-top: 14px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  }
+}
+
+/* 2. Fix Hero Title in Light Theme (Ensure "РЈР·Р±РµРєРёСЃС‚Р°РЅ" is 100% visible) */
+[data-theme="light"] .gradient-text,
+[data-theme="light"] .hero-title .gradient-text {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 40%, #00a6fb 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #0284c7 !important;
+}
+
+/* 3. Requisites Locked Card & Modal Titles in Light Theme */
+.requisites-locked-card h3,
+.req-locked-title {
+  color: #ffffff !important;
+}
+
+[data-theme="light"] .requisites-locked-card h3,
+[data-theme="light"] .req-locked-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .modal-content h3 {
+  color: #0f172a !important;
+}
+
+/* 4. Desktop Navbar Button Alignment & Compact Height */
+@media (min-width: 993px) {
+  .nav-actions {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    flex-shrink: 0 !important;
+  }
+  .nav-actions .btn-primary {
+    height: 40px !important;
+    padding: 0 20px !important;
+    white-space: nowrap !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
