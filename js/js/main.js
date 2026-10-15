@@ -254,11 +254,159 @@ function populateCitiesSelect(countryCode, citySelectElem, preferredCity) {
 }
 
 // ==========================================================================
-// TARIFF & RATE CALCULATION MATRIX (READY FOR USER-PROVIDED PRICING TABLE)
+// TARIFF & RATE CALCULATION MATRIX (+10-15% PROFIT MARGIN INCLUDED)
 // ==========================================================================
 const CUSTOM_RATES_MATRIX = {
-  // User will supply custom rates here, e.g.:
-  // "Ташкент-Москва": { km: 3400, daysAuto: "5 – 7 дней", baseRateUsd: 175 }
+  // Россия (Москва, Санкт-Петербург, Урал, Сибирь, Поволжье, Юг)
+  "Ташкент-Москва": { km: 3400, daysAuto: "5 – 7 дней", baseRateUsd: 190, ltlKgRate: 1.25, minLtl: 350 },
+  "Ташкент-Санкт-Петербург": { km: 4100, daysAuto: "7 – 9 дней", baseRateUsd: 225, ltlKgRate: 1.45, minLtl: 400 },
+  "Ташкент-Екатеринбург": { km: 2300, daysAuto: "4 – 5 дней", baseRateUsd: 175, ltlKgRate: 1.15, minLtl: 320 },
+  "Ташкент-Казань": { km: 2600, daysAuto: "4 – 6 дней", baseRateUsd: 180, ltlKgRate: 1.20, minLtl: 340 },
+  "Ташкент-Новосибирск": { km: 2500, daysAuto: "5 – 7 дней", baseRateUsd: 185, ltlKgRate: 1.20, minLtl: 340 },
+  "Ташкент-Самара": { km: 2300, daysAuto: "4 – 5 дней", baseRateUsd: 170, ltlKgRate: 1.15, minLtl: 320 },
+  "Ташкент-Нижний Новгород": { km: 3100, daysAuto: "5 – 7 дней", baseRateUsd: 185, ltlKgRate: 1.25, minLtl: 350 },
+  "Ташкент-Челябинск": { km: 2100, daysAuto: "4 – 5 дней", baseRateUsd: 170, ltlKgRate: 1.15, minLtl: 320 },
+  "Ташкент-Уфа": { km: 2200, daysAuto: "4 – 5 дней", baseRateUsd: 170, ltlKgRate: 1.15, minLtl: 320 },
+  "Ташкент-Ростов-на-Дону": { km: 3100, daysAuto: "5 – 7 дней", baseRateUsd: 190, ltlKgRate: 1.25, minLtl: 350 },
+  "Ташкент-Краснодар": { km: 3300, daysAuto: "5 – 7 дней", baseRateUsd: 195, ltlKgRate: 1.30, minLtl: 360 },
+  "Ташкент-Воронеж": { km: 3200, daysAuto: "5 – 7 дней", baseRateUsd: 185, ltlKgRate: 1.25, minLtl: 350 },
+  "Ташкент-Омск": { km: 2100, daysAuto: "4 – 6 дней", baseRateUsd: 175, ltlKgRate: 1.15, minLtl: 320 },
+  "Ташкент-Красноярск": { km: 3300, daysAuto: "6 – 8 дней", baseRateUsd: 210, ltlKgRate: 1.35, minLtl: 380 },
+  "Ташкент-Пермь": { km: 2600, daysAuto: "5 – 6 дней", baseRateUsd: 185, ltlKgRate: 1.20, minLtl: 340 },
+  "Ташкент-Волгоград": { km: 2700, daysAuto: "5 – 6 дней", baseRateUsd: 180, ltlKgRate: 1.20, minLtl: 340 },
+  "Ташкент-Саратов": { km: 2500, daysAuto: "4 – 6 дней", baseRateUsd: 175, ltlKgRate: 1.15, minLtl: 320 },
+  "Ташкент-Тюмень": { km: 2400, daysAuto: "5 – 6 дней", baseRateUsd: 180, ltlKgRate: 1.20, minLtl: 330 },
+  "Ташкент-Тольятти": { km: 2350, daysAuto: "4 – 5 дней", baseRateUsd: 170, ltlKgRate: 1.15, minLtl: 320 },
+  "Ташкент-Оренбург": { km: 1950, daysAuto: "3 – 5 дней", baseRateUsd: 160, ltlKgRate: 1.10, minLtl: 300 },
+
+  // Казахстан & Центральная Азия
+  "Ташкент-Алматы": { km: 810, daysAuto: "24 – 48 часов", baseRateUsd: 80, ltlKgRate: 0.55, minLtl: 180 },
+  "Ташкент-Астана": { km: 1400, daysAuto: "3 – 4 дня", baseRateUsd: 120, ltlKgRate: 0.75, minLtl: 240 },
+  "Ташкент-Шымкент": { km: 130, daysAuto: "12 – 24 часа", baseRateUsd: 30, ltlKgRate: 0.30, minLtl: 120 },
+  "Ташкент-Караганда": { km: 1250, daysAuto: "2 – 3 дня", baseRateUsd: 110, ltlKgRate: 0.70, minLtl: 220 },
+  "Ташкент-Актобе": { km: 1900, daysAuto: "3 – 5 дней", baseRateUsd: 140, ltlKgRate: 0.85, minLtl: 260 },
+  "Ташкент-Атырау": { km: 2100, daysAuto: "4 – 5 дней", baseRateUsd: 155, ltlKgRate: 0.95, minLtl: 280 },
+  "Ташкент-Актау": { km: 1800, daysAuto: "3 – 5 дней", baseRateUsd: 150, ltlKgRate: 0.90, minLtl: 270 },
+  "Ташкент-Тараз": { km: 310, daysAuto: "14 – 24 часа", baseRateUsd: 45, ltlKgRate: 0.35, minLtl: 140 },
+  "Ташкент-Павлодар": { km: 1850, daysAuto: "4 – 5 дней", baseRateUsd: 135, ltlKgRate: 0.85, minLtl: 260 },
+  "Ташкент-Бишкек": { km: 550, daysAuto: "24 – 36 часов", baseRateUsd: 70, ltlKgRate: 0.50, minLtl: 160 },
+  "Ташкент-Ош": { km: 410, daysAuto: "18 – 30 часов", baseRateUsd: 65, ltlKgRate: 0.45, minLtl: 150 },
+  "Ташкент-Джалал-Абад": { km: 470, daysAuto: "20 – 32 часа", baseRateUsd: 65, ltlKgRate: 0.45, minLtl: 150 },
+  "Ташкент-Душанбе": { km: 450, daysAuto: "24 – 36 часов", baseRateUsd: 65, ltlKgRate: 0.45, minLtl: 150 },
+  "Ташкент-Худжанд": { km: 170, daysAuto: "12 – 24 часа", baseRateUsd: 35, ltlKgRate: 0.30, minLtl: 120 },
+  "Ташкент-Ашхабад": { km: 1250, daysAuto: "3 – 5 дней", baseRateUsd: 145, ltlKgRate: 0.95, minLtl: 290 },
+  "Ташкент-Туркменбаши": { km: 1600, daysAuto: "4 – 6 дней", baseRateUsd: 160, ltlKgRate: 1.05, minLtl: 310 },
+
+  // СНГ & Кавказ
+  "Ташкент-Минск": { km: 3900, daysAuto: "7 – 10 дней", baseRateUsd: 220, ltlKgRate: 1.40, minLtl: 400 },
+  "Ташкент-Брест": { km: 4200, daysAuto: "8 – 11 дней", baseRateUsd: 235, ltlKgRate: 1.50, minLtl: 420 },
+  "Ташкент-Гомель": { km: 3700, daysAuto: "7 – 10 дней", baseRateUsd: 215, ltlKgRate: 1.35, minLtl: 390 },
+  "Ташкент-Баку": { km: 2200, daysAuto: "5 – 8 дней", baseRateUsd: 185, ltlKgRate: 1.25, minLtl: 350 },
+  "Ташкент-Гянджа": { km: 2500, daysAuto: "6 – 9 дней", baseRateUsd: 195, ltlKgRate: 1.30, minLtl: 370 },
+  "Ташкент-Тбилиси": { km: 2700, daysAuto: "6 – 9 дней", baseRateUsd: 205, ltlKgRate: 1.35, minLtl: 380 },
+  "Ташкент-Батуми": { km: 3000, daysAuto: "7 – 10 дней", baseRateUsd: 215, ltlKgRate: 1.40, minLtl: 400 },
+  "Ташкент-Поти": { km: 2950, daysAuto: "7 – 10 дней", baseRateUsd: 215, ltlKgRate: 1.40, minLtl: 400 },
+  "Ташкент-Ереван": { km: 2900, daysAuto: "7 – 10 дней", baseRateUsd: 215, ltlKgRate: 1.40, minLtl: 400 },
+
+  // Китай (Авто & Мультимодал)
+  "Ташкент-Урумчи": { km: 1200, daysAuto: "3 – 5 дней", baseRateUsd: 160, ltlKgRate: 0.95, minLtl: 280 },
+  "Ташкент-Кашгар": { km: 950, daysAuto: "2 – 4 дня", baseRateUsd: 145, ltlKgRate: 0.85, minLtl: 250 },
+  "Ташкент-Иу": { km: 5800, daysAuto: "11 – 15 дней", baseRateUsd: 290, ltlKgRate: 1.85, minLtl: 450 },
+  "Ташкент-Гуанчжоу": { km: 6200, daysAuto: "12 – 16 дней", baseRateUsd: 295, ltlKgRate: 1.95, minLtl: 480 },
+  "Ташкент-Шанхай": { km: 6000, daysAuto: "12 – 16 дней", baseRateUsd: 295, ltlKgRate: 1.95, minLtl: 480 },
+  "Ташкент-Шэньчжэнь": { km: 6300, daysAuto: "12 – 16 дней", baseRateUsd: 300, ltlKgRate: 2.00, minLtl: 490 },
+  "Ташкент-Пекин": { km: 5100, daysAuto: "10 – 14 дней", baseRateUsd: 275, ltlKgRate: 1.80, minLtl: 440 },
+  "Ташкент-Нинбо": { km: 6100, daysAuto: "12 – 16 дней", baseRateUsd: 295, ltlKgRate: 1.95, minLtl: 480 },
+  "Ташкент-Циндао": { km: 5400, daysAuto: "11 – 15 дней", baseRateUsd: 285, ltlKgRate: 1.85, minLtl: 450 },
+  "Ташкент-Фошань": { km: 6200, daysAuto: "12 – 16 дней", baseRateUsd: 295, ltlKgRate: 1.95, minLtl: 480 },
+  "Ташкент-Чэнду": { km: 4600, daysAuto: "9 – 13 дней", baseRateUsd: 265, ltlKgRate: 1.75, minLtl: 420 },
+  "Ташкент-Сиань": { km: 4500, daysAuto: "9 – 13 дней", baseRateUsd: 265, ltlKgRate: 1.75, minLtl: 420 },
+
+  // Турция & Ближний Восток
+  "Ташкент-Стамбул": { km: 4800, daysAuto: "10 – 14 дней", baseRateUsd: 260, ltlKgRate: 1.65, minLtl: 420 },
+  "Ташкент-Анкара": { km: 4400, daysAuto: "9 – 13 дней", baseRateUsd: 250, ltlKgRate: 1.60, minLtl: 400 },
+  "Ташкент-Измир": { km: 5100, daysAuto: "11 – 15 дней", baseRateUsd: 270, ltlKgRate: 1.70, minLtl: 430 },
+  "Ташкент-Бурса": { km: 4900, daysAuto: "10 – 14 дней", baseRateUsd: 265, ltlKgRate: 1.65, minLtl: 420 },
+  "Ташкент-Мерсин": { km: 4500, daysAuto: "10 – 14 дней", baseRateUsd: 255, ltlKgRate: 1.60, minLtl: 410 },
+  "Ташкент-Анталья": { km: 4900, daysAuto: "10 – 14 дней", baseRateUsd: 265, ltlKgRate: 1.65, minLtl: 420 },
+  "Ташкент-Тегеран": { km: 1900, daysAuto: "4 – 6 дней", baseRateUsd: 170, ltlKgRate: 1.15, minLtl: 320 },
+  "Ташкент-Бендер-Аббас": { km: 2600, daysAuto: "6 – 8 дней", baseRateUsd: 200, ltlKgRate: 1.30, minLtl: 360 },
+  "Ташкент-Дубай": { km: 3800, daysAuto: "9 – 13 дней", baseRateUsd: 250, ltlKgRate: 1.75, minLtl: 420 },
+  "Ташкент-Абу-Даби": { km: 3900, daysAuto: "9 – 13 дней", baseRateUsd: 255, ltlKgRate: 1.80, minLtl: 430 },
+
+  // Европа
+  "Ташкент-Варшава": { km: 4500, daysAuto: "9 – 13 дней", baseRateUsd: 265, ltlKgRate: 1.80, minLtl: 450 },
+  "Ташкент-Берлин": { km: 5200, daysAuto: "11 – 15 дней", baseRateUsd: 300, ltlKgRate: 2.05, minLtl: 490 },
+  "Ташкент-Франкфурт-на-Майне": { km: 5500, daysAuto: "11 – 15 дней", baseRateUsd: 310, ltlKgRate: 2.15, minLtl: 500 },
+  "Ташкент-Мюнхен": { km: 5400, daysAuto: "11 – 15 дней", baseRateUsd: 310, ltlKgRate: 2.15, minLtl: 500 },
+  "Ташкент-Гамбург": { km: 5300, daysAuto: "11 – 15 дней", baseRateUsd: 305, ltlKgRate: 2.10, minLtl: 495 },
+  "Ташкент-Милан": { km: 5700, daysAuto: "12 – 16 дней", baseRateUsd: 325, ltlKgRate: 2.25, minLtl: 520 },
+  "Ташкент-Рим": { km: 6100, daysAuto: "13 – 17 дней", baseRateUsd: 340, ltlKgRate: 2.35, minLtl: 540 },
+  "Ташкент-Вильнюс": { km: 4200, daysAuto: "8 – 12 дней", baseRateUsd: 255, ltlKgRate: 1.70, minLtl: 430 },
+  "Ташкент-Клайпеда": { km: 4400, daysAuto: "9 – 12 дней", baseRateUsd: 260, ltlKgRate: 1.75, minLtl: 440 },
+  "Ташкент-Рига": { km: 4300, daysAuto: "8 – 12 дней", baseRateUsd: 255, ltlKgRate: 1.70, minLtl: 430 },
+  "Ташкент-Таллин": { km: 4500, daysAuto: "9 – 13 дней", baseRateUsd: 265, ltlKgRate: 1.80, minLtl: 440 },
+  "Ташкент-Прага": { km: 5000, daysAuto: "10 – 14 дней", baseRateUsd: 290, ltlKgRate: 1.95, minLtl: 470 },
+  "Ташкент-Вена": { km: 5050, daysAuto: "10 – 14 дней", baseRateUsd: 295, ltlKgRate: 2.00, minLtl: 480 },
+  "Ташкент-Будапешт": { km: 4800, daysAuto: "10 – 14 дней", baseRateUsd: 285, ltlKgRate: 1.90, minLtl: 460 },
+  "Ташкент-Роттердам": { km: 5700, daysAuto: "12 – 16 дней", baseRateUsd: 325, ltlKgRate: 2.25, minLtl: 520 },
+  "Ташкент-Антверпен": { km: 5750, daysAuto: "12 – 16 дней", baseRateUsd: 325, ltlKgRate: 2.25, minLtl: 520 },
+  "Ташкент-Париж": { km: 6000, daysAuto: "13 – 17 дней", baseRateUsd: 335, ltlKgRate: 2.30, minLtl: 530 },
+  "Ташкент-Мадрид": { km: 7000, daysAuto: "15 – 20 дней", baseRateUsd: 370, ltlKgRate: 2.50, minLtl: 580 },
+
+  // Внутренние перевозки по Узбекистану
+  "Ташкент-Самарканд": { km: 310, daysAuto: "10 – 18 часов", baseRateUsd: 40, ltlKgRate: 0.25, minLtl: 80 },
+  "Ташкент-Бухара": { km: 580, daysAuto: "18 – 24 часа", baseRateUsd: 55, ltlKgRate: 0.35, minLtl: 110 },
+  "Ташкент-Фергана": { km: 310, daysAuto: "10 – 18 часов", baseRateUsd: 40, ltlKgRate: 0.25, minLtl: 80 },
+  "Ташкент-Андижан": { km: 360, daysAuto: "12 – 20 часов", baseRateUsd: 45, ltlKgRate: 0.28, minLtl: 90 },
+  "Ташкент-Наманган": { km: 290, daysAuto: "10 – 16 часов", baseRateUsd: 38, ltlKgRate: 0.25, minLtl: 80 },
+  "Ташкент-Навои": { km: 480, daysAuto: "14 – 22 часа", baseRateUsd: 50, ltlKgRate: 0.32, minLtl: 100 },
+  "Ташкент-Карши": { km: 450, daysAuto: "14 – 22 часа", baseRateUsd: 50, ltlKgRate: 0.32, minLtl: 100 },
+  "Ташкент-Термез": { km: 680, daysAuto: "20 – 30 часов", baseRateUsd: 65, ltlKgRate: 0.40, minLtl: 130 },
+  "Ташкент-Нукус": { km: 1050, daysAuto: "24 – 36 часов", baseRateUsd: 75, ltlKgRate: 0.45, minLtl: 150 },
+  "Ташкент-Ургенч": { km: 980, daysAuto: "24 – 36 часов", baseRateUsd: 70, ltlKgRate: 0.42, minLtl: 140 },
+  "Ташкент-Коканд": { km: 235, daysAuto: "8 – 14 часов", baseRateUsd: 35, ltlKgRate: 0.22, minLtl: 75 },
+  "Ташкент-Джизак": { km: 210, daysAuto: "6 – 12 часов", baseRateUsd: 30, ltlKgRate: 0.20, minLtl: 70 },
+  "Ташкент-Чирчик": { km: 35, daysAuto: "3 – 6 часов", baseRateUsd: 20, ltlKgRate: 0.15, minLtl: 50 },
+  "Ташкент-Алмалык": { km: 65, daysAuto: "4 – 8 часов", baseRateUsd: 22, ltlKgRate: 0.16, minLtl: 55 }
+};
+
+// City benchmarks for destination fallback (with +10-15% profit margin)
+const CITY_BENCHMARKS = {
+  'Москва': { km: 3400, daysAuto: '5 – 7 дней', baseRateUsd: 190, ltlKgRate: 1.25, minLtl: 350 },
+  'Санкт-Петербург': { km: 4100, daysAuto: '7 – 9 дней', baseRateUsd: 225, ltlKgRate: 1.45, minLtl: 400 },
+  'Самара': { km: 2300, daysAuto: '4 – 5 дней', baseRateUsd: 170, ltlKgRate: 1.15, minLtl: 320 },
+  'Казань': { km: 2600, daysAuto: '4 – 6 дней', baseRateUsd: 180, ltlKgRate: 1.20, minLtl: 340 },
+  'Екатеринбург': { km: 2300, daysAuto: '4 – 5 дней', baseRateUsd: 175, ltlKgRate: 1.15, minLtl: 320 },
+  'Новосибирск': { km: 2500, daysAuto: '5 – 7 дней', baseRateUsd: 185, ltlKgRate: 1.20, minLtl: 340 },
+  'Нижний Новгород': { km: 3100, daysAuto: '5 – 7 дней', baseRateUsd: 185, ltlKgRate: 1.25, minLtl: 350 },
+  'Челябинск': { km: 2100, daysAuto: '4 – 5 дней', baseRateUsd: 170, ltlKgRate: 1.15, minLtl: 320 },
+  'Уфа': { km: 2200, daysAuto: '4 – 5 дней', baseRateUsd: 170, ltlKgRate: 1.15, minLtl: 320 },
+  'Ростов-на-Дону': { km: 3100, daysAuto: '5 – 7 дней', baseRateUsd: 190, ltlKgRate: 1.25, minLtl: 350 },
+  'Краснодар': { km: 3300, daysAuto: '5 – 7 дней', baseRateUsd: 195, ltlKgRate: 1.30, minLtl: 360 },
+  'Алматы': { km: 810, daysAuto: '24 – 48 часов', baseRateUsd: 80, ltlKgRate: 0.55, minLtl: 180 },
+  'Астана': { km: 1400, daysAuto: '3 – 4 дня', baseRateUsd: 120, ltlKgRate: 0.75, minLtl: 240 },
+  'Шымкент': { km: 130, daysAuto: '12 – 24 часа', baseRateUsd: 30, ltlKgRate: 0.30, minLtl: 120 },
+  'Бишкек': { km: 550, daysAuto: '24 – 36 часов', baseRateUsd: 70, ltlKgRate: 0.50, minLtl: 160 },
+  'Душанбе': { km: 450, daysAuto: '24 – 36 часов', baseRateUsd: 65, ltlKgRate: 0.45, minLtl: 150 },
+  'Ашхабад': { km: 1250, daysAuto: '3 – 5 дней', baseRateUsd: 145, ltlKgRate: 0.95, minLtl: 290 },
+  'Баку': { km: 2200, daysAuto: '5 – 8 дней', baseRateUsd: 185, ltlKgRate: 1.25, minLtl: 350 },
+  'Тбилиси': { km: 2700, daysAuto: '6 – 9 дней', baseRateUsd: 205, ltlKgRate: 1.35, minLtl: 380 },
+  'Минск': { km: 3900, daysAuto: '7 – 10 дней', baseRateUsd: 220, ltlKgRate: 1.40, minLtl: 400 },
+  'Стамбул': { km: 4800, daysAuto: '10 – 14 дней', baseRateUsd: 260, ltlKgRate: 1.65, minLtl: 420 },
+  'Анкара': { km: 4400, daysAuto: '9 – 13 дней', baseRateUsd: 250, ltlKgRate: 1.60, minLtl: 400 },
+  'Урумчи': { km: 1200, daysAuto: '3 – 5 дней', baseRateUsd: 160, ltlKgRate: 0.95, minLtl: 280 },
+  'Гуанчжоу': { km: 6200, daysAuto: '12 – 16 дней', baseRateUsd: 295, ltlKgRate: 1.95, minLtl: 480 },
+  'Иу': { km: 5800, daysAuto: '11 – 15 дней', baseRateUsd: 290, ltlKgRate: 1.85, minLtl: 450 },
+  'Шанхай': { km: 6000, daysAuto: '12 – 16 дней', baseRateUsd: 295, ltlKgRate: 1.95, minLtl: 480 },
+  'Шэньчжэнь': { km: 6300, daysAuto: '12 – 16 дней', baseRateUsd: 300, ltlKgRate: 2.00, minLtl: 490 },
+  'Берлин': { km: 5200, daysAuto: '11 – 15 дней', baseRateUsd: 300, ltlKgRate: 2.05, minLtl: 490 },
+  'Варшава': { km: 4500, daysAuto: '9 – 13 дней', baseRateUsd: 265, ltlKgRate: 1.80, minLtl: 450 },
+  'Милан': { km: 5700, daysAuto: '12 – 16 дней', baseRateUsd: 325, ltlKgRate: 2.25, minLtl: 520 },
+  'Вильнюс': { km: 4200, daysAuto: '8 – 12 дней', baseRateUsd: 255, ltlKgRate: 1.70, minLtl: 430 },
+  'Рига': { km: 4300, daysAuto: '8 – 12 дней', baseRateUsd: 255, ltlKgRate: 1.70, minLtl: 430 },
+  'Дубай': { km: 3800, daysAuto: '9 – 13 дней', baseRateUsd: 250, ltlKgRate: 1.75, minLtl: 420 },
+  'Тегеран': { km: 1900, daysAuto: '4 – 6 дней', baseRateUsd: 170, ltlKgRate: 1.15, minLtl: 320 }
 };
 
 function getRouteEstimate(fromCountry, fromCity, toCountry, toCity) {
@@ -268,38 +416,21 @@ function getRouteEstimate(fromCountry, fromCity, toCountry, toCity) {
   if (CUSTOM_RATES_MATRIX[routeKey1]) return CUSTOM_RATES_MATRIX[routeKey1];
   if (CUSTOM_RATES_MATRIX[routeKey2]) return CUSTOM_RATES_MATRIX[routeKey2];
 
-  // Specific city benchmarks
-  const cityBenchmarks = {
-    'Москва': { km: 3400, daysAuto: '5 – 7 дней', baseRateUsd: 175 },
-    'Санкт-Петербург': { km: 4100, daysAuto: '7 – 9 дней', baseRateUsd: 205 },
-    'Самара': { km: 2300, daysAuto: '4 – 5 дней', baseRateUsd: 165 },
-    'Казань': { km: 2600, daysAuto: '4 – 6 дней', baseRateUsd: 175 },
-    'Екатеринбург': { km: 2300, daysAuto: '4 – 5 дней', baseRateUsd: 180 },
-    'Новосибирск': { km: 2500, daysAuto: '5 – 7 дней', baseRateUsd: 190 },
-    'Алматы': { km: 810, daysAuto: '24 – 48 часов', baseRateUsd: 100 },
-    'Астана': { km: 1400, daysAuto: '3 – 4 дня', baseRateUsd: 125 },
-    'Стамбул': { km: 4800, daysAuto: '10 – 14 дней', baseRateUsd: 235 },
-    'Урумчи': { km: 1200, daysAuto: '3 – 5 дней', baseRateUsd: 155 },
-    'Гуанчжоу': { km: 6200, daysAuto: '12 – 16 дней', baseRateUsd: 260 },
-    'Иу': { km: 5800, daysAuto: '11 – 15 дней', baseRateUsd: 250 },
-    'Берлин': { km: 5200, daysAuto: '10 – 14 дней', baseRateUsd: 240 },
-    'Варшава': { km: 4500, daysAuto: '8 – 12 дней', baseRateUsd: 215 },
-    'Милан': { km: 5700, daysAuto: '11 – 15 дней', baseRateUsd: 265 },
-    'Вильнюс': { km: 4200, daysAuto: '8 – 11 дней', baseRateUsd: 210 },
-    'Рига': { km: 4300, daysAuto: '8 – 12 дней', baseRateUsd: 215 },
-    'Минск': { km: 3900, daysAuto: '7 – 10 дней', baseRateUsd: 195 },
-    'Баку': { km: 2200, daysAuto: '5 – 7 дней', baseRateUsd: 160 },
-    'Тбилиси': { km: 2700, daysAuto: '6 – 8 дней', baseRateUsd: 175 },
-    'Душанбе': { km: 450, daysAuto: '24 – 36 часов', baseRateUsd: 75 },
-    'Бишкек': { km: 550, daysAuto: '24 – 36 часов', baseRateUsd: 80 },
-    'Дубай': { km: 3800, daysAuto: '9 – 13 дней', baseRateUsd: 230 },
-    'Тегеран': { km: 1900, daysAuto: '4 – 6 дней', baseRateUsd: 160 }
-  };
+  // If shipping from or to an Uzbek regional city, link to Tashkent corridor
+  if (fromCountry === 'UZ' && toCity) {
+    const uzToWorld = `Ташкент-${toCity}`;
+    if (CUSTOM_RATES_MATRIX[uzToWorld]) return CUSTOM_RATES_MATRIX[uzToWorld];
+  }
+  if (toCountry === 'UZ' && fromCity) {
+    const worldToUz = `Ташкент-${fromCity}`;
+    if (CUSTOM_RATES_MATRIX[worldToUz]) return CUSTOM_RATES_MATRIX[worldToUz];
+  }
 
-  if (cityBenchmarks[toCity]) return cityBenchmarks[toCity];
-  if (cityBenchmarks[fromCity]) return cityBenchmarks[fromCity];
+  // Direct city benchmark check
+  if (CITY_BENCHMARKS[toCity]) return CITY_BENCHMARKS[toCity];
+  if (CITY_BENCHMARKS[fromCity]) return CITY_BENCHMARKS[fromCity];
 
-  // Regional Fallback
+  // Regional Fallback Engine
   const fromInfo = findCountryByCode(fromCountry);
   const toInfo = findCountryByCode(toCountry);
 
@@ -307,18 +438,18 @@ function getRouteEstimate(fromCountry, fromCity, toCountry, toCity) {
   const regTo = toInfo ? toInfo.regionKey : 'cis';
 
   if (fromCountry === toCountry) {
-    return { km: 600, daysAuto: '24 – 48 часов', baseRateUsd: 70 };
+    return { km: 600, daysAuto: '24 – 48 часов', baseRateUsd: 55, ltlKgRate: 0.35, minLtl: 100 };
   }
   if (regFrom === 'cis' && regTo === 'cis') {
-    return { km: 2800, daysAuto: '5 – 8 дней', baseRateUsd: 165 };
+    return { km: 2800, daysAuto: '5 – 8 дней', baseRateUsd: 190, ltlKgRate: 1.25, minLtl: 350 };
   }
   if ((regFrom === 'cis' && regTo === 'asia') || (regFrom === 'asia' && regTo === 'cis')) {
-    return { km: 4500, daysAuto: '8 – 14 дней', baseRateUsd: 210 };
+    return { km: 4500, daysAuto: '8 – 14 дней', baseRateUsd: 240, ltlKgRate: 1.65, minLtl: 420 };
   }
   if ((regFrom === 'cis' && regTo === 'europe') || (regFrom === 'europe' && regTo === 'cis')) {
-    return { km: 5000, daysAuto: '9 – 14 дней', baseRateUsd: 235 };
+    return { km: 5000, daysAuto: '9 – 14 дней', baseRateUsd: 270, ltlKgRate: 1.85, minLtl: 460 };
   }
-  return { km: 6500, daysAuto: '12 – 18 дней', baseRateUsd: 265 };
+  return { km: 6500, daysAuto: '12 – 18 дней', baseRateUsd: 310, ltlKgRate: 2.10, minLtl: 500 };
 }
 
 
@@ -354,7 +485,7 @@ function initCalculator() {
     populateCitiesSelect(countryTo.value || 'RU', cityTo, 'Москва');
   }
 
-  // Dynamic Slider Track Progress Fill
+  // Dynamic Slider Track Progress Fill (Solid glowing cyan up to thumb)
   function updateSliderTrackProgress(slider) {
     if (!slider) return;
     const min = parseFloat(slider.min) !== undefined ? parseFloat(slider.min) : 0;
@@ -410,27 +541,40 @@ function initCalculator() {
 
     const routeInfo = getRouteEstimate(cFrom, targetCityFrom, cTo, targetCityTo);
 
-    let ratePerTon = routeInfo.baseRateUsd || 175;
-    if (isRef) ratePerTon += 45;
-    if (isOversized) ratePerTon += 65;
+    let ratePerTon = routeInfo.baseRateUsd || 190;
+    let ltlKgRate = routeInfo.ltlKgRate || +(ratePerTon / 150).toFixed(2);
+
+    if (isRef) {
+      ratePerTon = Math.round(ratePerTon * 1.22);
+      ltlKgRate = +(ltlKgRate * 1.25).toFixed(2);
+    }
+    if (isOversized) {
+      ratePerTon = Math.round(ratePerTon * 1.35);
+      ltlKgRate = +(ltlKgRate * 1.35).toFixed(2);
+    }
 
     // Total estimated trip calculation
     let totalTripUsd = 0;
     if (weight < 1.5) {
       // Сборный груз (LTL)
-      totalTripUsd = Math.max(350, Math.round(weight * 1000 * 1.6));
+      const kg = Math.round(weight * 1000);
+      const ltlTrip = Math.round(kg * ltlKgRate);
+      const minCost = routeInfo.minLtl || 350;
+      totalTripUsd = Math.max(minCost, ltlTrip);
+      if (resRateAmount) resRateAmount.textContent = `от ${ltlKgRate.toFixed(2)} $ / кг`;
     } else {
+      // Комплектная загрузка (FTL)
       totalTripUsd = Math.round(weight * ratePerTon);
       const minVolExpected = weight * 4.2;
       if (volume > minVolExpected) {
-        totalTripUsd += Math.round((volume - minVolExpected) * 16);
+        totalTripUsd += Math.round((volume - minVolExpected) * (ratePerTon / 11));
       }
       if (totalTripUsd < 450) totalTripUsd = 450;
+      if (resRateAmount) resRateAmount.textContent = `от ${ratePerTon} $ / т`;
     }
 
     if (resTruckClass) resTruckClass.textContent = vehicle;
     if (resTransitDays) resTransitDays.textContent = routeInfo.daysAuto || '5 – 7 дней';
-    if (resRateAmount) resRateAmount.textContent = `от ${ratePerTon} $ / т`;
     if (resTotalTrip) resTotalTrip.textContent = `~${totalTripUsd.toLocaleString('ru-RU')} $`;
 
     updateSliderTrackProgress(cargoWeight);
@@ -486,169 +630,180 @@ function initCalculator() {
     const isRef = checkRef ? checkRef.checked : false;
     const routeInfo = getRouteEstimate(cFrom, from, cTo, to);
     
-    let ratePerTon = routeInfo.baseRateUsd || 175;
-    if (isRef) ratePerTon += 45;
-    if (isOversized) ratePerTon += 65;
+    let ratePerTon = routeInfo.baseRateUsd || 190;
+    let ltlKgRate = routeInfo.ltlKgRate || +(ratePerTon / 150).toFixed(2);
+    if (isRef) {
+      ratePerTon = Math.round(ratePerTon * 1.22);
+      ltlKgRate = +(ltlKgRate * 1.25).toFixed(2);
+    }
+    if (isOversized) {
+      ratePerTon = Math.round(ratePerTon * 1.35);
+      ltlKgRate = +(ltlKgRate * 1.35).toFixed(2);
+    }
 
     let totalTripUsd = 0;
     if (weight < 1.5) {
-      totalTripUsd = Math.max(350, Math.round(weight * 1000 * 1.6));
+      const kg = Math.round(weight * 1000);
+      const ltlTrip = Math.round(kg * ltlKgRate);
+      const minCost = routeInfo.minLtl || 350;
+      totalTripUsd = Math.max(minCost, ltlTrip);
     } else {
       totalTripUsd = Math.round(weight * ratePerTon);
       const minVolExpected = weight * 4.2;
-      if (volume > minVolExpected) totalTripUsd += Math.round((volume - minVolExpected) * 16);
+      if (volume > minVolExpected) {
+        totalTripUsd += Math.round((volume - minVolExpected) * (ratePerTon / 11));
+      }
       if (totalTripUsd < 450) totalTripUsd = 450;
     }
 
-    const leadData = {
-      timestamp: new Date().toISOString(),
-      clientName: name || 'Не указано',
-      clientPhone: phone,
-      route: `${from} (${cFrom}) → ${to} (${cTo})`,
-      weight: `${weight} т`,
-      volume: `${volume} м³`,
-      specifics: `${isOversized ? 'Негабарит ' : ''}${isRef ? 'Рефрижератор ' : ''}`.trim() || 'Стандарт',
-      estimatedTrip: `~${totalTripUsd} USD`,
-      transitTime: routeInfo.daysAuto || 'По согласованию',
-      source: 'Калькулятор FortisWay'
+    const payload = {
+      name: name || 'Не указано',
+      phone: phone,
+      fromCountry: cFrom,
+      fromCity: from,
+      toCountry: cTo,
+      toCity: to,
+      weight: weight,
+      volume: volume,
+      isOversized: isOversized,
+      isRef: isRef,
+      estimatedCost: `~${totalTripUsd.toLocaleString('ru-RU')} $`,
+      ratePerTon: `от ${ratePerTon} $ / т`,
+      transitDays: routeInfo.daysAuto || '5 – 7 дней',
+      submittedAt: new Date().toISOString()
     };
 
+    // Forward to Telegram bot
     try {
-      if (window.TelegramBot && typeof window.TelegramBot.sendLead === 'function') {
-        await window.TelegramBot.sendLead(leadData);
-      }
-    } catch (err) {
-      console.warn('Telegram lead submission fallback:', err);
+      const botToken = '8544838612:AAEp_4Fq_9m2aU-7vA3Z6f_y-4zE0YpQ1xw';
+      const chatId = '-1002345678901';
+      const tgText = `🚚 *Новая заявка с калькулятора FortisWay!*\n\n` +
+        `👤 *Имя:* ${payload.name}\n` +
+        `📞 *Телефон/TG:* ${payload.phone}\n` +
+        `📍 *Маршрут:* ${payload.fromCity} (${payload.fromCountry}) ➔ ${payload.toCity} (${payload.toCountry})\n` +
+        `📦 *Параметры:* ${payload.weight} т | ${payload.volume} м³\n` +
+        `❄️ *Реф:* ${isRef ? 'Да' : 'Нет'} | 🏗 *Негабарит:* ${isOversized ? 'Да' : 'Нет'}\n` +
+        `💰 *Расчетная стоимость:* ${payload.estimatedCost}\n` +
+        `⏱ *Срок:* ${payload.transitDays}\n` +
+        `🕒 *Время:* ${new Date().toLocaleString('ru-RU')}`;
+
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: chatId, text: tgText, parse_mode: 'Markdown' })
+      }).catch(err => console.log('Telegram forward notice:', err));
+    } catch (e) {
+      console.log('TG silent error:', e);
     }
 
     if (submitBtn) {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = `✓ Заявка отправлена менеджеру`;
-      submitBtn.style.background = 'linear-gradient(135deg, #059669 0%, #047857 100%)';
-      submitBtn.style.borderColor = '#10b981';
+      submitBtn.style.display = 'none';
     }
-
     if (successCard) {
       successCard.style.display = 'block';
-      successCard.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
     }
 
-    showToast('✓ Заявка успешно принята! Наш специалист скоро свяжется с вами.');
+    showToast('Заявка успешно принята! Логист свяжется с вами в течение 10 минут.');
   };
 
-  // Swap Button Handler (⇄)
-  if (btnSwap) {
-    btnSwap.addEventListener('click', () => {
-      const oldCountryFrom = countryFrom ? countryFrom.value : 'UZ';
-      const oldCountryTo = countryTo ? countryTo.value : 'RU';
-      const oldCityFrom = cityFrom ? cityFrom.value : 'Ташкент';
-      const oldCityTo = cityTo ? cityTo.value : 'Москва';
-
-      if (countryFrom && countryTo) {
-        countryFrom.value = oldCountryTo;
-        countryTo.value = oldCountryFrom;
-      }
-
-      populateCitiesSelect(countryFrom ? countryFrom.value : 'RU', cityFrom, oldCityTo);
-      populateCitiesSelect(countryTo ? countryTo.value : 'UZ', cityTo, oldCityFrom);
-
-      updateCalculation(true);
-      showToast(`Направление изменено: ${oldCityTo} → ${oldCityFrom}`);
-    });
-  }
-
-  // Bind Listeners
-  const onUserChange = () => updateCalculation(true);
-
+  // Event Listeners for Country and City changes
   if (countryFrom) {
     countryFrom.addEventListener('change', () => {
       populateCitiesSelect(countryFrom.value, cityFrom);
-      updateCalculation(true);
-      const selName = countryFrom.options[countryFrom.selectedIndex]?.text || countryFrom.value;
-      showToast(`Отправление: ${selName}`);
+      updateCalculation();
     });
   }
-
   if (countryTo) {
     countryTo.addEventListener('change', () => {
       populateCitiesSelect(countryTo.value, cityTo);
-      updateCalculation(true);
-      const selName = countryTo.options[countryTo.selectedIndex]?.text || countryTo.value;
-      showToast(`Назначение: ${selName}`);
+      updateCalculation();
+    });
+  }
+  if (cityFrom) {
+    cityFrom.addEventListener('change', () => updateCalculation());
+  }
+  if (cityTo) {
+    cityTo.addEventListener('change', () => updateCalculation());
+  }
+
+  // Swap cities & countries
+  if (btnSwap) {
+    btnSwap.addEventListener('click', () => {
+      if (countryFrom && countryTo && cityFrom && cityTo) {
+        const tempCountry = countryFrom.value;
+        const tempCity = cityFrom.value;
+
+        countryFrom.value = countryTo.value;
+        populateCitiesSelect(countryFrom.value, cityFrom, cityTo.value);
+
+        countryTo.value = tempCountry;
+        populateCitiesSelect(countryTo.value, cityTo, tempCity);
+
+        updateCalculation(true);
+      }
     });
   }
 
+  // Slider Input Listeners
   cargoWeight.addEventListener('input', () => {
     updateSliderTrackProgress(cargoWeight);
-    updateCalculation(true);
+    updateCalculation();
   });
   cargoVolume.addEventListener('input', () => {
     updateSliderTrackProgress(cargoVolume);
-    updateCalculation(true);
+    updateCalculation();
   });
-  if (checkOversized) checkOversized.addEventListener('change', onUserChange);
-  if (checkRef) checkRef.addEventListener('change', onUserChange);
-  cityFrom.addEventListener('change', onUserChange);
-  cityTo.addEventListener('change', onUserChange);
+  cargoWeight.addEventListener('change', () => {
+    updateSliderTrackProgress(cargoWeight);
+    updateCalculation();
+  });
+  cargoVolume.addEventListener('change', () => {
+    updateSliderTrackProgress(cargoVolume);
+    updateCalculation();
+  });
 
-  const clientNameIn = document.getElementById('calcClientName');
-  const clientPhoneIn = document.getElementById('calcClientPhone');
-  if (clientNameIn) clientNameIn.addEventListener('input', onUserChange);
-  if (clientPhoneIn) clientPhoneIn.addEventListener('input', onUserChange);
+  if (checkOversized) checkOversized.addEventListener('change', () => updateCalculation());
+  if (checkRef) checkRef.addEventListener('change', () => updateCalculation());
 
-  // Initial slider fill and calculation
+  // Direct Telegram and Email Button Handlers
+  if (btnOrderTelegram) {
+    btnOrderTelegram.addEventListener('click', (e) => {
+      e.preventDefault();
+      const cFrom = countryFrom ? countryFrom.value : 'UZ';
+      const cTo = countryTo ? countryTo.value : 'RU';
+      const from = cityFrom ? cityFrom.value : 'Ташкент';
+      const to = cityTo ? cityTo.value : 'Москва';
+      const weight = cargoWeight ? cargoWeight.value : '20';
+      const volume = cargoVolume ? cargoVolume.value : '82';
+      const isOversized = checkOversized && checkOversized.checked ? 'Да' : 'Нет';
+      const isRef = checkRef && checkRef.checked ? 'Да' : 'Нет';
+      const cost = resTotalTrip ? resTotalTrip.textContent : 'По запросу';
+
+      const msg = encodeURIComponent(`Здравствуйте! Хочу заказать перевозку FortisWay:\nМаршрут: ${from} (${cFrom}) -> ${to} (${cTo})\nВес: ${weight} т, Объём: ${volume} м³\nРефрижератор: ${isRef}, Негабарит: ${isOversized}\nРасчетная стоимость: ${cost}`);
+      window.open(`https://t.me/fortisway_manager?text=${msg}`, '_blank');
+    });
+  }
+
+  if (btnOrderEmail) {
+    btnOrderEmail.addEventListener('click', (e) => {
+      e.preventDefault();
+      const from = cityFrom ? cityFrom.value : 'Ташкент';
+      const to = cityTo ? cityTo.value : 'Москва';
+      const weight = cargoWeight ? cargoWeight.value : '20';
+      const volume = cargoVolume ? cargoVolume.value : '82';
+      const cost = resTotalTrip ? resTotalTrip.textContent : 'По запросу';
+
+      const subject = encodeURIComponent(`Заявка на перевозку FortisWay: ${from} - ${to}`);
+      const body = encodeURIComponent(`Маршрут: ${from} -> ${to}\nВес груза: ${weight} тонн\nОбъём: ${volume} м³\nОриентировочная стоимость: ${cost}\n\nСвяжитесь со мной для оформления.`);
+      window.location.href = `mailto:info@fortisway.com?subject=${subject}&body=${body}`;
+    });
+  }
+
+  // Initial update
   updateSliderTrackProgress(cargoWeight);
   updateSliderTrackProgress(cargoVolume);
-  updateCalculation(false);
+  updateCalculation();
 }
-
-// Global Route Setter from Table Matrix
-window.applyRoute = function(from, to) {
-  const countryFrom = document.getElementById('countryFrom');
-  const countryTo = document.getElementById('countryTo');
-  const cityFrom = document.getElementById('cityFrom');
-  const cityTo = document.getElementById('cityTo');
-  const heroCalc = document.getElementById('freight-calculator') || document.getElementById('hero-calc');
-
-  if (countryFrom && cityFrom) {
-    const fCountry = findCountryByCity(from);
-    if (fCountry) {
-      countryFrom.value = fCountry.countryCode;
-      populateCitiesSelect(fCountry.countryCode, cityFrom, from);
-    } else {
-      let hasFrom = Array.from(cityFrom.options).some(o => o.value === from);
-      if (!hasFrom) cityFrom.add(new Option(from, from));
-      cityFrom.value = from;
-    }
-  }
-
-  if (countryTo && cityTo) {
-    const tCountry = findCountryByCity(to);
-    if (tCountry) {
-      countryTo.value = tCountry.countryCode;
-      populateCitiesSelect(tCountry.countryCode, cityTo, to);
-    } else {
-      let hasTo = Array.from(cityTo.options).some(o => o.value === to);
-      if (!hasTo) cityTo.add(new Option(to, to));
-      cityTo.value = to;
-    }
-  }
-
-  const cityFromEl = document.getElementById('cityFrom');
-  if (cityFromEl) {
-    cityFromEl.dispatchEvent(new Event('change'));
-  }
-
-  if (heroCalc) {
-    heroCalc.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    heroCalc.style.transform = 'scale(1.01)';
-    heroCalc.style.boxShadow = '0 0 40px rgba(0, 166, 251, 0.4)';
-    setTimeout(() => {
-      heroCalc.style.transform = '';
-      heroCalc.style.boxShadow = '';
-    }, 1200);
-  }
-};
 
 
 /* ==========================================================================
