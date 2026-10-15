@@ -394,20 +394,31 @@
                 <span class="price-vat">Официальный договор с НДС</span>
               </div>
             </div>
-
-                        <!-- Prominent Warning Alert (Appears strictly after user calculates/interacts) -->
-            <div class="calc-warning-box" id="calcWarningBox" style="display: none;">
-              <div class="calc-warning-header">
-                <span class="warning-pulse-icon">⚠️</span>
-                <span>ВНИМАНИЕ: СТОИМОСТЬ ЯВЛЯЕТСЯ ОРИЕНТИРОВОЧНОЙ!</span>
+            <!-- Stable Calculator Warning & Trust Slot (Zero Layout Shift, Fixed Height) -->
+            <div class="calc-warning-slot" id="calcWarningSlot">
+              <!-- Initial Trust State (Default before user calculates) -->
+              <div class="calc-slot-state state-trust" id="calcSlotTrust">
+                <div class="trust-badge-row">
+                  <span class="trust-chip"><i class="chip-icon">📄</i> Договор с НДС</span>
+                  <span class="trust-chip"><i class="chip-icon">🛡️</i> Страхование грузов</span>
+                  <span class="trust-chip"><i class="chip-icon">⚡</i> Подача от 24 ч</span>
+                </div>
               </div>
-              <p class="calc-warning-text">
-                Данный онлайн-расчёт носит предварительный информационный характер для общего понимания базовых тарифов по направлениям. Точная итоговая стоимость рейса формируется с учётом специфики и класса груза, очередей на пограничных пунктах, сезонности, температурного режима и таможенных формальностей.
-              </p>
-              <div class="calc-warning-footer">
-                Фиксированная ставка с НДС и сроки подачи транспорта закрепляются в официальном договоре-заявке с логистом FortisWay.
+
+              <!-- Active Warning State (Reveals after user interacts, exactly identical height) -->
+              <div class="calc-slot-state state-warning" id="calcWarningBox" style="display: none;">
+                <div class="calc-compact-warning">
+                  <div class="calc-compact-warn-head">
+                    <span class="warning-pulse-icon">⚠️</span>
+                    <span class="compact-warn-title">ВНИМАНИЕ: СТОИМОСТЬ ОРИЕНТИРОВОЧНАЯ</span>
+                  </div>
+                  <p class="compact-warn-desc">
+                    Предварительный расчёт. Точная ставка с НДС закрепляется в договоре-заявке с логистом FortisWay с учётом очередей на границе и специфики груза.
+                  </p>
+                </div>
               </div>
             </div>
+
 
 
             <div class="calc-dispatch-box" style="margin-top: 14px;">

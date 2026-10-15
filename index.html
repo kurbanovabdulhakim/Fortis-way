@@ -395,20 +395,31 @@
                 <span class="price-vat">Официальный договор с НДС</span>
               </div>
             </div>
-
-                        <!-- Prominent Warning Alert (Appears strictly after user calculates/interacts) -->
-            <div class="calc-warning-box" id="calcWarningBox" style="display: none;">
-              <div class="calc-warning-header">
-                <span class="warning-pulse-icon">⚠️</span>
-                <span>ВНИМАНИЕ: СТОИМОСТЬ ЯВЛЯЕТСЯ ОРИЕНТИРОВОЧНОЙ!</span>
+            <!-- Stable Calculator Warning & Trust Slot (Zero Layout Shift, Fixed Height) -->
+            <div class="calc-warning-slot" id="calcWarningSlot">
+              <!-- Initial Trust State (Default before user calculates) -->
+              <div class="calc-slot-state state-trust" id="calcSlotTrust">
+                <div class="trust-badge-row">
+                  <span class="trust-chip"><i class="chip-icon">📄</i> Договор с НДС</span>
+                  <span class="trust-chip"><i class="chip-icon">🛡️</i> Страхование грузов</span>
+                  <span class="trust-chip"><i class="chip-icon">⚡</i> Подача от 24 ч</span>
+                </div>
               </div>
-              <p class="calc-warning-text">
-                Данный онлайн-расчёт носит предварительный информационный характер для общего понимания базовых тарифов по направлениям. Точная итоговая стоимость рейса формируется с учётом специфики и класса груза, очередей на пограничных пунктах, сезонности, температурного режима и таможенных формальностей.
-              </p>
-              <div class="calc-warning-footer">
-                Фиксированная ставка с НДС и сроки подачи транспорта закрепляются в официальном договоре-заявке с логистом FortisWay.
+
+              <!-- Active Warning State (Reveals after user interacts, exactly identical height) -->
+              <div class="calc-slot-state state-warning" id="calcWarningBox" style="display: none;">
+                <div class="calc-compact-warning">
+                  <div class="calc-compact-warn-head">
+                    <span class="warning-pulse-icon">⚠️</span>
+                    <span class="compact-warn-title">ВНИМАНИЕ: СТОИМОСТЬ ОРИЕНТИРОВОЧНАЯ</span>
+                  </div>
+                  <p class="compact-warn-desc">
+                    Предварительный расчёт. Точная ставка с НДС закрепляется в договоре-заявке с логистом FortisWay с учётом очередей на границе и специфики груза.
+                  </p>
+                </div>
               </div>
             </div>
+
 
 
             <div class="calc-dispatch-box" style="margin-top: 14px;">
@@ -496,59 +507,6 @@
           <a href="#freight-calculator" class="card-btn">Заказать мегатрейлер →</a>
         </div>
       </div>
-      <!-- Interactive Scroll Truck Tracker -->
-      <div class="scroll-tracker-container" data-transport="auto">
-        <div class="scroll-tracker-info">
-          <span class="tracker-mode-badge"><i class="badge-dot"></i> АВТОМАГИСТРАЛЬ / ТРАССА Е-40</span>
-          <span class="tracker-metrics">Прогресс маршрута: <strong class="tracker-distance-val">0%</strong></span>
-        </div>
-        <div class="scroll-tracker-track track-highway">
-          <div class="highway-asphalt">
-            <div class="highway-dashes"></div>
-          </div>
-          <div class="scroll-tracker-vehicle vehicle-truck">
-            <svg class="vehicle-svg" viewBox="0 0 100 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="4" width="62" height="22" rx="2" fill="url(#truckTrailerGrad)" stroke="#38bdf8" stroke-width="0.8"/>
-              <rect x="5" y="7" width="56" height="16" rx="1" fill="#0f172a" fill-opacity="0.6"/>
-              <text x="33" y="18" fill="#38bdf8" font-size="6.5" font-weight="900" font-family="'Inter', sans-serif" letter-spacing="1" text-anchor="middle">FORTISWAY</text>
-              <rect x="4" y="24" width="60" height="2" fill="#334155"/>
-              <rect x="2" y="22" width="2" height="7" fill="#64748b"/>
-              <circle cx="10" cy="27" r="4.5" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
-              <circle cx="10" cy="27" r="2" fill="#94a3b8"/>
-              <circle cx="21" cy="27" r="4.5" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
-              <circle cx="21" cy="27" r="2" fill="#94a3b8"/>
-              <circle cx="32" cy="27" r="4.5" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
-              <circle cx="32" cy="27" r="2" fill="#94a3b8"/>
-              <rect x="63" y="19" width="4" height="4" fill="#475569"/>
-              <path d="M66 25V12C66 10 68 8 71 8H80L88 15V25H66Z" fill="url(#truckCabGrad)" stroke="#f59e0b" stroke-width="0.8"/>
-              <path d="M73 9.5H79L85 15H73V9.5Z" fill="#38bdf8" fill-opacity="0.85"/>
-              <line x1="73" y1="15" x2="73" y2="24" stroke="#78350f" stroke-width="0.8"/>
-              <rect x="71" y="11" width="1.5" height="4" rx="0.5" fill="#0f172a"/>
-              <circle cx="69" cy="27" r="4.5" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
-              <circle cx="69" cy="27" r="2" fill="#94a3b8"/>
-              <circle cx="85" cy="27" r="4.5" fill="#1e293b" stroke="#64748b" stroke-width="1"/>
-              <circle cx="85" cy="27" r="2" fill="#94a3b8"/>
-              <rect x="88" y="20" width="2" height="3" rx="0.5" fill="#fef08a"/>
-              <polygon points="90,19 100,16 100,26 90,23" fill="url(#headlightBeam)" opacity="0.75"/>
-              <rect x="0" y="18" width="2" height="4" rx="0.5" fill="#ef4444"/>
-              <defs>
-                <linearGradient id="truckTrailerGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#1e293b"/>
-                  <stop offset="100%" stop-color="#0f172a"/>
-                </linearGradient>
-                <linearGradient id="truckCabGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#d97706"/>
-                  <stop offset="100%" stop-color="#b45309"/>
-                </linearGradient>
-                <linearGradient id="headlightBeam" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#fef08a" stop-opacity="0.6"/>
-                  <stop offset="100%" stop-color="#fef08a" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-        </div>
-      </div>
 
 
     </div>
@@ -613,74 +571,6 @@
             <li>Безопасность: <strong>Пломбировка и военизированная охрана</strong></li>
           </ul>
           <a href="#freight-calculator" class="card-btn">Консультация Ж/Д логиста →</a>
-        </div>
-      </div>
-      <!-- Interactive Scroll Train Tracker -->
-      <div class="scroll-tracker-container" data-transport="rail">
-        <div class="scroll-tracker-info">
-          <span class="tracker-mode-badge"><i class="badge-dot"></i> ЖЕЛЕЗНОДОРОЖНЫЙ ПУТЬ / ШЁЛКОВЫЙ ПУТЬ</span>
-          <span class="tracker-metrics">Прогресс маршрута: <strong class="tracker-distance-val">0%</strong></span>
-        </div>
-        <div class="scroll-tracker-track track-rail">
-          <div class="rail-ties"></div>
-          <div class="rail-steels">
-            <div class="rail-steel-top"></div>
-            <div class="rail-steel-bot"></div>
-          </div>
-          <div class="scroll-tracker-vehicle vehicle-train">
-            <svg class="vehicle-svg" viewBox="0 0 160 34" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect x="2" y="8" width="30" height="15" rx="1.5" fill="#047857" stroke="#10b981" stroke-width="0.7"/>
-              <line x1="8" y1="9" x2="8" y2="22" stroke="#065f46" stroke-width="1"/>
-              <line x1="14" y1="9" x2="14" y2="22" stroke="#065f46" stroke-width="1"/>
-              <line x1="20" y1="9" x2="20" y2="22" stroke="#065f46" stroke-width="1"/>
-              <line x1="26" y1="9" x2="26" y2="22" stroke="#065f46" stroke-width="1"/>
-              <rect x="2" y="23" width="30" height="2" fill="#334155"/>
-              <circle cx="7" cy="27" r="3.5" fill="#1e293b" stroke="#94a3b8" stroke-width="0.8"/>
-              <circle cx="27" cy="27" r="3.5" fill="#1e293b" stroke="#94a3b8" stroke-width="0.8"/>
-              <line x1="32" y1="23" x2="35" y2="23" stroke="#94a3b8" stroke-width="2"/>
-
-              <rect x="35" y="8" width="30" height="15" rx="1.5" fill="#c2410c" stroke="#f97316" stroke-width="0.7"/>
-              <line x1="41" y1="9" x2="41" y2="22" stroke="#9a3412" stroke-width="1"/>
-              <line x1="47" y1="9" x2="47" y2="22" stroke="#9a3412" stroke-width="1"/>
-              <line x1="53" y1="9" x2="53" y2="22" stroke="#9a3412" stroke-width="1"/>
-              <line x1="59" y1="9" x2="59" y2="22" stroke="#9a3412" stroke-width="1"/>
-              <rect x="35" y="23" width="30" height="2" fill="#334155"/>
-              <circle cx="40" cy="27" r="3.5" fill="#1e293b" stroke="#94a3b8" stroke-width="0.8"/>
-              <circle cx="60" cy="27" r="3.5" fill="#1e293b" stroke="#94a3b8" stroke-width="0.8"/>
-              <line x1="65" y1="23" x2="68" y2="23" stroke="#94a3b8" stroke-width="2"/>
-
-              <rect x="68" y="8" width="30" height="15" rx="1.5" fill="#1d4ed8" stroke="#38bdf8" stroke-width="0.7"/>
-              <line x1="74" y1="9" x2="74" y2="22" stroke="#1e40af" stroke-width="1"/>
-              <line x1="80" y1="9" x2="80" y2="22" stroke="#1e40af" stroke-width="1"/>
-              <line x1="86" y1="9" x2="86" y2="22" stroke="#1e40af" stroke-width="1"/>
-              <line x1="92" y1="9" x2="92" y2="22" stroke="#1e40af" stroke-width="1"/>
-              <rect x="68" y="23" width="30" height="2" fill="#334155"/>
-              <circle cx="73" cy="27" r="3.5" fill="#1e293b" stroke="#94a3b8" stroke-width="0.8"/>
-              <circle cx="93" cy="27" r="3.5" fill="#1e293b" stroke="#94a3b8" stroke-width="0.8"/>
-              <line x1="98" y1="23" x2="102" y2="23" stroke="#94a3b8" stroke-width="2"/>
-
-              <path d="M102 23V8C102 7 104 6 106 6H126L135 12V23H102Z" fill="url(#locoGrad)" stroke="#38bdf8" stroke-width="0.8"/>
-              <path d="M123 8H126L133 13H123V8Z" fill="#7dd3fc"/>
-              <rect x="114" y="8" width="6" height="5" rx="0.5" fill="#7dd3fc"/>
-              <path d="M135 18L139 24H135V18Z" fill="#0284c7"/>
-              <rect x="101" y="23" width="38" height="2" fill="#1e293b"/>
-              <circle cx="107" cy="27" r="4" fill="#0f172a" stroke="#38bdf8" stroke-width="0.9"/>
-              <circle cx="117" cy="27" r="4" fill="#0f172a" stroke="#38bdf8" stroke-width="0.9"/>
-              <circle cx="127" cy="27" r="4" fill="#0f172a" stroke="#38bdf8" stroke-width="0.9"/>
-              <circle cx="137" cy="18" r="1.5" fill="#fef08a"/>
-              <polygon points="138.5,17 158,12 158,24 138.5,19" fill="url(#locoBeam)" opacity="0.8"/>
-              <defs>
-                <linearGradient id="locoGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#0369a1"/>
-                  <stop offset="100%" stop-color="#0c4a6e"/>
-                </linearGradient>
-                <linearGradient id="locoBeam" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#fef08a" stop-opacity="0.6"/>
-                  <stop offset="100%" stop-color="#fef08a" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
         </div>
       </div>
 
@@ -748,53 +638,6 @@
           <a href="#freight-calculator" class="card-btn">Запросить чартер →</a>
         </div>
       </div>
-      <!-- Interactive Scroll Airplane Tracker -->
-      <div class="scroll-tracker-container" data-transport="air">
-        <div class="scroll-tracker-info">
-          <span class="tracker-mode-badge"><i class="badge-dot"></i> АВИАКОРИДОР / ЭШЕЛОН FL360</span>
-          <span class="tracker-metrics">Прогресс полёта: <strong class="tracker-distance-val">0%</strong></span>
-        </div>
-        <div class="scroll-tracker-track track-sky">
-          <div class="sky-clouds-layer">
-            <div class="cloud-puff cloud-1"></div>
-            <div class="cloud-puff cloud-2"></div>
-            <div class="cloud-puff cloud-3"></div>
-            <div class="cloud-puff cloud-4"></div>
-          </div>
-          <div class="sky-corridor-line"></div>
-          <div class="scroll-tracker-vehicle vehicle-plane">
-            <svg class="vehicle-svg" viewBox="0 0 100 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <line x1="0" y1="18" x2="36" y2="18" stroke="url(#contrailGrad)" stroke-width="2.5" stroke-linecap="round"/>
-              <line x1="8" y1="23" x2="40" y2="23" stroke="url(#contrailGrad)" stroke-width="1.8" stroke-linecap="round"/>
-              <path d="M12 15L24 2H33L26 15H12Z" fill="url(#tailFinGrad)" stroke="#38bdf8" stroke-width="0.7"/>
-              <text x="23" y="10" fill="#fef08a" font-size="4" font-weight="900" font-family="'Inter', sans-serif">FW</text>
-              <path d="M16 15H72C78 15 84 17 88 19C84 21 78 23 72 23H16C13 23 11 20 13 17C14 15.5 15 15 16 15Z" fill="url(#planeBodyGrad)" stroke="#38bdf8" stroke-width="0.8"/>
-              <path d="M81 18C83 18.5 85 19 86 19.3L83 19.3C82 19 81 18.5 81 18Z" fill="#0f172a"/>
-              <rect x="28" y="16.5" width="10" height="5" rx="0.5" fill="none" stroke="#60a5fa" stroke-width="0.5" stroke-dasharray="1 1"/>
-              <polygon points="34,19 54,19 46,27 30,27" fill="#1e293b" stroke="#38bdf8" stroke-width="0.7"/>
-              <rect x="38" y="24" width="10" height="4.5" rx="2" fill="#334155" stroke="#94a3b8" stroke-width="0.8"/>
-              <ellipse cx="48" cy="26.2" rx="1" ry="2" fill="#38bdf8"/>
-              <circle cx="88" cy="19" r="1.5" fill="#fef08a"/>
-              <circle cx="46" cy="27" r="1.2" fill="#10b981"/>
-              <defs>
-                <linearGradient id="planeBodyGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#e2e8f0"/>
-                  <stop offset="60%" stop-color="#ffffff"/>
-                  <stop offset="100%" stop-color="#cbd5e1"/>
-                </linearGradient>
-                <linearGradient id="tailFinGrad" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#0284c7"/>
-                  <stop offset="100%" stop-color="#0369a1"/>
-                </linearGradient>
-                <linearGradient id="contrailGrad" x1="0" y1="0" x2="1" y2="0">
-                  <stop offset="0%" stop-color="#ffffff" stop-opacity="0"/>
-                  <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.8"/>
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-        </div>
-      </div>
 
 
     </div>
@@ -858,42 +701,6 @@
             <li>Отслеживание: <strong>GPS-пломбировка на всем пути</strong></li>
           </ul>
           <a href="#freight-calculator" class="card-btn">Запросить ставку Бендер-Аббас →</a>
-        </div>
-      </div>
-      <!-- Interactive Scroll Ship Tracker -->
-      <div class="scroll-tracker-container" data-transport="sea">
-        <div class="scroll-tracker-info">
-          <span class="tracker-mode-badge"><i class="badge-dot"></i> МОРСКОЙ МАРШРУТ / КАСПИЙ — ЧЁРНОЕ МОРЕ</span>
-          <span class="tracker-metrics">Прогресс перехода: <strong class="tracker-distance-val">0%</strong></span>
-        </div>
-        <div class="scroll-tracker-track track-ocean">
-          <div class="ocean-water-layer">
-            <div class="ocean-waves"></div>
-          </div>
-          <div class="scroll-tracker-vehicle vehicle-ship">
-            <svg class="vehicle-svg" viewBox="0 0 130 36" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 28L18 33H102L116 28H12Z" fill="#b91c1c"/>
-              <path d="M8 22L12 28H116L124 22H8Z" fill="#0f172a" stroke="#334155" stroke-width="0.8"/>
-              <text x="32" y="26.5" fill="#e2e8f0" font-size="3.5" font-weight="800" font-family="'Inter', sans-serif" letter-spacing="1">FORTIS CARRIER</text>
-              <rect x="18" y="14" width="16" height="8" rx="0.5" fill="#dc2626" stroke="#991b1b" stroke-width="0.5"/>
-              <rect x="18" y="7" width="16" height="7" rx="0.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.5"/>
-              <rect x="36" y="14" width="16" height="8" rx="0.5" fill="#059669" stroke="#047857" stroke-width="0.5"/>
-              <rect x="36" y="7" width="16" height="7" rx="0.5" fill="#d97706" stroke="#b45309" stroke-width="0.5"/>
-              <rect x="54" y="14" width="16" height="8" rx="0.5" fill="#2563eb" stroke="#1d4ed8" stroke-width="0.5"/>
-              <rect x="54" y="7" width="16" height="7" rx="0.5" fill="#dc2626" stroke="#991b1b" stroke-width="0.5"/>
-              <rect x="72" y="14" width="16" height="8" rx="0.5" fill="#475569" stroke="#334155" stroke-width="0.5"/>
-              <rect x="72" y="7" width="16" height="7" rx="0.5" fill="#059669" stroke="#047857" stroke-width="0.5"/>
-              <rect x="92" y="8" width="14" height="14" rx="1" fill="#f8fafc" stroke="#cbd5e1" stroke-width="0.6"/>
-              <rect x="94" y="10" width="10" height="2.5" fill="#0284c7"/>
-              <rect x="97" y="3" width="3" height="5" fill="#dc2626"/>
-              <rect x="96" y="2" width="5" height="1.5" fill="#1e293b"/>
-              <line x1="103" y1="8" x2="103" y2="2" stroke="#64748b" stroke-width="0.8"/>
-              <circle cx="103" cy="2" r="1" fill="#fef08a"/>
-              <polygon points="116,22 122,22 124,19 116,19" fill="#f8fafc"/>
-              <path d="M124 28C127 28 129 27 130 25C129 27.5 126 29 123 29Z" fill="#38bdf8" fill-opacity="0.9"/>
-              <path d="M118 31C122 31 126 30 128 28.5C125 31.5 120 32 116 32Z" fill="#7dd3fc" fill-opacity="0.7"/>
-            </svg>
-          </div>
         </div>
       </div>
 

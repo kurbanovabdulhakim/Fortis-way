@@ -5,6 +5,7 @@ window.toggleTheme = function() {
   document.documentElement.setAttribute('data-theme', newTheme);
   localStorage.setItem('fortisway_theme', newTheme);
   console.log('[FortisWay] Theme toggled to:', newTheme);
+  if (window.updateAllSliderProgress) window.updateAllSliderProgress();
 };
 
 (function() {
@@ -153,6 +154,28 @@ function initCalculator() {
 
   if (!cargoWeight || !cargoVolume) return;
 
+  // Dynamic Slider Track Progress Fill (Cyan active line up to thumb)
+  function updateSliderTrackProgress(slider) {
+    if (!slider) return;
+    const min = parseFloat(slider.min) !== undefined ? parseFloat(slider.min) : 0;
+    const max = parseFloat(slider.max) !== undefined ? parseFloat(slider.max) : 100;
+    const val = parseFloat(slider.value) !== undefined ? parseFloat(slider.value) : 0;
+    const pct = Math.max(0, Math.min(100, ((val - min) / (max - min)) * 100));
+
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const trackBg = isLight ? 'rgba(0, 0, 0, 0.12)' : 'rgba(255, 255, 255, 0.16)';
+    const activeColor = '#00a6fb';
+
+    slider.style.setProperty('--range-pct', pct + '%');
+    slider.style.background = 'linear-gradient(to right, ' + activeColor + ' 0%, ' + activeColor + ' ' + pct + '%, ' + trackBg + ' ' + pct + '%, ' + trackBg + ' 100%)';
+  }
+
+  window.updateAllSliderProgress = function() {
+    updateSliderTrackProgress(cargoWeight);
+    updateSliderTrackProgress(cargoVolume);
+  };
+
+
   // Route Database: +$10-$20 above reference market rates (Unity-Trans benchmarks)
   const routeDistances = {
     'Москва': { km: 3400, daysAuto: '5 – 7 дней', daysRail: '8 – 11 дней', baseRateUsd: 175 },
@@ -219,12 +242,18 @@ function initCalculator() {
     if (resRateAmount) resRateAmount.textContent = `от ${ratePerTon} $ / т`;
     if (resTotalTrip) resTotalTrip.textContent = `~${totalTripUsd.toLocaleString('ru-RU')} $`;
 
-    // Reveal warning strictly after user calculation
+    updateSliderTrackProgress(cargoWeight);
+    updateSliderTrackProgress(cargoVolume);
+
+    // Stable Warning & Trust Slot state swap (Zero layout shift)
+    const trustSlot = document.getElementById('calcSlotTrust');
+    const warnBox = document.getElementById('calcWarningBox');
     if (isUserAction) {
-      const warnBox = document.getElementById('calcWarningBox');
-      if (warnBox) {
-        warnBox.style.display = 'block';
-      }
+      if (trustSlot) trustSlot.style.display = 'none';
+      if (warnBox) warnBox.style.display = 'flex';
+    } else {
+      if (trustSlot) trustSlot.style.display = 'flex';
+      if (warnBox) warnBox.style.display = 'none';
     }
 
     // Silent submission handler is available via submitCalcOrderSilently
@@ -233,11 +262,6 @@ function initCalculator() {
   // Explicit calculation button trigger
   window.triggerCalculatorAction = function() {
     updateCalculation(true);
-    const warnBox = document.getElementById('calcWarningBox');
-    if (warnBox) {
-      warnBox.style.display = 'block';
-      warnBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
   };
 
   // Silent Lead Submission Handler (Direct background transmission to Manager via AJAX / Telegram)
@@ -390,10 +414,16 @@ function initCalculator() {
     });
   }
 
-  // Bind Listeners
+  // Bind Listeners with immediate slider fill update
   const onUserChange = () => updateCalculation(true);
-  cargoWeight.addEventListener('input', onUserChange);
-  cargoVolume.addEventListener('input', onUserChange);
+  cargoWeight.addEventListener('input', () => {
+    updateSliderTrackProgress(cargoWeight);
+    updateCalculation(true);
+  });
+  cargoVolume.addEventListener('input', () => {
+    updateSliderTrackProgress(cargoVolume);
+    updateCalculation(true);
+  });
   if (checkOversized) checkOversized.addEventListener('change', onUserChange);
   if (checkRef) checkRef.addEventListener('change', onUserChange);
   cityFrom.addEventListener('change', onUserChange);
@@ -404,7 +434,9 @@ function initCalculator() {
   if (clientNameIn) clientNameIn.addEventListener('input', onUserChange);
   if (clientPhoneIn) clientPhoneIn.addEventListener('input', onUserChange);
 
-  // Initial calculation without showing warning until user interacts
+  // Initial slider fill and calculation without showing warning until user interacts
+  updateSliderTrackProgress(cargoWeight);
+  updateSliderTrackProgress(cargoVolume);
   updateCalculation(false);
 }
 
