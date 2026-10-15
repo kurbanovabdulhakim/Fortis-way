@@ -32,8 +32,14 @@
     [data-theme="light"] .theme-icon-moon { display: none !important; }
     [data-theme="light"] .theme-toggle-btn { background: #FFFDF9 !important; border-color: rgba(201, 122, 43, 0.35) !important; color: #D97706 !important; }
     [data-theme="light"] body { background-color: #FAF6F0 !important; color: #1F1B18 !important; }
-    .nav-links { display: flex !important; align-items: center !important; flex-wrap: nowrap !important; }
-    .nav-link { white-space: nowrap !important; }
+    @media (min-width: 993px) {
+      .nav-links { display: flex !important; align-items: center !important; flex-wrap: nowrap !important; }
+      .nav-link { white-space: nowrap !important; }
+    }
+    @media (max-width: 992px) {
+      .nav-links:not(.mobile-open) { display: none !important; }
+      .navbar .logo-tag { display: none !important; }
+    }
       /* Dropdown Optgroup and Option styling */
     .select-field optgroup {
       background: #0f172a !important;
@@ -164,7 +170,7 @@
     }
   </script>
   <!-- Stylesheet with Cache Busting -->
-  <link rel="stylesheet" href="css/style.css?v=6.4">
+  <link rel="stylesheet" href="css/style.css?v=6.5">
   <style>
     /* Immediate cache-proof override for Step 2 Warning Alert */
     .calc-warning-box-step2 {
@@ -1483,7 +1489,7 @@
             <span class="logo-tag">Freight & Logistics</span>
           </div>
         </a>
-        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 12px; max-width: 380px;">
+        <p class="footer-desc" style="font-size: 0.88rem; margin-top: 12px; max-width: 380px; line-height: 1.6;">
           Надёжный путь для вашего груза. Комплексные логистические решения: авто, ж/д, авиа и мультимодал в Республике Узбекистан и ВЭД.
         </p>
       </div>
@@ -1663,7 +1669,7 @@
 
   <!-- Scripts -->
   <script src="js/three-scenes.js?v=5.0"></script>
-  <script src="js/main.js?v=6.4"></script>
+  <script src="js/main.js?v=6.5"></script>
   <!-- Sticky Floating Mobile Quick-Action Bar (< 768px only) -->
   <div class="mobile-bottom-bar" id="mobileBottomBar">
     <a href="tel:+998935552262" class="mobile-bar-btn bar-call" aria-label="Позвонить логисту">
