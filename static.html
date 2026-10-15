@@ -1,0 +1,1208 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FortisWay — Грузоперевозки по Узбекистану, СНГ, Турции и Европе | Официальный сайт</title>
+  <meta name="description" content="Транспортно-логистическая компания FortisWay. Комплектные (FTL), сборные (LTL), железнодорожные, авиа и мультимодальные перевозки. Официальный договор с НДС, GPS-трекинг 24/7.">
+  <meta name="keywords" content="грузоперевозки Ташкент, логистика Узбекистан, перевозка грузов СНГ, фуры Ташкент, жд перевозки Узбекистан, авиаперевозки Ташкент, FortisWay, автоперевозки Россия Узбекистан">
+  
+  <!-- Open Graph -->
+  <meta property="og:title" content="FortisWay — Международные грузоперевозки">
+  <meta property="og:description" content="Надёжный путь для вашего груза: авто, ж/д, авиа и мультимодальные перевозки.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.fortisway.uz">
+  <link rel="canonical" href="https://www.fortisway.uz">
+
+  <!-- Three.js 3D WebGL Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+    <!-- Inline Critical Theme Styles -->
+  <style>
+    .theme-toggle-btn { width: 40px !important; height: 40px !important; min-width: 40px !important; border-radius: 50% !important; display: inline-flex !important; align-items: center !important; justify-content: center !important; background: rgba(15, 23, 42, 0.75) !important; border: 1px solid rgba(56, 189, 248, 0.3) !important; color: #38bdf8 !important; cursor: pointer !important; padding: 0 !important; margin: 0 !important; box-sizing: border-box !important; flex-shrink: 0 !important; outline: none !important; }
+    .theme-icon-sun { display: none !important; }
+    .theme-icon-moon { display: block !important; }
+    [data-theme="light"] .theme-icon-sun { display: block !important; color: #d97706 !important; }
+    [data-theme="light"] .theme-icon-moon { display: none !important; }
+    [data-theme="light"] .theme-toggle-btn { background: #FFFDF9 !important; border-color: rgba(201, 122, 43, 0.35) !important; color: #D97706 !important; }
+    [data-theme="light"] body { background-color: #FAF6F0 !important; color: #1F1B18 !important; }
+    .nav-links { display: flex !important; align-items: center !important; flex-wrap: nowrap !important; }
+    .nav-link { white-space: nowrap !important; }
+  </style>
+  <!-- Immediate Theme Initializer -->
+  <script>
+    (function() {
+      var savedTheme = localStorage.getItem("fortisway_theme") || "dark";
+      document.documentElement.setAttribute("data-theme", savedTheme);
+      var savedBg = localStorage.getItem("fortisway_bg_mode") || "video";
+      document.documentElement.setAttribute("data-bg-mode", savedBg);
+    })();
+        function toggleBgMode() {
+      var cur = document.documentElement.getAttribute("data-bg-mode") || "video";
+      var next = cur === "photo" ? "video" : "photo";
+      document.documentElement.setAttribute("data-bg-mode", next);
+      localStorage.setItem("fortisway_bg_mode", next);
+      if (window.onBgModeChanged) {
+        window.onBgModeChanged(next);
+      }
+    }
+    function toggleTheme() {
+      var cur = document.documentElement.getAttribute("data-theme") || "dark";
+      var next = cur === "light" ? "dark" : "light";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem("fortisway_theme", next);
+    }
+  </script>
+  <!-- Stylesheet with Cache Busting -->
+  <link rel="stylesheet" href="css/style.css?v=5.0">
+</head>
+<body>
+
+  <!-- Top Announcement / Quick Contact Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-container">
+      <div class="top-bar-left">
+        <span class="live-status-pill">
+          <span class="live-dot"></span> Диспетчерская 24/7 активна
+        </span>
+        <a href="https://www.fortisway.uz" class="top-bar-item" style="color: var(--cyan-light); font-weight: 700; text-decoration: none;" title="Официальный домен">
+          🌐 www.fortisway.uz
+        </a>
+        <span class="top-bar-item">Прямой договор с НДС · Страхование грузов</span>
+      </div>
+      <div class="top-bar-right">
+        <a href="https://t.me/LogisticsFortisway" target="_blank" class="top-link" title="Telegram">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+          @LogisticsFortisway
+        </a>
+        <a href="https://wa.me/998935552262" target="_blank" class="top-link" title="WhatsApp">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.43 0-2.82-.37-4.06-1.08l-.29-.17-3.12.82.83-3.04-.19-.3a8.217 8.217 0 0 1-1.26-4.46c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.17 1.74 2.65 4.2 3.72.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"/></svg>
+          WhatsApp
+        </a>
+        <a href="tel:+998935552262" class="top-phone">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+          +998 (93) 555-22-62
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Bar -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#" class="brand-logo" aria-label="FortisWay главная">
+        <img src="assets/logo_brand.jpg" alt="ООО FORTISWAY" class="brand-logo-img">
+        <div>
+          <div class="logo-text">Fortis<span>Way</span></div>
+          <span class="logo-tag">International Freight & Logistics</span>
+        </div>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#auto-freight" class="nav-link">Грузоперевозки</a></li>
+          <li><a href="#routes-matrix" class="nav-link">Тарифы&nbsp;и&nbsp;Направления</a></li>
+          <li><a href="#requisites" class="nav-link">Реквизиты</a></li>
+          <li><a href="#contacts" class="nav-link">Контакты</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle Button -->
+                <!-- Link to Video Version -->
+        <a href="index.html" class="bg-mode-toggle-btn" style="text-decoration: none;" title="Перейти к динамической версии с видео 0.5x">
+          <span>🎬 Версия с видео (0.5x)</span>
+        </a>
+
+        <button class="theme-toggle-btn" id="themeToggleBtn" onclick="toggleTheme()" aria-label="Переключить тему" title="Светлая / Темная тема">
+          <svg class="theme-icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="theme-icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+        </button>
+        <button class="btn-auth-trigger" id="navAuthBtn" onclick="openAuthModal()">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+          <span>ЛК / Реквизиты</span>
+        </button>
+        <a href="#freight-calculator" class="btn-primary">Рассчитать рейс</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileToggle" aria-label="Открыть меню">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       HERO SECTION (Inspired by UzPochta.ru + Unity-Trans.uz)
+       ========================================================================  <!-- ==========================================================================
+       HERO SECTION (Full-Width Representative Showcase - Unity-Trans Style)
+       ========================================================================== -->
+  <section class="hero-section hero-fullwidth" id="hero">
+    <!-- Ambient Parallax Backdrop -->
+    <div class="hero-backdrop" data-parallax="0.2">
+      <div class="hero-glow-blob"></div>
+      <div class="hero-globe-overlay"></div>
+    </div>
+
+    <div class="container hero-container-wide">
+      <div class="hero-main-row">
+        <!-- Main Headline & Value Proposition -->
+        <div class="hero-content">
+          <div class="hero-status-pill">
+            <span class="live-dot"></span>
+            <span>Международная & Региональная логистика • Диспетчерская 24/7</span>
+          </div>
+
+          <h1 class="hero-title">
+            Грузоперевозки <br>
+            <span class="gradient-text">Узбекистан ⇄ СНГ,</span> <br>
+            Турция, Европа и Китай
+          </h1>
+
+          <p class="hero-desc">
+            Организуем оперативную и надёжную доставку комплектных (FTL), сборных (LTL), железнодорожных, авиа и негабаритных грузов. Фиксированные ставки, персональный логист и онлайн GPS-контроль на каждом километре пути.
+          </p>
+
+          <!-- Trust Badges -->
+          <div class="hero-badges-row">
+            <div class="hero-badge-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Официальный договор с НДС
+            </div>
+            <div class="hero-badge-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              GPS-трекинг 24/7
+            </div>
+            <div class="hero-badge-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Автопарк 30+ машин
+            </div>
+            <div class="hero-badge-pill">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+              Без скрытых платежей
+            </div>
+          </div>
+
+          <!-- Direct CTA Buttons -->
+          <div class="hero-buttons">
+            <a href="#freight-calculator" class="btn-primary hero-btn-main" style="padding: 16px 32px; font-size: 1.05rem;">
+              <span>Рассчитать стоимость онлайн ↓</span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
+            </a>
+            <a href="tel:+998935552262" class="btn-secondary" style="padding: 15px 24px; font-size: 0.98rem;">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              +998 (93) 555-22-62
+            </a>
+            <a href="https://t.me/LogisticsFortisway" target="_blank" class="btn-secondary" style="padding: 15px 22px; font-size: 0.98rem;" title="Связь в Telegram">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+              Telegram
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Side: Representative Division Cards (Unity-Trans Style) -->
+        <div class="hero-divisions-col">
+          <div class="division-card">
+            <div class="division-card-header">
+              <div class="division-icon-badge" style="background: rgba(0, 166, 251, 0.15); border: 1px solid rgba(56, 189, 248, 0.4); color: var(--cyan-light);">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="3" width="15" height="13"></rect><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon><circle cx="5.5" cy="18.5" r="2.5"></circle><circle cx="18.5" cy="18.5" r="2.5"></circle></svg>
+              </div>
+              <h3 class="division-title">Fortis Logistic</h3>
+            </div>
+            <p class="division-desc">
+              Международные FTL и LTL автоперевозки, контейнерные ж/д поезда, авиарейсы и прямая доставка в Узбекистан с контролем погрузки.
+            </p>
+            <div class="division-tags">
+              <span class="div-tag">FTL / LTL</span>
+              <span class="div-tag">Рефрижераторы</span>
+              <span class="div-tag">Контейнеры 40'HQ</span>
+            </div>
+          </div>
+
+          <div class="division-card">
+            <div class="division-card-header">
+              <div class="division-icon-badge" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(52, 211, 153, 0.4); color: #34d399;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+              </div>
+              <h3 class="division-title">Fortis Trade & Customs</h3>
+            </div>
+            <p class="division-desc">
+              Комплексное таможенное оформление в РФ, Казахстане и Узбекистане, ВЭД-сопровождение, сертификация и 100% страхование грузов.
+            </p>
+            <div class="division-tags">
+              <span class="div-tag">Таможенная очистка</span>
+              <span class="div-tag">ВЭД-аутсорсинг</span>
+              <span class="div-tag">Договор с НДС</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       DEDICATED CALCULATOR SECTION (Positioned Directly Below Hero)
+       ========================================================================== -->
+  <section class="calculator-section" id="freight-calculator">
+    <div class="container">
+      <div class="section-header-center">
+        <span class="section-badge-pill">Онлайн-сервис FortisWay</span>
+        <h2 class="section-title-large">Калькулятор стоимости доставки</h2>
+        <p class="section-subtitle-text">
+          Рассчитайте ориентировочный тариф и срок перевозки вашего груза по направлениям Узбекистан ⇄ СНГ, Турция, Европа
+        </p>
+      </div>
+
+      <div class="calculator-wide-card">
+        <form id="expressCalcForm" class="calc-grid-layout">
+          <!-- Left Column: Route & Cargo Parameters -->
+          <div class="calc-col-params">
+            <div class="calc-block-title">
+              <span class="calc-step-num">1</span>
+              <span>Маршрут перевозки</span>
+            </div>
+
+            <!-- Countries Selection -->
+            <div class="calc-row-2col">
+              <div class="input-group">
+                <label class="input-label">Откуда (Страна)</label>
+                <select class="select-field" id="countryFrom">
+                  <option value="UZ" selected>🇺🇿 Узбекистан</option>
+                  <option value="RU">🇷🇺 Россия</option>
+                  <option value="KZ">🇰🇿 Казахстан</option>
+                  <option value="TR">🇹🇷 Турция</option>
+                  <option value="CN">🇨🇳 Китай</option>
+                  <option value="EU">🇪🇺 Европа</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label class="input-label">Куда (Страна)</label>
+                <select class="select-field" id="countryTo">
+                  <option value="RU" selected>🇷🇺 Россия</option>
+                  <option value="UZ">🇺🇿 Узбекистан</option>
+                  <option value="KZ">🇰🇿 Казахстан</option>
+                  <option value="TR">🇹🇷 Турция</option>
+                  <option value="CN">🇨🇳 Китай</option>
+                  <option value="EU">🇪🇺 Европа</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Cities Selection with Swap Button -->
+            <div class="cities-swap-wrapper">
+              <div class="input-group" style="flex: 1;">
+                <label class="input-label">Город отправления</label>
+                <select class="select-field" id="cityFrom">
+                  <option value="Ташкент" selected>Ташкент</option>
+                  <option value="Самарканд">Самарканд</option>
+                  <option value="Фергана">Фергана</option>
+                  <option value="Бухара">Бухара</option>
+                  <option value="Наманган">Наманган</option>
+                </select>
+              </div>
+
+              <!-- Swap Button -->
+              <button type="button" class="btn-swap-cities" id="btnSwapCities" title="Поменять местами" aria-label="Поменять местами">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="17 1 21 5 17 9"></polyline><path d="M3 5h18"></path><polyline points="7 23 3 19 7 15"></polyline><path d="M21 19H3"></path></svg>
+              </button>
+
+              <div class="input-group" style="flex: 1;">
+                <label class="input-label">Город назначения</label>
+                <select class="select-field" id="cityTo">
+                  <option value="Москва" selected>Москва</option>
+                  <option value="Санкт-Петербург">Санкт-Петербург</option>
+                  <option value="Казань">Казань</option>
+                  <option value="Екатеринбург">Екатеринбург</option>
+                  <option value="Новосибирск">Новосибирск</option>
+                  <option value="Алматы">Алматы</option>
+                  <option value="Стамбул">Стамбул</option>
+                  <option value="Урумчи">Урумчи</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="calc-block-title" style="margin-top: 18px;">
+              <span class="calc-step-num">2</span>
+              <span>Параметры и специфика груза</span>
+            </div>
+
+            <!-- Weight & Volume Inputs -->
+            <div class="calc-row-2col">
+              <div class="input-group">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <label class="input-label" style="margin-bottom: 0;">Вес (тонн)</label>
+                  <span class="range-val-badge" id="weightVal">10.0 т</span>
+                </div>
+                <input type="range" class="range-slider" id="cargoWeight" min="0.5" max="25" step="0.5" value="10">
+              </div>
+
+              <div class="input-group">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+                  <label class="input-label" style="margin-bottom: 0;">Объём (м³)</label>
+                  <span class="range-val-badge" id="volumeVal">45 м³</span>
+                </div>
+                <input type="range" class="range-slider" id="cargoVolume" min="3" max="120" step="1" value="45">
+              </div>
+            </div>
+
+            <!-- Cargo Options Toggles -->
+            <div class="calc-toggles-grid" style="margin-top: 10px;">
+              <label class="toggle-checkbox-label">
+                <input type="checkbox" id="checkOversized">
+                <span class="toggle-custom-box"></span>
+                <span>Негабаритный груз (+трал)</span>
+              </label>
+              <label class="toggle-checkbox-label">
+                <input type="checkbox" id="checkRef">
+                <span class="toggle-custom-box"></span>
+                <span>Температурный режим (Реф)</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Right Column: Results & Dispatch -->
+          <div class="calc-col-result">
+            <div class="calc-block-title">
+              <span class="calc-step-num">3</span>
+              <span>Предварительный расчёт</span>
+            </div>
+
+            <div class="calc-live-result-box calc-result-large">
+              <div class="result-details-col">
+                <div class="result-item">
+                  <span class="result-lbl">Рекомендуемый транспорт:</span>
+                  <span class="result-val" id="resTruckClass">Еврофура Тент (20 тонн / 92 м³)</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-lbl">Срок в пути:</span>
+                  <span class="result-val" id="resTransitDays">5 - 7 дней</span>
+                </div>
+                <div class="result-item">
+                  <span class="result-lbl">Базовая ставка:</span>
+                  <span class="result-val" id="resRateAmount" style="color: var(--cyan-light); font-weight: 700;">от 175 $ / т</span>
+                </div>
+              </div>
+
+              <div class="result-price-col">
+                <span class="price-title">Ориентировочно за рейс:</span>
+                <div class="price-amount" id="resTotalTrip">~1 750 $</div>
+                <span class="price-vat">Официальный договор с НДС</span>
+              </div>
+            </div>
+
+                        <!-- Prominent Warning Alert (Appears strictly after user calculates/interacts) -->
+            <div class="calc-warning-box" id="calcWarningBox" style="display: none;">
+              <div class="calc-warning-header">
+                <span class="warning-pulse-icon">⚠️</span>
+                <span>ВНИМАНИЕ: СТОИМОСТЬ ЯВЛЯЕТСЯ ОРИЕНТИРОВОЧНОЙ!</span>
+              </div>
+              <p class="calc-warning-text">
+                Данный онлайн-расчёт носит предварительный информационный характер для общего понимания базовых тарифов по направлениям. Точная итоговая стоимость рейса формируется с учётом специфики и класса груза, очередей на пограничных пунктах, сезонности, температурного режима и таможенных формальностей.
+              </p>
+              <div class="calc-warning-footer">
+                Фиксированная ставка с НДС и сроки подачи транспорта закрепляются в официальном договоре-заявке с логистом FortisWay.
+              </div>
+            </div>
+
+
+            <div class="calc-dispatch-box" style="margin-top: 14px;">
+              <label class="input-label">Получить точный расчёт и официальное КП у логиста</label>
+              <div class="calc-dispatch-compact">
+                <input type="tel" class="input-field input-compact" id="calcClientPhone" placeholder="Ваш телефон или @Telegram *" required>
+                <button type="submit" class="btn-primary btn-calc-submit" id="btnSubmitCalcOrder" onclick="submitCalcOrderSilently(event)">
+                  <span>Заказать расчёт</span>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="calc-order-success" id="calcOrderSuccess" style="display: none;">
+              <div class="success-title">✓ Заявка передана логисту FortisWay</div>
+              <div class="success-desc">Свяжемся с вами в течение 10–15 минут по указанному контакту.</div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  >
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 1: АВТОМОБИЛЬНЫЕ ПЕРЕВОЗКИ (Реалистичная 3D Еврофура)
+       ========================================================================== -->
+  <section class="transport-section" id="auto-freight" data-transport="auto">
+    <!-- 3D Highway Parallax Backdrop with Three.js WebGL Canvas -->
+    <!-- Live Traffic Highway GIF Backdrop -->
+    <div class="transport-bg-backdrop bg-auto-scene">
+
+    <div class="container transport-container">
+      <div class="transport-header">
+        <span class="transport-num">01 / АВТОЛОГИСТИКА</span>
+        <h2 class="transport-title">Автомобильные грузоперевозки (FTL & LTL)</h2>
+        <p class="transport-lead">
+          Подача европейских тягачей и малотоннажного транспорта от двери до двери по всему Узбекистану, городам СНГ, Турции и Европы.
+        </p>
+      </div>
+
+      <!-- Fleet Grid -->
+      <div class="transport-cards-grid">
+        <div class="transport-card">
+          <div class="card-badge">FTL Комплектный</div>
+          <h4 class="card-title">Еврофура Тент (20 тонн / 92 м³)</h4>
+          <p class="card-desc">Стандартные комплектные перевозки промышленной продукции, ТНП, стройматериалов и оборудования.</p>
+          <ul class="card-specs">
+            <li>Вместимость: <strong>33 европаллеты</strong></li>
+            <li>Погрузка: <strong>Боковая, верхняя, задняя</strong></li>
+            <li>Сроки Ташкент–Москва: <strong>5 – 7 дней</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Заказать фуру 20т →</a>
+        </div>
+
+        <div class="transport-card highlighted-card">
+          <div class="card-badge gold-badge">Температурный режим</div>
+          <h4 class="card-title">Рефрижератор (от -20°C до +12°C)</h4>
+          <p class="card-desc">Перевозка скоропортящихся продуктов питания, агропродукции, заморозки и фармацевтики с термописцем.</p>
+          <ul class="card-specs">
+            <li>Контроль: <strong>GPS-термописец с распечаткой</strong></li>
+            <li>Режимы: <strong>Deep Freeze / Охлаждение</strong></li>
+            <li>Допуск: <strong>Санитарная обработка кузова</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Заказать рефрижератор →</a>
+        </div>
+
+        <div class="transport-card">
+          <div class="card-badge">Крупный объём</div>
+          <h4 class="card-title">Мегатрейлер (105 – 120 м³)</h4>
+          <p class="card-desc">Идеально для объёмных, легковесных грузов, утеплителей, упаковки, пластика и текстиля с высотой до 3.05м.</p>
+          <ul class="card-specs">
+            <li>Высота кузова: <strong>до 3.05 м</strong></li>
+            <li>Вместимость: <strong>до 34 европаллет</strong></li>
+            <li>Экономия: <strong>до 25% на объёме</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Заказать мегатрейлер →</a>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 2: ЖЕЛЕЗНОДОРОЖНЫЕ ПЕРЕВОЗКИ (С двигающимся поездом)
+       ========================================================================== -->
+  <section class="transport-section" id="rail-freight" data-transport="rail">
+    <!-- 3D Railway Parallax Backdrop with Three.js WebGL Canvas -->
+    <!-- Live Night Railway GIF Backdrop -->
+    <div class="transport-bg-backdrop bg-rail-scene">
+
+    <div class="container transport-container">
+      <div class="transport-header">
+        <span class="transport-num">02 / ЖЕЛЕЗНОДОРОЖНЫЕ ПЕРЕВОЗКИ</span>
+        <h2 class="transport-title">Контейнерные поезда и Ж/Д логистика</h2>
+        <p class="transport-lead">
+          Оптимальное решение для крупнотоннажных, насыпных, металлопрокатных и сборных партий на дальние расстояния (свыше 2 000 км).
+        </p>
+      </div>
+
+      <!-- Rail Cards Grid -->
+      <div class="transport-cards-grid">
+        <div class="transport-card">
+          <div class="card-badge">Крупные партии</div>
+          <h4 class="card-title">Контейнеры 20' и 40' High Cube</h4>
+          <p class="card-desc">Международные ускоренные контейнерные поезда из Китая, России и Европы с гарантированным расписанием хода.</p>
+          <ul class="card-specs">
+            <li>Грузоподъёмность: <strong>до 28 тонн</strong></li>
+            <li>Отслеживание: <strong>По номеру контейнера 24/7</strong></li>
+            <li>Тариф: <strong>от 130 $ / тонна</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Рассчитать Ж/Д контейнер →</a>
+        </div>
+
+        <div class="transport-card">
+          <div class="card-badge">Крытые & Полувагоны</div>
+          <h4 class="card-title">Повагонные отправки и платформы</h4>
+          <p class="card-desc">Подача вагонов под погрузку на станциях отправления, крепление спецтехники, станционное экспедирование.</p>
+          <ul class="card-specs">
+            <li>Вместимость вагона: <strong>до 68 тонн</strong></li>
+            <li>Оформление: <strong>СМГС (SMGS) / накладные</strong></li>
+            <li>Направления: <strong>РФ, Казахстан, КНР</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Заказать вагон →</a>
+        </div>
+
+        <div class="transport-card">
+          <div class="card-badge gold-badge">Погранпереходы</div>
+          <h4 class="card-title">Таможенный транзит & Терминалы</h4>
+          <p class="card-desc">Сопровождение грузов на ключевых железнодорожных узлах: Сарыагаш, Озинки, Достык/Алашанькоу, Келес.</p>
+          <ul class="card-specs">
+            <li>Оплата: <strong>Ж/Д тариф по кодам экспедитора</strong></li>
+            <li>Перегруз: <strong>Узкая ⇄ широкая колея</strong></li>
+            <li>Безопасность: <strong>Пломбировка и военизированная охрана</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Консультация Ж/Д логиста →</a>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 3: АВИАПЕРЕВОЗКИ (С летящим грузовым самолётом)
+       ========================================================================== -->
+  <section class="transport-section" id="air-freight" data-transport="air">
+    <!-- 3D Sky Parallax Backdrop with Animated Clouds & Glowing Sun -->
+    <div class="transport-bg-backdrop bg-air-scene">
+
+    <div class="container transport-container">
+      <div class="transport-header">
+        <span class="transport-num">03 / СВЕРХСРОЧНАЯ АВИАДОСТАВКА</span>
+        <h2 class="transport-title">Авиаперевозки (Cargo Express 24 – 72ч)</h2>
+        <p class="transport-lead">
+          Срочная авиадоставка коммерческих партий, образцов, ценных и скоропортящихся грузов через аэропорты Ташкента, Москвы, Стамбула и Дубая.
+        </p>
+      </div>
+
+      <!-- Air Cards Grid -->
+      <div class="transport-cards-grid">
+        <div class="transport-card highlighted-card">
+          <div class="card-badge gold-badge">Экспресс 24 – 48ч</div>
+          <h4 class="card-title">Регулярные грузовые авиарейсы</h4>
+          <p class="card-desc">Прямое бронирование грузовых отсеков на пассажирских и грузовых бортах с оформлением авианакладной (AWB).</p>
+          <ul class="card-specs">
+            <li>Сроки: <strong>От 24 до 48 часов</strong></li>
+            <li>Аэропорты: <strong>TAS, SVO, DME, IST, DXB, FRA</strong></li>
+            <li>Вес партии: <strong>от 30 кг до 15 тонн</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Заказать авиаперевозку →</a>
+        </div>
+
+        <div class="transport-card">
+          <div class="card-badge">Спецгрузы</div>
+          <h4 class="card-title">Фармацевтика & Ценные грузы</h4>
+          <p class="card-desc">Соблюдение температурной цепи (Cold Chain), термоконтейнеры, перевозка дорогостоящего оборудования и электроники.</p>
+          <ul class="card-specs">
+            <li>Температура: <strong>+2°C..+8°C / +15°C..+25°C</strong></li>
+            <li>Безопасность: <strong>Пломбировка ценных отправлений</strong></li>
+            <li>Таможня: <strong>Очистка в грузовом терминале</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Рассчитать спецгруз →</a>
+        </div>
+
+        <div class="transport-card">
+          <div class="card-badge">Чартерные рейсы</div>
+          <h4 class="card-title">Авиачартер под ключ (Heavy Cargo)</h4>
+          <p class="card-desc">Организация выделенных рейсов самолётов Ил-76, Boeing 747/777F для проектных и крупногабаритных грузов.</p>
+          <ul class="card-specs">
+            <li>Грузоподъёмность: <strong>до 45 – 100 тонн</strong></li>
+            <li>Маршрут: <strong>Любая точка мира ⇄ Ташкент</strong></li>
+            <li>Доступность: <strong>Подача борта за 48 часов</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Запросить чартер →</a>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 4: МУЛЬТИМОДАЛЬНЫЕ И МОРСКИЕ ПЕРЕВОЗКИ (С контейнеровозом)
+       ========================================================================== -->
+  <section class="transport-section" id="sea-freight" data-transport="sea">
+    <!-- 3D Ocean Parallax Backdrop with Three.js WebGL Canvas -->
+    <div class="transport-bg-backdrop bg-sea-scene">
+
+    <div class="container transport-container">
+      <div class="transport-header">
+        <span class="transport-num">04 / МОРСКИЕ & КОМБИНИРОВАННЫЕ ПЕРЕВОЗКИ</span>
+        <h2 class="transport-title">Мультимодальные маршруты и паромы</h2>
+        <p class="transport-lead">
+          Сквозная доставка «Море + Ж/Д + Авто» через порты Каспийского, Чёрного морей и Персидского залива по единому коносаменту.
+        </p>
+      </div>
+
+      <!-- Sea Cards Grid -->
+      <div class="transport-cards-grid">
+        <div class="transport-card">
+          <div class="card-badge">Каспийский коридор</div>
+          <h4 class="card-title">Паромные переправы (Каспий)</h4>
+          <p class="card-desc">Прямые паромы Курык / Актау ⇄ Баку (Алят). Соединение маршрутов Центральной Азии с Закавказьем и Турцией.</p>
+          <ul class="card-specs">
+            <li>Тип загрузки: <strong>Накатная автотехника (RO-RO) и вагоны</strong></li>
+            <li>Сроки транзита: <strong>Оптимальный путь в обход заторов</strong></li>
+            <li>Экономия: <strong>Минимизация сухопутных границ</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Узнать график паромов →</a>
+        </div>
+
+        <div class="transport-card highlighted-card">
+          <div class="card-badge gold-badge">Черноморские порты</div>
+          <h4 class="card-title">Через порты Поти и Батуми</h4>
+          <p class="card-desc">Приём морских контейнеров из Европы, США и Азии с перевалкой на железную дорогу и автотранспорт в Узбекистан.</p>
+          <ul class="card-specs">
+            <li>Контейнеры: <strong>FCL / LCL сборные партии</strong></li>
+            <li>Терминал: <strong>Складская перетарка и таможня</strong></li>
+            <li>Сервис: <strong>Единый договор с НДС</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Рассчитать мультимодал →</a>
+        </div>
+
+        <div class="transport-card">
+          <div class="card-badge">Южный коридор</div>
+          <h4 class="card-title">Порт Бендер-Аббас (Иран / ОАЭ)</h4>
+          <p class="card-desc">Эффективный маршрут для товаров из Индии, Юго-Восточной Азии и ОАЭ в Узбекистан через южный транспортный коридор.</p>
+          <ul class="card-specs">
+            <li>Регулярность: <strong>Еженедельные судозаходы</strong></li>
+            <li>Доставка: <strong>Автотранспортом до Ташкента</strong></li>
+            <li>Отслеживание: <strong>GPS-пломбировка на всем пути</strong></li>
+          </ul>
+          <a href="#freight-calculator" class="card-btn">Запросить ставку Бендер-Аббас →</a>
+        </div>
+      </div>
+
+
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 5: ТАБЛИЦА МАРШРУТОВ И ТАРИФОВ (По образцу Unity-Trans.uz)
+       ========================================================================== -->
+  <section class="routes-matrix-section" id="routes-matrix">
+    <div class="container">
+      <div class="section-header" style="text-align: center; margin-bottom: 40px;">
+        <div class="section-tag">Прозрачные ориентиры</div>
+        <h2 class="section-title">Популярные направления и ориентировочные ставки</h2>
+        <p class="section-subtitle">
+          Базовые тарифы на регулярные грузоперевозки. Окончательная ставка фиксируется в договоре с учётом веса, объёма и специфики груза.
+        </p>
+      </div>
+
+      <!-- Routes Table Container -->
+      <div class="table-card-wrapper">
+        <table class="routes-table">
+          <thead>
+            <tr>
+              <th>Маршрут перевозки</th>
+              <th>Расстояние</th>
+              <th>Срок в пути</th>
+              <th>Базовая ставка</th>
+              <th>Рекомендуемый транспорт</th>
+              <th>Действие</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <div class="route-point-cell">
+                  <span class="route-flag">🇷🇺 ⇄ 🇺🇿</span>
+                  <strong>Москва ⇄ Ташкент</strong>
+                </div>
+              </td>
+              <td>3 400 км</td>
+              <td><span class="pill-time">5 – 7 дней</span></td>
+              <td><strong class="price-val">от 175 $ / т</strong></td>
+              <td>Еврофура Тент 20т / Реф</td>
+              <td>
+                <button class="btn-table-calc" onclick="applyRoute('Москва', 'Ташкент')">Рассчитать</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="route-point-cell">
+                  <span class="route-flag">🇷🇺 ⇄ 🇺🇿</span>
+                  <strong>Санкт-Петербург ⇄ Ташкент</strong>
+                </div>
+              </td>
+              <td>4 100 км</td>
+              <td><span class="pill-time">7 – 9 дней</span></td>
+              <td><strong class="price-val">от 205 $ / т</strong></td>
+              <td>Еврофура 20т / Ж/Д контейнер</td>
+              <td>
+                <button class="btn-table-calc" onclick="applyRoute('Санкт-Петербург', 'Ташкент')">Рассчитать</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="route-point-cell">
+                  <span class="route-flag">🇷🇺 ⇄ 🇺🇿</span>
+                  <strong>Екатеринбург ⇄ Ташкент</strong>
+                </div>
+              </td>
+              <td>2 300 км</td>
+              <td><span class="pill-time">4 – 5 дней</span></td>
+              <td><strong class="price-val">от 180 $ / т</strong></td>
+              <td>Еврофура Тент / Рефрижератор</td>
+              <td>
+                <button class="btn-table-calc" onclick="applyRoute('Екатеринбург', 'Ташкент')">Рассчитать</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="route-point-cell">
+                  <span class="route-flag">🇷🇺 ⇄ 🇺🇿</span>
+                  <strong>Самара / Казань ⇄ Ташкент</strong>
+                </div>
+              </td>
+              <td>2 300 км</td>
+              <td><span class="pill-time">4 – 5 дней</span></td>
+              <td><strong class="price-val">от 165 $ – 175 $ / т</strong></td>
+              <td>Еврофура Тент / Сборный LTL</td>
+              <td>
+                <button class="btn-table-calc" onclick="applyRoute('Самара', 'Ташкент')">Рассчитать</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="route-point-cell">
+                  <span class="route-flag">🇹🇷 ⇄ 🇺🇿</span>
+                  <strong>Стамбул ⇄ Ташкент</strong>
+                </div>
+              </td>
+              <td>4 800 км</td>
+              <td><span class="pill-time">10 – 14 дней</span></td>
+              <td><strong class="price-val">от 235 $ / т</strong></td>
+              <td>Автопоезд / Паром через Каспий</td>
+              <td>
+                <button class="btn-table-calc" onclick="applyRoute('Стамбул', 'Ташкент')">Рассчитать</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="route-point-cell">
+                  <span class="route-flag">🇨🇳 ⇄ 🇺🇿</span>
+                  <strong>Урумчи ⇄ Ташкент</strong>
+                </div>
+              </td>
+              <td>1 200 км</td>
+              <td><span class="pill-time">3 – 5 дней</span></td>
+              <td><strong class="price-val">от 155 $ / т</strong></td>
+              <td>Автофура / Ж/Д контейнерный экспресс</td>
+              <td>
+                <button class="btn-table-calc" onclick="applyRoute('Урумчи', 'Ташкент')">Рассчитать</button>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="route-point-cell">
+                  <span class="route-flag">🇰🇿 ⇄ 🇺🇿</span>
+                  <strong>Алматы ⇄ Ташкент</strong>
+                </div>
+              </td>
+              <td>810 км</td>
+              <td><span class="pill-time">24 – 48 часов</span></td>
+              <td><strong class="price-val">от 100 $ / т</strong></td>
+              <td>Еврофура / Сборный груз (LTL)</td>
+              <td>
+                <button class="btn-table-calc" onclick="applyRoute('Алматы', 'Ташкент')">Рассчитать</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 6: ЗАЩИЩЁННЫЙ БЛОК РЕКВИЗИТОВ ООО «FORTISWAY»
+       ========================================================================== -->
+  <section class="requisites-section" id="requisites">
+    <div class="container">
+      <div class="section-header" style="text-align: center; margin-bottom: 30px;">
+        <div class="section-tag">Юридическая информация</div>
+        <h2 class="section-title">Официальные реквизиты ООО «FORTISWAY»</h2>
+        <p class="section-subtitle">
+          Паспорт предприятия, банковские счета и регистрационные данные для заключения договоров и проведения платежей с НДС.
+        </p>
+      </div>
+
+      <!-- State 1: Locked / Frosted Glass Overlay (Default) -->
+      <div class="requisites-locked-card" id="reqLockedBox">
+        <div class="lock-icon-circle">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        </div>
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: #fff; margin-bottom: 10px;">
+          Информация доступна авторизованным корпоративным клиентам
+        </h3>
+        <p style="color: var(--text-muted); max-width: 540px; margin: 0 auto 24px auto; font-size: 0.95rem;">
+          Для защиты юридических данных компании и подтверждения статуса партнёра пройдите простую B2B-авторизацию или войдите по корпоративному паролю.
+        </p>
+
+        <button class="btn-primary" onclick="openAuthModal()" style="padding: 14px 32px; font-size: 1rem;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"></path><polyline points="10 17 15 12 10 7"></polyline><line x1="15" y1="12" x2="3" y2="12"></line></svg>
+          Авторизоваться для просмотра реквизитов
+        </button>
+
+        <!-- Blurred Preview Lines for Realism -->
+        <div class="blurred-preview-grid">
+          <div class="blur-line" style="width: 80%;"></div>
+          <div class="blur-line" style="width: 60%;"></div>
+          <div class="blur-line" style="width: 70%;"></div>
+        </div>
+      </div>
+
+      <!-- State 2: Unlocked Official Legal Requisites Card -->
+      <div class="requisites-unlocked-card" id="reqUnlockedBox" style="display: none;">
+        <div class="unlocked-header">
+          <div class="unlocked-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"></polyline></svg>
+            Доступ открыт · Верифицированный партнёр FortisWay
+          </div>
+          <button class="btn-logout" onclick="logoutRequisites()" title="Выйти и скрыть реквизиты">
+            Заблокировать доступ ✕
+          </button>
+        </div>
+
+        <div class="requisites-data-grid">
+          <div class="req-item full-width">
+            <span class="req-lbl">Полное наименование организации:</span>
+            <span class="req-val highlight-title">Общество с ограниченной ответственностью «FORTISWAY» (OOO «FORTISWAY»)</span>
+          </div>
+
+          <div class="req-item full-width">
+            <span class="req-lbl">Юридический / Почтовый адрес:</span>
+            <span class="req-val">Республика Узбекистан, г. Ташкент, Яшнабадский район, МСГ Тойтепа, ул. Садика Азимова, 3-й проезд, д. 20</span>
+          </div>
+
+          <div class="req-item">
+            <span class="req-lbl">ИНН:</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="req-val code-font" id="valInn">313334329</span>
+              <button class="btn-copy-tiny" onclick="copyText('313334329', this)" title="Скопировать ИНН">Скопировать</button>
+            </div>
+          </div>
+
+          <div class="req-item">
+            <span class="req-lbl">ОКЭД:</span>
+            <span class="req-val code-font">49410 (Грузовые перевозки автомобильным транспортом)</span>
+          </div>
+
+          <div class="req-item full-width">
+            <span class="req-lbl">Расчетный счет (сум):</span>
+            <div style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+              <span class="req-val code-font font-lg" id="valAccount">20208000607538177001</span>
+              <button class="btn-copy-tiny" onclick="copyText('20208000607538177001', this)" title="Скопировать расчетный счет">Скопировать р/с</button>
+            </div>
+          </div>
+
+          <div class="req-item">
+            <span class="req-lbl">Обслуживающий банк:</span>
+            <span class="req-val">АКИБ «Ipak Yo'li», Чиланзарский филиал</span>
+          </div>
+
+          <div class="req-item">
+            <span class="req-lbl">МФО банка:</span>
+            <div style="display: flex; align-items: center; gap: 8px;">
+              <span class="req-val code-font" id="valMfo">01067</span>
+              <button class="btn-copy-tiny" onclick="copyText('01067', this)" title="Скопировать МФО">Скопировать</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Requisites Actions -->
+        <div class="requisites-actions-row">
+          <button class="btn-primary" onclick="copyAllRequisites()" style="padding: 12px 24px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+            Скопировать все реквизиты
+          </button>
+          <button class="btn-secondary" onclick="downloadRequisitesTxt()" style="padding: 12px 24px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+            Скачать карточку предприятия (TXT)
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================================================
+       SECTION 7: КОНТАКТЫ & ДИСПЕТЧЕРСКАЯ СЛУЖБА 24/7
+       ========================================================================== -->
+  <section class="contacts-section" id="contacts">
+    <div class="container">
+      <div class="contacts-grid">
+        <div class="contacts-info">
+          <div class="section-tag">Связь с логистом 24/7</div>
+          <h2 class="section-title">Контакты и диспетчерская</h2>
+          <p style="color: var(--text-muted); margin-bottom: 28px;">
+            Дежурный диспетчер принимает заявки круглосуточно. Ответим в Telegram в течение 5 минут или проконсультируем по телефону.
+          </p>
+
+          <div class="contact-links-list">
+            <a href="tel:+998935552262" class="contact-link-item">
+              <div class="contact-link-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+              </div>
+              <div>
+                <div class="contact-link-label">Телефон диспетчерской (звонок/SMS):</div>
+                <div class="contact-link-val">+998 (93) 555-22-62</div>
+              </div>
+            </a>
+
+            <a href="https://t.me/LogisticsFortisway" target="_blank" class="contact-link-item">
+              <div class="contact-link-icon" style="background: rgba(42, 171, 238, 0.15); color: #2aabee;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+              </div>
+              <div>
+                <div class="contact-link-label">Официальный Telegram канал / чат:</div>
+                <div class="contact-link-val">@LogisticsFortisway</div>
+              </div>
+            </a>
+
+            <a href="https://wa.me/998935552262" target="_blank" class="contact-link-item">
+              <div class="contact-link-icon" style="background: rgba(37, 211, 102, 0.15); color: #25d366;">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.43 0-2.82-.37-4.06-1.08l-.29-.17-3.12.82.83-3.04-.19-.3a8.217 8.217 0 0 1-1.26-4.46c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.17 1.74 2.65 4.2 3.72.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"/></svg>
+              </div>
+              <div>
+                <div class="contact-link-label">WhatsApp бизнес-чат:</div>
+                <div class="contact-link-val">+998 (93) 555-22-62</div>
+              </div>
+            </a>
+
+            <div class="contact-link-item contact-addr-item" id="contactOfficeAddress" onclick="handleProtectedAddressClick()">
+              <div class="contact-link-icon">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+              </div>
+              <div>
+                <div class="contact-link-label">Адрес центрального офиса:</div>
+                <div class="contact-link-val">
+                  <span class="auth-only-text">г. Ташкент, Яшнабадский район, ул. Садика Азимова, 3-й проезд, д. 20</span>
+                  <span class="unauth-only-text" style="color: var(--gold-accent); font-weight: 600;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                    Доступен после авторизации (нажмите)
+                  </span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Feedback Quick Message Form -->
+        <div class="feedback-card">
+          <h3 class="feedback-title" style="font-size: 1.35rem; font-weight: 800; color: var(--text-white); margin-bottom: 8px;">Заявка на расчёт перевозки</h3>
+          <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+            Укажите маршрут и контактные данные. Логист FortisWay перезвонит в течение 10 минут с готовой ставкой.
+          </p>
+
+          <form id="contactForm" onsubmit="handleContactSubmit(event)">
+            <div class="input-group" style="margin-bottom: 12px;">
+              <label class="input-label">Ваше имя или компания</label>
+              <input type="text" class="input-field" placeholder="Например: ООО «Трейд Лидер»" required>
+            </div>
+            <div class="input-group" style="margin-bottom: 12px;">
+              <label class="input-label">Телефон для связи</label>
+              <input type="tel" class="input-field" placeholder="+998 (90) 000-00-00" required>
+            </div>
+            <div class="input-group" style="margin-bottom: 18px;">
+              <label class="input-label">Маршрут и характер груза</label>
+              <textarea class="input-field" rows="3" placeholder="Например: Ташкент - Москва, Тент 20т, оборудование, готовность через 3 дня"></textarea>
+            </div>
+            <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 14px;">
+              Отправить заявку дежурному
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col-brand">
+        <a href="#" class="brand-logo">
+          <img src="assets/logo_brand.jpg" alt="FortisWay" class="brand-logo-img">
+          <div>
+            <div class="logo-text">Fortis<span>Way</span></div>
+            <span class="logo-tag">Freight & Logistics</span>
+          </div>
+        </a>
+        <p style="color: var(--text-muted); font-size: 0.88rem; margin-top: 12px; max-width: 380px;">
+          Надёжный путь для вашего груза. Комплексные логистические решения: авто, ж/д, авиа и мультимодал в Республике Узбекистан и ВЭД.
+        </p>
+      </div>
+
+      <div class="footer-col-nav">
+        <h5 class="footer-title">Навигация</h5>
+        <ul class="footer-list">
+          <li><a href="#auto-freight">Автоперевозки FTL/LTL</a></li>
+          <li><a href="#rail-freight">Ж/Д контейнеры и вагоны</a></li>
+          <li><a href="#air-freight">Авиаперевозки Cargo</a></li>
+          <li><a href="#sea-freight">Мультимодал & Паромы</a></li>
+          <li><a href="#routes-matrix">Тарифы и направления</a></li>
+          <li><a href="#requisites">Реквизиты предприятия</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col-contacts">
+        <h5 class="footer-title">Связь & Контакты</h5>
+        <ul class="footer-list">
+          <li>Веб-сайт: <a href="https://www.fortisway.uz" style="color: var(--cyan-light);">www.fortisway.uz</a></li>
+          <li>Email: <a href="mailto:info@fortisway.uz" style="color: var(--cyan-light);">info@fortisway.uz</a></li>
+          <li>Тел: <a href="tel:+998935552262" style="color: var(--cyan-light);">+998 (93) 555-22-62</a></li>
+          <li>TG: <a href="https://t.me/LogisticsFortisway" target="_blank" style="color: var(--cyan-light);">@LogisticsFortisway</a></li>
+          <li>WhatsApp: <a href="https://wa.me/998935552262" target="_blank" style="color: var(--cyan-light);">+998 93 555 22 62</a></li>
+          <li>
+            <span class="auth-only-text">ИНН: 313334329</span>
+            <span class="unauth-only-text">ИНН: <a href="javascript:void(0)" onclick="openAuthModal()" style="color: var(--gold-accent);">🔒 Доступен после авторизации</a></span>
+          </li>
+          <li>
+            <span class="auth-only-text">г. Ташкент, ул. Садика Азимова, 3-й проезд, д. 20</span>
+            <span class="unauth-only-text">Адрес: <a href="javascript:void(0)" onclick="openAuthModal()" style="color: var(--gold-accent);">🔒 Доступен после авторизации</a></span>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom-bar">
+      <div class="container" style="display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 0.8rem; color: var(--text-dim);">
+        <div>© 2026 ООО «FORTISWAY». Все права защищены. Официальный договор с НДС.</div>
+        <div>Разработано для B2B грузоперевозок по Узбекистану и международным коридорам</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==========================================================================
+       MODALS & FLOATING ACTIONS
+       ========================================================================== -->
+
+  <!-- Multi-Modal Authorization Modal (3-in-1: Lead, Credentials, Telegram) -->
+  <div class="modal-backdrop" id="authModal">
+    <div class="modal-dialog">
+      <button class="modal-close-x" onclick="closeAuthModal()" aria-label="Закрыть">✕</button>
+      <div class="modal-head">
+        <div class="auth-icon-badge">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+        </div>
+        <h3 style="font-size: 1.45rem; font-weight: 800; color: var(--text-white); margin-bottom: 6px;">Вход в партнёрский раздел</h3>
+        <p style="font-size: 0.86rem; color: var(--text-muted);">
+          Доступ к реквизитам ООО «FORTISWAY», банковским счетам и типовому договору
+        </p>
+      </div>
+
+      <!-- Auth Tabs -->
+      <div class="auth-tabs-nav">
+        <button class="auth-tab-btn active" onclick="switchAuthTab(0)">Быстрый доступ</button>
+        <button class="auth-tab-btn" onclick="switchAuthTab(1)">Вход для руководителя</button>
+        <button class="auth-tab-btn" onclick="switchAuthTab(2)">Через Telegram</button>
+      </div>
+
+      <!-- Tab Content 1: Quick Lead Access -->
+      <div class="auth-tab-pane active" id="authTab0">
+        <form onsubmit="handleQuickAuth(event)">
+          <div class="input-group" style="margin-bottom: 12px;">
+            <label class="input-label">Наименование вашей компании или ИНН</label>
+            <input type="text" class="input-field" placeholder="Например: ООО «ТрансГрупп» / ИНН" required>
+          </div>
+          <div class="input-group" style="margin-bottom: 18px;">
+            <label class="input-label">Контактный телефон представителя</label>
+            <input type="tel" class="input-field" placeholder="+998 (90) 123-45-67" required>
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 13px;">
+            Открыть доступ к реквизитам
+          </button>
+        </form>
+      </div>
+
+      <!-- Tab Content 2: Credentials Login (partner / 2026) -->
+      <div class="auth-tab-pane" id="authTab1">
+        <form onsubmit="handleCredAuth(event)">
+          <div class="input-group" style="margin-bottom: 12px;">
+            <label class="input-label">Корпоративный логин</label>
+            <input type="text" id="loginUser" class="input-field" value="partner" required>
+          </div>
+          <div class="input-group" style="margin-bottom: 14px;">
+            <label class="input-label">Код подтверждения доступа</label>
+            <input type="text" id="loginPass" class="input-field" value="2026" placeholder="Код: 2026" required>
+          </div>
+          <div style="font-size: 0.78rem; color: var(--accent-gold); margin-bottom: 16px; background: rgba(245, 158, 11, 0.1); padding: 8px 12px; border-radius: 6px;">
+            💡 Демо-доступ для партнёров: логин <strong>partner</strong>, код <strong>2026</strong> (уже подставлены)
+          </div>
+          <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 13px;">
+            Войти как партнёр
+          </button>
+        </form>
+      </div>
+
+      <!-- Tab Content 3: Telegram Instant Verification -->
+      <div class="auth-tab-pane" id="authTab2">
+        <div style="text-align: center; padding: 10px 0;">
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+            Нажмите кнопку ниже, чтобы запросить моментальную верификацию в диалоге с дежурным диспетчером <strong>@LogisticsFortisway</strong>:
+          </p>
+          <a href="https://t.me/LogisticsFortisway?text=Здравствуйте!%20Запрашиваю%20верификацию%20для%20доступа%20к%20реквизитам%20ООО%20FORTISWAY" target="_blank" onclick="simulateTgAuth()" class="btn-primary" style="width: 100%; justify-content: center; padding: 14px; margin-bottom: 12px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+            Подтвердить через Telegram
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fast Order Confirmation Modal -->
+  <div class="modal-backdrop" id="fastOrderModal">
+    <div class="modal-dialog">
+      <button class="modal-close-x" onclick="closeFastOrderModal()" aria-label="Закрыть">✕</button>
+      <div style="text-align: center; margin-bottom: 18px;">
+        <div style="width: 56px; height: 56px; border-radius: 50%; background: rgba(0, 166, 251, 0.15); color: var(--cyan-light); display: inline-flex; align-items: center; justify-content: center; margin-bottom: 12px;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" y1="13" x2="8" y2="13"></line><line x1="16" y1="17" x2="8" y2="17"></line><polyline points="10 9 9 9 8 9"></polyline></svg>
+        </div>
+        <h3 style="font-size: 1.4rem; font-weight: 800; color: var(--text-white);">Официальное коммерческое предложение</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted);">
+          Подготовим расчет ставки с НДС, графиком подачи авто и проектом договора
+        </p>
+      </div>
+
+      <form onsubmit="handleFastOrderSubmit(event)">
+        <div class="input-group" style="margin-bottom: 12px;">
+          <label class="input-label">Контактное лицо или компания</label>
+          <input type="text" class="input-field" placeholder="Ваше имя / организация" required>
+        </div>
+        <div class="input-group" style="margin-bottom: 16px;">
+          <label class="input-label">Телефон для связи (Telegram / WhatsApp)</label>
+          <input type="tel" class="input-field" placeholder="+998 (90) 123-45-67" required>
+        </div>
+        <button type="submit" class="btn-primary" style="width: 100%; justify-content: center; padding: 13px;">
+          Получить КП с договором
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Floating Quick Actions (Telegram, WhatsApp, Call) -->
+  <div class="floating-actions">
+    <a href="https://t.me/LogisticsFortisway" target="_blank" class="fab-btn fab-tg" title="Чат в Telegram">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.75-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+    </a>
+    <a href="https://wa.me/998935552262" target="_blank" class="fab-btn fab-wa" title="Чат в WhatsApp">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2c-5.46 0-9.91 4.45-9.91 9.91 0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38c1.45.79 3.08 1.21 4.74 1.21 5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.816 9.816 0 0 0 12.04 2m.01 1.67c2.2 0 4.26.86 5.82 2.41a8.18 8.18 0 0 1 2.41 5.83c0 4.54-3.7 8.24-8.24 8.24-1.43 0-2.82-.37-4.06-1.08l-.29-.17-3.12.82.83-3.04-.19-.3a8.217 8.217 0 0 1-1.26-4.46c0-4.54 3.7-8.24 8.24-8.24m4.52 11.53c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.17.25-.64.81-.79.97-.14.17-.29.19-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.47-1.39-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.14.17-.25.25-.41.08-.17.04-.31-.02-.43s-.56-1.34-.76-1.84c-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.43.06-.66.31-.22.25-.86.84-.86 2.05 0 1.21.88 2.38 1 2.54.12.17 1.74 2.65 4.2 3.72.59.25 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.3z"/></svg>
+    </a>
+    <a href="tel:+998935552262" class="fab-btn fab-call" title="Позвонить дежурному логисту">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+    </a>
+  </div>
+
+  <!-- Back to Top Button -->
+  <button class="back-to-top" id="backToTopBtn" aria-label="Наверх">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"></polyline></svg>
+  </button>
+
+  <!-- Toast Notification Popup -->
+  <div class="toast-notice" id="toastNotice">
+    <div class="toast-inner">
+      <span class="toast-dot"></span>
+      <span id="toastMessage">Сообщение</span>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/three-scenes.js?v=5.0"></script>
+  <script src="js/main.js?v=5.0"></script>
+</body>
+</html>

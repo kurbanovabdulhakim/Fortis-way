@@ -24,7 +24,7 @@ function initSeamlessBackgroundVideos() {
     const vidB = container.querySelector('.layer-b');
     if (!vidA || !vidB) return;
 
-    const speed = parseFloat(container.dataset.speed) || 2.0;
+    const speed = parseFloat(container.dataset.speed) || 0.5;
     const fadeDurationSec = 1.2;
     const crossfadeLeadTime = fadeDurationSec * speed; // 2.4s in video timeline
 
@@ -885,3 +885,27 @@ function initScrollTransportTrackers() {
 if (document.readyState === 'complete' || document.readyState === 'interactive') {
   initScrollTransportTrackers();
 }
+
+/* Background Mode Switcher Handler */
+window.onBgModeChanged = function(mode) {
+  const containers = document.querySelectorAll('.seamless-video-container');
+  containers.forEach(container => {
+    const vids = container.querySelectorAll('video');
+    vids.forEach(v => {
+      if (mode === 'photo') {
+        v.pause();
+      } else {
+        const speed = parseFloat(container.dataset.speed) || 0.5;
+        v.playbackRate = speed;
+        if (v.classList.contains('active')) {
+          v.play().catch(() => {});
+        }
+      }
+    });
+  });
+  if (window.showToast) {
+    showToast(mode === 'photo' 
+      ? '🖼️ Режим фона: Статичные 4K фото (все видео и анимации отключены)' 
+      : '🎬 Режим фона: Плавное видео (0.5x замедление)');
+  }
+};
