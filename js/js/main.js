@@ -1,4 +1,4 @@
-// Immediate theme initialization to prevent flash
+﻿// Immediate theme initialization to prevent flash
 window.toggleTheme = function() {
   const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
   const newTheme = currentTheme === 'light' ? 'dark' : 'light';
@@ -11,12 +11,114 @@ window.toggleTheme = function() {
   const savedTheme = localStorage.getItem('fortisway_theme') || 'dark';
   document.documentElement.setAttribute('data-theme', savedTheme);
 })();
+
+/* ==========================================================================
+   SEAMLESS 2X TIME-LAPSE DUAL-VIDEO CROSSFADE CONTROLLER
+   ========================================================================== */
+function initSeamlessBackgroundVideos() {
+  const containers = document.querySelectorAll('.seamless-video-container');
+  if (!containers.length) return;
+
+  containers.forEach(container => {
+    const vidA = container.querySelector('.layer-a');
+    const vidB = container.querySelector('.layer-b');
+    if (!vidA || !vidB) return;
+
+    const speed = parseFloat(container.dataset.speed) || 2.0;
+    const fadeDurationSec = 1.2;
+    const crossfadeLeadTime = fadeDurationSec * speed; // 2.4s in video timeline
+
+    let active = vidA;
+    let inactive = vidB;
+    let crossfading = false;
+    let isVisible = false;
+
+    // Apply 2x speed and initial display states
+    vidA.playbackRate = speed;
+    vidB.playbackRate = speed;
+    vidA.classList.add('active');
+    vidB.classList.remove('active');
+
+    function startPlayback() {
+      if (!isVisible) return;
+      active.playbackRate = speed;
+      active.classList.add('active');
+      active.play().catch(() => {});
+    }
+
+    function pauseAll() {
+      vidA.pause();
+      vidB.pause();
+    }
+
+    function triggerCrossfade() {
+      if (crossfading) return;
+      crossfading = true;
+
+      inactive.currentTime = 0;
+      inactive.playbackRate = speed;
+      inactive.classList.add('active');
+      active.classList.remove('active');
+      inactive.play().catch(() => {});
+
+      // After 1.2s crossfade completes, reset inactive and swap pointers
+      setTimeout(() => {
+        active.pause();
+        active.currentTime = 0;
+        const temp = active;
+        active = inactive;
+        inactive = temp;
+        crossfading = false;
+      }, (fadeDurationSec * 1000) + 50);
+    }
+
+    function checkCrossfade() {
+      if (!isVisible || crossfading) return;
+      const dur = active.duration;
+      const cur = active.currentTime;
+
+      if (dur && !isNaN(dur) && dur > crossfadeLeadTime && cur >= (dur - crossfadeLeadTime)) {
+        triggerCrossfade();
+      }
+    }
+
+    vidA.addEventListener('timeupdate', checkCrossfade);
+    vidB.addEventListener('timeupdate', checkCrossfade);
+
+    function onEnded() {
+      if (!crossfading) {
+        triggerCrossfade();
+      }
+    }
+    vidA.addEventListener('ended', onEnded);
+    vidB.addEventListener('ended', onEnded);
+
+    // IntersectionObserver for 60fps performance & battery savings
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          isVisible = entry.isIntersecting;
+          if (isVisible) {
+            startPlayback();
+          } else {
+            pauseAll();
+          }
+        });
+      }, { threshold: 0.1 });
+      observer.observe(container.closest('.transport-section') || container);
+    } else {
+      isVisible = true;
+      startPlayback();
+    }
+  });
+}
 /**
  * FortisWay — High-Tech Freight & Logistics Platform
  * Core Application Logic, Calculator & B2B Auth System
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initSeamlessBackgroundVideos();
   initCalculator();
   initTransportScrollAnimations();
   initRequisitesAuth();

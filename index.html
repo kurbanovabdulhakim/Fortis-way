@@ -49,7 +49,7 @@
     }
   </script>
   <!-- Stylesheet with Cache Busting -->
-  <link rel="stylesheet" href="css/style.css?v=3.5">
+  <link rel="stylesheet" href="css/style.css?v=4.0">
 </head>
 <body>
 
@@ -415,6 +415,10 @@
     <!-- 3D Highway Parallax Backdrop with Three.js WebGL Canvas -->
     <!-- Live Traffic Highway GIF Backdrop -->
     <div class="transport-bg-backdrop bg-auto-scene">
+      <div class="seamless-video-container" data-speed="2.0">
+        <video class="seamless-video layer-a active" src="assets/video_auto_loop.mp4" muted playsinline autoplay preload="auto"></video>
+        <video class="seamless-video layer-b" src="assets/video_auto_loop.mp4" muted playsinline preload="auto"></video>
+      </div>
       <div class="transport-overlay-gradient"></div>
     </div>
 
@@ -475,6 +479,10 @@
     <!-- 3D Railway Parallax Backdrop with Three.js WebGL Canvas -->
     <!-- Live Night Railway GIF Backdrop -->
     <div class="transport-bg-backdrop bg-rail-scene">
+      <div class="seamless-video-container" data-speed="2.0">
+        <video class="seamless-video layer-a active" src="assets/video_rail_loop.mp4" muted playsinline autoplay preload="auto"></video>
+        <video class="seamless-video layer-b" src="assets/video_rail_loop.mp4" muted playsinline preload="auto"></video>
+      </div>
       <div class="transport-overlay-gradient"></div>
     </div>
 
@@ -533,7 +541,13 @@
        ========================================================================== -->
   <section class="transport-section" id="air-freight" data-transport="air">
     <!-- 3D Sky Parallax Backdrop with Animated Clouds & Glowing Sun -->
-    <div class="transport-bg-backdrop bg-air-scene"><div class="transport-overlay-gradient"></div></div>
+    <div class="transport-bg-backdrop bg-air-scene">
+      <div class="seamless-video-container" data-speed="2.0">
+        <video class="seamless-video layer-a active" src="assets/video_air_loop.mp4" muted playsinline autoplay preload="auto"></video>
+        <video class="seamless-video layer-b" src="assets/video_air_loop.mp4" muted playsinline preload="auto"></video>
+      </div>
+      <div class="transport-overlay-gradient"></div>
+    </div>
 
     <div class="container transport-container">
       <div class="transport-header">
@@ -590,7 +604,13 @@
        ========================================================================== -->
   <section class="transport-section" id="sea-freight" data-transport="sea">
     <!-- 3D Ocean Parallax Backdrop with Three.js WebGL Canvas -->
-    <div class="transport-bg-backdrop bg-sea-scene"><div class="transport-overlay-gradient"></div></div>
+    <div class="transport-bg-backdrop bg-sea-scene">
+      <div class="seamless-video-container" data-speed="2.0">
+        <video class="seamless-video layer-a active" src="assets/video_sea_loop.mp4" muted playsinline autoplay preload="auto"></video>
+        <video class="seamless-video layer-b" src="assets/video_sea_loop.mp4" muted playsinline preload="auto"></video>
+      </div>
+      <div class="transport-overlay-gradient"></div>
+    </div>
 
     <div class="container transport-container">
       <div class="transport-header">
@@ -1172,7 +1192,7 @@
   </div>
 
   <!-- Scripts -->
-  <script src="js/three-scenes.js?v=3.5"></script>
-  <script src="js/main.js?v=3.5"></script>
+  <script src="js/three-scenes.js?v=4.0"></script>
+  <script src="js/main.js?v=4.0"></script>
 </body>
 </html>
