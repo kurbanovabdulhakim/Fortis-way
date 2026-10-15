@@ -997,10 +997,10 @@ img {
   pointer-events: none;
 }
 
-/* Scene 1: Highway with 3D Truck (Photorealistic + Three.js) */
+/* Scene 1: Highway with 3D Truck (Photorealistic + Live Traffic Light Trails) */
 .bg-auto-scene {
-  background: linear-gradient(180deg, rgba(4, 9, 20, 0.65) 0%, rgba(4, 9, 20, 0.92) 100%),
-              url('../assets/bg_truck_cinematic.jpg') center center / cover no-repeat;
+  background: linear-gradient(180deg, rgba(4, 9, 20, 0.45) 0%, rgba(4, 9, 20, 0.82) 100%),
+              url('../assets/bg_auto_traffic.gif') center center / cover no-repeat;
 }
 
 /* Scene 2: Railway with 3D Container Train */
@@ -1798,8 +1798,53 @@ body:not(.authenticated) .unauth-only-text {
   border-color: rgba(148, 163, 184, 0.5);
 }
 
+/* Light Theme Vibrant Transports & Glassmorphism Protection */
 [data-theme="light"] .transport-overlay-gradient {
-  background: linear-gradient(180deg, rgba(248, 250, 252, 0.8) 0%, rgba(248, 250, 252, 0.95) 100%);
+  background: radial-gradient(circle at 50% 50%, rgba(248, 250, 252, 0.24) 0%, rgba(241, 245, 249, 0.58) 100%);
+}
+
+[data-theme="light"] .bg-auto-scene {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.28) 0%, rgba(241, 245, 249, 0.58) 100%),
+              url('../assets/bg_auto_traffic.gif') center center / cover no-repeat;
+}
+
+[data-theme="light"] .bg-rail-scene {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.28) 0%, rgba(241, 245, 249, 0.58) 100%),
+              url('../assets/bg_train_cinematic.jpg') center center / cover no-repeat;
+}
+
+[data-theme="light"] .bg-air-scene {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.22) 0%, rgba(241, 245, 249, 0.52) 100%),
+              url('../assets/bg_air_cinematic.jpg') center center / cover no-repeat;
+}
+
+[data-theme="light"] .bg-sea-scene {
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.28) 0%, rgba(241, 245, 249, 0.58) 100%),
+              url('../assets/bg_sea_cinematic.jpg') center center / cover no-repeat;
+}
+
+[data-theme="light"] .transport-header {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 22px 28px;
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  display: inline-block;
+  margin-bottom: 24px;
+}
+
+[data-theme="light"] .transport-title {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .transport-num {
+  color: #0284c7 !important;
+}
+
+[data-theme="light"] .transport-lead {
+  color: #334155 !important;
 }
 
 [data-theme="light"] .route-table-wrapper {
