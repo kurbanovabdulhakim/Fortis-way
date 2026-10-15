@@ -245,15 +245,10 @@ function initCalculator() {
     updateSliderTrackProgress(cargoWeight);
     updateSliderTrackProgress(cargoVolume);
 
-    // Stable Warning & Trust Slot state swap (Zero layout shift)
-    const trustSlot = document.getElementById('calcSlotTrust');
+    // Step 2 Warning Box remains permanently and fully visible
     const warnBox = document.getElementById('calcWarningBox');
-    if (isUserAction) {
-      if (trustSlot) trustSlot.style.display = 'none';
-      if (warnBox) warnBox.style.display = 'flex';
-    } else {
-      if (trustSlot) trustSlot.style.display = 'flex';
-      if (warnBox) warnBox.style.display = 'none';
+    if (warnBox) {
+      warnBox.style.display = 'block';
     }
 
     // Silent submission handler is available via submitCalcOrderSilently
