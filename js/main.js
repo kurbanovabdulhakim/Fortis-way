@@ -592,6 +592,33 @@ function initCalculator() {
     updateCalculation(true);
   };
 
+  // Table Route Selector Bridge
+  window.applyRoute = function(from, to) {
+    const cFromElem = document.getElementById('countryFrom');
+    const cToElem = document.getElementById('countryTo');
+    const cityFromElem = document.getElementById('cityFrom');
+    const cityToElem = document.getElementById('cityTo');
+    const calcElem = document.getElementById('freight-calculator');
+
+    const fCountry = findCountryByCity(from);
+    const tCountry = findCountryByCity(to);
+
+    if (cFromElem && fCountry) {
+      cFromElem.value = fCountry.countryCode;
+      populateCitiesSelect(fCountry.countryCode, cityFromElem, from);
+    }
+    if (cToElem && tCountry) {
+      cToElem.value = tCountry.countryCode;
+      populateCitiesSelect(tCountry.countryCode, cityToElem, to);
+    }
+
+    updateCalculation(true);
+
+    if (calcElem) {
+      calcElem.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   // Silent Lead Submission Handler
   window.submitCalcOrderSilently = async function(event) {
     if (event) event.preventDefault();
@@ -744,7 +771,7 @@ function initCalculator() {
     });
   }
 
-  // Slider Input Listeners
+  // Slider Input & Touch Listeners for Mobile
   cargoWeight.addEventListener('input', () => {
     updateSliderTrackProgress(cargoWeight);
     updateCalculation();
@@ -761,6 +788,14 @@ function initCalculator() {
     updateSliderTrackProgress(cargoVolume);
     updateCalculation();
   });
+  cargoWeight.addEventListener('touchmove', () => {
+    updateSliderTrackProgress(cargoWeight);
+    updateCalculation();
+  }, { passive: true });
+  cargoVolume.addEventListener('touchmove', () => {
+    updateSliderTrackProgress(cargoVolume);
+    updateCalculation();
+  }, { passive: true });
 
   if (checkOversized) checkOversized.addEventListener('change', () => updateCalculation());
   if (checkRef) checkRef.addEventListener('change', () => updateCalculation());
@@ -796,6 +831,34 @@ function initCalculator() {
       const subject = encodeURIComponent(`Заявка на перевозку FortisWay: ${from} - ${to}`);
       const body = encodeURIComponent(`Маршрут: ${from} -> ${to}\nВес груза: ${weight} тонн\nОбъём: ${volume} м³\nОриентировочная стоимость: ${cost}\n\nСвяжитесь со мной для оформления.`);
       window.location.href = `mailto:info@fortisway.com?subject=${subject}&body=${body}`;
+    });
+  }
+
+  // Mobile Navigation Drawer Controller
+  const mobileToggle = document.getElementById('mobileToggle');
+  const navLinks = document.querySelector('.nav-links');
+  window.closeMobileNav = function() {
+    if (navLinks) {
+      navLinks.classList.remove('mobile-open');
+    }
+  };
+
+  if (mobileToggle && navLinks) {
+    mobileToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      navLinks.classList.toggle('mobile-open');
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        window.closeMobileNav();
+      });
+    });
+
+    document.addEventListener('click', (e) => {
+      if (navLinks.classList.contains('mobile-open') && !navLinks.contains(e.target) && e.target !== mobileToggle && !mobileToggle.contains(e.target)) {
+        window.closeMobileNav();
+      }
     });
   }
 

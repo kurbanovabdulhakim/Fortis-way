@@ -164,7 +164,7 @@
     }
   </script>
   <!-- Stylesheet with Cache Busting -->
-  <link rel="stylesheet" href="css/style.css?v=6.3">
+  <link rel="stylesheet" href="css/style.css?v=6.4">
   <style>
     /* Immediate cache-proof override for Step 2 Warning Alert */
     .calc-warning-box-step2 {
@@ -380,7 +380,19 @@
           <li><a href="#routes-matrix" class="nav-link">Тарифы&nbsp;и&nbsp;Направления</a></li>
           <li><a href="#requisites" class="nav-link">Реквизиты</a></li>
           <li><a href="#contacts" class="nav-link">Контакты</a></li>
-        </ul>
+                  <li class="mobile-drawer-actions">
+            <a href="#freight-calculator" class="btn-primary" onclick="window.closeMobileNav && window.closeMobileNav()">🧮 Рассчитать рейс</a>
+            <button class="btn-auth-trigger" onclick="window.closeMobileNav && window.closeMobileNav(); openAuthModal()">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+              <span>ЛК / Реквизиты</span>
+            </button>
+            <button class="bg-mode-toggle-btn" onclick="toggleBgMode()" aria-label="Режим фона">
+              <span class="bg-mode-label-video">🎬 Видео 0.5x</span>
+              <span class="bg-mode-label-photo">🖼️ 4K Фото</span>
+            </button>
+          </li>
+
+      </ul>
       </nav>
 
       <div class="nav-actions">
@@ -839,7 +851,7 @@
                 </div>
                 <div class="result-item">
                   <span class="result-lbl">Базовая ставка:</span>
-                  <span class="result-val" id="resRateAmount" style="color: var(--cyan-light); font-weight: 700;">от 175 $ / т</span>
+                  <span class="result-val" id="resRateAmount" style="color: var(--cyan-light); font-weight: 700;">от 190 $ / т</span>
                 </div>
               </div>
 
@@ -1181,7 +1193,7 @@
               </td>
               <td>3 400 км</td>
               <td><span class="pill-time">5 – 7 дней</span></td>
-              <td><strong class="price-val">от 175 $ / т</strong></td>
+              <td><strong class="price-val">от 190 $ / т</strong></td>
               <td>Еврофура Тент 20т / Реф</td>
               <td>
                 <button class="btn-table-calc" onclick="applyRoute('Москва', 'Ташкент')">Рассчитать</button>
@@ -1196,7 +1208,7 @@
               </td>
               <td>4 100 км</td>
               <td><span class="pill-time">7 – 9 дней</span></td>
-              <td><strong class="price-val">от 205 $ / т</strong></td>
+              <td><strong class="price-val">от 225 $ / т</strong></td>
               <td>Еврофура 20т / Ж/Д контейнер</td>
               <td>
                 <button class="btn-table-calc" onclick="applyRoute('Санкт-Петербург', 'Ташкент')">Рассчитать</button>
@@ -1211,7 +1223,7 @@
               </td>
               <td>2 300 км</td>
               <td><span class="pill-time">4 – 5 дней</span></td>
-              <td><strong class="price-val">от 180 $ / т</strong></td>
+              <td><strong class="price-val">от 175 $ / т</strong></td>
               <td>Еврофура Тент / Рефрижератор</td>
               <td>
                 <button class="btn-table-calc" onclick="applyRoute('Екатеринбург', 'Ташкент')">Рассчитать</button>
@@ -1226,7 +1238,7 @@
               </td>
               <td>2 300 км</td>
               <td><span class="pill-time">4 – 5 дней</span></td>
-              <td><strong class="price-val">от 165 $ – 175 $ / т</strong></td>
+              <td><strong class="price-val">от 165 $ – 190 $ / т</strong></td>
               <td>Еврофура Тент / Сборный LTL</td>
               <td>
                 <button class="btn-table-calc" onclick="applyRoute('Самара', 'Ташкент')">Рассчитать</button>
@@ -1241,7 +1253,7 @@
               </td>
               <td>4 800 км</td>
               <td><span class="pill-time">10 – 14 дней</span></td>
-              <td><strong class="price-val">от 235 $ / т</strong></td>
+              <td><strong class="price-val">от 260 $ / т</strong></td>
               <td>Автопоезд / Паром через Каспий</td>
               <td>
                 <button class="btn-table-calc" onclick="applyRoute('Стамбул', 'Ташкент')">Рассчитать</button>
@@ -1256,7 +1268,7 @@
               </td>
               <td>1 200 км</td>
               <td><span class="pill-time">3 – 5 дней</span></td>
-              <td><strong class="price-val">от 155 $ / т</strong></td>
+              <td><strong class="price-val">от 160 $ / т</strong></td>
               <td>Автофура / Ж/Д контейнерный экспресс</td>
               <td>
                 <button class="btn-table-calc" onclick="applyRoute('Урумчи', 'Ташкент')">Рассчитать</button>
@@ -1271,7 +1283,7 @@
               </td>
               <td>810 км</td>
               <td><span class="pill-time">24 – 48 часов</span></td>
-              <td><strong class="price-val">от 100 $ / т</strong></td>
+              <td><strong class="price-val">от 80 $ / т</strong></td>
               <td>Еврофура / Сборный груз (LTL)</td>
               <td>
                 <button class="btn-table-calc" onclick="applyRoute('Алматы', 'Ташкент')">Рассчитать</button>
@@ -1676,6 +1688,22 @@
 
   <!-- Scripts -->
   <script src="js/three-scenes.js?v=5.0"></script>
-  <script src="js/main.js?v=6.3"></script>
+  <script src="js/main.js?v=6.4"></script>
+  <!-- Sticky Floating Mobile Quick-Action Bar (< 768px only) -->
+  <div class="mobile-bottom-bar" id="mobileBottomBar">
+    <a href="tel:+998935552262" class="mobile-bar-btn bar-call" aria-label="Позвонить логисту">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+      <span>Позвонить</span>
+    </a>
+    <a href="https://t.me/LogisticsFortisway" target="_blank" class="mobile-bar-btn bar-tg" aria-label="Написать в Telegram">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 0 0-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/></svg>
+      <span>Telegram</span>
+    </a>
+    <a href="#freight-calculator" class="mobile-bar-btn bar-calc" aria-label="Открыть калькулятор">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3"><rect x="4" y="2" width="16" height="20" rx="2"></rect><line x1="8" y1="6" x2="16" y2="6"></line><line x1="16" y1="14" x2="16" y2="18"></line><path d="M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M8 18h.01M12 18h.01"></path></svg>
+      <span>Калькулятор</span>
+    </a>
+  </div>
+
 </body>
 </html>
