@@ -4072,3 +4072,348 @@ html, body {
     justify-content: center !important;
   }
 }
+
+/* ==========================================================================
+   FIXES: PINNED STICKY NAVBAR, OVERFLOW PREVENTION & DUAL SIDE SCROLL DOCK (v6.8)
+   ========================================================================== */
+
+/* Prevent horizontal scroll while preserving position: sticky */
+html {
+  scroll-behavior: smooth !important;
+  overflow-x: clip !important;
+}
+body {
+  overflow-x: clip !important;
+  width: 100% !important;
+  max-width: 100vw !important;
+  position: relative !important;
+}
+
+/* 1. Guaranteed Pinned Sticky Navbar */
+.navbar {
+  position: sticky !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100% !important;
+  z-index: 1000 !important;
+  height: 72px !important;
+  box-sizing: border-box !important;
+  background: rgba(6, 11, 20, 0.94) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2) !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4) !important;
+  display: flex !important;
+  align-items: center !important;
+  transition: background 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease !important;
+}
+
+.navbar.navbar-scrolled {
+  background: rgba(6, 11, 20, 0.98) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.35) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 20px rgba(0, 166, 251, 0.18) !important;
+}
+
+[data-theme="light"] .navbar {
+  background: rgba(250, 246, 240, 0.96) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06) !important;
+}
+
+[data-theme="light"] .navbar.navbar-scrolled {
+  background: rgba(250, 246, 240, 0.98) !important;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.14) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+}
+
+.nav-container {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  width: 100% !important;
+  max-width: 1440px !important;
+  margin: 0 auto !important;
+  padding: 0 20px !important;
+  gap: 16px !important;
+  box-sizing: border-box !important;
+}
+
+/* 2. Desktop Navigation Links (Clean, No Leaked Action Buttons) */
+.nav-links {
+  display: flex !important;
+  align-items: center !important;
+  gap: 20px !important;
+  list-style: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  flex-shrink: 0 !important;
+}
+
+.nav-link {
+  white-space: nowrap !important;
+  font-size: 0.92rem !important;
+  font-weight: 500 !important;
+  color: #cbd5e1 !important;
+  text-decoration: none !important;
+  transition: color 0.2s ease !important;
+}
+.nav-link:hover {
+  color: #38bdf8 !important;
+}
+[data-theme="light"] .nav-link {
+  color: #475569 !important;
+}
+[data-theme="light"] .nav-link:hover {
+  color: #0284c7 !important;
+}
+
+/* 3. Desktop Action Buttons Row */
+.nav-actions {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  flex-shrink: 0 !important;
+  margin-left: auto !important;
+}
+
+.nav-actions .btn-primary {
+  height: 40px !important;
+  padding: 0 18px !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.90rem !important;
+  font-weight: 700 !important;
+  border-radius: 9px !important;
+}
+
+.nav-actions .btn-auth-trigger {
+  height: 40px !important;
+  padding: 0 14px !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 7px !important;
+  font-size: 0.88rem !important;
+  border-radius: 9px !important;
+  background: rgba(15, 23, 42, 0.7) !important;
+  border: 1px solid rgba(56, 189, 248, 0.25) !important;
+  color: #cbd5e1 !important;
+  cursor: pointer !important;
+}
+.nav-actions .btn-auth-trigger:hover {
+  border-color: #38bdf8 !important;
+  color: #ffffff !important;
+}
+[data-theme="light"] .nav-actions .btn-auth-trigger {
+  background: #ffffff !important;
+  border-color: rgba(0, 0, 0, 0.12) !important;
+  color: #1e293b !important;
+}
+
+.nav-actions .bg-mode-toggle-btn {
+  height: 40px !important;
+  padding: 0 14px !important;
+  white-space: nowrap !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 0.86rem !important;
+  border-radius: 9px !important;
+}
+
+/* Theme Toggle Button - High Visibility Guaranteed */
+.theme-toggle-btn {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: rgba(15, 23, 42, 0.85) !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.45) !important;
+  color: #38bdf8 !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  box-sizing: border-box !important;
+  flex-shrink: 0 !important;
+  outline: none !important;
+  box-shadow: 0 0 14px rgba(0, 166, 251, 0.28) !important;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease !important;
+}
+.theme-toggle-btn:hover {
+  transform: scale(1.08) !important;
+  border-color: #38bdf8 !important;
+  box-shadow: 0 0 20px rgba(0, 166, 251, 0.5) !important;
+}
+[data-theme="light"] .theme-toggle-btn {
+  background: #FFFDF9 !important;
+  border-color: rgba(217, 119, 6, 0.45) !important;
+  color: #D97706 !important;
+  box-shadow: 0 2px 10px rgba(217, 119, 6, 0.2) !important;
+}
+[data-theme="light"] .theme-toggle-btn:hover {
+  border-color: #b45309 !important;
+  box-shadow: 0 3px 15px rgba(217, 119, 6, 0.35) !important;
+}
+
+/* 4. Desktop Screens 993px - 1240px: Smart Padding & Spacing */
+@media (min-width: 993px) and (max-width: 1240px) {
+  .navbar .logo-tag { display: none !important; }
+  .nav-links { gap: 12px !important; }
+  .nav-link { font-size: 0.86rem !important; padding: 4px 6px !important; }
+  .nav-actions { gap: 8px !important; }
+  .nav-actions .btn-primary { padding: 0 12px !important; font-size: 0.85rem !important; }
+  .nav-actions .btn-auth-trigger { padding: 0 10px !important; font-size: 0.82rem !important; }
+  .nav-actions .bg-mode-toggle-btn { padding: 0 10px !important; font-size: 0.82rem !important; }
+}
+
+/* 5. Mobile Drawer Actions: Strictly NEVER on desktop */
+.mobile-drawer-actions {
+  display: none !important;
+}
+@media (max-width: 992px) {
+  .nav-links {
+    display: none !important;
+  }
+  .nav-links.mobile-open {
+    display: flex !important;
+  }
+  .nav-links.mobile-open ~ .mobile-drawer-actions,
+  .nav-menu.mobile-open .mobile-drawer-actions,
+  .mobile-open .mobile-drawer-actions {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+    width: 100% !important;
+    padding-top: 14px !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1) !important;
+  }
+}
+
+/* 6. Dual Floating Side Scroll Dock (В самый верх / В самый низ) */
+.side-scroll-dock {
+  position: fixed !important;
+  right: 20px !important;
+  top: 50% !important;
+  transform: translateY(-50%) !important;
+  z-index: 998 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  background: rgba(10, 18, 32, 0.88) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1.5px solid rgba(56, 189, 248, 0.35) !important;
+  border-radius: 999px !important;
+  padding: 6px 4px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 20px rgba(0, 166, 251, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+.side-scroll-dock:hover {
+  border-color: rgba(56, 189, 248, 0.65) !important;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 28px rgba(0, 166, 251, 0.35) !important;
+}
+[data-theme="light"] .side-scroll-dock {
+  background: rgba(255, 253, 249, 0.94) !important;
+  border-color: rgba(201, 122, 43, 0.4) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12), 0 0 15px rgba(217, 119, 6, 0.12) !important;
+}
+
+.side-scroll-btn {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: 50% !important;
+  border: none !important;
+  background: transparent !important;
+  color: #38bdf8 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer !important;
+  position: relative !important;
+  transition: all 0.2s ease !important;
+  padding: 0 !important;
+  outline: none !important;
+}
+.side-scroll-btn:hover {
+  background: rgba(56, 189, 248, 0.18) !important;
+  color: #ffffff !important;
+  transform: scale(1.12) !important;
+}
+.side-scroll-btn:active {
+  transform: scale(0.92) !important;
+}
+[data-theme="light"] .side-scroll-btn {
+  color: #c25e00 !important;
+}
+[data-theme="light"] .side-scroll-btn:hover {
+  background: rgba(217, 119, 6, 0.14) !important;
+  color: #92400e !important;
+}
+
+.side-scroll-divider {
+  width: 24px !important;
+  height: 1px !important;
+  background: rgba(56, 189, 248, 0.25) !important;
+  margin: 4px 0 !important;
+}
+[data-theme="light"] .side-scroll-divider {
+  background: rgba(201, 122, 43, 0.25) !important;
+}
+
+/* Tooltip on hover */
+.side-scroll-tooltip {
+  position: absolute !important;
+  right: calc(100% + 12px) !important;
+  top: 50% !important;
+  transform: translateY(-50%) translateX(6px) !important;
+  background: #060b14 !important;
+  color: #38bdf8 !important;
+  border: 1px solid rgba(56, 189, 248, 0.45) !important;
+  border-radius: 6px !important;
+  padding: 5px 11px !important;
+  font-size: 11px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.6) !important;
+}
+.side-scroll-btn:hover .side-scroll-tooltip {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: translateY(-50%) translateX(0) !important;
+}
+[data-theme="light"] .side-scroll-tooltip {
+  background: #ffffff !important;
+  color: #b45309 !important;
+  border-color: rgba(201, 122, 43, 0.4) !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12) !important;
+}
+
+@media (max-width: 768px) {
+  .side-scroll-dock {
+    top: auto !important;
+    bottom: 78px !important;
+    right: 12px !important;
+    transform: none !important;
+    padding: 4px 2px !important;
+  }
+  .side-scroll-btn {
+    width: 38px !important;
+    height: 38px !important;
+  }
+  .side-scroll-tooltip {
+    display: none !important;
+  }
+}

@@ -1341,3 +1341,45 @@ window.onBgModeChanged = function(mode) {
       : '🎬 Режим фона: Плавное видео (0.5x замедление)');
   }
 };
+
+
+// ==========================================================================
+// SCROLL NAVIGATION HELPERS & PINNED NAVBAR SCROLL LISTENER (v6.8)
+// ==========================================================================
+window.scrollToTop = function() {
+  window.scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  });
+};
+
+window.scrollToBottom = function() {
+  const targetY = Math.max(
+    document.body.scrollHeight,
+    document.documentElement.scrollHeight,
+    document.body.offsetHeight,
+    document.documentElement.offsetHeight,
+    document.body.clientHeight,
+    document.documentElement.clientHeight
+  );
+  window.scrollTo({
+    top: targetY,
+    behavior: 'smooth'
+  });
+};
+
+// Navbar Pinned State on Scroll
+document.addEventListener('DOMContentLoaded', function() {
+  const navbar = document.getElementById('navbar');
+  if (navbar) {
+    const handleScroll = function() {
+      if (window.scrollY > 20) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+      }
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+  }
+});
