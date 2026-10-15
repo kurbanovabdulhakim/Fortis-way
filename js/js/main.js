@@ -118,6 +118,7 @@ function initSeamlessBackgroundVideos() {
  */
 
 document.addEventListener('DOMContentLoaded', () => {
+  initScrollTransportTrackers();
   initSeamlessBackgroundVideos();
   initCalculator();
   initTransportScrollAnimations();
@@ -816,3 +817,71 @@ window.showToast = function(message) {
     toast.classList.remove('show');
   }, 4000);
 };
+
+
+/* ==========================================================================
+   SCROLL INTERACTIVE VEHICLE TRACKER CONTROLLER
+   ========================================================================== */
+function initScrollTransportTrackers() {
+  const trackers = document.querySelectorAll('.scroll-tracker-container');
+  if (!trackers.length) return;
+
+  function updatePositions() {
+    const winH = window.innerHeight;
+
+    trackers.forEach(container => {
+      const section = container.closest('.transport-section');
+      if (!section) return;
+
+      const rect = section.getBoundingClientRect();
+      const sectionH = rect.height;
+
+      // Progress begins when section top enters near 75% of viewport
+      // and reaches 100% when section bottom reaches 25% of viewport
+      const startOffset = winH * 0.75;
+      const endOffset = winH * 0.25;
+      const totalDist = sectionH + startOffset - endOffset;
+      const currentPos = startOffset - rect.top;
+
+      let progress = currentPos / totalDist;
+      progress = Math.max(0, Math.min(1, progress));
+
+      const track = container.querySelector('.scroll-tracker-track');
+      const vehicle = container.querySelector('.scroll-tracker-vehicle');
+      const distLabel = container.querySelector('.tracker-distance-val');
+
+      if (track && vehicle) {
+        const trackW = track.clientWidth;
+        const vehicleW = vehicle.clientWidth || 90;
+        const maxTravel = Math.max(0, trackW - vehicleW - 12);
+        const posX = 6 + (progress * maxTravel);
+
+        vehicle.style.transform = `translate3d(${posX}px, -50%, 0)`;
+
+        if (distLabel) {
+          distLabel.textContent = `${Math.round(progress * 100)}%`;
+        }
+      }
+    });
+  }
+
+  let ticking = false;
+  function onScroll() {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updatePositions();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  updatePositions();
+}
+
+
+if (document.readyState === 'complete' || document.readyState === 'interactive') {
+  initScrollTransportTrackers();
+}
