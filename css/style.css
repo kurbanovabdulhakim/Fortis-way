@@ -1003,10 +1003,10 @@ img {
               url('../assets/bg_auto_traffic.gif') center center / cover no-repeat;
 }
 
-/* Scene 2: Railway with 3D Container Train */
+/* Scene 2: Railway Freight with Live GIF */
 .bg-rail-scene {
-  background: linear-gradient(180deg, rgba(4, 9, 20, 0.65) 0%, rgba(4, 9, 20, 0.92) 100%),
-              url('../assets/bg_train_cinematic.jpg') center center / cover no-repeat;
+  background: linear-gradient(180deg, rgba(4, 9, 20, 0.45) 0%, rgba(4, 9, 20, 0.8) 100%),
+              url('../assets/bg_train_night.gif') center center / cover no-repeat;
 }
 
 /* Scene 3: Sky with 3D Cargo Jet */
@@ -1886,7 +1886,7 @@ body:not(.authenticated) .unauth-only-text {
 
 [data-theme="light"] .bg-rail-scene {
   background: linear-gradient(180deg, rgba(250, 246, 240, 0.28) 0%, rgba(241, 233, 220, 0.6) 100%),
-              url('../assets/bg_train_cinematic.jpg') center center / cover no-repeat !important;
+              url('../assets/bg_train_night.gif') center center / cover no-repeat !important;
 }
 
 [data-theme="light"] .bg-air-scene {
