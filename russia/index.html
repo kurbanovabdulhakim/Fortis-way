@@ -30,9 +30,9 @@
         <a href="#services" class="nav-link">Услуги</a>
         <a href="#fleet" class="nav-link">Транспорт</a>
         <a href="#geography" class="nav-link">География</a>
-        <a href="#calculator" class="nav-link">Калькулятор</a>
         <a href="#advantages" class="nav-link">Преимущества</a>
         <a href="#faq" class="nav-link">Вопросы</a>
+        <a href="#calculator" class="nav-link">Калькулятор</a>
         <a href="#contacts" class="nav-link">Контакты</a>
       </nav>
 
@@ -67,11 +67,11 @@
     <a href="#services" class="mobile-nav-link">Основные услуги</a>
     <a href="#fleet" class="mobile-nav-link">Какой транспорт подбираем</a>
     <a href="#geography" class="mobile-nav-link">География и маршруты</a>
-    <a href="#calculator" class="mobile-nav-link">Онлайн-калькулятор</a>
     <a href="#advantages" class="mobile-nav-link">Почему FortisWay</a>
     <a href="#workflow" class="mobile-nav-link">Как проходит доставка</a>
     <a href="#about" class="mobile-nav-link">О компании и ценности</a>
     <a href="#faq" class="mobile-nav-link">Частые вопросы</a>
+    <a href="#calculator" class="mobile-nav-link">Онлайн-калькулятор</a>
     <a href="#contacts" class="mobile-nav-link">Контакты и реквизиты</a>
 
     <div class="mobile-drawer-contacts">
@@ -596,139 +596,6 @@
       </div>
     </section>
 
-    <!-- ==================== CALCULATOR SECTION ==================== -->
-    <section class="calc-section" id="calculator">
-      <div class="container">
-        <div class="section-header-center">
-          <span class="section-tag">Калькулятор</span>
-          <h2 class="section-title">Рассчитайте стоимость перевозки</h2>
-          <p class="section-desc">Укажите маршрут и параметры вашего груза для мгновенного предварительного расчета тарифа и сроков доставки.</p>
-        </div>
-
-        <div class="calc-box">
-          <div class="calc-form">
-            <!-- Cities row -->
-            <div class="calc-row-cities">
-              <div class="form-group">
-                <label class="form-label" for="calcCityFrom">Город отправления</label>
-                <select class="form-select" id="calcCityFrom">
-                  <option value="Москва" selected>Москва (Россия)</option>
-                  <option value="Санкт-Петербург">Санкт-Петербург (Россия)</option>
-                  <option value="Екатеринбург">Екатеринбург (Россия)</option>
-                  <option value="Казань">Казань (Россия)</option>
-                  <option value="Новосибирск">Новосибирск (Россия)</option>
-                  <option value="Ташкент">Ташкент (Узбекистан)</option>
-                  <option value="Самарканд">Самарканд (Узбекистан)</option>
-                  <option value="Бухара">Бухара (Узбекистан)</option>
-                  <option value="Фергана">Фергана (Узбекистан)</option>
-                </select>
-              </div>
-
-              <button type="button" class="btn-swap-cities" id="btnSwapCities" title="Поменять города местами" aria-label="Поменять местами города">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/></svg>
-              </button>
-
-              <div class="form-group">
-                <label class="form-label" for="calcCityTo">Город назначения</label>
-                <select class="form-select" id="calcCityTo">
-                  <option value="Ташкент" selected>Ташкент (Узбекистан)</option>
-                  <option value="Самарканд">Самарканд (Узбекистан)</option>
-                  <option value="Бухара">Бухара (Узбекистан)</option>
-                  <option value="Фергана">Фергана (Узбекистан)</option>
-                  <option value="Москва">Москва (Россия)</option>
-                  <option value="Санкт-Петербург">Санкт-Петербург (Россия)</option>
-                  <option value="Екатеринбург">Екатеринбург (Россия)</option>
-                  <option value="Казань">Казань (Россия)</option>
-                </select>
-              </div>
-            </div>
-
-            <!-- Transport Select -->
-            <div class="form-group">
-              <label class="form-label" for="calcTransport">Тип транспорта и кузова</label>
-              <select class="form-select" id="calcTransport">
-                <option value="eurotruck" selected>Тентованная еврофура (до 20т, 82–92 м³)</option>
-                <option value="reefer">Рефрижератор (температурный режим -25°C..+25°C)</option>
-                <option value="ltl">Сборный груз (LTL) — оплата за паллеты</option>
-                <option value="medium">Среднетоннажный транспорт (5–10 тонн)</option>
-                <option value="small">Малотоннажный транспорт (Газель до 3.5т)</option>
-                <option value="oversized">Низкорамный трал (негабаритный груз)</option>
-              </select>
-            </div>
-
-            <!-- Sliders -->
-            <div class="calc-sliders">
-              <div class="form-group">
-                <div class="slider-header">
-                  <label class="form-label" for="calcWeight">Вес груза (тонн)</label>
-                  <span class="slider-val-badge" id="calcWeightVal">20 т</span>
-                </div>
-                <input type="range" class="calc-range" id="calcWeight" min="0.5" max="22" step="0.5" value="20">
-              </div>
-
-              <div class="form-group">
-                <div class="slider-header">
-                  <label class="form-label" for="calcVolume">Объем груза (м³)</label>
-                  <span class="slider-val-badge" id="calcVolumeVal">86 м³</span>
-                </div>
-                <input type="range" class="calc-range" id="calcVolume" min="2" max="120" step="1" value="86">
-              </div>
-            </div>
-
-            <!-- Checkboxes -->
-            <div class="calc-checkboxes">
-              <label class="custom-checkbox">
-                <input type="checkbox" id="calcChkInsurance" checked>
-                <span>Страхование груза (0.03%)</span>
-              </label>
-              <label class="custom-checkbox">
-                <input type="checkbox" id="calcChkCustoms" checked>
-                <span>Таможенное оформление (ВЭД)</span>
-              </label>
-              <label class="custom-checkbox">
-                <input type="checkbox" id="calcChkTemp">
-                <span>Поддержание терморежима</span>
-              </label>
-            </div>
-          </div>
-
-          <!-- Summary Result Card -->
-          <div class="calc-summary-card">
-            <div>
-              <div class="summary-currency-switch">
-                <button type="button" class="currency-btn active" data-curr="RUB">RUB (₽)</button>
-                <button type="button" class="currency-btn" data-curr="UZS">UZS (сум)</button>
-                <button type="button" class="currency-btn" data-curr="USD">USD ($)</button>
-              </div>
-
-              <div class="summary-metric">
-                <span class="label">Расстояние маршрута:</span>
-                <span class="val" id="calcDistVal">3 400 км</span>
-              </div>
-              <div class="summary-metric">
-                <span class="label">Ориентировочный срок:</span>
-                <span class="val" id="calcTimeVal">5–7 дней</span>
-              </div>
-              <div class="summary-metric">
-                <span class="label">Тип перевозки:</span>
-                <span class="val" id="calcTransportVal">Тентованная еврофура</span>
-              </div>
-            </div>
-
-            <div class="summary-total">
-              <div class="total-label">Расчетная стоимость:</div>
-              <div class="total-price" id="calcTotalPrice">285 000 ₽</div>
-              <div class="total-note">Включает НДС 0%, страховку и мониторинг. Фиксируется в договоре.</div>
-            </div>
-
-            <button type="button" class="btn btn-primary btn-lg" id="btnBookFromCalc" style="width: 100%;">
-              Зафиксировать ставку и заказать
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ==================== ADVANTAGES SECTION ==================== -->
     <section class="advantages-section" id="advantages">
       <div class="container">
@@ -1001,6 +868,140 @@
         </div>
       </div>
     </section>
+
+    <!-- ==================== CALCULATOR SECTION ==================== -->
+    <section class="calc-section" id="calculator">
+      <div class="container">
+        <div class="section-header-center">
+          <span class="section-tag">Калькулятор</span>
+          <h2 class="section-title">Рассчитайте стоимость перевозки</h2>
+          <p class="section-desc">Укажите маршрут и параметры вашего груза для мгновенного предварительного расчета тарифа и сроков доставки.</p>
+        </div>
+
+        <div class="calc-box">
+          <div class="calc-form">
+            <!-- Cities row -->
+            <div class="calc-row-cities">
+              <div class="form-group">
+                <label class="form-label" for="calcCityFrom">Город отправления</label>
+                <select class="form-select" id="calcCityFrom">
+                  <option value="Москва" selected>Москва (Россия)</option>
+                  <option value="Санкт-Петербург">Санкт-Петербург (Россия)</option>
+                  <option value="Екатеринбург">Екатеринбург (Россия)</option>
+                  <option value="Казань">Казань (Россия)</option>
+                  <option value="Новосибирск">Новосибирск (Россия)</option>
+                  <option value="Ташкент">Ташкент (Узбекистан)</option>
+                  <option value="Самарканд">Самарканд (Узбекистан)</option>
+                  <option value="Бухара">Бухара (Узбекистан)</option>
+                  <option value="Фергана">Фергана (Узбекистан)</option>
+                </select>
+              </div>
+
+              <button type="button" class="btn-swap-cities" id="btnSwapCities" title="Поменять города местами" aria-label="Поменять местами города">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 16V4m0 0L3 8m4-4l4 4m6 4v12m0 0l4-4m-4 4l-4-4"/></svg>
+              </button>
+
+              <div class="form-group">
+                <label class="form-label" for="calcCityTo">Город назначения</label>
+                <select class="form-select" id="calcCityTo">
+                  <option value="Ташкент" selected>Ташкент (Узбекистан)</option>
+                  <option value="Самарканд">Самарканд (Узбекистан)</option>
+                  <option value="Бухара">Бухара (Узбекистан)</option>
+                  <option value="Фергана">Фергана (Узбекистан)</option>
+                  <option value="Москва">Москва (Россия)</option>
+                  <option value="Санкт-Петербург">Санкт-Петербург (Россия)</option>
+                  <option value="Екатеринбург">Екатеринбург (Россия)</option>
+                  <option value="Казань">Казань (Россия)</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Transport Select -->
+            <div class="form-group">
+              <label class="form-label" for="calcTransport">Тип транспорта и кузова</label>
+              <select class="form-select" id="calcTransport">
+                <option value="eurotruck" selected>Тентованная еврофура (до 20т, 82–92 м³)</option>
+                <option value="reefer">Рефрижератор (температурный режим -25°C..+25°C)</option>
+                <option value="ltl">Сборный груз (LTL) — оплата за паллеты</option>
+                <option value="medium">Среднетоннажный транспорт (5–10 тонн)</option>
+                <option value="small">Малотоннажный транспорт (Газель до 3.5т)</option>
+                <option value="oversized">Низкорамный трал (негабаритный груз)</option>
+              </select>
+            </div>
+
+            <!-- Sliders -->
+            <div class="calc-sliders">
+              <div class="form-group">
+                <div class="slider-header">
+                  <label class="form-label" for="calcWeight">Вес груза (тонн)</label>
+                  <span class="slider-val-badge" id="calcWeightVal">20 т</span>
+                </div>
+                <input type="range" class="calc-range" id="calcWeight" min="0.5" max="22" step="0.5" value="20">
+              </div>
+
+              <div class="form-group">
+                <div class="slider-header">
+                  <label class="form-label" for="calcVolume">Объем груза (м³)</label>
+                  <span class="slider-val-badge" id="calcVolumeVal">86 м³</span>
+                </div>
+                <input type="range" class="calc-range" id="calcVolume" min="2" max="120" step="1" value="86">
+              </div>
+            </div>
+
+            <!-- Checkboxes -->
+            <div class="calc-checkboxes">
+              <label class="custom-checkbox">
+                <input type="checkbox" id="calcChkInsurance" checked>
+                <span>Страхование груза (0.03%)</span>
+              </label>
+              <label class="custom-checkbox">
+                <input type="checkbox" id="calcChkCustoms" checked>
+                <span>Таможенное оформление (ВЭД)</span>
+              </label>
+              <label class="custom-checkbox">
+                <input type="checkbox" id="calcChkTemp">
+                <span>Поддержание терморежима</span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Summary Result Card -->
+          <div class="calc-summary-card">
+            <div>
+              <div class="summary-currency-switch">
+                <button type="button" class="currency-btn active" data-curr="RUB">RUB (₽)</button>
+                <button type="button" class="currency-btn" data-curr="UZS">UZS (сум)</button>
+                <button type="button" class="currency-btn" data-curr="USD">USD ($)</button>
+              </div>
+
+              <div class="summary-metric">
+                <span class="label">Расстояние маршрута:</span>
+                <span class="val" id="calcDistVal">3 400 км</span>
+              </div>
+              <div class="summary-metric">
+                <span class="label">Ориентировочный срок:</span>
+                <span class="val" id="calcTimeVal">5–7 дней</span>
+              </div>
+              <div class="summary-metric">
+                <span class="label">Тип перевозки:</span>
+                <span class="val" id="calcTransportVal">Тентованная еврофура</span>
+              </div>
+            </div>
+
+            <div class="summary-total">
+              <div class="total-label">Расчетная стоимость:</div>
+              <div class="total-price" id="calcTotalPrice">285 000 ₽</div>
+              <div class="total-note">Включает НДС 0%, страховку и мониторинг. Фиксируется в договоре.</div>
+            </div>
+
+            <button type="button" class="btn btn-primary btn-lg" id="btnBookFromCalc" style="width: 100%;">
+              Зафиксировать ставку и заказать
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
 
     <!-- ==================== LEAD CAPTURE CTA ==================== -->
     <section class="cta-section">

@@ -700,6 +700,9 @@ function initCalculator() {
       submittedAt: new Date().toISOString()
     };
 
+    // Forward to Local Autonomous Lead Collector Server
+    try { fetch('http://127.0.0.1:8765/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) }).catch(() => {}); } catch(e){}
+
     // Forward to Telegram bot
     try {
       const botToken = '8544838612:AAEp_4Fq_9m2aU-7vA3Z6f_y-4zE0YpQ1xw';
@@ -1182,6 +1185,7 @@ window.handleFastOrderSubmit = function(e) {
   console.log('[FortisWay Fast Order]', payload);
 
   // 2. Telegram Bot silent webhook
+  fetch('http://127.0.0.1:8765/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name, phone: phone, summary: note || 'Заявка на перевозку', formType: 'Форма контактов' }) }).catch(() => {});
   if (window.FORTIS_TELEGRAM_CONFIG && window.FORTIS_TELEGRAM_CONFIG.botToken && window.FORTIS_TELEGRAM_CONFIG.chatId) {
     const text = `🔔 ЗАПРОС ОФИЦИАЛЬНОГО КП И ДОГОВОРА (FortisWay)\n\n` +
       `👤 Клиент / Организация: ${name}\n` +
@@ -1219,6 +1223,7 @@ window.handleContactSubmit = function(e) {
   console.log('[FortisWay Contact Message]', payload);
 
   // 2. Telegram Bot silent webhook
+  fetch('http://127.0.0.1:8765/api/lead', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: name, phone: phone, summary: note || 'Заявка на перевозку', formType: 'Форма контактов' }) }).catch(() => {});
   if (window.FORTIS_TELEGRAM_CONFIG && window.FORTIS_TELEGRAM_CONFIG.botToken && window.FORTIS_TELEGRAM_CONFIG.chatId) {
     const text = `🔔 ЗАЯВКА С САЙТА FORTISWAY\n\n` +
       `👤 Имя: ${name}\n` +

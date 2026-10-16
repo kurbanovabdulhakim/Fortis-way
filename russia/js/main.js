@@ -381,6 +381,22 @@ function initForms() {
       }
 
       showToast('Спасибо за заявку! Наш дежурный логист свяжется с вами в течение 10 минут.');
+      // Forward to Local Autonomous Lead Collector Server
+      try {
+        const nInp = form.querySelector('#ctaName') || form.querySelector('input[type="text"]');
+        const rInp = form.querySelector('#ctaRoute') || form.querySelector('textarea');
+        fetch('http://127.0.0.1:8765/api/lead', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: nInp ? nInp.value : '',
+            phone: phoneInput ? phoneInput.value : '',
+            summary: rInp ? rInp.value : 'Р—Р°СЏРІРєР° СЃ СЃР°Р№С‚Р° FortisWay Russia',
+            formType: form.className || 'Р¤РѕСЂРјР° СЃР°Р№С‚Р° FortisWay Russia'
+          })
+        }).catch(() => {});
+      } catch(err) {}
+
       form.reset();
 
       // If in modal, close modal after short delay
