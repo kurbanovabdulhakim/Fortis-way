@@ -1,0 +1,28 @@
+================================================================================
+КОНЦЕПЦИЯ ЧЕЛОВЕЧЕСКОГО МАСКОТА ДЛЯ КОМПАНИИ OOO «FORTISWAY»
+Два ярких запоминающихся человеческих образа для презентации руководству и инвесторам
+================================================================================
+
+--------------------------------------------------------------------------------
+ВАРИАНТ 4А: «АЛЕКС ФОРТИС» (Инженер-логист / Диспетчер-практик)
+--------------------------------------------------------------------------------
+• Типаж: Европейский харизматичный парень 28-32 лет, открытый, уверенный, подтянутый.
+• Глаза: Необычайно яркие, выразительные изумрудно-зеленые глаза с живым, умным блеском.
+• Прическа: Стильная современная текстурированная стрижка с легкой небрежностью (Modern textured messy quiff / crop), темно-русые волосы.
+• Одежда: Фирменный высокотехнологичный темно-синий жилет логиста FortisWay с золотыми светоотражающими кантами и эмблемой сокола, под ним темная футболка. В руках держит светящийся планшет с GPS-маршрутом.
+• Роль в Instagram: Герой еженедельных обучающих Reels по четвергам («Четверг без переплат») и ежедневных диспетчерских историй с дорог. Говорит просто, открыто, по-человечески разоблачает скрытые комиссии серых карго.
+
+ГОТОВЫЙ ПРОМПТ ДЛЯ AI (Midjourney v6 / Flux / Kling AI):
+"Cinematic 3D Pixar/Disney style character portrait of an attractive European male logistics engineer, 30 years old, with striking bright emerald-green eyes, charismatic friendly smile, and stylish effortlessly messy textured brown hair. He is wearing a sleek branded navy-blue logistics utility vest with metallic gold trim and a golden falcon FortisWay crest on the chest. He holds a glowing high-tech digital telemetry tablet displaying logistics maps and GPS data. Background is a bustling modern freight logistics warehouse with soft warm twilight lighting. Cinematic rim light, highly detailed skin and hair textures, 8k render, photorealistic 3D animation style --ar 3:4 --v 6.1"
+
+--------------------------------------------------------------------------------
+ВАРИАНТ 4Б: «МАРК ФОРТИС» (Дипломат / B2B-руководитель)
+--------------------------------------------------------------------------------
+• Типаж: Солидный, респектабельный европейский топ-менеджер 35-40 лет, благородная выправка, аристократичная внешность.
+• Глаза: Глубокие, пронзительные сапфирово-голубые глаза, излучающие спокойствие, надежность и силу.
+• Прическа: Идеальная гладкая дипломатическая укладка с боковым пробором (Executive side-part diplomat hairstyle), безупречный пепельно-каштановый волос, аккуратные виски.
+• Одежда: Идеально сидящий темно-синий костюм-тройка из итальянской шерсти, белоснежная рубашка, золотой шелковый галстук и золотой лацканный значок сокола FortisWay.
+• Роль в Instagram: Лицо официальных предложений, постов про официальный НДС 12%, защиту договоров и фиксацию тарифов на 6 месяцев для директоров заводов и холдингов.
+
+ГОТОВЫЙ ПРОМПТ ДЛЯ AI (Midjourney v6 / Flux / Kling AI):
+"Cinematic 3D Pixar/Disney style character portrait of a prestigious, handsome European male corporate executive, 38 years old, with piercing deep sapphire-blue eyes, confident authoritative yet warm smile, and an immaculate diplomat slicked side-part hairstyle with neat temples. He is impeccably dressed in a bespoke dark navy blue three-piece business suit, crisp white dress shirt, and a rich golden silk tie with a subtle gold falcon lapel pin. Standing in a luxury modern panoramic high-rise office overlooking a major container port terminal at sunset. Warm golden-hour cinematic lighting, ultra-detailed 8k render, executive luxury aesthetic --ar 3:4 --v 6.1"
