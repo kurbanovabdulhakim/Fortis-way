@@ -1,0 +1,302 @@
+{
+  "1": {
+    "day": 1,
+    "date": "01.11, Пт",
+    "photo_id": "d01_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Автопоезд на открытой магистрали",
+    "desc": "Современный тягач в движении на скоростном шоссе при ясном дневном свете.",
+    "url": "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=900&q=85"
+  },
+  "2": {
+    "day": 2,
+    "date": "02.11, Сб",
+    "photo_id": "d02_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Замер габаритов коробки на складе",
+    "desc": "Складской эксперт замеряет размеры упакованного груза.",
+    "url": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=900&q=85"
+  },
+  "3": {
+    "day": 3,
+    "date": "03.11, Вс",
+    "photo_id": "d03_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Автоколонна на горной автотрассе",
+    "desc": "Фура преодолевает открытый междугородний маршрут.",
+    "url": "https://images.unsplash.com/photo-1501700493788-fa1a4fc9fe62?w=900&q=85"
+  },
+  "4": {
+    "day": 4,
+    "date": "04.11, Пн",
+    "photo_id": "d04_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Офис логистики: подписание договора",
+    "desc": "Руководители утверждают официальный внешнеторговый контракт.",
+    "url": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=85"
+  },
+  "5": {
+    "day": 5,
+    "date": "05.11, Вт",
+    "photo_id": "d05_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Ричстакер поднимает 40HQ контейнер",
+    "desc": "Мощный портовый погрузчик перегружает высокий контейнер.",
+    "url": "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=900&q=85"
+  },
+  "6": {
+    "day": 6,
+    "date": "06.11, Ср",
+    "photo_id": "d06_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Деревянные европаллеты со штампом ISPM",
+    "desc": "Поддоны стандарта ISPM 15 с фитосанитарной маркировкой.",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Son_Creek_International_Transport_Big_Load.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  },
+  "7": {
+    "day": 7,
+    "date": "07.11, Чт",
+    "photo_id": "d07_a2",
+    "plan": "A",
+    "var": "2",
+    "title": "Быстрый вывоз контейнеровозом",
+    "desc": "Тягач забирает контейнер в первые часы после раскредитации.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/An_Overview_of_Moving_Companies_and_Their_Use_of_Moving_Boxes.jpg/1280px-An_Overview_of_Moving_Companies_and_Their_Use_of_Moving_Boxes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "8": {
+    "day": 8,
+    "date": "08.11, Пт",
+    "photo_id": "d08_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Весовой контроль на трассе",
+    "desc": "Автопоезд заезжает на стационарный весовой пост.",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/NB_US_1-23-301_Weigh_Station-Agricultural_Inspection%3B_Stop_Before_Scale.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  },
+  "9": {
+    "day": 9,
+    "date": "09.11, Сб",
+    "photo_id": "d09_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Коробки с автокомпонентами на паллетах",
+    "desc": "Партия автомобильных деталей готова к отправке дилерам.",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Euro_Car_Parts%2C_Pontefract_Lane%2C_Leeds_-_geograph.org.uk_-_5655699.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  },
+  "10": {
+    "day": 10,
+    "date": "10.11, Вс",
+    "photo_id": "d10_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Белоснежный полуприцеп-рефрижератор",
+    "desc": "Изотермический фургон на погрузочной рампе распределительного центра.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/CMA_CGM_45R1_CGMU_502381_9.jpg/1280px-CMA_CGM_45R1_CGMU_502381_9.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "11": {
+    "day": 11,
+    "date": "11.11, Пн",
+    "photo_id": "d11_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Кросс-докинг терминал в часы пик",
+    "desc": "Интенсивная перевалка грузов между магистральными фурами.",
+    "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Alexandra_dock_derelict_goods_loading_pier_-_geograph.org.uk_-_1016421.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+  },
+  "12": {
+    "day": 12,
+    "date": "12.11, Вт",
+    "photo_id": "d12_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Международный автомобильный пункт пропуска",
+    "desc": "Колонна грузовых автомобилей на въезде в таможенную зону.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Dawki_Border_crossing_Bangladesh_India.jpg/1280px-Dawki_Border_crossing_Bangladesh_India.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "13": {
+    "day": 13,
+    "date": "13.11, Ср",
+    "photo_id": "d13_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Морской контейнеровоз в океанском порту",
+    "desc": "Океанский гигант под разгрузкой у причальной стенки.",
+    "url": "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=900&q=85"
+  },
+  "14": {
+    "day": 14,
+    "date": "14.11, Чт",
+    "photo_id": "d14_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Официальная накладная CMR юк хати",
+    "desc": "Международная товарно-транспортная накладная CMR установленного образца.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/CMR_yuk_xati.jpg/1280px-CMR_yuk_xati.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "15": {
+    "day": 15,
+    "date": "15.11, Пт",
+    "photo_id": "d15_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Многоосный низкорамный трал с негабаритом",
+    "desc": "Тяжелая промышленная конструкция на специализированной платформе.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Liebherr_tracked_vehicle_on_Goldhofer_trailer_-_right_view2.jpg/1280px-Liebherr_tracked_vehicle_on_Goldhofer_trailer_-_right_view2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "16": {
+    "day": 16,
+    "date": "16.11, Сб",
+    "photo_id": "d16_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Болтовая номерная пломба стандарта ISO 17712",
+    "desc": "Силовая пломба высокой степени защиты на запорной рукоятке.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/202601_A_Coffee_beverage_can_with_French_marigolds_garden_of_orange.jpg/1280px-202601_A_Coffee_beverage_can_with_French_marigolds_garden_of_orange.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "17": {
+    "day": 17,
+    "date": "17.11, Вс",
+    "photo_id": "d17_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Заснеженный горный серпантин Камчик",
+    "desc": "Зимняя дорога и безопасное преодоление перевала.",
+    "url": "https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?w=900&q=85"
+  },
+  "18": {
+    "day": 18,
+    "date": "18.11, Пн",
+    "photo_id": "d18_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Рулоны текстиля в кузове еврофуры",
+    "desc": "Аккуратная укладка рулонов ткани в чистом сухом полуприцепе.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Raoul_Dufy_-_Le_Cargo_noir.jpg/1280px-Raoul_Dufy_-_Le_Cargo_noir.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "19": {
+    "day": 19,
+    "date": "19.11, Вт",
+    "photo_id": "d19_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Водитель-дальнобойщик за рулем тягача",
+    "desc": "Профессиональный водитель контролирует дорогу на магистрали.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/WB_I-10_Columbia_Co_Rest_Area%3B_Tandem_Truck_Parking_Sign-1.jpg/1280px-WB_I-10_Columbia_Co_Rest_Area%3B_Tandem_Truck_Parking_Sign-1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "20": {
+    "day": 20,
+    "date": "20.11, Ср",
+    "photo_id": "d20_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Оранжевые таблички опасности ADR на цистерне",
+    "desc": "Маркировка класса опасности химического груза по стандартам ДОПОГ.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Atlas_Copco_XAHS_347-pic5-Manufacturing_tablet_1.jpg/1280px-Atlas_Copco_XAHS_347-pic5-Manufacturing_tablet_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "21": {
+    "day": 21,
+    "date": "21.11, Чт",
+    "photo_id": "d21_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Боковая погрузка в шторный полуприцеп",
+    "desc": "Погрузчик загружает длинномерные паллеты через сдвинутый боковой тент.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/DJS_Freight_Services_artic_curtainsider_%22Alice_Mary%22_%28MX03_BOV%29%2C_Port_of_Teignmouth%2C_24_April_2012.jpg/1280px-DJS_Freight_Services_artic_curtainsider_%22Alice_Mary%22_%28MX03_BOV%29%2C_Port_of_Teignmouth%2C_24_April_2012.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "22": {
+    "day": 22,
+    "date": "22.11, Пт",
+    "photo_id": "d22_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Погрузка контейнера на железнодорожную платформу",
+    "desc": "Козловой кран устанавливает контейнер на фитинговые упоры платформы.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/201704_A_Gantry_crane_at_Wuxixi_Station.jpg/1280px-201704_A_Gantry_crane_at_Wuxixi_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "23": {
+    "day": 23,
+    "date": "23.11, Сб",
+    "photo_id": "d23_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Деловое рукопожатие надежных партнеров",
+    "desc": "Закрепление договоренностей с корпоративным заказчиком.",
+    "url": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=85"
+  },
+  "24": {
+    "day": 24,
+    "date": "24.11, Вс",
+    "photo_id": "d24_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Интерфейс спутникового мониторинга транспорта",
+    "desc": "Отображение маршрута и параметров движения фуры на цифровой карте.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Bengal_monitor_at_Anawilundawa_Bird_Sanctuary_-_%28A_Mischievous_Grin%29.jpg/1280px-Bengal_monitor_at_Anawilundawa_Bird_Sanctuary_-_%28A_Mischievous_Grin%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "25": {
+    "day": 25,
+    "date": "25.11, Пн",
+    "photo_id": "d25_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Грузовой самолет на перроне аэропорта",
+    "desc": "Подготовка широкофюзеляжного борта к вылету.",
+    "url": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=900&q=85"
+  },
+  "26": {
+    "day": 26,
+    "date": "26.11, Вт",
+    "photo_id": "d26_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Срочная подача тягача к промышленному объекту",
+    "desc": "Быстрая подмена техники для бесперебойного выполнения рейса.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/1953_Nash_Rambler_Delivery_wagon.JPG/1280px-1953_Nash_Rambler_Delivery_wagon.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "27": {
+    "day": 27,
+    "date": "27.11, Ср",
+    "photo_id": "d27_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Территория таможенного терминала СВХ",
+    "desc": "Охраняемая зона временного хранения для оформления импортных грузов.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Macau_Customs_Banner.jpg/1280px-Macau_Customs_Banner.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "28": {
+    "day": 28,
+    "date": "28.11, Чт",
+    "photo_id": "d28_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Затяжка стяжного ремня храповым замком",
+    "desc": "Надежное натяжение сертифицированных текстильных лент для фиксации паллет.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Flickr_-_The_U.S._Army_-_Attaching_a_ratchet_strap.jpg/1280px-Flickr_-_The_U.S._Army_-_Attaching_a_ratchet_strap.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "29": {
+    "day": 29,
+    "date": "29.11, Пт",
+    "photo_id": "d29_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Современный автопарк экологического стандарта Евро-6",
+    "desc": "Линейка современных тягачей с минимальным углеродным следом.",
+    "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/KS_line_11_and_3_at_Mozarts_Plads_1.jpg/1280px-KS_line_11_and_3_at_Mozarts_Plads_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+  },
+  "30": {
+    "day": 30,
+    "date": "30.11, Сб",
+    "photo_id": "d30_a1",
+    "plan": "A",
+    "var": "1",
+    "title": "Автопоезд на рассветной магистрали",
+    "desc": "Тягач уходит в рейс навстречу утреннему солнцу.",
+    "url": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=85"
+  }
+}

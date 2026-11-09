@@ -1,0 +1,1202 @@
+[
+  {
+    "day": 1,
+    "date": "01.11, Пт",
+    "plan_a_title": "ПЛАН «А» (Видео/Динамика): Стандарты надежности и инженерный контроль",
+    "plan_b_title": "ПЛАН «Б» (Экспертный пост): Кто отвечает за ваш груз? 6 типов автопарка",
+    "photos": [
+      {
+        "id": "d01_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Автопоезд на открытой магистрали",
+        "desc": "Современный тягач в движении на скоростном шоссе при ясном дневном свете.",
+        "url": "https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?w=900&q=85"
+      },
+      {
+        "id": "d01_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Инженерный осмотр тягача",
+        "desc": "Специалист проверяет узлы автопоезда перед дальним рейсом.",
+        "url": "https://images.unsplash.com/photo-1581092160607-ee22621dd758?w=900&q=85"
+      },
+      {
+        "id": "d01_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Логистический терминал и рампы",
+        "desc": "Распределительный хаб с белыми фурами у погрузочных ворот.",
+        "url": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=900&q=85"
+      },
+      {
+        "id": "d01_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Белоснежный тягач крупным планом",
+        "desc": "Чистый современный тягач европейского стандарта безопасности.",
+        "url": "https://images.unsplash.com/photo-1519003722824-194d4455a60c?w=900&q=85"
+      }
+    ]
+  },
+  {
+    "day": 2,
+    "date": "02.11, Сб",
+    "plan_a_title": "ПЛАН «А»: Фокус с кубами (CBM) — как 5 м³ превращаются в 8 м³",
+    "plan_b_title": "ПЛАН «Б»: Памятка заказчику — как проверить объем CBM до погрузки",
+    "photos": [
+      {
+        "id": "d02_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Замер габаритов коробки на складе",
+        "desc": "Складской эксперт замеряет размеры упакованного груза.",
+        "url": "https://images.unsplash.com/photo-1587293852726-70cdb56c2866?w=900&q=85"
+      },
+      {
+        "id": "d02_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Погрузчик и упакованная паллета",
+        "desc": "Вилочный погрузчик перемещает аккуратно уложенный груз.",
+        "url": "https://images.unsplash.com/photo-1616401784845-180882ba9ba8?w=900&q=85"
+      },
+      {
+        "id": "d02_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Ровные ряды паллет в распределительном центре",
+        "desc": "Высотный логистический хаб со стандартизированными ячейками.",
+        "url": "https://images.unsplash.com/photo-1553413077-190dd305871c?w=900&q=85"
+      },
+      {
+        "id": "d02_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Лазерный сканер штрихкодов и объема",
+        "desc": "Цифровая проверка габаритов и кодов упаковочных листов.",
+        "url": "https://images.unsplash.com/photo-1586528116493-a029325540fa?w=900&q=85"
+      }
+    ]
+  },
+  {
+    "day": 3,
+    "date": "03.11, Вс",
+    "plan_a_title": "ПЛАН «А»: Зимний опрос — Хоргос (авто) или Достык (ж/д)",
+    "plan_b_title": "ПЛАН «Б»: Кейс — доставка станка 8 тонн в Самарканд без царапины",
+    "photos": [
+      {
+        "id": "d03_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Автоколонна на горной автотрассе",
+        "desc": "Фура преодолевает открытый междугородний маршрут.",
+        "url": "https://images.unsplash.com/photo-1501700493788-fa1a4fc9fe62?w=900&q=85"
+      },
+      {
+        "id": "d03_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Пограничный переход и автотрасса",
+        "desc": "Длинный грузовой автопоезд на пути к границе.",
+        "url": "https://images.unsplash.com/photo-1513836279014-a89f7a76ae86?w=900&q=85"
+      },
+      {
+        "id": "d03_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Низкорамный трал с промышленным грузом",
+        "desc": "Безопасная перевозка тяжелого оборудования.",
+        "url": "https://images.unsplash.com/photo-1579762715118-a6f1d4b934f1?w=900&q=85"
+      },
+      {
+        "id": "d03_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Контейнерный состав на железнодорожных путях",
+        "desc": "Стабильный контейнерный поезд зимнего коридора.",
+        "url": "https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=900&q=85"
+      }
+    ]
+  },
+  {
+    "day": 4,
+    "date": "04.11, Пн",
+    "plan_a_title": "ПЛАН «А»: Серое карго против белого НДС 12% — цена риска",
+    "plan_b_title": "ПЛАН «Б»: Как бухгалтерия законно учитывает расходы на логистику в ЭДО",
+    "photos": [
+      {
+        "id": "d04_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Офис логистики: подписание договора",
+        "desc": "Руководители утверждают официальный внешнеторговый контракт.",
+        "url": "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=900&q=85"
+      },
+      {
+        "id": "d04_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Деловые переговоры и прозрачность",
+        "desc": "Согласование спецификаций и налоговых реквизитов.",
+        "url": "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=900&q=85"
+      },
+      {
+        "id": "d04_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Электронный документооборот (ЭДО)",
+        "desc": "Сверка счетов-фактур и реестров на мониторе в офисе.",
+        "url": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=900&q=85"
+      },
+      {
+        "id": "d04_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Сверка актов и накладных на складе",
+        "desc": "Инспектор проверяет первичные документы у рампы.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8e/8th_ESB_builds_landing_pad_on_FOB_Nolay_DVIDS349195.jpg/1280px-8th_ESB_builds_landing_pad_on_FOB_Nolay_DVIDS349195.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 5,
+    "date": "05.11, Вт",
+    "plan_a_title": "ПЛАН «А»: Разбор контейнеров — 40ft Standard vs 40HQ (High Cube)",
+    "plan_b_title": "ПЛАН «Б»: Сравнительная таблица вместимости паллет 20ft vs 40ft vs 40HQ",
+    "photos": [
+      {
+        "id": "d05_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Ричстакер поднимает 40HQ контейнер",
+        "desc": "Мощный портовый погрузчик перегружает высокий контейнер.",
+        "url": "https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?w=900&q=85"
+      },
+      {
+        "id": "d05_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Контейнеровоз выезжает с ж/д терминала",
+        "desc": "Тягач с полуприцепом-контейнеровозом на выезде со станции.",
+        "url": "https://images.unsplash.com/photo-1578575437130-527eed3abbec?w=900&q=85"
+      },
+      {
+        "id": "d05_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Штабель морских 40ft контейнеров",
+        "desc": "Контейнерное депо со стандартизированным оборудованием.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a2/Railyard_behind_the_Cincinnati_Union_Terminal_%2811259266795%29.jpg/1280px-Railyard_behind_the_Cincinnati_Union_Terminal_%2811259266795%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d05_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Интермодальный перегрузочный узел",
+        "desc": "Масштабная перевалка контейнеров между ж/д и автотранспортом.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/76/Birmingham_Intermodal_Freight_Terminal_-_geograph.org.uk_-_603341.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      }
+    ]
+  },
+  {
+    "day": 6,
+    "date": "06.11, Ср",
+    "plan_a_title": "ПЛАН «А»: Фумигационный штамп IPPC (Колосок) на деревянной таре",
+    "plan_b_title": "ПЛАН «Б»: Пример правильной обрешетки хрупкого груза на складе",
+    "photos": [
+      {
+        "id": "d06_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Деревянные европаллеты со штампом ISPM",
+        "desc": "Поддоны стандарта ISPM 15 с фитосанитарной маркировкой.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b2/Son_Creek_International_Transport_Big_Load.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d06_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Транспортировка поддона погрузчиком",
+        "desc": "Вилочный погрузчик аккуратно поднимает деревянный поддон.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/2008-07-26_Clark_GCS-15_forklift_transporting_potted_trees.jpg/1280px-2008-07-26_Clark_GCS-15_forklift_transporting_potted_trees.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d06_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Деревянные ящики для хрупкого оборудования",
+        "desc": "Надежная каркасная обрешетка для защиты груза от ударов.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/de/1950s_sugar_cube_wooden_shipping_crate_by_Swedish_company_Svenska_sockerfabriks_aktiebolaget.jpg/1280px-1950s_sugar_cube_wooden_shipping_crate_by_Swedish_company_Svenska_sockerfabriks_aktiebolaget.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d06_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Инспекция целостности упаковки на рампе",
+        "desc": "Контроль упаковки перед опломбированием кузова.",
+        "url": "https://images.unsplash.com/photo-1600518464441-9154a4dea21b?w=900&q=85"
+      }
+    ]
+  },
+  {
+    "day": 7,
+    "date": "07.11, Чт",
+    "plan_a_title": "ПЛАН «А»: Ловушка Free Time — что такое демередж и детеншн",
+    "plan_b_title": "ПЛАН «Б»: Словарь логиста — Demurrage, Detention, Storage простыми словами",
+    "photos": [
+      {
+        "id": "d07_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Контейнерная площадка в период хранения",
+        "desc": "Морские контейнеры на терминале в период бесплатного хранения.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/View_of_Port_of_Los_Angeles_with_container_ships.jpg/1280px-View_of_Port_of_Los_Angeles_with_container_ships.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d07_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Быстрый вывоз контейнеровозом",
+        "desc": "Тягач забирает контейнер в первые часы после раскредитации.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/82/An_Overview_of_Moving_Companies_and_Their_Use_of_Moving_Boxes.jpg/1280px-An_Overview_of_Moving_Companies_and_Their_Use_of_Moving_Boxes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d07_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Железнодорожный терминал Чукурсай",
+        "desc": "Площадка хранения контейнеров на станции назначения.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/06/Freight_Graffiti_Benching_-_Santa_Fe_Depot%2CSoCal_%2801-31-2021%29_%2850903006448%29.jpg/1280px-Freight_Graffiti_Benching_-_Santa_Fe_Depot%2CSoCal_%2801-31-2021%29_%2850903006448%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d07_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Диспетчер проверяет сроки Free Time",
+        "desc": "Сверка дат прихода поезда и лимита свободного времени.",
+        "url": "https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=900&q=85"
+      }
+    ]
+  },
+  {
+    "day": 8,
+    "date": "08.11, Пт",
+    "plan_a_title": "ПЛАН «А»: Осевой перегруз на весовом контроле — протоколы рамок",
+    "plan_b_title": "ПЛАН «Б»: Схема распределения веса в 20-тонной еврофуре",
+    "photos": [
+      {
+        "id": "d08_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Весовой контроль на трассе",
+        "desc": "Автопоезд заезжает на стационарный весовой пост.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/8/83/NB_US_1-23-301_Weigh_Station-Agricultural_Inspection%3B_Stop_Before_Scale.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d08_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Тягач на платформенных весах",
+        "desc": "Точный замер общей массы автопоезда на электронных весах.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Heyfield_disused_weighbridge_-_April_2021.jpg/1280px-Heyfield_disused_weighbridge_-_April_2021.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d08_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Схема осевых нагрузок автопоезда",
+        "desc": "Инспектор сверяет нагрузку на ведущие и прицепные оси.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5a/1996_GMC_TopKick_C7500_single-axle_dump_truck%2C_front_right%2C_07-14-2023.jpg/1280px-1996_GMC_TopKick_C7500_single-axle_dump_truck%2C_front_right%2C_07-14-2023.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d08_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Пункт весового и габаритного контроля",
+        "desc": "Официальный контроль весовых параметров грузового транспорта.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a7/Flags_at_the_NJ_Motor_Vehicle_inspection_station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      }
+    ]
+  },
+  {
+    "day": 9,
+    "date": "09.11, Сб",
+    "plan_a_title": "ПЛАН «А»: Доставка автозапчастей для дилерских центров в срок",
+    "plan_b_title": "ПЛАН «Б»: Специфика транспортировки и маркировки автокомпонентов",
+    "photos": [
+      {
+        "id": "d09_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Коробки с автокомпонентами на паллетах",
+        "desc": "Партия автомобильных деталей готова к отправке дилерам.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Euro_Car_Parts%2C_Pontefract_Lane%2C_Leeds_-_geograph.org.uk_-_5655699.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d09_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Разгрузка автозапчастей в сервисный центр",
+        "desc": "Аккуратная подача запчастей прямо в приемную зону.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cb/Meals_To_You_-_PepsiCo_-_Qual_Pac_Food_Box_Team_%2820200813-FNS-LSC-3559%29.jpg/1280px-Meals_To_You_-_PepsiCo_-_Qual_Pac_Food_Box_Team_%2820200813-FNS-LSC-3559%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d09_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Стеллажи с маркированными автодеталями",
+        "desc": "Организованное хранение автокомпонентов по артикулам.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/2e/Photo_Spare_parts_warehouse_of_the_Fabbrica_Italiana_Automobili_Torino_%28FIAT%29_1967_-_Touring_Club_Italiano_06-5372.01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d09_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Сверка артикулов по товарной накладной",
+        "desc": "Контроль соответствия кодов деталей упаковочному листу.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0d/FEMA_-_24316_-_Photograph_by_Liz_Roll_taken_on_05-11-2006_in_Texas.jpg/1280px-FEMA_-_24316_-_Photograph_by_Liz_Roll_taken_on_05-11-2006_in_Texas.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 10,
+    "date": "10.11, Вс",
+    "plan_a_title": "ПЛАН «А»: Холодовая цепь — как доставить груз при -18°C без сбоев",
+    "plan_b_title": "ПЛАН «Б»: Что такое термограф и чек-лист приемки рефрижератора",
+    "photos": [
+      {
+        "id": "d10_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Белоснежный полуприцеп-рефрижератор",
+        "desc": "Изотермический фургон на погрузочной рампе распределительного центра.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/CMA_CGM_45R1_CGMU_502381_9.jpg/1280px-CMA_CGM_45R1_CGMU_502381_9.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d10_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Холодильная установка Carrier Transicold",
+        "desc": "Автономный климатический агрегат для поддержания ультранизких температур.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b2/DRM%3B_Maine_Central_Caboose_%26_Conrail_Reefer-2.jpg/1280px-DRM%3B_Maine_Central_Caboose_%26_Conrail_Reefer-2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d10_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Фармацевтический склад глубокой заморозки",
+        "desc": "Контролируемая температурная среда для медикаментов и продуктов.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Lineage_1000E.jpg/1280px-Lineage_1000E.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d10_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Датчик термографа и лента температуры",
+        "desc": "Прибор фиксации непрерывного температурного режима в пути.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/HTS_Ultra-Rack_Johnson_Refrigerated_Bodies.jpg/1280px-HTS_Ultra-Rack_Johnson_Refrigerated_Bodies.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 11,
+    "date": "11.11, Пн",
+    "plan_a_title": "ПЛАН «А»: Распродажи 11.11 — как FortisWay справляется с пиковыми нагрузками",
+    "plan_b_title": "ПЛАН «Б»: Кросс-докинг без складского хранения — экономия до 30%",
+    "photos": [
+      {
+        "id": "d11_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Кросс-докинг терминал в часы пик",
+        "desc": "Интенсивная перевалка грузов между магистральными фурами.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/9/90/Alexandra_dock_derelict_goods_loading_pier_-_geograph.org.uk_-_1016421.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d11_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Ночная погрузка автопоездов на рампе",
+        "desc": "Круглосуточный режим работы распределительного узла.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/25/110317-F-NH180-908_RAAF_C-17_loading_JGSDF_15th_Brigade_at_Kadena.jpg/1280px-110317-F-NH180-908_RAAF_C-17_loading_JGSDF_15th_Brigade_at_Kadena.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d11_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Автоматизированные конвейерные линии",
+        "desc": "Высокоскоростная сортировка партий товаров для отправки.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/89/Aggregate_sorting_plant_%5E_conveyors_in_Wellington_quarry_-_geograph.org.uk_-_5898557.jpg/1280px-Aggregate_sorting_plant_%5E_conveyors_in_Wellington_quarry_-_geograph.org.uk_-_5898557.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d11_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Координация графиков подачи транспорта",
+        "desc": "Диспетчеры оперативно перераспределяют потоки по регионам.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/03/Pioneers_of_Navy_Music-_A_History_of_African-Americans_in_the_Navy_Music_Program_%286893024465%29.jpg/1280px-Pioneers_of_Navy_Music-_A_History_of_African-Americans_in_the_Navy_Music_Program_%286893024465%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 12,
+    "date": "12.11, Вт",
+    "plan_a_title": "ПЛАН «А»: Очереди на границе — как рассчитать время и не сорвать сроки",
+    "plan_b_title": "ПЛАН «Б»: Пакет документов для быстрого прохождения таможенного поста",
+    "photos": [
+      {
+        "id": "d12_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Международный автомобильный пункт пропуска",
+        "desc": "Колонна грузовых автомобилей на въезде в таможенную зону.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/Dawki_Border_crossing_Bangladesh_India.jpg/1280px-Dawki_Border_crossing_Bangladesh_India.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d12_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Шлагбаум и пост пограничного контроля",
+        "desc": "Официальное оформление въезда грузового автопоезда.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e6/Second_Largest_Border_Meth_Bust_in_History_%2850470528116%29.jpg/1280px-Second_Largest_Border_Meth_Bust_in_History_%2850470528116%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d12_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Инспекция грузового отсека на таможне",
+        "desc": "Таможенный инспектор осматривает пломбы и состояние тента.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3d/A_2022_Ram_truck_recovered_by_CBP_officers_at_Charleston_seaport.jpg/1280px-A_2022_Ram_truck_recovered_by_CBP_officers_at_Charleston_seaport.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d12_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Таможенная декларация со штампом выпуска",
+        "desc": "Официальный документ, подтверждающий успешный выпуск товаров.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/66/Customs_services.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      }
+    ]
+  },
+  {
+    "day": 13,
+    "date": "13.11, Ср",
+    "plan_a_title": "ПЛАН «А»: Мультимодальные перевозки: море + ж/д + авто из Китая",
+    "plan_b_title": "ПЛАН «Б»: Карта основных морских и сухопутных коридоров в Центральную Азию",
+    "photos": [
+      {
+        "id": "d13_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Морской контейнеровоз в океанском порту",
+        "desc": "Океанский гигант под разгрузкой у причальной стенки.",
+        "url": "https://images.unsplash.com/photo-1543783207-ec64e4d95325?w=900&q=85"
+      },
+      {
+        "id": "d13_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Океанский контейнеровоз на морском пути",
+        "desc": "Судно класса Post-Panamax на транзитном маршруте.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b3/Molten_Sea%2C_Altar_and_Priests_in_Jerusalem.png/1280px-Molten_Sea%2C_Altar_and_Priests_in_Jerusalem.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d13_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Причальные контейнерные перегружатели STS",
+        "desc": "Мощные портальные краны перегружают контейнеры на причале.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9e/2022-05-16_Port_of_Tibar.jpg/1280px-2022-05-16_Port_of_Tibar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d13_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Панорама глубоководного контейнерного порта",
+        "desc": "Масштабная морская инфраструктура международной торговли.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/86/Aerial_image_of_the_Bremerhaven_container_terminal_%28view_from_the_southeast%29.jpg/1280px-Aerial_image_of_the_Bremerhaven_container_terminal_%28view_from_the_southeast%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 14,
+    "date": "14.11, Чт",
+    "plan_a_title": "ПЛАН «А»: Главный документ автоперевозок — разбираем 24 графы CMR",
+    "plan_b_title": "ПЛАН «Б»: Частые ошибки в CMR, из-за которых груз застревает на границе",
+    "photos": [
+      {
+        "id": "d14_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Официальная накладная CMR юк хати",
+        "desc": "Международная товарно-транспортная накладная CMR установленного образца.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/45/CMR_yuk_xati.jpg/1280px-CMR_yuk_xati.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d14_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Заполнение граф CMR экспедитором",
+        "desc": "Точное внесение сведений о перевозчике, весе и кодах ТН ВЭД.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/d2/Bill_of_lading_%2850116721023%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d14_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Книжка МДП (TIR Carnet) на таможне",
+        "desc": "Международный таможенный документ для транзита под пломбой.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d8/ATA_Carnet.png/1280px-ATA_Carnet.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d14_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Подписание транспортных накладных в офисе",
+        "desc": "Проверка синих печатей и подписей грузополучателя.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/Guangzhou-freight-forwarders-0448.jpg/1280px-Guangzhou-freight-forwarders-0448.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 15,
+    "date": "15.11, Пт",
+    "plan_a_title": "ПЛАН «А»: Негабаритные перевозки — как доставить станок 40 тонн",
+    "plan_b_title": "ПЛАН «Б»: Правила крепления негабарита цепями и согласование спецразрешений",
+    "photos": [
+      {
+        "id": "d15_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Многоосный низкорамный трал с негабаритом",
+        "desc": "Тяжелая промышленная конструкция на специализированной платформе.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/Liebherr_tracked_vehicle_on_Goldhofer_trailer_-_right_view2.jpg/1280px-Liebherr_tracked_vehicle_on_Goldhofer_trailer_-_right_view2.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d15_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Автомобили прикрытия со спецсигналами",
+        "desc": "Сопровождение негабаритного автопоезда машинами с желтыми маяками.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/6/62/Pilot_car_escort_with_equipment.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d15_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Натяжные цепи и талрепы для фиксации груза",
+        "desc": "Мощное стальное крепление оборудования на платформе трала.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d9/Atomic_Bunker_Emergency_Exit_and_Cargo_Elevator_Shaft_%2814672374392%29.png/1280px-Atomic_Bunker_Emergency_Exit_and_Cargo_Elevator_Shaft_%2814672374392%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d15_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Тягач-тяжеловоз колесной формулы 6х4",
+        "desc": "Мощный тягач для буксировки сверхтяжелых грузов.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d1/FAUN_Zugmaschine_%282007%29.jpg/1280px-FAUN_Zugmaschine_%282007%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 16,
+    "date": "16.11, Сб",
+    "plan_a_title": "ПЛАН «А»: Пломбирование кузова — гарантия сохранности каждого килограмма",
+    "plan_b_title": "ПЛАН «Б»: Виды пломб: тросовые, болтовые, индикаторные и электронные",
+    "photos": [
+      {
+        "id": "d16_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Болтовая номерная пломба стандарта ISO 17712",
+        "desc": "Силовая пломба высокой степени защиты на запорной рукоятке.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6d/202601_A_Coffee_beverage_can_with_French_marigolds_garden_of_orange.jpg/1280px-202601_A_Coffee_beverage_can_with_French_marigolds_garden_of_orange.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d16_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Проверка номера пломбы перед выездом",
+        "desc": "Экспедитор сверяет номер пломбы с записью в графе CMR.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/7/75/Box_with_locking_handles%2C_wooden_0096_-_DPLA_-_1e56454ecc79dfc947b2c7495dd30650.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d16_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Профессиональная обмотка паллет стретч-пленкой",
+        "desc": "Плотная машинная упаковка для защиты от смещения в пути.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d3/290-Bouteilles_de_vin_vides_sur_palettes.jpg/1280px-290-Bouteilles_de_vin_vides_sur_palettes.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d16_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Загрузка паллетированного груза погрузчиком",
+        "desc": "Финальное размещение партии товара в кузове перед пломбировкой.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/19/AFCENT_launches_into_Agile_Combat_Employment_exercise_%288860789%29.jpg/1280px-AFCENT_launches_into_Agile_Combat_Employment_exercise_%288860789%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 17,
+    "date": "17.11, Вс",
+    "plan_a_title": "ПЛАН «А»: Зимняя подготовка тягачей: антифриз, пневматика, зимняя резина",
+    "plan_b_title": "ПЛАН «Б»: Инструкция для водителя: безопасность на перевале Камчик зимой",
+    "photos": [
+      {
+        "id": "d17_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Заснеженный горный серпантин Камчик",
+        "desc": "Зимняя дорога и безопасное преодоление перевала.",
+        "url": "https://images.unsplash.com/photo-1517760444937-f6397edcbbcd?w=900&q=85"
+      },
+      {
+        "id": "d17_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Автопоезд на заснеженной трассе",
+        "desc": "Уверенное движение грузовика в сложных зимних метеоусловиях.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/59/160123-Z-ZZ999-004_%2824480513461%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d17_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Установка цепей противоскольжения",
+        "desc": "Надежное сцепление ведущих колес тягача на обледенелом подъеме.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/2a/Blowing_snow_off_the_highway_%2851751171881%29.jpg/1280px-Blowing_snow_off_the_highway_%2851751171881%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d17_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Теплый логистический склад зимой",
+        "desc": "Отапливаемый распределительный терминал с комфортным микроклиматом.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/79/Indoor_table_tennis_at_Great_Northern_-_geograph.org.uk_-_7965156.jpg/1280px-Indoor_table_tennis_at_Great_Northern_-_geograph.org.uk_-_7965156.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 18,
+    "date": "18.11, Пн",
+    "plan_a_title": "ПЛАН «А»: Текстильная логистика — доставка ткани и пряжи из Узбекистана",
+    "plan_b_title": "ПЛАН «Б»: Требования к чистоте и сухости фуры при перевозке хлопчатобумажной продукции",
+    "photos": [
+      {
+        "id": "d18_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Рулоны текстиля в кузове еврофуры",
+        "desc": "Аккуратная укладка рулонов ткани в чистом сухом полуприцепе.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/ff/Raoul_Dufy_-_Le_Cargo_noir.jpg/1280px-Raoul_Dufy_-_Le_Cargo_noir.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d18_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Склад готовой текстильной продукции",
+        "desc": "Стеллажи с качественными тканями и полотнами перед экспортом.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/31/Big_Textile_Factory_-_Storage_%2812671327074%29.jpg/1280px-Big_Textile_Factory_-_Storage_%2812671327074%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d18_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Паллеты с пряжей в плотной упаковке",
+        "desc": "Экспортные партии хлопковой пряжи готовы к погрузке в автопоезд.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/a/a4/Pillar_box_tractor_yarn_bomb.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d18_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Отправка готовой одежды в коробках",
+        "desc": "Транспортировка швейных изделий европейским заказчикам.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/0/0f/EFTA00000436_-_Cluttered_storage_room_filled_with_boxes_cables_and_a_Ralph_Lauren_garment_bag.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      }
+    ]
+  },
+  {
+    "day": 19,
+    "date": "19.11, Вт",
+    "plan_a_title": "ПЛАН «А»: Один день из жизни водителя-международника FortisWay",
+    "plan_b_title": "ПЛАН «Б»: Режим труда и отдыха водителя (ЕСТР) — почему мы не нарушаем тахограф",
+    "photos": [
+      {
+        "id": "d19_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Водитель-дальнобойщик за рулем тягача",
+        "desc": "Профессиональный водитель контролирует дорогу на магистрали.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f5/WB_I-10_Columbia_Co_Rest_Area%3B_Tandem_Truck_Parking_Sign-1.jpg/1280px-WB_I-10_Columbia_Co_Rest_Area%3B_Tandem_Truck_Parking_Sign-1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d19_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Кабина современного магистрального тягача",
+        "desc": "Эргономичное рабочее место с цифровой панелью приборов.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c9/07-06-21-tallinn-by-RalfR-038.jpg/1280px-07-06-21-tallinn-by-RalfR-038.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d19_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Система спутникового мониторинга рейсов",
+        "desc": "Карта маршрутов и телематика движения автопарка на мониторах.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/be/AUDIS.png/1280px-AUDIS.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d19_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Планшет с цифровым путевым листом и навигацией",
+        "desc": "Умный помощник водителя с фиксацией времени движения и стоянки.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/29/DB_Cargo_Hung%C3%A1ria_Kft._%C3%A9s_Intertranscoop_kapuk%2C_2018_Gy%C5%91r.jpg/1280px-DB_Cargo_Hung%C3%A1ria_Kft._%C3%A9s_Intertranscoop_kapuk%2C_2018_Gy%C5%91r.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 20,
+    "date": "20.11, Ср",
+    "plan_a_title": "ПЛАН «А»: Перевозка опасных грузов (ADR) — классы, маркировка, допуски",
+    "plan_b_title": "ПЛАН «Б»: Комплектация тягача ADR: огнетушители, сорбент, аптечка и СИЗ",
+    "photos": [
+      {
+        "id": "d20_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Оранжевые таблички опасности ADR на цистерне",
+        "desc": "Маркировка класса опасности химического груза по стандартам ДОПОГ.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/Atlas_Copco_XAHS_347-pic5-Manufacturing_tablet_1.jpg/1280px-Atlas_Copco_XAHS_347-pic5-Manufacturing_tablet_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d20_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Специализированный грузовик с допуском ADR",
+        "desc": "Транспортное средство, оснащенное для перевозки спецгрузов.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/40/Ford_racing_truck%2CBrands_Hatch_1985_%285585390114%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d20_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Безопасное хранение химической продукции в бочках",
+        "desc": "Стальные бочки на поддонах в сертифицированной складской зоне.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/84/Blue_Grass_Chemical_Agent-Destruction_Pilot_Plant_Waste_Handling_Operators_%2849199313181%29.jpg/1280px-Blue_Grass_Chemical_Agent-Destruction_Pilot_Plant_Waste_Handling_Operators_%2849199313181%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d20_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Коробки с манипуляционными знаками",
+        "desc": "Складская маркировка: беречь от влаги, верх, хрупкое.",
+        "url": "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?w=900&q=85"
+      }
+    ]
+  },
+  {
+    "day": 21,
+    "date": "21.11, Чт",
+    "plan_a_title": "ПЛАН «А»: Шторный полуприцеп — погрузка сверху, сбоку и сзади",
+    "plan_b_title": "ПЛАН «Б»: Тент, изотерма или цельномет: какой кузов выбрать под ваш груз",
+    "photos": [
+      {
+        "id": "d21_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Боковая погрузка в шторный полуприцеп",
+        "desc": "Погрузчик загружает длинномерные паллеты через сдвинутый боковой тент.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ec/DJS_Freight_Services_artic_curtainsider_%22Alice_Mary%22_%28MX03_BOV%29%2C_Port_of_Teignmouth%2C_24_April_2012.jpg/1280px-DJS_Freight_Services_artic_curtainsider_%22Alice_Mary%22_%28MX03_BOV%29%2C_Port_of_Teignmouth%2C_24_April_2012.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d21_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Сдвинутая штора и крыша полуприцепа",
+        "desc": "Полный доступ к грузовому пространству для крана или кара.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/8c/6-365_Volvo_FH.jpg/1280px-6-365_Volvo_FH.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d21_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Евротент в движении по скоростному автобану",
+        "desc": "Универсальный магистральный полуприцеп вместимостью 92 куб.м.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6f/Ian_Ridley_Scania_R500_V8_Topline_Curtain_Sider.jpg/1280px-Ian_Ridley_Scania_R500_V8_Topline_Curtain_Sider.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d21_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Чистый ровный пол прицепа с крепежными кольцами",
+        "desc": "Надежное основание кузова для фиксации груза ремнями.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/63/Horse_Trailer_with_Living_Quarters_Video_Walkthrough_%E2%80%93_2015_Cimarron_Norstar.jpg/1280px-Horse_Trailer_with_Living_Quarters_Video_Walkthrough_%E2%80%93_2015_Cimarron_Norstar.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 22,
+    "date": "22.11, Пт",
+    "plan_a_title": "ПЛАН «А»: Ж/Д контейнерные поезда — скорость авто по цене железной дороги",
+    "plan_b_title": "ПЛАН «Б»: Накладная СМГС (SMGS) и правила раскредитации на станции",
+    "photos": [
+      {
+        "id": "d22_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Погрузка контейнера на железнодорожную платформу",
+        "desc": "Козловой кран устанавливает контейнер на фитинговые упоры платформы.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/201704_A_Gantry_crane_at_Wuxixi_Station.jpg/1280px-201704_A_Gantry_crane_at_Wuxixi_Station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d22_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Магистральный грузовой тепловоз с составом",
+        "desc": "Мощный локомотив ведет контейнерный поезд по транзитному участку.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/8/81/BNSF_freight_train_at_Richmond_Beach%2C_Apr._2025.jpg/1280px-BNSF_freight_train_at_Richmond_Beach%2C_Apr._2025.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d22_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Железнодорожная накладная СМГС (SMGS)",
+        "desc": "Официальный документ международного грузового сообщения железных дорог.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/2/23/Duxbury_and_Cohasset_Railroad_1875_waybill.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d22_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Сортировочная станция и контейнерные пути",
+        "desc": "Панорама железнодорожного парка с формируемыми составами.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e7/Aerial_view_of_the_Konz-Karthaus_railway_bridge_across_the_Moselle_River_on_14_November_1944_%28193769236%29.jpg/1280px-Aerial_view_of_the_Konz-Karthaus_railway_bridge_across_the_Moselle_River_on_14_November_1944_%28193769236%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 23,
+    "date": "23.11, Сб",
+    "plan_a_title": "ПЛАН «А»: Почему прямые контракты с FortisWay выгоднее экспедиторов-посредников",
+    "plan_b_title": "ПЛАН «Б»: Как мы фиксируем ставку в договоре и гарантируем отсутствие доплат",
+    "photos": [
+      {
+        "id": "d23_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Деловое рукопожатие надежных партнеров",
+        "desc": "Закрепление договоренностей с корпоративным заказчиком.",
+        "url": "https://images.unsplash.com/photo-1521791136064-7986c2920216?w=900&q=85"
+      },
+      {
+        "id": "d23_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Совещание по оптимизации цепочек поставок",
+        "desc": "Обсуждение логистического бюджета и графиков отгрузок с клиентом.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/4/48/Semicon_India_Conference_2023.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d23_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Аналитика снижения транспортных расходов",
+        "desc": "Графики планомерной экономии бюджета на экране планшета.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/3/3c/Candlestick_Chart_in_MetaTrader_5.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d23_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Подписание долгосрочного договора на перевозки",
+        "desc": "Официальное закрепление прозрачных тарифов без скрытых платежей.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/5b/%28Business_contract_and_power_of_attorney%29_-_DPLA_-_4b483db22808e799cd02f23316393fef_%28page_1%29.jpg/1280px-%28Business_contract_and_power_of_attorney%29_-_DPLA_-_4b483db22808e799cd02f23316393fef_%28page_1%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 24,
+    "date": "24.11, Вс",
+    "plan_a_title": "ПЛАН «А»: GPS-трекинг в реальном времени — знайте, где ваш груз 24/7",
+    "plan_b_title": "ПЛАН «Б»: Что делать, если груз задерживается: регламент информирования клиента",
+    "photos": [
+      {
+        "id": "d24_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Интерфейс спутникового мониторинга транспорта",
+        "desc": "Отображение маршрута и параметров движения фуры на цифровой карте.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/0f/Bengal_monitor_at_Anawilundawa_Bird_Sanctuary_-_%28A_Mischievous_Grin%29.jpg/1280px-Bengal_monitor_at_Anawilundawa_Bird_Sanctuary_-_%28A_Mischievous_Grin%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d24_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Мобильное приложение для отслеживания доставки",
+        "desc": "Статус движения груза и расчетное время прибытия на экране смартфона.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1e/General_Carrier_E-Receipt_APP_on_Smartphone_%282020-10-11%29.jpg/1280px-General_Carrier_E-Receipt_APP_on_Smartphone_%282020-10-11%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d24_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Специалист клиентской поддержки на связи",
+        "desc": "Оперативное информирование заказчика о каждом этапе перевозки.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/49/Ameyo_Adadevoh_way_Abuja.jpg/1280px-Ameyo_Adadevoh_way_Abuja.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d24_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Диспетчерский центр круглосуточного контроля рейсов",
+        "desc": "Команда дежурных логистов отслеживает график движения 24 часа в сутки.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/12/NASA_OFFICIALS_-_MISSION_OPERATIONS_CONROL_ROOM_%28MOCR%29_-_MONITORING_PROBLEMS_-_SKYLAB_%28SL%29-3_COMMAND_MODULE_%28CM%29_-_JSC_%28S73-31875%29.jpg/1280px-NASA_OFFICIALS_-_MISSION_OPERATIONS_CONROL_ROOM_%28MOCR%29_-_MONITORING_PROBLEMS_-_SKYLAB_%28SL%29-3_COMMAND_MODULE_%28CM%29_-_JSC_%28S73-31875%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 25,
+    "date": "25.11, Пн",
+    "plan_a_title": "ПЛАН «А»: Авиадоставка срочных грузов — когда каждый час на счету",
+    "plan_b_title": "ПЛАН «Б»: Авианакладная Air Waybill (AWB) и правила упаковки авиагрузов",
+    "photos": [
+      {
+        "id": "d25_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Грузовой самолет на перроне аэропорта",
+        "desc": "Подготовка широкофюзеляжного борта к вылету.",
+        "url": "https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?w=900&q=85"
+      },
+      {
+        "id": "d25_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Погрузка авиационных паллет в фюзеляж",
+        "desc": "Высокоточная загрузка через грузовой люк авиалайнера.",
+        "url": "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=900&q=85"
+      },
+      {
+        "id": "d25_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Высотный погрузчик у борта самолета",
+        "desc": "Перемещение авиационных контейнеров ULD на грузовую палубу.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/50/Main_Deck%2C_Second_Deck_-_USS_MISSOURI%2C_Batttleship_Row%2C_Ford_Island%2C_Pearl_City%2C_Honolulu_County%2C_HI_HAER_HI-62_%28sheet_4_of_7%29.png/1280px-Main_Deck%2C_Second_Deck_-_USS_MISSOURI%2C_Batttleship_Row%2C_Ford_Island%2C_Pearl_City%2C_Honolulu_County%2C_HI_HAER_HI-62_%28sheet_4_of_7%29.png?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d25_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Оформление грузовой авианакладной Air Waybill",
+        "desc": "Проверка документов авиационной безопасности и таможенного оформления.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/17/AWB_Workshop%2C_Bangalore.jpg/1280px-AWB_Workshop%2C_Bangalore.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 26,
+    "date": "26.11, Вт",
+    "plan_a_title": "ПЛАН «А»: Форс-мажоры в дороге: поломка, снегопад, забастовка — как мы спасаем сроки",
+    "plan_b_title": "ПЛАН «Б»: Чек-лист проверки перевозчика: 5 красных флагов недобросовестных компаний",
+    "photos": [
+      {
+        "id": "d26_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Срочная подача тягача к промышленному объекту",
+        "desc": "Быстрая подмена техники для бесперебойного выполнения рейса.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/2/21/1953_Nash_Rambler_Delivery_wagon.JPG/1280px-1953_Nash_Rambler_Delivery_wagon.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d26_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Эстакада и складские рампы производственного завода",
+        "desc": "Оперативная перегрузка сырья для непрерывного производственного цикла.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/c/c4/Loading_Bay%2C_Kerry_Foods_-_geograph.org.uk_-_1873595.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d26_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Инспекция состояния полуприцепа перед рейсом",
+        "desc": "Строгая проверка технического состояния узлов по чек-листу безопасности.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7f/100_LRS_Conducts_Winter_Personal_Vehicle_Safety_Inspections_%2810052170%29.jpg/1280px-100_LRS_Conducts_Winter_Personal_Vehicle_Safety_Inspections_%2810052170%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d26_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Резервные тягачи в парке автопредприятия",
+        "desc": "Готовая к выезду техника для обеспечения гарантированных сроков.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/0/01/0218_Grand_Canyon_Railway_Depot_Area_Construction_%284928002715%29.jpg/1280px-0218_Grand_Canyon_Railway_Depot_Area_Construction_%284928002715%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 27,
+    "date": "27.11, Ср",
+    "plan_a_title": "ПЛАН «А»: Таможенный склад (СВХ) — правила хранения и раскредитации",
+    "plan_b_title": "ПЛАН «Б»: Инкотермс 2020 простыми словами: разница между EXW, FCA, DAP, DDP",
+    "photos": [
+      {
+        "id": "d27_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Территория таможенного терминала СВХ",
+        "desc": "Охраняемая зона временного хранения для оформления импортных грузов.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f8/Macau_Customs_Banner.jpg/1280px-Macau_Customs_Banner.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d27_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Площадка таможенного контроля с автопоездами",
+        "desc": "Тягачи на специально оборудованной стоянке зоны таможенного контроля.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/5/5e/Gate_of_the_customs_control_zone_of_Grodekovo_railway_station.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      },
+      {
+        "id": "d27_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Консультация логиста по условиям Инкотермс",
+        "desc": "Подбор оптимального базиса поставки для минимизации рисков заказчика.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e3/Customs_declaration_signed_by_President_Thomas_Jefferson%2C_11_April_1801_%289ca4fee6-26f9-4549-98aa-20f221bd2eb8%29.jpg/1280px-Customs_declaration_signed_by_President_Thomas_Jefferson%2C_11_April_1801_%289ca4fee6-26f9-4549-98aa-20f221bd2eb8%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d27_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Таможенный инспектор сверяет коды ТН ВЭД",
+        "desc": "Проверка соответствия фактического груза представленной декларации.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/CBP_Minneapolis_Seizes_Heroin_Concealed_in_Luggage_%2824986257767%29.jpg/1280px-CBP_Minneapolis_Seizes_Heroin_Concealed_in_Luggage_%2824986257767%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 28,
+    "date": "28.11, Чт",
+    "plan_a_title": "ПЛАН «А»: Такелаж и крепление груза: почему один ремень спасает миллионы сумов",
+    "plan_b_title": "ПЛАН «Б»: Правила размещения груза в прицепе: как избежать смещения центра тяжести",
+    "photos": [
+      {
+        "id": "d28_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Затяжка стяжного ремня храповым замком",
+        "desc": "Надежное натяжение сертифицированных текстильных лент для фиксации паллет.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b4/Flickr_-_The_U.S._Army_-_Attaching_a_ratchet_strap.jpg/1280px-Flickr_-_The_U.S._Army_-_Attaching_a_ratchet_strap.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d28_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Противоскользящие маты и крепление поддонов",
+        "desc": "Использование сертифицированных материалов для предотвращения сдвига груза.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e0/AMC_Airmen_palletize_cargo_on_a_KC-46_during_Talisman_Sabre_25_%289221030%29.jpg/1280px-AMC_Airmen_palletize_cargo_on_a_KC-46_during_Talisman_Sabre_25_%289221030%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d28_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Схема надежной строповки груза в кузове",
+        "desc": "Правильное применение ремней с усилием стяжки до 5000 daN.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/15/52nd_LRS_prepares_equipment_for_next_location_during_AK23-6_%287994669%29.jpg/1280px-52nd_LRS_prepares_equipment_for_next_location_during_AK23-6_%287994669%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d28_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Телескопические распорные штанги в прицепе",
+        "desc": "Блокировка груза от поперечного смещения горизонтальными балками.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/6c/Horse_Trailer_with_Living_Quarters_Video_Walkthrough_%E2%80%93_2015_Cimarron_Norstar_-_20219311944.jpg/1280px-Horse_Trailer_with_Living_Quarters_Video_Walkthrough_%E2%80%93_2015_Cimarron_Norstar_-_20219311944.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 29,
+    "date": "29.11, Пт",
+    "plan_a_title": "ПЛАН «А»: Экологические стандарты Евро-5 и Евро-6 в международной логистике",
+    "plan_b_title": "ПЛАН «Б»: Почему европейские клиенты выбирают перевозчиков с экологичным автопарком",
+    "photos": [
+      {
+        "id": "d29_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Современный автопарк экологического стандарта Евро-6",
+        "desc": "Линейка современных тягачей с минимальным углеродным следом.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/95/KS_line_11_and_3_at_Mozarts_Plads_1.jpg/1280px-KS_line_11_and_3_at_Mozarts_Plads_1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d29_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Экологичный тягач нового поколения на трассе",
+        "desc": "Высокоэффективный автопоезд с низким расходом топлива и системой AdBlue.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/7/7c/2017_DAF_CF_Euro_6.jpg/1280px-2017_DAF_CF_Euro_6.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d29_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Сертифицированное сервисное обслуживание тягача",
+        "desc": "Регулярное ТО в официальном техническом центре перед дальними рейсами.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/ac/2004_Ford_PH_Courier_GL_service_truck_%285349841721%29.jpg/1280px-2004_Ford_PH_Courier_GL_service_truck_%285349841721%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d29_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Чистые белые тягачи в транспортном депо",
+        "desc": "Ухоженная техника европейского класса безопасности.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/97/Fleet_of_Creely_Trucks_%285710941135%29.jpg/1280px-Fleet_of_Creely_Trucks_%285710941135%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      }
+    ]
+  },
+  {
+    "day": 30,
+    "date": "30.11, Сб",
+    "plan_a_title": "ПЛАН «А»: Итоги ноября FortisWay: 1000+ тонн груза доставлено без задержек",
+    "plan_b_title": "ПЛАН «Б»: Планы на декабрь: открываем новые направления и спецтарифы к Новому Году",
+    "photos": [
+      {
+        "id": "d30_a1",
+        "plan": "A",
+        "var": "1",
+        "title": "Автопоезд на рассветной магистрали",
+        "desc": "Тягач уходит в рейс навстречу утреннему солнцу.",
+        "url": "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?w=900&q=85"
+      },
+      {
+        "id": "d30_a2",
+        "plan": "A",
+        "var": "2",
+        "title": "Панорамная дорога к горизонту",
+        "desc": "Грузовой автопоезд на бескрайнем пути международных торговых маршрутов.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/33/Flaming_Gorge-Uintas_National_Scenic_Byway_-_The_Navajo_Formation_-_NARA_-_7718358.jpg/1280px-Flaming_Gorge-Uintas_National_Scenic_Byway_-_The_Navajo_Formation_-_NARA_-_7718358.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d30_b1",
+        "plan": "B",
+        "var": "1",
+        "title": "Команда логистов FortisWay в центральном офисе",
+        "desc": "Профессионалы, обеспечивающие круглосуточную надежность перевозок.",
+        "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e2/Defence_Logistics_Treaty_%2832413630411%29.jpg/1280px-Defence_Logistics_Treaty_%2832413630411%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail"
+      },
+      {
+        "id": "d30_b2",
+        "plan": "B",
+        "var": "2",
+        "title": "Успешное завершение масштабного логистического проекта",
+        "desc": "Руководители подводят итоги месяца и утверждают новые направления.",
+        "url": "https://upload.wikimedia.org/wikipedia/commons/d/dc/The_success_of_this_business_-_DPLA_-_00e5f40ee3d806175513af9f8a5ae278.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled"
+      }
+    ]
+  }
+]
