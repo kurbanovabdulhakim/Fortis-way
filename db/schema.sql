@@ -78,6 +78,19 @@ CREATE TABLE IF NOT EXISTS company_knowledge (
     details_json TEXT
 );
 
+-- Dedicated Telegram Task Queue for 24/7 Agent
+CREATE TABLE IF NOT EXISTS telegram_tasks (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created_at TEXT NOT NULL,
+    telegram_msg_id INTEGER,
+    task_text TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'pending',
+    result_text TEXT,
+    completed_at TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_telegram_tasks_status ON telegram_tasks(status);
+
 -- Full Text Search Virtual Table (FTS5) for sub-millisecond retrieval
 CREATE VIRTUAL TABLE IF NOT EXISTS fts_index USING fts5(
     entity_type,
