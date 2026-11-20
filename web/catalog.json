@@ -1,0 +1,34 @@
+{
+  "updated_at": "2026-11-20 19:29:38",
+  "stats": {
+    "total_items": 1,
+    "total_bytes": 0,
+    "by_type": {
+      "text": {
+        "count": 1,
+        "bytes": 0
+      }
+    },
+    "by_country": {
+      "Несортированное": {
+        "count": 1,
+        "bytes": 0
+      }
+    }
+  },
+  "items": [
+    {
+      "id": 1,
+      "country": "Несортированное",
+      "flag": "🌐",
+      "cargo": "Груз_2026-11-20",
+      "type": "text",
+      "category": "05_Заметки_и_Разное",
+      "title": "/старт",
+      "desc": "/старт",
+      "date": "2026-11-20 19:14:50",
+      "size": "0 КБ",
+      "file": "Заметка"
+    }
+  ]
+}

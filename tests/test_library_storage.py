@@ -63,3 +63,13 @@ def test_smartphone_stats(test_db):
     assert stats["by_type"]["video"]["count"] == 1
     assert stats["by_type"]["video"]["bytes"] == 50000000
     assert stats["by_country"]["Польша"]["bytes"] == 55000000
+
+def test_export_catalog_json(test_db, tmp_path):
+    storage = LibraryStorage(test_db)
+    storage.add_item(country="Польша", content_type="video", file_size_bytes=50000000, category="03_Видео_Выгрузки", title="Видео 1", cargo_id="Bakan_01")
+    json_path = tmp_path / "catalog.json"
+    data = storage.export_catalog_json(output_path=str(json_path))
+    assert json_path.exists()
+    assert len(data["items"]) == 1
+    assert data["items"][0]["country"] == "Польша"
+    assert data["items"][0]["cargo"] == "Bakan_01"

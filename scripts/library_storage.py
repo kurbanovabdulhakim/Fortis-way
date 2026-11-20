@@ -5,6 +5,7 @@ Manages library_items table, FTS5 full-text indexing, deduplication,
 country-isolated search, and smartphone storage metrics.
 """
 
+import json
 import sqlite3
 from datetime import datetime
 from pathlib import Path
@@ -224,3 +225,48 @@ class LibraryStorage:
                 LIMIT ?
             """, (limit,))
             return [dict(r) for r in cur.fetchall()]
+
+    def export_catalog_json(self, output_path: str = "web/catalog.json") -> dict:
+        """Exports catalog and smartphone stats to a web-accessible JSON file."""
+        stats = self.get_storage_stats()
+        items = self.get_last_items(limit=100)
+
+        flag_map = {
+            "Польша": "🇵🇱",
+            "Нидерланды": "🇳🇱",
+            "Узбекистан": "🇺🇿",
+            "Китай": "🇨🇳",
+            "Россия": "🇷🇺",
+            "Турция": "🇹🇷",
+            "Германия": "🇩🇪",
+            "Казахстан": "🇰🇿"
+        }
+
+        formatted_items = []
+        for it in items:
+            sz = it["file_size_bytes"] or 0
+            sz_str = f"{sz / (1024 * 1024):.1f} МБ" if sz >= 1024 * 1024 else f"{sz / 1024:.0f} КБ" if sz else "0 КБ"
+            formatted_items.append({
+                "id": it["id"],
+                "country": it["country"],
+                "flag": flag_map.get(it["country"], "🌐"),
+                "cargo": it["cargo_id"] or "Общий",
+                "type": it["content_type"],
+                "category": it["category"],
+                "title": it["title"],
+                "desc": (it["raw_text"] or it["title"])[:150],
+                "date": it["created_at"],
+                "size": sz_str,
+                "file": it["file_name"] or "Заметка"
+            })
+
+        data = {
+            "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+            "stats": stats,
+            "items": formatted_items
+        }
+
+        out_file = Path(output_path)
+        out_file.parent.mkdir(parents=True, exist_ok=True)
+        out_file.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+        return data

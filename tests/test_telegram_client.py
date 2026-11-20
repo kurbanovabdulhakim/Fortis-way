@@ -42,3 +42,15 @@ def test_get_updates():
         updates = client.get_updates(offset=100, timeout=10)
         assert len(updates) == 1
         assert updates[0]["update_id"] == 100
+
+def test_set_menu_button_webapp():
+    client = TelegramClient("dummy_token")
+    mock_cm = _create_mock_context({"ok": True, "result": True})
+    
+    with patch("urllib.request.urlopen", return_value=mock_cm) as mock_urlopen:
+        client.set_menu_button(web_app_url="https://example.com/app", chat_id=12345)
+        req = mock_urlopen.call_args[0][0]
+        posted_data = json.loads(req.data.decode("utf-8"))
+        assert posted_data["chat_id"] == 12345
+        assert posted_data["menu_button"]["type"] == "web_app"
+        assert posted_data["menu_button"]["web_app"]["url"] == "https://example.com/app"

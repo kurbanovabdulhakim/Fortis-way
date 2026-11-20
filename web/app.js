@@ -60,15 +60,52 @@ const SAMPLE_ITEMS = [
   }
 ];
 
+let currentItems = [...SAMPLE_ITEMS];
+
 let selectedCountry = "all";
 let selectedType = "all";
 let searchQuery = "";
+
+function updateStorageBar(stats) {
+  if (!stats) return;
+  const totBytes = stats.total_bytes || 0;
+  const totGb = (totBytes / (1024 * 1024 * 1024)).toFixed(1);
+  const freeGb = Math.max(5120.0 - (totBytes / (1024 * 1024 * 1024)), 0.0).toFixed(1);
+
+  const storageLabel = document.getElementById("storage-percent");
+  if (storageLabel) {
+    storageLabel.textContent = `Занято: ${totGb} ГБ / 5 120 ГБ`;
+  }
+}
+
+function loadLiveCatalog() {
+  fetch(`catalog.json?t=${Date.now()}`)
+    .then(resp => {
+      if (resp.ok) return resp.json();
+      throw new Error("Local catalog not available");
+    })
+    .then(data => {
+      if (data.items && data.items.length > 0) {
+        currentItems = data.items;
+      }
+      if (data.stats) {
+        updateStorageBar(data.stats);
+      }
+      renderItems();
+loadLiveCatalog();
+    })
+    .catch(() => {
+      // Keep sample items gracefully
+      renderItems();
+loadLiveCatalog();
+    });
+}
 
 function renderItems() {
   const container = document.getElementById("items-container");
   container.innerHTML = "";
 
-  const filtered = SAMPLE_ITEMS.filter(item => {
+  const filtered = currentItems.filter(item => {
     const matchCountry = selectedCountry === "all" || item.country === selectedCountry;
     const matchType = selectedType === "all" || item.type === selectedType;
     const matchSearch = !searchQuery || 
@@ -128,3 +165,4 @@ document.getElementById("search-input").addEventListener("input", (e) => {
 });
 
 renderItems();
+loadLiveCatalog();

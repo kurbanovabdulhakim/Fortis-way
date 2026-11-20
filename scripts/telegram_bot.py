@@ -20,22 +20,32 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-# Safe logging for pythonw.exe
+# Safe logging for pythonw.exe and Windows UTF-8 stdout
 LOGS_DIR = PROJECT_ROOT / "logs"
 LOGS_DIR.mkdir(parents=True, exist_ok=True)
 DAEMON_LOG = LOGS_DIR / "telegram_daemon.log"
 
 if sys.stdout is None:
     try:
-        sys.stdout = open(DAEMON_LOG, "a", encoding="utf-8", buffering=1)
+        sys.stdout = open(DAEMON_LOG, "a", encoding="utf-8", buffering=1, errors="replace")
     except Exception:
         sys.stdout = open(os.devnull, "w")
+else:
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 if sys.stderr is None:
     try:
-        sys.stderr = open(DAEMON_LOG, "a", encoding="utf-8", buffering=1)
+        sys.stderr = open(DAEMON_LOG, "a", encoding="utf-8", buffering=1, errors="replace")
     except Exception:
         sys.stderr = open(os.devnull, "w")
+else:
+    try:
+        sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
 
 from scripts.config import get_bot_config, SecurityGuard
 from scripts.library_storage import LibraryStorage
@@ -332,6 +342,13 @@ class LibrarianRouter:
         except Exception as e:
             print(f"[!] Ошибка записи карточки в git: {e}")
 
+        # Update WebApp live catalog.json
+        try:
+            if hasattr(self.storage, "export_catalog_json"):
+                self.storage.export_catalog_json(str(self.repo_dir / "web" / "catalog.json"))
+        except Exception as e:
+            print(f"[!] Ошибка обновления web/catalog.json: {e}")
+
         channel_status = "✅ Сохранено в канал" if channel_msg_id else "⏳ Сохранено локально"
         sz_str = f" ({format_bytes(file_size)})" if file_size else ""
 
@@ -344,6 +361,25 @@ class LibrarianRouter:
             f"3️⃣ Google Drive (5 ТБ): ✅ Индексировано для синхронизации"
         )
 
+def _update_channel_env(channel_id: str):
+    """Saves detected channel ID to .env file for persistence."""
+    env_path = PROJECT_ROOT / ".env"
+    if env_path.exists():
+        text = env_path.read_text(encoding="utf-8")
+        lines = text.splitlines()
+        found = False
+        new_lines = []
+        for l in lines:
+            if l.startswith("TELEGRAM_CHANNEL_ID="):
+                new_lines.append(f"TELEGRAM_CHANNEL_ID={channel_id}")
+                found = True
+            else:
+                new_lines.append(l)
+        if not found:
+            new_lines.append(f"TELEGRAM_CHANNEL_ID={channel_id}")
+        env_path.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
+    os.environ["TELEGRAM_CHANNEL_ID"] = channel_id
+
 def run_librarian_daemon(once: bool = False):
     """Main continuous 24/7 daemon loop for Librarian Bot."""
     config = get_bot_config()
@@ -354,18 +390,39 @@ def run_librarian_daemon(once: bool = False):
 
     admin_username = config.get("admin_username")
     db_path = config.get("db_path")
-    channel_id = os.environ.get("TELEGRAM_CHANNEL_ID") or "-1003463990808" # or invite link fallback
+    channel_id = os.environ.get("TELEGRAM_CHANNEL_ID") or "-1003463990808"
 
     guard = SecurityGuard(admin_username=admin_username)
     storage = LibraryStorage(db_path=db_path)
     client = TelegramClient(token=token)
     router = LibrarianRouter(storage=storage, client=client, channel_id=channel_id)
 
-    # Configure WebApp Menu button
+    # Export latest catalog.json for WebApp on start
     try:
-        client.set_menu_button("https://kurbanovabdulhakim.github.io/Fortis-way/web/")
+        storage.export_catalog_json(str(PROJECT_ROOT / "web" / "catalog.json"))
     except Exception:
         pass
+
+    # Configure registered bot commands
+    try:
+        client.set_commands([
+            {"command": "stats", "description": "📊 Память и хранилище FortisWay"},
+            {"command": "catalog", "description": "📚 Каталог поступлений по странам"},
+            {"command": "last", "description": "⏱ Последние 5 записей"},
+            {"command": "help", "description": "ℹ️ Справка и поиск по библиотеке"}
+        ])
+    except Exception as e:
+        print(f"[!] Предупреждение: Не удалось обновить команды: {e}")
+
+    # Configure WebApp Menu Button (points to live GitHub Pages WebApp)
+    WEB_APP_URL = "https://kurbanovabdulhakim.github.io/Fortis-way/web/index.html?v=4"
+    try:
+        client.set_menu_button(web_app_url=WEB_APP_URL, text="Каталог 📚")
+        if guard.authorized_user_ids:
+            for uid in guard.authorized_user_ids:
+                client.set_menu_button(web_app_url=WEB_APP_URL, chat_id=uid, text="Каталог 📚")
+    except Exception as e:
+        print(f"[!] Предупреждение: Не удалось настроить кнопку WebApp: {e}")
 
     print("[*] FortisWay 24/7 Digital Librarian Daemon запущен.")
     print(f"[*] Авторизованный администратор: @{admin_username}")
@@ -387,9 +444,36 @@ def run_librarian_daemon(once: bool = False):
                 update_id = update.get("update_id")
                 offset = update_id + 1
                 
-                msg = update.get("message") or update.get("channel_post")
+                # Auto-detect channel if bot was added as admin
+                my_chat_member = update.get("my_chat_member")
+                if my_chat_member:
+                    chat = my_chat_member.get("chat", {})
+                    if chat.get("type") == "channel":
+                        cid = str(chat.get("id"))
+                        router.channel_id = cid
+                        _update_channel_env(cid)
+                        print(f"[*] Привязан приватный канал {chat.get('title')} (ID: {cid})")
+
+                # Auto-detect channel if channel post received
+                channel_post = update.get("channel_post")
+                if channel_post:
+                    chat = channel_post.get("chat", {})
+                    if chat.get("id"):
+                        cid = str(chat.get("id"))
+                        router.channel_id = cid
+                        _update_channel_env(cid)
+
+                msg = update.get("message")
                 if not msg:
                     continue
+
+                # Auto-detect channel if forwarded from channel
+                fwd = msg.get("forward_from_chat")
+                if fwd and fwd.get("type") == "channel":
+                    cid = str(fwd.get("id"))
+                    router.channel_id = cid
+                    _update_channel_env(cid)
+                    print(f"[*] Привязан канал из пересланного поста: {fwd.get('title')} (ID: {cid})")
 
                 sender = msg.get("from", {})
                 chat_id = msg.get("chat", {}).get("id")

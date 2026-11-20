@@ -97,16 +97,24 @@ class TelegramClient:
             payload["caption"] = caption
         return self._call_api("copyMessage", payload=payload, timeout=30.0)
 
-    def set_menu_button(self, web_app_url: str = "") -> dict:
+    def set_menu_button(self, web_app_url: str = "", chat_id: int | str = None, text: str = "Каталог 📚") -> dict:
         """Configures the persistent menu/WebApp button in the bottom-left corner."""
+        payload = {}
+        if chat_id is not None:
+            payload["chat_id"] = chat_id
+            
         if web_app_url:
-            menu_btn = {
+            payload["menu_button"] = {
                 "type": "web_app",
-                "text": "Каталог 📚",
+                "text": text,
                 "web_app": {"url": web_app_url}
             }
         else:
-            menu_btn = {"type": "default"}
+            payload["menu_button"] = {"type": "default"}
             
-        return self._call_api("setChatMenuButton", payload={"menu_button": menu_btn}, timeout=15.0)
+        return self._call_api("setChatMenuButton", payload=payload, timeout=15.0)
+
+    def set_commands(self, commands: list[dict]) -> dict:
+        """Sets the bot's registered command list for autocomplete and menu."""
+        return self._call_api("setMyCommands", payload={"commands": commands}, timeout=15.0)
 
