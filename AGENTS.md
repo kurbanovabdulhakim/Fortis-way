@@ -42,14 +42,26 @@ When starting a new session or task in this repository:
 - `documents_registry` (47 records): File registry of presentations, proposals, and contracts.
 - `company_knowledge` (7 records): Company profile, requisites, and rules.
 - `fts_index` (Virtual): Full-text search across all entities.
+- `library_items`: Master records of all media, notes, and files cataloged by the Librarian Bot.
+- `library_fts` (Virtual): Sub-millisecond FTS5 search across the digital library.
 
 ---
 
-## 2.1 24/7 Telegram Agent (@hermes_0078bot)
+## 2.1 24/7 Digital Librarian Bot (@hermes_0078bot) & 3-Tier Vault
 - **Script:** `scripts/telegram_bot.py`
 - **Launcher:** `run_bot.cmd` or Windows Startup (`FortisWayTelegramAgent.lnk`)
 - **Admin:** `@LogisticsFortisway` (UserID: `8930092703`)
-- **Capabilities:** Autonomous task logging to `plan_fact`, FTS5 client/tariff search, whitelisted script execution (`/run`).
+- **Private Channel Archive:** `https://t.me/+VeTqayUTctU0MmMy`
+- **Architecture:** 3-Tier Indestructible Vault:
+  1. **Tier 1 (Telegram Cloud):** Instant backup of all files (up to 2,000 MB per file) into the private channel archive.
+  2. **Tier 2 (GitHub Repository):** Versioned Markdown cards in `library/entries/` and `library/CATALOG.md`.
+  3. **Tier 3 (Google Drive 5TB):** Full-resolution documents, photos, and videos organized into geographic directories (`Польша/`, `Нидерланды/`, `Узбекистан/`, `Китай/`).
+- **Capabilities:**
+  - Ingestion: Saves notes, files, photos, videos without hallucinating or modifying data.
+  - Geo-Isolation: Searches and filters strictly by destination country and shipment ID.
+  - Smartphone Analytics (`/stats`): Exact memory breakdown across videos, photos, CMRs, and countries.
+  - Mobile WebApp: Embedded catalog viewer for Telegram.
+
 
 ---
 

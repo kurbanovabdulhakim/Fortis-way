@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <title>FortisWay Vault — Цифровой Каталог Библиотеки</title>
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="vault-header">
+      <div class="header-badge">FortisWay Vault 📚</div>
+      <h2>Цифровая Библиотека</h2>
+      <p class="subtitle">3-уровневое хранилище грузов и документов (5 ТБ)</p>
+    </header>
+
+    <!-- Storage Meter Bar (Smartphone Style) -->
+    <section class="storage-card">
+      <div class="storage-title">
+        <span>Память Google Drive & Vault</span>
+        <strong id="storage-percent">Занято: 36.3 ГБ / 5 120 ГБ</strong>
+      </div>
+      <div class="storage-bar">
+        <div class="bar-segment bar-video" style="width: 15%;" title="Видео"></div>
+        <div class="bar-segment bar-photo" style="width: 8%;" title="Фото"></div>
+        <div class="bar-segment bar-doc" style="width: 4%;" title="Документы"></div>
+        <div class="bar-segment bar-misc" style="width: 2%;" title="Заметки"></div>
+      </div>
+      <div class="storage-legend">
+        <span><i class="dot dot-video"></i> Видео</span>
+        <span><i class="dot dot-photo"></i> Фото</span>
+        <span><i class="dot dot-doc"></i> Документы</span>
+        <span><i class="dot dot-free"></i> Свободно (5.08 ТБ)</span>
+      </div>
+    </section>
+
+    <!-- Search Input -->
+    <div class="search-box">
+      <input type="text" id="search-input" placeholder="🔍 Поиск по грузам, CMR, накладным..." autocomplete="off">
+    </div>
+
+    <!-- Country Tabs -->
+    <div class="country-scroll">
+      <button class="country-pill active" data-country="all">Все страны</button>
+      <button class="country-pill" data-country="Польша">🇵🇱 Польша</button>
+      <button class="country-pill" data-country="Нидерланды">🇳🇱 Нидерланды</button>
+      <button class="country-pill" data-country="Узбекистан">🇺🇿 Узбекистан</button>
+      <button class="country-pill" data-country="Китай">🇨🇳 Китай</button>
+      <button class="country-pill" data-country="Россия">🇷🇺 Россия</button>
+    </div>
+
+    <!-- Media Filter Chips -->
+    <div class="filter-chips">
+      <button class="chip active" data-type="all">Все</button>
+      <button class="chip" data-type="video">🎬 Видео</button>
+      <button class="chip" data-type="photo">📸 Фото</button>
+      <button class="chip" data-type="document">📑 Документы</button>
+    </div>
+
+    <!-- Catalog Items List -->
+    <div class="items-list" id="items-container">
+      <!-- Populated by app.js -->
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

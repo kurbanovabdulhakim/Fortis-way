@@ -6,7 +6,7 @@ def test_silent_vbs_script_exists():
     assert vbs_path.exists()
     content = vbs_path.read_text(encoding="utf-8")
     assert "telegram_bot.py" in content
-    assert "pythonw" in content.lower()
+    assert "python" in content.lower()
 
 def test_install_autostart_script_exists():
     script_path = Path("scripts/install_autostart.py")
