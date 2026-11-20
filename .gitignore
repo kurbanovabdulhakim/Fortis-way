@@ -23,4 +23,7 @@ desktop.ini
 # Ephemeral artifacts & logs
 generated/
 *.tmp
+.bot_state.json
+.superpowers/
+logs/
 
