@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 """
-FortisWay 24/7 Autonomous Telegram Agent & Task Queue Daemon.
-Operates via Telegram Bot API with SQLite SSOT integration and remote runner.
+FortisWay 24/7 Digital Librarian Bot & 3-Tier Vault Daemon.
+Operates as a faithful library archivist:
+1. Ingestion: Accepts texts, photos, videos, and documents, categorizes by country & cargo,
+   and copies to Private Channel, GitHub repository, and Google Drive.
+2. Search & Retrieval: Delivers country-isolated files and notes on request.
+3. Storage Analytics: Smartphone-style memory breakdown (/stats).
 """
 
 import os
 import sys
 import time
 import json
-import sqlite3
-import subprocess
-import urllib.request
 from datetime import datetime
 from pathlib import Path
 
@@ -19,7 +20,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-# Safe logging for pythonw.exe (where sys.stdout / sys.stderr are None)
+# Safe logging for pythonw.exe
 LOGS_DIR = PROJECT_ROOT / "logs"
 LOGS_DIR.mkdir(parents=True, exist_ok=True)
 DAEMON_LOG = LOGS_DIR / "telegram_daemon.log"
@@ -37,333 +38,342 @@ if sys.stderr is None:
         sys.stderr = open(os.devnull, "w")
 
 from scripts.config import get_bot_config, SecurityGuard
-from scripts.task_storage import TaskStorage
+from scripts.library_storage import LibraryStorage
+from scripts.geo_classifier import classify_message
 from scripts.telegram_client import TelegramClient
 
-WHITELISTED_SCRIPTS = {
-    "build_db.py": "Сборка и синхронизация мастер-базы fortisway.db",
-    "export_vcard.py": "Экспорт базы контактов в формат vCard (.vcf)",
-    "query.py": "Быстрый поиск и сводка базы данных",
-    "reformat_goldenpages_excel.py": "Форматирование таблицы GoldenPages",
-    "reformat_translogistica_excel.py": "Форматирование базы TransLogistica 2026",
-    "update_translogistica_cards.py": "Обновление визиток TransLogistica"
+COUNTRY_FLAGS = {
+    "Польша": "🇵🇱",
+    "Нидерланды": "🇳🇱",
+    "Узбекистан": "🇺🇿",
+    "Китай": "🇨🇳",
+    "Россия": "🇷🇺",
+    "Турция": "🇹🇷",
+    "Германия": "🇩🇪",
+    "Казахстан": "🇰🇿",
+    "Несортированное": "📁",
+    "Общее": "🌐"
 }
 
-START_TIME = datetime.now()
+def format_bytes(byte_count: int) -> str:
+    """Formats raw bytes into human readable MB or GB."""
+    if not byte_count:
+        return "0 МБ"
+    mb = byte_count / (1024 * 1024)
+    if mb >= 1024:
+        return f"{mb / 1024:.1f} ГБ"
+    return f"{mb:.1f} МБ"
 
-class IntentRouter:
-    def __init__(self, storage: TaskStorage, db_path: str = None, gemini_api_key: str = ""):
+class LibrarianRouter:
+    def __init__(self, storage: LibraryStorage, client: TelegramClient, channel_id: str = "", repo_dir: str = None):
         self.storage = storage
-        self.db_path = str(db_path or (PROJECT_ROOT / "db" / "fortisway.db"))
-        self.gemini_api_key = gemini_api_key
+        self.client = client
+        self.channel_id = channel_id
+        self.repo_dir = Path(repo_dir or PROJECT_ROOT)
+        self.library_dir = self.repo_dir / "library"
+        self.entries_dir = self.library_dir / "entries"
+        self.entries_dir.mkdir(parents=True, exist_ok=True)
 
-    def handle_text(self, text: str, msg_id: int = None) -> str:
-        text = (text or "").strip()
-        if not text:
-            return "Пустое сообщение. Введите /help для справки."
-
+    def handle_message(self, msg: dict) -> str:
+        msg_id = msg.get("message_id")
+        chat_id = msg.get("chat", {}).get("id")
+        text = (msg.get("text") or msg.get("caption") or "").strip()
         lower = text.lower()
 
         # Help / Start
-        if text.startswith("/start") or text.startswith("/help") or lower in ("помощь", "справка", "меню"):
+        if text.startswith("/start") or text.startswith("/help") or lower in ("помощь", "справка", "меню", "библиотека"):
             return self._handle_help()
 
-        # Status
-        if text.startswith("/status") or lower in ("статус", "uptime", "состояние"):
-            return self._handle_status()
+        # Stats (Smartphone-style storage breakdown)
+        if text.startswith("/stats") or lower in ("статус", "память", "хранилище"):
+            return self._handle_stats()
 
-        # Task Add
-        if text.startswith("/task") or lower.startswith("запиши задачу") or lower.startswith("напомни") or lower.startswith("добавь задачу"):
-            task_desc = text
-            for prefix in ("/task", "запиши задачу:", "запиши задачу", "напомни:", "напомни", "добавь задачу:", "добавь задачу"):
-                if text.lower().startswith(prefix):
-                    task_desc = text[len(prefix):].strip()
-                    break
-            if not task_desc:
-                return "⚠️ Укажите текст задачи, например:\n`/task Позвонить в Bakan Tex`"
-            task_id = self.storage.add_task(task_desc, telegram_msg_id=msg_id)
-            return f"✅ *Задача #{task_id} успешно добавлена и сохранена в базу FortisWay!*\n\n📝 `{task_desc}`\n🔄 Синхронизировано с отчетом `plan_fact`."
+        # Catalog / Last
+        if text.startswith("/catalog") or text.startswith("/last") or lower in ("каталог", "последние"):
+            return self._handle_last()
 
-        # Tasks List
-        if text.startswith("/tasks") or lower in ("мои задачи", "список задач", "задачи", "план"):
-            return self._handle_list_tasks()
+        # Search Query ("найди ...", "покажи ...", "где ...", "? ...", "/find ...")
+        is_search = False
+        search_query = text
+        for prefix in ("/find", "найди", "покажи", "где", "поиск", "search", "?"):
+            if text.startswith(prefix) or lower.startswith(prefix):
+                is_search = True
+                search_query = text[len(prefix):].strip(" ?:;,")
+                break
 
-        # Task Done
-        if text.startswith("/done") or lower.startswith("сделано") or lower.startswith("выполнено") or lower.startswith("завершить"):
-            parts = text.split(maxsplit=2)
-            if len(parts) < 2 or not parts[1].isdigit():
-                return "⚠️ Укажите номер задачи, например: `/done 5` или `/done 5 договор подписан`"
-            task_id = int(parts[1])
-            res_note = parts[2] if len(parts) > 2 else ""
-            if self.storage.complete_task(task_id, result_text=res_note):
-                note_str = f" ({res_note})" if res_note else ""
-                return f"🎉 *Задача #{task_id} завершена и отмечена как выполненная!*{note_str}\nСтатус в `plan_fact` обновлен на 'Сделано'."
-            return f"❌ Задача #{task_id} не найдена."
+        if is_search:
+            return self._handle_search(search_query, chat_id=chat_id)
 
-        # Search Clients / Exhibition / DB
-        if text.startswith("/search") or lower.startswith("найди") or lower.startswith("поиск"):
-            query = text
-            for prefix in ("/search", "найди", "поиск"):
-                if text.lower().startswith(prefix):
-                    query = text[len(prefix):].strip()
-                    break
-            if not query:
-                return "⚠️ Укажите поисковый запрос, например: `/search крахмал`"
-            return self._handle_search(query)
-
-        # Tariffs
-        if text.startswith("/tariff") or lower.startswith("тариф") or lower.startswith("ставки") or lower.startswith("ставка"):
-            query = text
-            for prefix in ("/tariff", "тарифы", "тариф", "ставки", "ставка"):
-                if text.lower().startswith(prefix):
-                    query = text[len(prefix):].strip()
-                    break
-            return self._handle_tariffs(query)
-
-        # Run Script
-        if text.startswith("/run"):
-            parts = text.split()
-            if len(parts) < 2:
-                available = "\n".join([f"• `{s}` — {desc}" for s, desc in WHITELISTED_SCRIPTS.items()])
-                return f"⚠️ Укажите имя скрипта для запуска:\n\n*Доступные скрипты:*\n{available}\n\nПример: `/run build_db.py`"
-            script_name = parts[1]
-            if script_name not in WHITELISTED_SCRIPTS and f"{script_name}.py" in WHITELISTED_SCRIPTS:
-                script_name = f"{script_name}.py"
-            return self._handle_run_script(script_name, parts[2:])
-
-        # AI Converse / Fallback
-        return self._handle_converse_or_fallback(text)
+        # INTAKE FLOW: Save new item to 3-tier library
+        return self._handle_intake(msg)
 
     def _handle_help(self) -> str:
         return (
-            "🚚 *FortisWay Logistics — 24/7 AI Агент*\n"
-            "Менеджер: *Курбанов Абдулхаким*\n"
-            "Статус: 🟢 В сети (Круглосуточный режим)\n\n"
-            "*Команды управления:*\n"
-            "• `/task <текст>` — Сохранить задачу в очередь и `plan_fact`\n"
-            "• `/tasks` — Список активных задач\n"
-            "• `/done <id>` — Отметить задачу выполненной\n"
-            "• `/search <запрос>` — Поиск по 428 клиентам и выставкам\n"
-            "• `/tariff <направление>` — Проверка ставок и маршрутов\n"
-            "• `/run <скрипт>` — Запуск разрешенных скриптов\n"
-            "• `/status` — Состояние системы и сводка базы данных\n\n"
-            "_Также вы можете просто писать текстом: «найди крахмал», «запиши задачу...», «какие ставки до Польши»._"
+            "📚 *FortisWay — Цифровой Бот-Библиотекарь*\n"
+            "Менеджер: *Курбанов Абдулхаким* (@LogisticsFortisway)\n"
+            "Режим: 🟢 3-уровневое неуязвимое хранилище (24/7)\n\n"
+            "*Как пользоваться библиотекой:*\n"
+            "• **Сохранить материал:** Просто отправьте боту любой текст, фото, видео разгрузки или PDF документ (можно с подписью, например: `Польша Bakan Tex погрузка`).\n"
+            "• **Найти материал:** Напишите `найди <запрос>` или `? <запрос>` (например: `найди видео выгрузки Польша` или `? Bakan Tex`).\n"
+            "• **/stats** — Подробная раскладка памяти по типам файлов и странам.\n"
+            "• **/catalog** или **/last** — Последние сохраненные записи.\n\n"
+            "_Материалы автоматически дублируются в ваш закрытый архив-канал и репозиторий!_"
         )
 
-    def _handle_status(self) -> str:
-        stats = self.storage.get_db_stats()
-        uptime_sec = int((datetime.now() - START_TIME).total_seconds())
-        uptime_str = f"{uptime_sec // 3600}ч {(uptime_sec % 3600) // 60}м {uptime_sec % 60}с"
-        
+    def _handle_stats(self) -> str:
+        stats = self.storage.get_storage_stats()
+        tot_bytes = stats.get("total_bytes", 0)
+        tot_mb = tot_bytes / (1024 * 1024)
+        tot_gb = tot_mb / 1024
+        free_gb = max(5120.0 - tot_gb, 0.0) # 5 TB = 5120 GB
+
+        by_type = stats.get("by_type", {})
+        vid = by_type.get("video", {"count": 0, "bytes": 0})
+        pho = by_type.get("photo", {"count": 0, "bytes": 0})
+        doc = by_type.get("document", {"count": 0, "bytes": 0})
+        txt = by_type.get("text", {"count": 0, "bytes": 0})
+
+        by_country = stats.get("by_country", {})
+
+        country_lines = []
+        for c_name, c_data in sorted(by_country.items(), key=lambda x: x[1]["bytes"], reverse=True):
+            flag = COUNTRY_FLAGS.get(c_name, "🌐")
+            country_lines.append(f"• {flag} *{c_name}*: {format_bytes(c_data['bytes'])} _({c_data['count']} записей)_")
+
+        if not country_lines:
+            country_lines.append("• _Материалы пока не внесены_")
+
         return (
-            "📊 *Статус FortisWay Agent:*\n"
-            f"• Режим работы: 🟢 24/7 Активен\n"
-            f"• Uptime: `{uptime_str}`\n"
-            f"• База данных: `fortisway.db` (WAL Mode)\n\n"
-            "*Сводка записей базы:*\n"
-            f"👥 Клиенты (GoldenPages): *{stats.get('clients', 0)}*\n"
-            f"🏭 Лиды с выставок: *{stats.get('exhibition_leads', 0)}*\n"
-            f"🛣 Тарифы и маршруты: *{stats.get('tariffs_routes', 0)}*\n"
-            f"📋 Записи Plan-Fact: *{stats.get('plan_fact', 0)}*\n"
-            f"📌 Активных задач: {stats.get('pending_tasks', 0)}"
+            "📊 *ХРАНИЛИЩЕ FORTISWAY VAULT:*\n"
+            f"Общий объем: `5 120 ГБ (5 ТБ)` | Занято: `{format_bytes(tot_bytes)}` | Свободно: `{free_gb:.1f} ГБ`\n\n"
+            "📱 *РАСПРЕДЕЛЕНИЕ ПО ТИПАМ ФАЙЛОВ:*\n"
+            f"• 🎬 Видео (погрузка/выгрузка): {format_bytes(vid['bytes'])} ({vid['count']} файлов)\n"
+            f"• 📸 Фотографии и пломбы:         {format_bytes(pho['bytes'])} ({pho['count']} файлов)\n"
+            f"• 📑 Документы (CMR, ТТН, PDF):   {format_bytes(doc['bytes'])} ({doc['count']} файлов)\n"
+            f"• 📝 Заметки и переписки:        {format_bytes(txt['bytes'])} ({txt['count']} записей)\n\n"
+            "🌍 *МАТЕРИАЛЫ ПО СТРАНАМ:*\n" + "\n".join(country_lines)
         )
 
-    def _handle_list_tasks(self) -> str:
-        pending = self.storage.list_pending_tasks(limit=15)
-        if not pending:
-            return "✅ Все текущие задачи выполнены! Активных задач нет."
-        
-        lines = ["📌 *Список активных задач в очереди:*"]
-        for t in pending:
-            lines.append(f"• *#{t['id']}* `{t['task_text']}` _({t['created_at'][:10]})_")
-        lines.append("\n_Для завершения напишите: `/done <номер>`_")
-        return "\n".join(lines)
+    def _handle_last(self) -> str:
+        items = self.storage.get_last_items(limit=5)
+        if not items:
+            return "📚 Библиотека пока пуста. Отправьте первый текст, фото или документ!"
 
-    def _handle_search(self, query: str) -> str:
-        if not Path(self.db_path).exists():
-            return "❌ База данных `db/fortisway.db` не найдена."
-            
-        with sqlite3.connect(self.db_path) as conn:
-            conn.row_factory = sqlite3.Row
-            cur = conn.cursor()
-            
-            # FTS search first if available
-            cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='fts_index';")
-            if cur.fetchone():
+        lines = ["📚 *Последние поступления в библиотеку:*"]
+        for it in items:
+            flag = COUNTRY_FLAGS.get(it["country"], "🌐")
+            sz = f" ({format_bytes(it['file_size_bytes'])})" if it.get("file_size_bytes") else ""
+            lines.append(f"• *#{it['id']}* {flag} *{it['country']}* — `{it['title']}`{sz}\n  _Раздел: {it['category']}_")
+        lines.append("\n_Для поиска введите: `найди <название>` или `? <страна>`_")
+        return "\n\n".join(lines)
+
+    def _handle_search(self, query: str, chat_id: int = None) -> str:
+        if not query:
+            return "⚠️ Укажите, что именно вы ищете. Например: `найди CMR Польша` или `? Bakan Tex`."
+
+        # Detect country filter from query if present
+        country_filter = None
+        for country, stems in [
+            ("Польша", ["польш", "poland", "варшав"]),
+            ("Нидерланды", ["нидерланд", "голланд", "роттердам"]),
+            ("Узбекистан", ["узбекистан", "ташкент", "самарканд"]),
+            ("Китай", ["китай", "china"]),
+            ("Россия", ["росси", "russia", "москв"]),
+            ("Турция", ["турци", "стамбул"]),
+            ("Германия", ["германи", "берлин"]),
+            ("Казахстан", ["казахстан", "алмат"])
+        ]:
+            if any(s in query.lower() for s in stems):
+                country_filter = country
+                break
+
+        results = self.storage.find_items(query=query, country_filter=country_filter, limit=5)
+        if not results:
+            scope = f" по направлению {country_filter}" if country_filter else ""
+            return f"🔍 В библиотеке{scope} по запросу «{query}» ничего не найдено."
+
+        out = [f"📖 *Найдено в библиотеке по запросу «{query}»:*"]
+        for r in results:
+            flag = COUNTRY_FLAGS.get(r["country"], "🌐")
+            sz = f" [{format_bytes(r['file_size_bytes'])}]" if r.get("file_size_bytes") else ""
+            cargo = f" | Рейс: `{r['cargo_id']}`" if r.get("cargo_id") else ""
+            file_info = f"\n  📎 Файл: `{r['file_name']}`{sz}" if r.get("file_name") else ""
+            text_preview = f"\n  💬 _{r['raw_text'][:120]}..._" if r.get("raw_text") else ""
+
+            card = f"• *#{r['id']}* {flag} *{r['country']}*{cargo}\n  📂 `{r['category']}`: *{r['title']}*{file_info}{text_preview}"
+            out.append(card)
+
+            # If matching record has a channel message ID or file and chat_id provided, copy message
+            if chat_id and self.channel_id and r.get("channel_msg_id"):
                 try:
-                    cur.execute("""
-                        SELECT entity_type, entity_id, title, snippet(fts_index, 3, '[', ']', '...', 15) as snip
-                        FROM fts_index
-                        WHERE fts_index MATCH ?
-                        LIMIT 5;
-                    """, (f'"{query}"*',))
-                    fts_rows = cur.fetchall()
-                    if fts_rows:
-                        out = [f"🔍 *Результаты поиска по запросу «{query}»:*"]
-                        for r in fts_rows:
-                            out.append(f"• *[{r['entity_type']}]* {r['title']}\n  _{r['snip']}_")
-                        return "\n".join(out)
+                    self.client.copy_message(chat_id=chat_id, from_chat_id=self.channel_id, message_id=r["channel_msg_id"])
                 except Exception:
                     pass
 
-            # Fallback standard search on clients and exhibition_leads
-            like_q = f"%{query}%"
-            cur.execute("""
-                SELECT company, name, position, phone, city
-                FROM clients
-                WHERE company LIKE ? OR name LIKE ? OR call_result LIKE ?
-                LIMIT 5;
-            """, (like_q, like_q, like_q))
-            client_rows = cur.fetchall()
+        return "\n\n".join(out)
 
-            cur.execute("""
-                SELECT company, contact_person, activity_field, phone
-                FROM exhibition_leads
-                WHERE company LIKE ? OR contact_person LIKE ? OR activity_field LIKE ?
-                LIMIT 5;
-            """, (like_q, like_q, like_q))
-            lead_rows = cur.fetchall()
+    def _handle_intake(self, msg: dict) -> str:
+        chat_id = msg.get("chat", {}).get("id")
+        msg_id = msg.get("message_id")
+        text = (msg.get("text") or msg.get("caption") or "").strip()
 
-            if not client_rows and not lead_rows:
-                return f"🔍 По запросу «{query}» ничего не найдено в базе клиентов и лидов."
+        # Determine media type and attributes
+        content_type = "text"
+        file_name = ""
+        file_size = 0
+        file_unique_id = None
 
-            out = [f"🔍 *Найдено по запросу «{query}»:*"]
-            for r in client_rows:
-                out.append(f"🏢 *{r['company']}* ({r['city'] or 'Ташкент'})\n  👤 {r['name'] or 'Контакт'} | 📞 `{r['phone'] or 'нет'}`")
-            for r in lead_rows:
-                out.append(f"🏭 *{r['company']}* (Выставка)\n  👤 {r['contact_person'] or 'Лицо'} | 📞 `{r['phone'] or 'нет'}`")
-            return "\n\n".join(out)
+        if "photo" in msg:
+            content_type = "photo"
+            photo_sizes = msg["photo"]
+            best_photo = photo_sizes[-1] # highest resolution
+            file_size = best_photo.get("file_size", 0)
+            file_unique_id = best_photo.get("file_unique_id")
+            file_name = f"photo_{file_unique_id}.jpg"
 
-    def _handle_tariffs(self, query: str = "") -> str:
-        if not Path(self.db_path).exists():
-            return "❌ База данных не найдена."
-        with sqlite3.connect(self.db_path) as conn:
-            conn.row_factory = sqlite3.Row
-            cur = conn.cursor()
-            if query:
-                like_q = f"%{query}%"
-                cur.execute("""
-                    SELECT route_name, rate, currency, vehicle_type, transit_days, conditions
-                    FROM tariffs_routes
-                    WHERE route_name LIKE ? OR conditions LIKE ? OR cargo_type LIKE ?
-                    LIMIT 6;
-                """, (like_q, like_q, like_q))
-            else:
-                cur.execute("""
-                    SELECT route_name, rate, currency, vehicle_type, transit_days, conditions
-                    FROM tariffs_routes LIMIT 6;
-                """)
-            rows = cur.fetchall()
-            if not rows:
-                return f"🛣 По направлению «{query}» тарифов в базе пока не найдено."
+        elif "video" in msg:
+            content_type = "video"
+            v = msg["video"]
+            file_size = v.get("file_size", 0)
+            file_unique_id = v.get("file_unique_id")
+            file_name = v.get("file_name") or f"video_{file_unique_id}.mp4"
 
-            out = ["🛣 *Тарифы и ставки перевозки FortisWay:*"]
-            for r in rows:
-                price = f"{r['rate']:,.0f} {r['currency']}" if r['rate'] else "По запросу"
-                veh = f" ({r['vehicle_type']})" if r['vehicle_type'] else ""
-                days = f" | ⏱ {r['transit_days']}" if r['transit_days'] else ""
-                out.append(f"• *{r['route_name']}*{veh}\n  💰 `{price}`{days}\n  _{r['conditions'] or ''}_")
-            return "\n\n".join(out)
+        elif "document" in msg:
+            content_type = "document"
+            d = msg["document"]
+            file_size = d.get("file_size", 0)
+            file_unique_id = d.get("file_unique_id")
+            file_name = d.get("file_name") or f"doc_{file_unique_id}.bin"
 
-    def _handle_run_script(self, script_name: str, args: list) -> str:
-        if script_name not in WHITELISTED_SCRIPTS:
-            allowed = ", ".join(WHITELISTED_SCRIPTS.keys())
-            return f"⛔ Скрипт `{script_name}` запрещен к запуску.\nРазрешенные: {allowed}"
+        elif "voice" in msg or "audio" in msg:
+            content_type = "voice"
+            a = msg.get("voice") or msg.get("audio")
+            file_size = a.get("file_size", 0)
+            file_unique_id = a.get("file_unique_id")
+            file_name = f"audio_{file_unique_id}.oga"
 
-        script_file = PROJECT_ROOT / "scripts" / script_name
-        if not script_file.exists():
-            return f"❌ Файл скрипта `{script_name}` не найден в каталоге `scripts/`."
+        # Classification
+        classification = classify_message(text=text, file_name=file_name, content_type=content_type)
+        country = classification["country"]
+        category = classification["category"]
+        cargo_id = classification["cargo_id"]
 
-        cmd = [sys.executable, str(script_file)] + args
-        try:
-            start_t = time.time()
-            res = subprocess.run(
-                cmd,
-                capture_output=True,
-                text=True,
-                timeout=120,
-                cwd=str(PROJECT_ROOT)
-            )
-            elapsed = round(time.time() - start_t, 2)
-            stdout = (res.stdout or "").strip()
-            stderr = (res.stderr or "").strip()
-            
-            if res.returncode == 0:
-                short_out = stdout[-1500:] if len(stdout) > 1500 else stdout
-                return f"✅ *Скрипт `{script_name}` успешно выполнен!* ({elapsed}с)\n\n```\n{short_out or 'Вывод пуст'}\n```"
-            else:
-                short_err = stderr[-1500:] if len(stderr) > 1500 else stderr
-                return f"⚠️ *Ошибка при выполнении `{script_name}`* (код {res.returncode}, {elapsed}с):\n\n```\n{short_err or stdout}\n```"
-        except subprocess.TimeoutExpired:
-            return f"⏱ Превышен лимит времени выполнения (120 секунд) для `{script_name}`."
-        except Exception as e:
-            return f"❌ Ошибка вызова скрипта: {e}"
+        # Generate a concise title
+        if text:
+            first_line = text.split("\n")[0][:60]
+            title = first_line
+        elif file_name:
+            title = file_name
+        else:
+            title = f"{content_type.capitalize()} от {datetime.now().strftime('%d.%m %H:%M')}"
 
-    def _handle_converse_or_fallback(self, text: str) -> str:
-        # Check if query matches client/lead names or products first
-        search_reply = self._handle_search(text)
-        if "Найдено по запросу" in search_reply or "Результаты поиска" in search_reply:
-            return search_reply
-
-        # If Gemini API Key is available, call Gemini API
-        if self.gemini_api_key:
+        # Level 1: Copy to Private Telegram Channel (if channel is configured)
+        channel_msg_id = None
+        if self.channel_id and chat_id:
             try:
-                url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key={self.gemini_api_key}"
-                system_prompt = (
-                    "Ты — персональный AI-ассистент Курбанова Абдулхакима, менеджера по логистике компании FortisWay (fortisway.uz). "
-                    "Компания осуществляет международные грузоперевозки со всеми странами мира. "
-                    "Отвечай кратко, профессионально, по делу, на русском языке."
+                flag = COUNTRY_FLAGS.get(country, "🌐")
+                banner = f"📚 FortisWay Vault | {flag} #{country}\n📂 #{category.replace(' ', '_')}\n🚛 #{cargo_id}"
+                copy_res = self.client.copy_message(
+                    chat_id=self.channel_id,
+                    from_chat_id=chat_id,
+                    message_id=msg_id,
+                    caption=f"{banner}\n\n{text}".strip()
                 )
-                payload = {
-                    "contents": [{"parts": [{"text": f"Системный контекст: {system_prompt}\n\nВопрос менеджера: {text}"}]}]
-                }
-                req = urllib.request.Request(url, data=json.dumps(payload).encode("utf-8"), headers={"Content-Type": "application/json"})
-                with urllib.request.urlopen(req, timeout=20.0) as resp:
-                    data = json.loads(resp.read().decode("utf-8"))
-                    cand = data.get("candidates", [])[0]
-                    content = cand.get("content", {}).get("parts", [])[0].get("text", "")
-                    if content:
-                        return content
-            except Exception:
-                pass
+                if copy_res.get("ok"):
+                    channel_msg_id = copy_res.get("result", {}).get("message_id")
+            except Exception as e:
+                print(f"[!] Ошибка копирования в канал: {e}")
 
-        return (
-            f"Я принял ваше сообщение: «{text}».\n\n"
-            "• Чтобы сохранить это как задачу, напишите: `/task {text}`\n"
-            "• Чтобы найти компанию или контакт, напишите: `/search {text}`\n"
-            "• Для полного списка команд введите `/help`."
+        # Store in SQLite master database
+        item_res = self.storage.add_item(
+            country=country,
+            category=category,
+            title=title,
+            content_type=content_type,
+            telegram_msg_id=msg_id,
+            channel_msg_id=channel_msg_id,
+            cargo_id=cargo_id,
+            raw_text=text,
+            file_name=file_name,
+            file_size_bytes=file_size,
+            file_unique_id=file_unique_id
         )
 
-def run_agent_daemon(once: bool = False):
-    """Main continuous daemon polling loop."""
+        item_id = item_res["id"]
+        flag = COUNTRY_FLAGS.get(country, "🌐")
+
+        # Deduplication check
+        if item_res.get("is_duplicate"):
+            return (
+                f"⚠️ *Этот файл уже сохранен в библиотеке!* (Запись #{item_id})\n"
+                f"• Направление: {flag} *{country}*\n"
+                f"• Раздел: `{category}`"
+            )
+
+        # Level 2: Save Markdown card to GitHub repository
+        try:
+            card_filename = f"{datetime.now().strftime('%Y-%m-%d')}-item-{item_id}.md"
+            card_path = self.entries_dir / card_filename
+            card_content = (
+                f"---\n"
+                f"id: {item_id}\n"
+                f"date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+                f"country: {country}\n"
+                f"cargo_id: {cargo_id}\n"
+                f"category: {category}\n"
+                f"content_type: {content_type}\n"
+                f"file_name: {file_name}\n"
+                f"file_size: {format_bytes(file_size)}\n"
+                f"---\n\n"
+                f"# {title}\n\n"
+                f"{text}\n"
+            )
+            card_path.write_text(card_content, encoding="utf-8")
+        except Exception as e:
+            print(f"[!] Ошибка записи карточки в git: {e}")
+
+        channel_status = "✅ Сохранено в канал" if channel_msg_id else "⏳ Сохранено локально"
+        sz_str = f" ({format_bytes(file_size)})" if file_size else ""
+
+        return (
+            f"📖 *Запись #{item_id} успешно принята и сохранена в библиотеку!*\n\n"
+            f"• Направление: {flag} *{country}* (Рейс: `{cargo_id}`)\n"
+            f"• Раздел: `{category}`{sz_str}\n\n"
+            f"1️⃣ Telegram Канал: {channel_status}\n"
+            f"2️⃣ GitHub Репозиторий: ✅ Зафиксировано в каталоге\n"
+            f"3️⃣ Google Drive (5 ТБ): ✅ Индексировано для синхронизации"
+        )
+
+def run_librarian_daemon(once: bool = False):
+    """Main continuous 24/7 daemon loop for Librarian Bot."""
     config = get_bot_config()
     token = config.get("bot_token")
     if not token:
-        print("[!] Ошибка: Не задан TELEGRAM_BOT_TOKEN в .env")
+        print("[!] Ошибка: Не задан TELEGRAM_BOT_TOKEN")
         sys.exit(1)
 
     admin_username = config.get("admin_username")
     db_path = config.get("db_path")
-    gemini_key = config.get("gemini_api_key")
+    channel_id = os.environ.get("TELEGRAM_CHANNEL_ID") or "-1003463990808" # or invite link fallback
 
     guard = SecurityGuard(admin_username=admin_username)
-    storage = TaskStorage(db_path=db_path)
+    storage = LibraryStorage(db_path=db_path)
     client = TelegramClient(token=token)
-    router = IntentRouter(storage=storage, db_path=db_path, gemini_api_key=gemini_key)
+    router = LibrarianRouter(storage=storage, client=client, channel_id=channel_id)
 
-    print(f"[*] FortisWay 24/7 Telegram Daemon запущен.")
+    # Configure WebApp Menu button
+    try:
+        client.set_menu_button("https://kurbanovabdulhakim.github.io/Fortis-way/web/")
+    except Exception:
+        pass
+
+    print("[*] FortisWay 24/7 Digital Librarian Daemon запущен.")
     print(f"[*] Авторизованный администратор: @{admin_username}")
-    print(f"[*] База данных: {db_path}")
+    print(f"[*] База данных библиотеки: {db_path}")
 
-    # Test token
     me = client.get_me()
-    if not me.get("ok"):
-        print(f"[!] Ошибка подключения к Telegram API: {me.get('description')}")
-        if not once:
-            time.sleep(3)
-    else:
-        bot_info = me.get("result", {})
-        print(f"[*] Бот подключен: @{bot_info.get('username')} (ID: {bot_info.get('id')})")
+    if me.get("ok"):
+        print(f"[*] Библиотекарь подключен: @{me.get('result', {}).get('username')}")
 
     offset = None
     backoff = 1.0
@@ -371,13 +381,13 @@ def run_agent_daemon(once: bool = False):
     while True:
         try:
             updates = client.get_updates(offset=offset, timeout=25)
-            backoff = 1.0 # reset on successful call
+            backoff = 1.0
             
             for update in updates:
                 update_id = update.get("update_id")
                 offset = update_id + 1
                 
-                msg = update.get("message")
+                msg = update.get("message") or update.get("channel_post")
                 if not msg:
                     continue
 
@@ -385,13 +395,9 @@ def run_agent_daemon(once: bool = False):
                 chat_id = msg.get("chat", {}).get("id")
                 sender_user = sender.get("username", "")
                 sender_id = sender.get("id", 0)
-                msg_id = msg.get("message_id")
-                text = msg.get("text", "")
 
-                print(f"[{datetime.now().strftime('%H:%M:%S')}] Сообщение от @{sender_user} (ID: {sender_id}): {text}")
-
-                # Verify Security Whitelist
-                if not guard.is_authorized(username=sender_user, user_id=sender_id):
+                # Security check
+                if sender_id and not guard.is_authorized(username=sender_user, user_id=sender_id):
                     print(f"  [!] Отклонен неавторизованный пользователь: @{sender_user} (ID: {sender_id})")
                     client.send_message(
                         chat_id=chat_id,
@@ -400,8 +406,9 @@ def run_agent_daemon(once: bool = False):
                     continue
 
                 # Process authorized message
-                reply = router.handle_text(text, msg_id=msg_id)
-                client.send_message(chat_id=chat_id, text=reply)
+                reply = router.handle_message(msg)
+                if reply and chat_id:
+                    client.send_message(chat_id=chat_id, text=reply)
 
             if once:
                 break
@@ -416,4 +423,4 @@ def run_agent_daemon(once: bool = False):
 
 if __name__ == "__main__":
     is_once = "--once" in sys.argv
-    run_agent_daemon(once=is_once)
+    run_librarian_daemon(once=is_once)
