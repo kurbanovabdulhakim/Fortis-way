@@ -91,6 +91,29 @@ CREATE TABLE IF NOT EXISTS telegram_tasks (
 
 CREATE INDEX IF NOT EXISTS idx_telegram_tasks_status ON telegram_tasks(status);
 
+-- 3-Tier Library Storage Schema
+CREATE TABLE IF NOT EXISTS library_items (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created_at TEXT NOT NULL,
+    telegram_msg_id INTEGER,
+    channel_msg_id INTEGER,
+    country TEXT NOT NULL DEFAULT 'Общее',
+    cargo_id TEXT,
+    category TEXT NOT NULL,
+    content_type TEXT NOT NULL,
+    title TEXT NOT NULL,
+    raw_text TEXT,
+    file_name TEXT,
+    file_size_bytes INTEGER DEFAULT 0,
+    file_unique_id TEXT UNIQUE,
+    gdrive_file_id TEXT,
+    gdrive_web_link TEXT
+);
+
+CREATE INDEX IF NOT EXISTS idx_library_country ON library_items(country);
+CREATE INDEX IF NOT EXISTS idx_library_category ON library_items(category);
+CREATE INDEX IF NOT EXISTS idx_library_file_unique_id ON library_items(file_unique_id);
+
 -- Full Text Search Virtual Table (FTS5) for sub-millisecond retrieval
 CREATE VIRTUAL TABLE IF NOT EXISTS fts_index USING fts5(
     entity_type,
