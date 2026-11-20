@@ -418,9 +418,8 @@ def run_librarian_daemon(once: bool = False):
     WEB_APP_URL = "https://kurbanovabdulhakim.github.io/Fortis-way/web/index.html?v=4"
     try:
         client.set_menu_button(web_app_url=WEB_APP_URL, text="Каталог 📚")
-        if guard.authorized_user_ids:
-            for uid in guard.authorized_user_ids:
-                client.set_menu_button(web_app_url=WEB_APP_URL, chat_id=uid, text="Каталог 📚")
+        admin_id = guard.admin_user_id or 8930092703
+        client.set_menu_button(web_app_url=WEB_APP_URL, chat_id=admin_id, text="Каталог 📚")
     except Exception as e:
         print(f"[!] Предупреждение: Не удалось настроить кнопку WebApp: {e}")
 
