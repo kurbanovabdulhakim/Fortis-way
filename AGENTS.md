@@ -38,9 +38,18 @@ When starting a new session or task in this repository:
 - `exhibition_leads` (29 records): B2B decision makers from Mining & Metals 2026.
 - `tariffs_routes` (24 records): Uzbekistan domestic and international rates (Bakan Tex, Netherlands, Poland).
 - `plan_fact` (36 records): Daily tasks, decisions, and comments for Курбанов А.
+- `telegram_tasks`: 24/7 task queue from Telegram (@hermes_0078bot) synchronized with plan_fact.
 - `documents_registry` (47 records): File registry of presentations, proposals, and contracts.
 - `company_knowledge` (7 records): Company profile, requisites, and rules.
 - `fts_index` (Virtual): Full-text search across all entities.
+
+---
+
+## 2.1 24/7 Telegram Agent (@hermes_0078bot)
+- **Script:** `scripts/telegram_bot.py`
+- **Launcher:** `run_bot.cmd` or Windows Startup (`FortisWayTelegramAgent.lnk`)
+- **Admin:** `@LogisticsFortisway` (UserID: `8930092703`)
+- **Capabilities:** Autonomous task logging to `plan_fact`, FTS5 client/tariff search, whitelisted script execution (`/run`).
 
 ---
 

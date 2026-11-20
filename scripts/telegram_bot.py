@@ -19,6 +19,23 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+# Safe logging for pythonw.exe (where sys.stdout / sys.stderr are None)
+LOGS_DIR = PROJECT_ROOT / "logs"
+LOGS_DIR.mkdir(parents=True, exist_ok=True)
+DAEMON_LOG = LOGS_DIR / "telegram_daemon.log"
+
+if sys.stdout is None:
+    try:
+        sys.stdout = open(DAEMON_LOG, "a", encoding="utf-8", buffering=1)
+    except Exception:
+        sys.stdout = open(os.devnull, "w")
+
+if sys.stderr is None:
+    try:
+        sys.stderr = open(DAEMON_LOG, "a", encoding="utf-8", buffering=1)
+    except Exception:
+        sys.stderr = open(os.devnull, "w")
+
 from scripts.config import get_bot_config, SecurityGuard
 from scripts.task_storage import TaskStorage
 from scripts.telegram_client import TelegramClient
