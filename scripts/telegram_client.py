@@ -59,8 +59,8 @@ class TelegramClient:
             return res.get("result", [])
         return []
 
-    def send_message(self, chat_id: int, text: str, parse_mode: str = "Markdown") -> dict:
-        """Sends a text message with safe chunking and Markdown error fallback."""
+    def send_message(self, chat_id: int | str, text: str, parse_mode: str = "Markdown", reply_markup: dict = None) -> dict:
+        """Sends a text message with safe chunking, Markdown error fallback, and optional reply_markup."""
         if not text:
             return {"ok": False, "description": "Empty text"}
             
@@ -74,6 +74,8 @@ class TelegramClient:
         }
         if parse_mode:
             payload["parse_mode"] = parse_mode
+        if reply_markup:
+            payload["reply_markup"] = reply_markup
             
         res = self._call_api("sendMessage", payload=payload, timeout=20.0)
         
@@ -83,3 +85,28 @@ class TelegramClient:
             res = self._call_api("sendMessage", payload=payload, timeout=20.0)
             
         return res
+
+    def copy_message(self, chat_id: int | str, from_chat_id: int | str, message_id: int, caption: str = "") -> dict:
+        """Copies any message (video, photo, document up to 2GB) to destination chat/channel."""
+        payload = {
+            "chat_id": chat_id,
+            "from_chat_id": from_chat_id,
+            "message_id": message_id
+        }
+        if caption:
+            payload["caption"] = caption
+        return self._call_api("copyMessage", payload=payload, timeout=30.0)
+
+    def set_menu_button(self, web_app_url: str = "") -> dict:
+        """Configures the persistent menu/WebApp button in the bottom-left corner."""
+        if web_app_url:
+            menu_btn = {
+                "type": "web_app",
+                "text": "Каталог 📚",
+                "web_app": {"url": web_app_url}
+            }
+        else:
+            menu_btn = {"type": "default"}
+            
+        return self._call_api("setChatMenuButton", payload={"menu_button": menu_btn}, timeout=15.0)
+
