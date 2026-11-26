@@ -300,6 +300,39 @@
       background: rgba(56, 189, 248, 0.22);
     }
 
+    .actions-col {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 145px;
+    }
+    .copy-row {
+      display: flex;
+      gap: 5px;
+    }
+    .btn-copy {
+      flex: 1;
+      padding: 5px 8px;
+      border-radius: 6px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid var(--border);
+      background: var(--bg-app);
+      color: var(--text-main);
+      transition: all 0.15s;
+      white-space: nowrap;
+    }
+    .btn-copy:hover {
+      background: var(--bg-active);
+      border-color: var(--accent);
+    }
+    .btn-copy.copied {
+      background: var(--green-soft);
+      border-color: var(--green);
+      color: var(--green);
+    }
+
     .empty-state {
       padding: 40px;
       text-align: center;
@@ -421,16 +454,15 @@
         <thead>
           <tr>
             <th>Маршрут и расстояние</th>
-            <th>Груз, вес, объём</th>
-            <th>Транспорт и режим</th>
-            <th>Погрузка</th>
+            <th>Груз, ТН ВЭД и Документы</th>
+            <th>Транспорт и погрузка</th>
             <th>Ставка и оплата</th>
-            <th>На сайте / Осталось</th>
-            <th>Ссылка</th>
+            <th>На сайте / Лимит 10 дн.</th>
+            <th>Копирование и ATI.SU</th>
           </tr>
         </thead>
         <tbody id="loads-tbody">
-          <tr><td colspan="7" class="empty-state">Загрузка данных...</td></tr>
+          <tr><td colspan="6" class="empty-state">Загрузка данных...</td></tr>
         </tbody>
       </table>
     </section>
@@ -495,17 +527,21 @@
       document.getElementById('kpi-dist').textContent = `${avgDist.toLocaleString('ru-RU')} км`;
 
       if (items.length === 0) {
-        tbody.innerHTML = `<tr><td colspan="7" class="empty-state">По выбранным фильтрам грузы не найдены.</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="6" class="empty-state">По выбранным фильтрам грузы не найдены.</td></tr>`;
         return;
       }
 
-      tbody.innerHTML = items.map(x => {
+      window._currentRenderedItems = items;
+
+      tbody.innerHTML = items.map((x, idx) => {
         const dirClass = x.direction.includes('Экспорт') ? 'badge-export' : 'badge-import';
         const ageClass = x.days_on_site <= 2 ? 'badge-fresh' : (x.days_on_site <= 6 ? 'badge-mid' : 'badge-expiring');
-        const volStr = x.volume_m3 ? `${x.volume_m3} м³` : 'объём не указан';
+        const volStr = x.volume_m3 ? `${x.volume_m3} м³` : 'не указан';
         const distStr = x.distance_km ? `${x.distance_km.toLocaleString('ru-RU')} км` : 'расст. уточняется';
         const tempBadge = x.temp_regime ? `<div class="route-sub">Режим: ${x.temp_regime}</div>` : '';
         const directBadge = x.is_direct ? `<span class="badge badge-direct">Прямой заказчик</span>` : '';
+        const tnved = x.tnved_code || 'Не указан на сайте';
+        const docs = x.documents_req || 'Дополнительных документов не требуется';
 
         return `
           <tr>
@@ -515,16 +551,14 @@
               <span class="badge ${dirClass}">${x.direction}</span>
             </td>
             <td>
-              <div class="route-main">${x.cargo_name}</div>
-              <div class="route-sub"><strong>${x.weight_t} т</strong> / ${volStr}</div>
+              <div class="route-main">${x.cargo_name} (${x.weight_t} т / ${volStr})</div>
+              <div class="route-sub"><strong>ТН ВЭД:</strong> ${tnved}</div>
+              <div class="route-sub"><strong>Документы:</strong> ${docs}</div>
             </td>
             <td>
               <div class="route-main">${x.trucks_count} авто, ${x.truck_type}</div>
               ${tempBadge}
-            </td>
-            <td>
-              <div class="route-main">${x.loading_date}</div>
-              <div class="route-sub">Выставлен: ${x.added_at}</div>
+              <div class="route-sub"><strong>Погрузка:</strong> ${x.loading_date}</div>
             </td>
             <td>
               <div class="route-main">${x.rate_info}</div>
@@ -533,14 +567,79 @@
             </td>
             <td>
               <span class="badge ${ageClass}">${x.days_on_site} дн. на сайте</span>
+              <div class="route-sub">Выставлен: ${x.added_at}</div>
               <div class="route-sub">Осталось: ${x.days_remaining_10d} дн. из 10</div>
             </td>
             <td>
-              <a class="btn-ati" href="${x.ati_url}" target="_blank" rel="noopener">Открыть ATI.SU &nearr;</a>
+              <div class="actions-col">
+                <div class="copy-row">
+                  <button class="btn-copy" onclick="copyLead(${idx}, 'group', this)" title="Скопировать короткий формат для группы">Для группы</button>
+                  <button class="btn-copy" onclick="copyLead(${idx}, 'full', this)" title="Скопировать расширенные данные">Расширенный</button>
+                </div>
+                <a class="btn-ati" href="${x.ati_url}" target="_blank" rel="noopener">Открыть ATI.SU &nearr;</a>
+              </div>
             </td>
           </tr>
         `;
       }).join('');
+    }
+
+    function copyLead(idx, mode, btn) {
+      const x = (window._currentRenderedItems || [])[idx];
+      if (!x) return;
+      const volStr = x.volume_m3 ? `${x.volume_m3} м³` : 'не указан';
+      const tnved = x.tnved_code || 'Не указан на сайте';
+      const docs = x.documents_req || 'Дополнительных документов не требуется';
+      const tempStr = x.temp_regime ? ` (${x.temp_regime})` : '';
+
+      let text = '';
+      if (mode === 'group') {
+        text = [
+          `Откуда — Куда: ${x.from_location} — ${x.to_location}`,
+          `Груз:          ${x.cargo_name}`,
+          `Вес / Объём:   ${x.weight_t} т / ${volStr}`,
+          `Транспорт:     ${x.trucks_count} авто, ${x.truck_type}${tempStr}`,
+          `Код ТН ВЭД:    ${tnved}`,
+          `Документы:     ${docs}`,
+          `Погрузка:      ${x.loading_date}`
+        ].join('\n');
+      } else {
+        const distStr = x.distance_km ? `${x.distance_km.toLocaleString('ru-RU')} км` : 'не указано';
+        text = [
+          `Категория:     ${x.category} (${x.direction})`,
+          `Откуда — Куда: ${x.from_location} — ${x.to_location}`,
+          `Расстояние:    ${distStr}`,
+          `Груз:          ${x.cargo_name}`,
+          `Вес / Объём:   ${x.weight_t} т / ${volStr}`,
+          `Транспорт:     ${x.trucks_count} авто, ${x.truck_type}${tempStr}`,
+          `Код ТН ВЭД:    ${tnved}`,
+          `Документы:     ${docs}`,
+          `Погрузка:      ${x.loading_date}`,
+          `Ставка:        ${x.rate_info}`,
+          `Условия:       ${x.payment_terms}`,
+          `На сайте:      ${x.days_on_site} дн. (выставлен ${x.added_at}, осталось ${x.days_remaining_10d} дн.)`,
+          `Ссылка ATI.SU: ${x.ati_url}`
+        ].join('\n');
+      }
+
+      const orig = btn.textContent;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => {
+          btn.textContent = 'Скопировано';
+          btn.classList.add('copied');
+          setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+        });
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.textContent = 'Скопировано';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.textContent = orig; btn.classList.remove('copied'); }, 1500);
+      }
     }
 
     // Sidebar click handlers

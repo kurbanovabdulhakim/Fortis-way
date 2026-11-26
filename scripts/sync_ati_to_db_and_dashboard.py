@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """
 Collects all filtered ATI.SU loads for Uzbekistan (18-24t, <=10 days, no ADR/wood/citrus),
+enriches with TN VED codes and Document requirements,
 stores them in db/fortisway.db (table: ati_loads + fts_index),
-and exports web/ati_data.json for the interactive Dashboard.
+and exports web/ati_data.json & web/ati_data.js for the Dashboard.
 """
 
 import json
@@ -14,8 +15,9 @@ from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
 DB_PATH = ROOT_DIR / "db" / "fortisway.db"
-SCHEMA_PATH = ROOT_DIR / "db" / "schema.sql"
+RAW_FALLBACK_PATH = ROOT_DIR / "scripts" / "ati_raw_full.json"
 OUT_JSON_PATH = ROOT_DIR / "web" / "ati_data.json"
+OUT_JS_PATH = ROOT_DIR / "web" / "ati_data.js"
 
 HEADERS = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
@@ -33,22 +35,16 @@ EXCLUDE_WOOD_KW = ["древесин", "пиломатериал", "тахта",
 EXCLUDE_CITRUS_KW = ["цитрус", "мандарин", "апельсин", "лимон", "грейпфрут", "помело", "лайм"]
 
 CAR_TYPE_MAP = {
-    "1": "Фура-тент",
-    "2": "Фургон",
-    "4": "Фура-реф",
-    "8": "Изотерм",
-    "16": "Бортовой",
-    "32": "Открытый",
-    "64": "Контейнеровоз"
+    "1": "фура-тент",
+    "2": "фургон",
+    "4": "фура-реф",
+    "8": "изотерм",
+    "16": "бортовой",
+    "32": "открытый",
+    "64": "контейнеровоз"
 }
 
-CURRENCY_MAP = {
-    1: "RUB",
-    2: "USD",
-    3: "EUR",
-    4: "KZT",
-    5: "UZS"
-}
+CURRENCY_MAP = {1: "RUB", 2: "USD", 3: "EUR", 4: "KZT", 5: "UZS"}
 
 SELECTED_SIGNATURES = [
     ("стамбул", "ташкент", "мармелад"),
@@ -64,6 +60,66 @@ SELECTED_SIGNATURES = [
     ("алашанькоу", "ташкент", "продукт"),
     ("тяньцзинь", "ангрен", "полистирол"),
 ]
+
+
+def infer_tnved(cargo_name: str) -> str:
+    c = cargo_name.lower()
+    if "мармелад" in c:
+        return "2007 / 1704 (ориентир., на сайте не указан)"
+    if "курин" in c or "птиц" in c:
+        return "0207 (ориентир., на сайте не указан)"
+    if "мясо" in c:
+        return "0201 / 0202 (ориентир., на сайте не указан)"
+    if "кетчуп" in c or "томат" in c:
+        return "2103 20 (ориентир., на сайте не указан)"
+    if "фрукт" in c or "яблок" in c:
+        return "0808 / 0810 (ориентир., на сайте не указан)"
+    if "чеснок" in c:
+        return "0703 20 (ориентир., на сайте не указан)"
+    if "хашбраун" in c or "картоф" in c:
+        return "2004 10 (ориентир., на сайте не указан)"
+    if "пряжа" in c:
+        return "5205 (ориентир., на сайте не указан)"
+    if "текстил" in c or "одежд" in c:
+        return "6101–6217 / 5208 (ориентир., на сайте не указан)"
+    if "оборудован" in c or "запчаст" in c or "трубопровод" in c:
+        return "8479 / 8483 (ориентир., на сайте не указан)"
+    if "продукт" in c:
+        return "2106 (ориентир., на сайте не указан)"
+    if "полистирол" in c:
+        return "3903 (ориентир., на сайте не указан)"
+    if "корм" in c:
+        return "2309 (ориентир., на сайте не указан)"
+    if "бытовая техника" in c:
+        return "8418 / 8450 / 8516 (ориентир., на сайте не указан)"
+    if "шин" in c:
+        return "4011 (ориентир., на сайте не указан)"
+    if "металлопрокат" in c or "металлоконструкц" in c:
+        return "7208–7216 / 7308 (ориентир., на сайте не указан)"
+    if "масло" in c:
+        return "1512 (ориентир., на сайте не указан)"
+    if "селитр" in c:
+        return "3102 30 (ориентир., на сайте не указан)"
+    if "бигбег" in c:
+        return "6305 32 (ориентир., на сайте не указан)"
+    if "тнп" in c:
+        return "Не указан (зависит от номенклатуры ТНП)"
+    return "Не указан на сайте"
+
+
+def extract_documents(truck_obj: dict) -> str:
+    if not truck_obj:
+        return "Дополнительных документов не требуется"
+    docs = []
+    if truck_obj.get("tir"):
+        docs.append("TIR")
+    if truck_obj.get("cmr"):
+        docs.append("CMR")
+    if truck_obj.get("t1"):
+        docs.append("T1")
+    if truck_obj.get("sanPassport"):
+        docs.append("Санпаспорт")
+    return ", ".join(docs) if docs else "Дополнительных документов не требуется"
 
 
 def fetch_pages_seq(from_id=None, to_id=None, max_pages=2):
@@ -93,12 +149,11 @@ def fetch_pages_seq(from_id=None, to_id=None, max_pages=2):
 
 def parse_truck_type(truck_obj):
     if not truck_obj:
-        return "Фура-тент", 1, ""
+        return "фура-тент", 1, ""
     car_types = truck_obj.get("carTypes") or []
-    names = [CAR_TYPE_MAP.get(str(ct), f"Тип-{ct}") for ct in car_types]
-    # Deduplicate preserving order
+    names = [CAR_TYPE_MAP.get(str(ct), f"тип-{ct}") for ct in car_types]
     unique_names = list(dict.fromkeys(names))
-    truck_str = " / ".join(unique_names) if unique_names else "Фура (любой кузов)"
+    truck_str = " / ".join(unique_names) if unique_names else "фура (любой кузов)"
     qty = truck_obj.get("quantity") or 1
 
     t_at = truck_obj.get("tempAt")
@@ -146,7 +201,9 @@ def transform_load(it, now_utc):
 
     cargo = (load_info.get("cargoType") or "Груз").strip()
     cargo_lower = cargo.lower()
-    if any(kw in cargo_lower for kw in EXCLUDE_ADR_KW + EXCLUDE_WOOD_KW + EXCLUDE_CITRUS_KW):
+    is_non_dangerous = "неопасн" in cargo_lower
+    adr_kw = [kw for kw in EXCLUDE_ADR_KW if not (is_non_dangerous and kw == "опасн")]
+    if any(kw in cargo_lower for kw in adr_kw + EXCLUDE_WOOD_KW + EXCLUDE_CITRUS_KW):
         return None
 
     date_str = it.get("changeDate") or it.get("addDate")
@@ -200,6 +257,8 @@ def transform_load(it, now_utc):
 
     truck_str, qty, temp_str = parse_truck_type(it.get("truck"))
     rate_str, terms_str, is_direct = parse_rate_and_terms(it.get("rate"))
+    tnved = infer_tnved(cargo)
+    docs_req = extract_documents(it.get("truck"))
 
     f_date = (loading.get("firstDate") or "")[:10]
     l_date = (loading.get("lastDate") or "")[:10]
@@ -213,8 +272,6 @@ def transform_load(it, now_utc):
     ati_id = str(it.get("id"))
     ati_url = f"https://loads.ati.su/#?loadId={ati_id}"
 
-    # Check if in user's 12 selected leads
-    sig_str = f"{from_label} {to_label} {cargo}".lower()
     is_sel = 0
     for sf, st, sc in SELECTED_SIGNATURES:
         if sf in from_label.lower() and st in to_label.lower() and sc in cargo_lower:
@@ -234,6 +291,8 @@ def transform_load(it, now_utc):
         "truck_type": truck_str,
         "trucks_count": qty,
         "temp_regime": temp_str,
+        "tnved_code": tnved,
+        "documents_req": docs_req,
         "loading_date": load_date,
         "added_at": date_str[:16].replace("T", " "),
         "days_on_site": days_old,
@@ -249,9 +308,9 @@ def transform_load(it, now_utc):
 
 def save_to_db(records):
     conn = sqlite3.connect(DB_PATH)
-    # Ensure ati_loads table exists from schema.sql
+    conn.execute("DROP TABLE IF EXISTS ati_loads;")
     conn.execute("""
-    CREATE TABLE IF NOT EXISTS ati_loads (
+    CREATE TABLE ati_loads (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         ati_id TEXT UNIQUE NOT NULL,
         category TEXT NOT NULL,
@@ -265,6 +324,8 @@ def save_to_db(records):
         truck_type TEXT,
         trucks_count INTEGER DEFAULT 1,
         temp_regime TEXT,
+        tnved_code TEXT,
+        documents_req TEXT,
         loading_date TEXT,
         added_at TEXT,
         days_on_site REAL DEFAULT 0,
@@ -279,9 +340,6 @@ def save_to_db(records):
     """)
     conn.execute("CREATE INDEX IF NOT EXISTS idx_ati_loads_category ON ati_loads(category);")
     conn.execute("CREATE INDEX IF NOT EXISTS idx_ati_loads_selected ON ati_loads(is_selected);")
-
-    # Replace snapshot cleanly so stale >10d loads are purged
-    conn.execute("DELETE FROM ati_loads;")
     conn.execute("DELETE FROM fts_index WHERE entity_type = 'ati_load';")
 
     for r in records:
@@ -289,13 +347,13 @@ def save_to_db(records):
             INSERT INTO ati_loads (
                 ati_id, category, direction, from_location, to_location, distance_km,
                 cargo_name, weight_t, volume_m3, truck_type, trucks_count, temp_regime,
-                loading_date, added_at, days_on_site, days_remaining_10d,
+                tnved_code, documents_req, loading_date, added_at, days_on_site, days_remaining_10d,
                 rate_info, payment_terms, is_direct, ati_url, is_selected, updated_at
-            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """, (
             r["ati_id"], r["category"], r["direction"], r["from_location"], r["to_location"], r["distance_km"],
             r["cargo_name"], r["weight_t"], r["volume_m3"], r["truck_type"], r["trucks_count"], r["temp_regime"],
-            r["loading_date"], r["added_at"], r["days_on_site"], r["days_remaining_10d"],
+            r["tnved_code"], r["documents_req"], r["loading_date"], r["added_at"], r["days_on_site"], r["days_remaining_10d"],
             r["rate_info"], r["payment_terms"], r["is_direct"], r["ati_url"], r["is_selected"], r["updated_at"]
         ))
         row_id = cur.lastrowid
@@ -306,7 +364,7 @@ def save_to_db(records):
             "ati_load",
             row_id,
             f"{r['from_location']} -> {r['to_location']} | {r['cargo_name']} ({r['weight_t']} т)",
-            f"{r['category']} {r['direction']} {r['truck_type']} {r['rate_info']} {r['payment_terms']} {r['ati_url']}",
+            f"{r['category']} {r['direction']} {r['truck_type']} {r['tnved_code']} {r['documents_req']} {r['ati_url']}",
             f"ati, {r['category']}, {r['direction']}"
         ))
 
@@ -316,17 +374,23 @@ def save_to_db(records):
 
 def main():
     now_utc = datetime.now(timezone.utc)
-    print(f"[*] Сбор актуальных данных ATI.SU ({now_utc.strftime('%Y-%m-%d %H:%M UTC')})...")
+    print(f"[*] Сбор и обогащение данных ATI.SU ({now_utc.strftime('%Y-%m-%d %H:%M UTC')})...")
 
     raw_map = {}
-    # Polite sequential fetches across all Uzbekistan directions
+    if RAW_FALLBACK_PATH.exists():
+        try:
+            for it in json.loads(RAW_FALLBACK_PATH.read_text(encoding="utf-8")):
+                raw_map[it["id"]] = it
+        except Exception:
+            pass
+
     queries = [
-        (33, 14, 2), (14, 33, 1),  # Turkey <-> UZ
-        (28, 14, 2), (14, 28, 1),  # Poland <-> UZ
-        (58, 14, 1), (14, 58, 1),  # Iran <-> UZ
-        (50, 14, 2), (14, 50, 1),  # China <-> UZ
-        (14, None, 2),             # All UZ Export
-        (None, 14, 2),             # All UZ Import
+        (33, 14, 2), (14, 33, 1),
+        (28, 14, 2), (14, 28, 1),
+        (58, 14, 1), (14, 58, 1),
+        (50, 14, 2), (14, 50, 1),
+        (14, None, 2),
+        (None, 14, 2),
     ]
     for f_id, t_id, mp in queries:
         items = fetch_pages_seq(f_id, t_id, mp)
@@ -339,9 +403,7 @@ def main():
         if rec:
             records.append(rec)
 
-    # Sort: selected first, then freshest
     records.sort(key=lambda x: (-x["is_selected"], x["days_on_site"]))
-
     save_to_db(records)
 
     OUT_JSON_PATH.parent.mkdir(parents=True, exist_ok=True)
@@ -353,9 +415,9 @@ def main():
     }
     json_str = json.dumps(export_payload, ensure_ascii=False, indent=2)
     OUT_JSON_PATH.write_text(json_str, encoding="utf-8")
-    (ROOT_DIR / "web" / "ati_data.js").write_text(f"window.ATI_DASHBOARD_DATA = {json_str};\n", encoding="utf-8")
+    OUT_JS_PATH.write_text(f"window.ATI_DASHBOARD_DATA = {json_str};\n", encoding="utf-8")
 
-    print(f"[+] Сохранено в SQLite (ati_loads) и {OUT_JSON_PATH.name}: {len(records)} грузов (Избранных: {export_payload['selected_count']}).")
+    print(f"[+] Готово! В БД (ati_loads) и дашборде: {len(records)} грузов (Избранных: {export_payload['selected_count']}).")
 
 
 if __name__ == "__main__":

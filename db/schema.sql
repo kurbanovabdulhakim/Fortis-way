@@ -148,6 +148,8 @@ CREATE TABLE IF NOT EXISTS ati_loads (
     truck_type TEXT,
     trucks_count INTEGER DEFAULT 1,
     temp_regime TEXT,
+    tnved_code TEXT,
+    documents_req TEXT,
     loading_date TEXT,
     added_at TEXT,
     days_on_site REAL DEFAULT 0,
