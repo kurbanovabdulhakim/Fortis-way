@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 """
-Sends the 12 selected ATI.SU leads (Category 1: 2,3,4,5,6,8 and Category 2: all 6)
-to the user's Telegram bot (@hermes_0078bot) in clean emoji-free table blocks.
+Deletes previous unbolded lead messages (318..330) and sends the 11 selected
+ATI.SU leads with bold HTML field labels (Маршрут, Груз, Вес / Объём,
+Транспорт, Код ТН ВЭД, Документы, Погрузка) for 1-click copy & forward.
 """
 
+import html
 import json
 import sys
+import time
 from pathlib import Path
 
 ROOT_DIR = Path(__file__).resolve().parent.parent
@@ -16,20 +19,23 @@ from scripts.config import get_bot_config
 from scripts.telegram_client import TelegramClient
 
 
-def format_lead_block(idx: int, item: dict) -> str:
+def format_bold_lead(item: dict) -> str:
     vol = f"{item['volume_m3']} м3" if item.get("volume_m3") else "не указан"
     temp = f" ({item['temp_regime']})" if item.get("temp_regime") else ""
+    tnved = item.get("tnved_code") or "Кода пока нет"
+    docs = item.get("documents_req") or "Дополнительных документов не требуется"
+
+    e = html.escape
     lines = [
-        f"ЛИД #{idx}",
-        f"Откуда — Куда | {item['from_location']} — {item['to_location']}",
-        f"Груз          | {item['cargo_name']}",
-        f"Вес / Объём   | {item['weight_t']} т / {vol}",
-        f"Транспорт     | {item['trucks_count']} авто, {item['truck_type']}{temp}",
-        f"Код ТН ВЭД    | {item['tnved_code']}",
-        f"Документы     | {item['documents_req']}",
-        f"Погрузка      | {item['loading_date']}",
+        f"<b>Маршрут:</b> {e(item['from_location'])} — {e(item['to_location'])}",
+        f"<b>Груз:</b> {e(item['cargo_name'])}",
+        f"<b>Вес / Объём:</b> {e(str(item['weight_t']))} т / {e(vol)}",
+        f"<b>Транспорт:</b> {e(str(item['trucks_count']))} авто, {e(item['truck_type'])}{e(temp)}",
+        f"<b>Код ТН ВЭД:</b> {e(tnved)}",
+        f"<b>Документы:</b> {e(docs)}",
+        f"<b>Погрузка:</b> {e(item['loading_date'])}",
     ]
-    return "```\n" + "\n".join(lines) + "\n```"
+    return "\n".join(lines)
 
 
 def main():
@@ -40,8 +46,6 @@ def main():
     cat1 = [x for x in selected if x["category"] == "Турция / Иран / Польша"]
     cat2 = [x for x in selected if x["category"] == "Китай"]
 
-    print(f"Selected total: {len(selected)} (Cat1: {len(cat1)}, Cat2: {len(cat2)})")
-
     config = get_bot_config()
     token = config.get("bot_token")
     if not token:
@@ -51,22 +55,22 @@ def main():
     client = TelegramClient(token=token)
     user_id = 8930092703
 
-    # Send Category 1
-    msg1_parts = ["КАТЕГОРИЯ 1: ТУРЦИЯ / ИРАН / ПОЛЬША — УЗБЕКИСТАН\n"]
-    for i, item in enumerate(cat1, 1):
-        msg1_parts.append(format_lead_block(i, item))
-    msg1 = "\n".join(msg1_parts)
+    # 1. Delete previous lead messages (318..330)
+    for old_id in range(318, 331):
+        client._call_api("deleteMessage", {"chat_id": user_id, "message_id": old_id})
 
-    # Send Category 2
-    msg2_parts = ["КАТЕГОРИЯ 2: КИТАЙ — УЗБЕКИСТАН\n"]
-    for i, item in enumerate(cat2, 1):
-        msg2_parts.append(format_lead_block(i, item))
-    msg2 = "\n".join(msg2_parts)
+    # 2. Send clean bold-label leads via HTML parse_mode
+    client.send_message(chat_id=user_id, text="<b>Категория 1: Турция / Иран / Польша — Узбекистан</b>", parse_mode="HTML")
+    for item in cat1:
+        r = client.send_message(chat_id=user_id, text=format_bold_lead(item), parse_mode="HTML")
+        print(f"Cat1 sent msg_id={r.get('result', {}).get('message_id')}: {item['from_location']} -> {item['to_location']}")
+        time.sleep(0.15)
 
-    r1 = client.send_message(chat_id=user_id, text=msg1)
-    r2 = client.send_message(chat_id=user_id, text=msg2)
-    print("Telegram Cat 1:", r1.get("ok"), "msg_id=", r1.get("result", {}).get("message_id"))
-    print("Telegram Cat 2:", r2.get("ok"), "msg_id=", r2.get("result", {}).get("message_id"))
+    client.send_message(chat_id=user_id, text="<b>Категория 2: Китай — Узбекистан</b>", parse_mode="HTML")
+    for item in cat2:
+        r = client.send_message(chat_id=user_id, text=format_bold_lead(item), parse_mode="HTML")
+        print(f"Cat2 sent msg_id={r.get('result', {}).get('message_id')}: {item['from_location']} -> {item['to_location']}")
+        time.sleep(0.15)
 
 
 if __name__ == "__main__":

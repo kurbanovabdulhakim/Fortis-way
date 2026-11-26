@@ -70,11 +70,11 @@ function formatGroupText(x) {
   const vol = x.volume_m3 ? `${x.volume_m3} м3` : "не указан";
   const temp = x.temp_regime ? ` (${x.temp_regime})` : "";
   return [
-    `Откуда — Куда: ${x.from_location} — ${x.to_location}`,
+    `Маршрут: ${x.from_location} — ${x.to_location}`,
     `Груз: ${x.cargo_name}`,
     `Вес / Объём: ${x.weight_t} т / ${vol}`,
     `Транспорт: ${x.trucks_count} авто, ${x.truck_type}${temp}`,
-    `Код ТН ВЭД: ${x.tnved_code || "Не указан на сайте"}`,
+    `Код ТН ВЭД: ${x.tnved_code || "Кода пока нет"}`,
     `Документы: ${x.documents_req || "Дополнительных документов не требуется"}`,
     `Погрузка: ${x.loading_date}`
   ].join("\n");

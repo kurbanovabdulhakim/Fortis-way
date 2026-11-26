@@ -588,20 +588,20 @@
       const x = (window._currentRenderedItems || [])[idx];
       if (!x) return;
       const volStr = x.volume_m3 ? `${x.volume_m3} м³` : 'не указан';
-      const tnved = x.tnved_code || 'Не указан на сайте';
+      const tnved = x.tnved_code || 'Кода пока нет';
       const docs = x.documents_req || 'Дополнительных документов не требуется';
       const tempStr = x.temp_regime ? ` (${x.temp_regime})` : '';
 
       let text = '';
       if (mode === 'group') {
         text = [
-          `Откуда — Куда: ${x.from_location} — ${x.to_location}`,
-          `Груз:          ${x.cargo_name}`,
-          `Вес / Объём:   ${x.weight_t} т / ${volStr}`,
-          `Транспорт:     ${x.trucks_count} авто, ${x.truck_type}${tempStr}`,
-          `Код ТН ВЭД:    ${tnved}`,
-          `Документы:     ${docs}`,
-          `Погрузка:      ${x.loading_date}`
+          `Маршрут: ${x.from_location} — ${x.to_location}`,
+          `Груз: ${x.cargo_name}`,
+          `Вес / Объём: ${x.weight_t} т / ${volStr}`,
+          `Транспорт: ${x.trucks_count} авто, ${x.truck_type}${tempStr}`,
+          `Код ТН ВЭД: ${tnved}`,
+          `Документы: ${docs}`,
+          `Погрузка: ${x.loading_date}`
         ].join('\n');
       } else {
         const distStr = x.distance_km ? `${x.distance_km.toLocaleString('ru-RU')} км` : 'не указано';
