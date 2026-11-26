@@ -13,9 +13,9 @@ def test_intake_text_note(tmp_path):
         "from": {"id": 8930092703, "username": "LogisticsFortisway"},
         "text": "Польша: поставщик задерживает отгрузку до вторника"
     })
-    assert "15" in reply
-    assert "Польша" in reply
-    assert "сохранена в библиотеку" in reply.lower() or "принято в библиотеку" in reply.lower()
+    assert reply["id"] == 15
+    assert reply["country"] == "Польша"
+    assert reply["is_duplicate"] is False
 
 def test_intake_duplicate_file(tmp_path):
     storage = MagicMock()
@@ -29,8 +29,8 @@ def test_intake_duplicate_file(tmp_path):
         "text": "Польша фото пломбы",
         "photo": [{"file_id": "p1", "file_unique_id": "u1", "file_size": 50000}]
     })
-    assert "12" in reply
-    assert "уже сохранен" in reply.lower()
+    assert reply["id"] == 12
+    assert reply["is_duplicate"] is True
 
 def test_query_country_search(tmp_path):
     storage = MagicMock()

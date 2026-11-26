@@ -4,8 +4,10 @@ FortisWay 24/7 Digital Librarian Bot & 3-Tier Vault Daemon.
 Operates as a faithful library archivist:
 1. Ingestion: Accepts texts, photos, videos, and documents, categorizes by country & cargo,
    and copies to Private Channel, GitHub repository, and Google Drive.
-2. Search & Retrieval: Delivers country-isolated files and notes on request.
-3. Storage Analytics: Smartphone-style memory breakdown (/stats).
+2. Auto-Clean Chat: Deletes incoming media and forwarded messages from the chat to keep it spotless.
+3. Concise Batch Summaries: Sends short, consolidated 2-3 line summaries instead of repetitive spam cards.
+4. Search & Retrieval: Delivers country-isolated files and notes on request.
+5. Storage Analytics: Smartphone-style memory breakdown (/stats).
 """
 
 import os
@@ -74,6 +76,50 @@ def format_bytes(byte_count: int) -> str:
         return f"{mb / 1024:.1f} ГБ"
     return f"{mb:.1f} МБ"
 
+def format_batch_summary(items: list[dict]) -> str:
+    """Formats a concise 2-3 line summary for a batch of ingested items."""
+    if not items:
+        return ""
+
+    if len(items) == 1:
+        it = items[0]
+        flag = COUNTRY_FLAGS.get(it["country"], "📁")
+        if it.get("is_duplicate"):
+            return f"⚠️ Файл уже есть в библиотеке (#{it['id']}, {flag} {it['country']}). Исходное сообщение удалено из чата."
+
+        if it["content_type"] == "document":
+            return f"📥 Сохранен документ: `{it['file_name']}` ({flag} {it['country']}, раздел `{it['category']}`).\nСообщение удалено из чата."
+        elif it["content_type"] in ("photo", "video"):
+            return f"📥 Сохранено медиа: `{it['title']}` ({flag} {it['country']}).\nСообщение удалено из чата."
+        else:
+            return f"📥 Зафиксировано в базе: `{it['title']}` ({flag} {it['country']}).\nСообщение удалено из чата."
+
+    # Batch of multiple items
+    docs = [it for it in items if it["content_type"] == "document"]
+    photos = [it for it in items if it["content_type"] == "photo"]
+    videos = [it for it in items if it["content_type"] == "video"]
+    voices = [it for it in items if it["content_type"] in ("voice", "audio")]
+    texts = [it for it in items if it["content_type"] == "text"]
+
+    lines = [f"📥 *Принято и сохранено в базу (всего {len(items)} записей):*"]
+    if docs:
+        doc_names = ", ".join(f"`{d['file_name'] or d['title']}`" for d in docs[:3])
+        if len(docs) > 3:
+            doc_names += f" и еще {len(docs)-3}"
+        lines.append(f"• 📑 Документы ({len(docs)} шт.): {doc_names}")
+    if photos:
+        lines.append(f"• 📸 Фотографии: {len(photos)} шт.")
+    if videos:
+        lines.append(f"• 🎬 Видеозаписи: {len(videos)} шт.")
+    if voices:
+        lines.append(f"• 🎙 Голосовые: {len(voices)} шт.")
+    if texts:
+        lines.append(f"• 💬 Сообщения и ставки: {len(texts)} шт.")
+
+    lines.append("\nВсе материалы разложены по каталогам, сообщения удалены из чата для чистоты.")
+    return "\n".join(lines)
+
+
 class LibrarianRouter:
     def __init__(self, storage: LibraryStorage, client: TelegramClient, channel_id: str = "", repo_dir: str = None):
         self.storage = storage
@@ -84,7 +130,12 @@ class LibrarianRouter:
         self.entries_dir = self.library_dir / "entries"
         self.entries_dir.mkdir(parents=True, exist_ok=True)
 
-    def handle_message(self, msg: dict) -> str:
+    def handle_message(self, msg: dict) -> str | dict:
+        """
+        Routes incoming messages:
+        - If command/search: returns response string immediately.
+        - If data intake: ingests, auto-deletes incoming message, returns intake summary dict.
+        """
         msg_id = msg.get("message_id")
         chat_id = msg.get("chat", {}).get("id")
         text = (msg.get("text") or msg.get("caption") or "").strip()
@@ -114,7 +165,7 @@ class LibrarianRouter:
         if is_search:
             return self._handle_search(search_query, chat_id=chat_id)
 
-        # INTAKE FLOW: Save new item to 3-tier library
+        # INTAKE FLOW: Save new item to 3-tier library and auto-delete original user message
         return self._handle_intake(msg)
 
     def _handle_help(self) -> str:
@@ -123,11 +174,10 @@ class LibrarianRouter:
             "Менеджер: *Курбанов Абдулхаким* (@LogisticsFortisway)\n"
             "Режим: 🟢 3-уровневое неуязвимое хранилище (24/7)\n\n"
             "*Как пользоваться библиотекой:*\n"
-            "• **Сохранить материал:** Просто отправьте боту любой текст, фото, видео разгрузки или PDF документ (можно с подписью, например: `Польша Bakan Tex погрузка`).\n"
-            "• **Найти материал:** Напишите `найди <запрос>` или `? <запрос>` (например: `найди видео выгрузки Польша` или `? Bakan Tex`).\n"
-            "• **/stats** — Подробная раскладка памяти по типам файлов и странам.\n"
-            "• **/catalog** или **/last** — Последние сохраненные записи.\n\n"
-            "_Материалы автоматически дублируются в ваш закрытый архив-канал и репозиторий!_"
+            "• **Сохранить материал:** Отправьте боту любой текст, фото, видео или документ. Бот автоматически просканирует и сохранит данные в базу, а сообщение уберет из чата, чтобы не засорять переписку.\n"
+            "• **Найти материал:** Напишите `найди <запрос>` или `? <запрос>` (например: `найди зерно` или `? Хоргос`).\n"
+            "• **/stats** — Память и раскладка по типам файлов и странам.\n"
+            "• **/catalog** или **/last** — Последние сохраненные записи."
         )
 
     def _handle_stats(self) -> str:
@@ -179,7 +229,7 @@ class LibrarianRouter:
 
     def _handle_search(self, query: str, chat_id: int = None) -> str:
         if not query:
-            return "⚠️ Укажите, что именно вы ищете. Например: `найди CMR Польша` или `? Bakan Tex`."
+            return "⚠️ Укажите, что именно вы ищете. Например: `найди зерно` или `? Хоргос`."
 
         # Detect country filter from query if present
         country_filter = None
@@ -213,7 +263,7 @@ class LibrarianRouter:
             card = f"• *#{r['id']}* {flag} *{r['country']}*{cargo}\n  📂 `{r['category']}`: *{r['title']}*{file_info}{text_preview}"
             out.append(card)
 
-            # If matching record has a channel message ID or file and chat_id provided, copy message
+            # If matching record has a channel message ID and chat_id provided, copy message
             if chat_id and self.channel_id and r.get("channel_msg_id"):
                 try:
                     self.client.copy_message(chat_id=chat_id, from_chat_id=self.channel_id, message_id=r["channel_msg_id"])
@@ -222,7 +272,7 @@ class LibrarianRouter:
 
         return "\n\n".join(out)
 
-    def _handle_intake(self, msg: dict) -> str:
+    def _handle_intake(self, msg: dict) -> dict:
         chat_id = msg.get("chat", {}).get("id")
         msg_id = msg.get("message_id")
         text = (msg.get("text") or msg.get("caption") or "").strip()
@@ -310,56 +360,57 @@ class LibrarianRouter:
         )
 
         item_id = item_res["id"]
-        flag = COUNTRY_FLAGS.get(country, "🌐")
-
-        # Deduplication check
-        if item_res.get("is_duplicate"):
-            return (
-                f"⚠️ *Этот файл уже сохранен в библиотеке!* (Запись #{item_id})\n"
-                f"• Направление: {flag} *{country}*\n"
-                f"• Раздел: `{category}`"
-            )
+        is_dup = item_res.get("is_duplicate", False)
 
         # Level 2: Save Markdown card to GitHub repository
-        try:
-            card_filename = f"{datetime.now().strftime('%Y-%m-%d')}-item-{item_id}.md"
-            card_path = self.entries_dir / card_filename
-            card_content = (
-                f"---\n"
-                f"id: {item_id}\n"
-                f"date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
-                f"country: {country}\n"
-                f"cargo_id: {cargo_id}\n"
-                f"category: {category}\n"
-                f"content_type: {content_type}\n"
-                f"file_name: {file_name}\n"
-                f"file_size: {format_bytes(file_size)}\n"
-                f"---\n\n"
-                f"# {title}\n\n"
-                f"{text}\n"
-            )
-            card_path.write_text(card_content, encoding="utf-8")
-        except Exception as e:
-            print(f"[!] Ошибка записи карточки в git: {e}")
+        if not is_dup:
+            try:
+                card_filename = f"{datetime.now().strftime('%Y-%m-%d')}-item-{item_id}.md"
+                card_path = self.entries_dir / card_filename
+                card_content = (
+                    f"---\n"
+                    f"id: {item_id}\n"
+                    f"date: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n"
+                    f"country: {country}\n"
+                    f"cargo_id: {cargo_id}\n"
+                    f"category: {category}\n"
+                    f"content_type: {content_type}\n"
+                    f"file_name: {file_name}\n"
+                    f"file_size: {format_bytes(file_size)}\n"
+                    f"---\n\n"
+                    f"# {title}\n\n"
+                    f"{text}\n"
+                )
+                card_path.write_text(card_content, encoding="utf-8")
+            except Exception as e:
+                print(f"[!] Ошибка записи карточки в git: {e}")
 
-        # Update WebApp live catalog.json
-        try:
-            if hasattr(self.storage, "export_catalog_json"):
-                self.storage.export_catalog_json(str(self.repo_dir / "web" / "catalog.json"))
-        except Exception as e:
-            print(f"[!] Ошибка обновления web/catalog.json: {e}")
+            # Update WebApp live catalog.json
+            try:
+                if hasattr(self.storage, "export_catalog_json"):
+                    self.storage.export_catalog_json(str(self.repo_dir / "web" / "catalog.json"))
+            except Exception as e:
+                print(f"[!] Ошибка обновления web/catalog.json: {e}")
 
-        channel_status = "✅ Сохранено в канал" if channel_msg_id else "⏳ Сохранено локально"
-        sz_str = f" ({format_bytes(file_size)})" if file_size else ""
+        # AUTO-CLEAN: Delete user's incoming message from chat so it does not clutter
+        if chat_id and msg_id:
+            try:
+                self.client.delete_message(chat_id=chat_id, message_id=msg_id)
+            except Exception as e:
+                print(f"[!] Ошибка удаления сообщения {msg_id}: {e}")
 
-        return (
-            f"📖 *Запись #{item_id} успешно принята и сохранена в библиотеку!*\n\n"
-            f"• Направление: {flag} *{country}* (Рейс: `{cargo_id}`)\n"
-            f"• Раздел: `{category}`{sz_str}\n\n"
-            f"1️⃣ Telegram Канал: {channel_status}\n"
-            f"2️⃣ GitHub Репозиторий: ✅ Зафиксировано в каталоге\n"
-            f"3️⃣ Google Drive (5 ТБ): ✅ Индексировано для синхронизации"
-        )
+        return {
+            "type": "intake",
+            "id": item_id,
+            "title": title,
+            "country": country,
+            "category": category,
+            "content_type": content_type,
+            "file_name": file_name,
+            "file_size": file_size,
+            "is_duplicate": is_dup
+        }
+
 
 def _update_channel_env(channel_id: str):
     """Saves detected channel ID to .env file for persistence."""
@@ -380,8 +431,9 @@ def _update_channel_env(channel_id: str):
         env_path.write_text("\n".join(new_lines) + "\n", encoding="utf-8")
     os.environ["TELEGRAM_CHANNEL_ID"] = channel_id
 
+
 def run_librarian_daemon(once: bool = False):
-    """Main continuous 24/7 daemon loop for Librarian Bot."""
+    """Main continuous 24/7 daemon loop for Librarian Bot with batching and auto-clean."""
     config = get_bot_config()
     token = config.get("bot_token")
     if not token:
@@ -415,7 +467,7 @@ def run_librarian_daemon(once: bool = False):
         print(f"[!] Предупреждение: Не удалось обновить команды: {e}")
 
     # Configure WebApp Menu Button (points to live GitHub Pages WebApp)
-    WEB_APP_URL = "https://kurbanovabdulhakim.github.io/Fortis-way/web/index.html?v=4"
+    WEB_APP_URL = "https://kurbanovabdulhakim.github.io/Fortis-way/web/index.html?v=5"
     try:
         client.set_menu_button(web_app_url=WEB_APP_URL, text="Каталог 📚")
         admin_id = guard.admin_user_id or 8930092703
@@ -423,7 +475,7 @@ def run_librarian_daemon(once: bool = False):
     except Exception as e:
         print(f"[!] Предупреждение: Не удалось настроить кнопку WebApp: {e}")
 
-    print("[*] FortisWay 24/7 Digital Librarian Daemon запущен.")
+    print("[*] FortisWay 24/7 Digital Librarian Daemon запущен (режим авто-очистки и тихих отчетов).")
     print(f"[*] Авторизованный администратор: @{admin_username}")
     print(f"[*] База данных библиотеки: {db_path}")
 
@@ -438,13 +490,22 @@ def run_librarian_daemon(once: bool = False):
         try:
             updates = client.get_updates(offset=offset, timeout=25)
             backoff = 1.0
-            
-            for update in updates:
-                update_id = update.get("update_id")
-                offset = update_id + 1
-                
+
+            if not updates:
+                if once:
+                    break
+                continue
+
+            # Batch collection of intake items per chat
+            batch_intake_by_chat = {}
+
+            def process_single_update(update_item):
+                nonlocal offset
+                uid = update_item.get("update_id")
+                offset = uid + 1
+
                 # Auto-detect channel if bot was added as admin
-                my_chat_member = update.get("my_chat_member")
+                my_chat_member = update_item.get("my_chat_member")
                 if my_chat_member:
                     chat = my_chat_member.get("chat", {})
                     if chat.get("type") == "channel":
@@ -454,7 +515,7 @@ def run_librarian_daemon(once: bool = False):
                         print(f"[*] Привязан приватный канал {chat.get('title')} (ID: {cid})")
 
                 # Auto-detect channel if channel post received
-                channel_post = update.get("channel_post")
+                channel_post = update_item.get("channel_post")
                 if channel_post:
                     chat = channel_post.get("chat", {})
                     if chat.get("id"):
@@ -462,9 +523,9 @@ def run_librarian_daemon(once: bool = False):
                         router.channel_id = cid
                         _update_channel_env(cid)
 
-                msg = update.get("message")
+                msg = update_item.get("message")
                 if not msg:
-                    continue
+                    return
 
                 # Auto-detect channel if forwarded from channel
                 fwd = msg.get("forward_from_chat")
@@ -486,12 +547,37 @@ def run_librarian_daemon(once: bool = False):
                         chat_id=chat_id,
                         text="⛔ *Доступ ограничен.*\nБот настроен исключительно для менеджера FortisWay (@LogisticsFortisway)."
                     )
-                    continue
+                    return
 
-                # Process authorized message
-                reply = router.handle_message(msg)
-                if reply and chat_id:
-                    client.send_message(chat_id=chat_id, text=reply)
+                # Process message
+                res = router.handle_message(msg)
+                if isinstance(res, str) and chat_id:
+                    # Direct command or search: reply immediately
+                    client.send_message(chat_id=chat_id, text=res)
+                elif isinstance(res, dict) and res.get("type") == "intake" and chat_id:
+                    # Content intake: collect into batch
+                    batch_intake_by_chat.setdefault(chat_id, []).append(res)
+
+            # Process initial updates
+            for u in updates:
+                process_single_update(u)
+
+            # Check for immediate follow-up burst updates within 0.8s
+            burst_rounds = 0
+            while burst_rounds < 3:
+                time.sleep(0.4)
+                more_updates = client.get_updates(offset=offset, timeout=0)
+                if not more_updates:
+                    break
+                for u in more_updates:
+                    process_single_update(u)
+                burst_rounds += 1
+
+            # Send single consolidated summary for chats that had intake items
+            for cid, items in batch_intake_by_chat.items():
+                summary = format_batch_summary(items)
+                if summary:
+                    client.send_message(chat_id=cid, text=summary)
 
             if once:
                 break

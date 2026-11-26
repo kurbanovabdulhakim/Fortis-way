@@ -2,69 +2,54 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>FortisWay Vault — Цифровой Каталог Библиотеки</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FortisWay — Грузы ATI.SU и Библиотека</title>
   <script src="https://telegram.org/js/telegram-web-app.js"></script>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
   <div class="app-container">
     <!-- Header -->
     <header class="vault-header">
-      <div class="header-badge">FortisWay Vault 📚</div>
-      <h2>Цифровая Библиотека</h2>
-      <p class="subtitle">3-уровневое хранилище грузов и документов (5 ТБ)</p>
+      <div class="header-badge">FortisWay Vault</div>
+      <h2>Грузы и База Знаний</h2>
+      <p class="subtitle" id="sync-status">Синхронизация базы...</p>
     </header>
 
-    <!-- Storage Meter Bar (Smartphone Style) -->
-    <section class="storage-card">
-      <div class="storage-title">
-        <span>Память Google Drive & Vault</span>
-        <strong id="storage-percent">Занято: 36.3 ГБ / 5 120 ГБ</strong>
-      </div>
-      <div class="storage-bar">
-        <div class="bar-segment bar-video" style="width: 15%;" title="Видео"></div>
-        <div class="bar-segment bar-photo" style="width: 8%;" title="Фото"></div>
-        <div class="bar-segment bar-doc" style="width: 4%;" title="Документы"></div>
-        <div class="bar-segment bar-misc" style="width: 2%;" title="Заметки"></div>
-      </div>
-      <div class="storage-legend">
-        <span><i class="dot dot-video"></i> Видео</span>
-        <span><i class="dot dot-photo"></i> Фото</span>
-        <span><i class="dot dot-doc"></i> Документы</span>
-        <span><i class="dot dot-free"></i> Свободно (5.08 ТБ)</span>
-      </div>
-    </section>
+    <!-- Primary Mode Switcher -->
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="ati">Грузы ATI.SU (<span id="cnt-ati">0</span>)</button>
+      <button class="mode-tab" data-mode="docs">Документы и Архив (<span id="cnt-docs">0</span>)</button>
+    </div>
 
     <!-- Search Input -->
     <div class="search-box">
-      <input type="text" id="search-input" placeholder="🔍 Поиск по грузам, CMR, накладным..." autocomplete="off">
+      <input type="text" id="search-input" placeholder="Поиск по городу, грузу, весу, ТН ВЭД, документу..." autocomplete="off">
     </div>
 
-    <!-- Country Tabs -->
-    <div class="country-scroll">
-      <button class="country-pill active" data-country="all">Все страны</button>
-      <button class="country-pill" data-country="Польша">🇵🇱 Польша</button>
-      <button class="country-pill" data-country="Нидерланды">🇳🇱 Нидерланды</button>
-      <button class="country-pill" data-country="Узбекистан">🇺🇿 Узбекистан</button>
-      <button class="country-pill" data-country="Китай">🇨🇳 Китай</button>
-      <button class="country-pill" data-country="Россия">🇷🇺 Россия</button>
+    <!-- Filter Pills (Wrapped cleanly — works on Desktop & Mobile without stuck scroll!) -->
+    <div class="pill-group" id="ati-filters">
+      <button class="filter-pill active" data-cat="all">Все грузы</button>
+      <button class="filter-pill" data-cat="selected">Избранные</button>
+      <button class="filter-pill" data-cat="Китай">Китай</button>
+      <button class="filter-pill" data-cat="Турция / Иран / Польша">Турция / Иран / Польша</button>
+      <button class="filter-pill" data-cat="РФ / СНГ / Европа">РФ / СНГ / Европа</button>
     </div>
 
-    <!-- Media Filter Chips -->
-    <div class="filter-chips">
-      <button class="chip active" data-type="all">Все</button>
-      <button class="chip" data-type="video">🎬 Видео</button>
-      <button class="chip" data-type="photo">📸 Фото</button>
-      <button class="chip" data-type="document">📑 Документы</button>
+    <!-- Sub-filters (Direction / Body Type for ATI; Category for Docs) -->
+    <div class="filter-chips" id="sub-filters">
+      <button class="chip active" data-sub="all">Все</button>
+      <button class="chip" data-sub="Импорт">Импорт</button>
+      <button class="chip" data-sub="Экспорт">Экспорт</button>
+      <button class="chip" data-sub="тент">Фура-тент</button>
+      <button class="chip" data-sub="реф">Фура-реф</button>
     </div>
 
-    <!-- Catalog Items List -->
-    <div class="items-list" id="items-container">
-      <!-- Populated by app.js -->
-    </div>
+    <!-- Items Container -->
+    <div class="items-list" id="items-container"></div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="catalog.js?v=5"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>

@@ -1,139 +1,221 @@
-// FortisWay Vault WebApp
+// FortisWay Telegram WebApp (ATI.SU + Vault & Documents)
 const tg = window.Telegram?.WebApp;
 if (tg) {
   tg.ready();
   tg.expand();
 }
 
-const SAMPLE_ITEMS = [
-  {
-    id: 1,
-    country: "Польша",
-    flag: "🇵🇱",
-    cargo: "BakanTex_01",
-    type: "video",
-    category: "03_Видео_Выгрузки",
-    title: "Видео выгрузки хлопка на складе",
-    desc: "20 тонн доставлено, пломбы целы, разгрузка завершена без повреждений.",
-    date: "2026-11-20 16:30",
-    size: "48.2 МБ",
-    file: "video_unloading_bakan.mp4"
-  },
-  {
-    id: 2,
-    country: "Польша",
-    flag: "🇵🇱",
-    cargo: "BakanTex_01",
-    type: "document",
-    category: "01_Документы_CMR",
-    title: "CMR Международная накладная",
-    desc: "Подписанная CMR с отметками польской таможни и перевозчика.",
-    date: "2026-11-20 14:15",
-    size: "1.8 МБ",
-    file: "cmr_poland_signed.pdf"
-  },
-  {
-    id: 3,
-    country: "Нидерланды",
-    flag: "🇳🇱",
-    cargo: "Rotterdam_Chem_04",
-    type: "document",
-    category: "01_Документы_CMR",
-    title: "Инвойс и упаковочный лист",
-    desc: "Химическое сырье из порта Роттердам, контейнерная отправка.",
-    date: "2026-11-19 11:20",
-    size: "850 КБ",
-    file: "invoice_rotterdam.pdf"
-  },
-  {
-    id: 4,
-    country: "Узбекистан",
-    flag: "🇺🇿",
-    cargo: "Tashkent_Distr_02",
-    type: "photo",
-    category: "02_Фото_Погрузки",
-    title: "Фото пломбирования фуры",
-    desc: "Склад Ташкент, номер пломбы: UZ-889124, водитель принял груз.",
-    date: "2026-11-18 09:40",
-    size: "4.5 МБ",
-    file: "seal_photo_tashkent.jpg"
-  }
-];
+let catalogData = window.FORTIS_CATALOG_DATA || {
+  updated_at: "—",
+  ati_loads: [],
+  documents: [],
+  items: []
+};
 
-let currentItems = [...SAMPLE_ITEMS];
+let state = {
+  mode: "ati",       // "ati" | "docs"
+  category: "all",   // for ati: "all" | "selected" | "Китай" | "Турция / Иран / Польша" | "РФ / СНГ / Европа"
+  sub: "all",        // "all" | "Импорт" | "Экспорт" | "тент" | "реф"
+  search: ""
+};
 
-let selectedCountry = "all";
-let selectedType = "all";
-let searchQuery = "";
+function updateHeaderCounts() {
+  const atiCount = (catalogData.ati_loads || []).length;
+  const docsCount = (catalogData.documents || []).length + (catalogData.items || []).length;
+  document.getElementById("cnt-ati").textContent = atiCount;
+  document.getElementById("cnt-docs").textContent = docsCount;
+  document.getElementById("sync-status").textContent =
+    `Обновлено: ${catalogData.updated_at || "—"} | ATI.SU: ${atiCount} | Документов: ${docsCount}`;
+}
 
-function updateStorageBar(stats) {
-  if (!stats) return;
-  const totBytes = stats.total_bytes || 0;
-  const totGb = (totBytes / (1024 * 1024 * 1024)).toFixed(1);
-  const freeGb = Math.max(5120.0 - (totBytes / (1024 * 1024 * 1024)), 0.0).toFixed(1);
-
-  const storageLabel = document.getElementById("storage-percent");
-  if (storageLabel) {
-    storageLabel.textContent = `Занято: ${totGb} ГБ / 5 120 ГБ`;
+function openExternalUrl(url) {
+  if (tg && typeof tg.openLink === "function") {
+    tg.openLink(url);
+  } else {
+    window.open(url, "_blank", "noopener");
   }
 }
 
-function loadLiveCatalog() {
-  fetch(`catalog.json?t=${Date.now()}`)
-    .then(resp => {
-      if (resp.ok) return resp.json();
-      throw new Error("Local catalog not available");
-    })
-    .then(data => {
-      if (data.items && data.items.length > 0) {
-        currentItems = data.items;
-      }
-      if (data.stats) {
-        updateStorageBar(data.stats);
-      }
-      renderItems();
-loadLiveCatalog();
-    })
-    .catch(() => {
-      // Keep sample items gracefully
-      renderItems();
-loadLiveCatalog();
-    });
+function copyText(text, btn) {
+  const orig = btn.textContent;
+  const markCopied = () => {
+    btn.textContent = "Скопировано";
+    btn.classList.add("copied");
+    setTimeout(() => {
+      btn.textContent = orig;
+      btn.classList.remove("copied");
+    }, 1400);
+  };
+
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(markCopied).catch(() => fallbackCopy(text, markCopied));
+  } else {
+    fallbackCopy(text, markCopied);
+  }
 }
 
-function renderItems() {
+function fallbackCopy(text, cb) {
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch (e) {}
+  document.body.removeChild(ta);
+  cb();
+}
+
+function formatGroupText(x) {
+  const vol = x.volume_m3 ? `${x.volume_m3} м3` : "не указан";
+  const temp = x.temp_regime ? ` (${x.temp_regime})` : "";
+  return [
+    `Откуда — Куда: ${x.from_location} — ${x.to_location}`,
+    `Груз: ${x.cargo_name}`,
+    `Вес / Объём: ${x.weight_t} т / ${vol}`,
+    `Транспорт: ${x.trucks_count} авто, ${x.truck_type}${temp}`,
+    `Код ТН ВЭД: ${x.tnved_code || "Не указан на сайте"}`,
+    `Документы: ${x.documents_req || "Дополнительных документов не требуется"}`,
+    `Погрузка: ${x.loading_date}`
+  ].join("\n");
+}
+
+function formatFullText(x) {
+  const vol = x.volume_m3 ? `${x.volume_m3} м3` : "не указан";
+  const dist = x.distance_km ? `${x.distance_km} км` : "не указано";
+  const temp = x.temp_regime ? ` (${x.temp_regime})` : "";
+  return [
+    `Категория: ${x.category} (${x.direction})`,
+    `Откуда — Куда: ${x.from_location} — ${x.to_location}`,
+    `Расстояние: ${dist}`,
+    `Груз: ${x.cargo_name}`,
+    `Вес / Объём: ${x.weight_t} т / ${vol}`,
+    `Транспорт: ${x.trucks_count} авто, ${x.truck_type}${temp}`,
+    `Код ТН ВЭД: ${x.tnved_code || "Не указан на сайте"}`,
+    `Документы: ${x.documents_req || "Дополнительных документов не требуется"}`,
+    `Погрузка: ${x.loading_date}`,
+    `Ставка: ${x.rate_info} (${x.payment_terms})`,
+    `На сайте: ${x.days_on_site} дн. (осталось ${x.days_remaining_10d} дн.)`,
+    `Ссылка ATI.SU: ${x.ati_url}`
+  ].join("\n");
+}
+
+function render() {
   const container = document.getElementById("items-container");
-  container.innerHTML = "";
+  const atiFilters = document.getElementById("ati-filters");
+  const subFilters = document.getElementById("sub-filters");
 
-  const filtered = currentItems.filter(item => {
-    const matchCountry = selectedCountry === "all" || item.country === selectedCountry;
-    const matchType = selectedType === "all" || item.type === selectedType;
-    const matchSearch = !searchQuery || 
-      item.title.toLowerCase().includes(searchQuery) ||
-      item.desc.toLowerCase().includes(searchQuery) ||
-      item.country.toLowerCase().includes(searchQuery) ||
-      item.cargo.toLowerCase().includes(searchQuery);
-    return matchCountry && matchType && matchSearch;
+  if (state.mode === "ati") {
+    atiFilters.style.display = "flex";
+    subFilters.style.display = "flex";
+    renderAtiLoads(container);
+  } else {
+    atiFilters.style.display = "none";
+    subFilters.style.display = "none";
+    renderDocsAndVault(container);
+  }
+}
+
+function renderAtiLoads(container) {
+  const loads = (catalogData.ati_loads || []).filter(x => {
+    if (state.category === "selected" && x.is_selected !== 1) return false;
+    if (state.category !== "all" && state.category !== "selected" && x.category !== state.category) return false;
+
+    if (state.sub === "Импорт" && !x.direction.includes("Импорт")) return false;
+    if (state.sub === "Экспорт" && !x.direction.includes("Экспорт")) return false;
+    if (state.sub === "тент" && !x.truck_type.toLowerCase().includes("тент")) return false;
+    if (state.sub === "реф" && !x.truck_type.toLowerCase().includes("реф")) return false;
+
+    if (state.search) {
+      const hay = `${x.from_location} ${x.to_location} ${x.cargo_name} ${x.category} ${x.weight_t} ${x.tnved_code} ${x.truck_type}`.toLowerCase();
+      if (!hay.includes(state.search)) return false;
+    }
+    return true;
   });
 
-  if (filtered.length === 0) {
-    container.innerHTML = `<div style="text-align: center; color: #64748b; padding: 24px;">🔍 По вашему фильтру материалы не найдены.</div>`;
+  if (loads.length === 0) {
+    container.innerHTML = `<div class="empty-box">По вашему фильтру грузы не найдены.</div>`;
     return;
   }
 
-  filtered.forEach(it => {
+  container.innerHTML = "";
+  loads.forEach(x => {
+    const vol = x.volume_m3 ? `${x.volume_m3} м³` : "не указан";
+    const temp = x.temp_regime ? ` (${x.temp_regime})` : "";
+    const dist = x.distance_km ? `${x.distance_km} км` : "—";
+
     const card = document.createElement("div");
     card.className = "item-card";
     card.innerHTML = `
       <div class="item-header">
-        <span class="item-badge">${it.flag} ${it.country} • ${it.cargo}</span>
+        <span class="item-badge">${x.category} • ${x.direction}</span>
+        <span class="item-date">${x.days_on_site} дн. на сайте</span>
+      </div>
+      <div class="item-title">${x.from_location} — ${x.to_location}</div>
+      <div class="item-meta-grid">
+        <div><strong>Груз:</strong> ${x.cargo_name}</div>
+        <div><strong>Вес / Объём:</strong> ${x.weight_t} т / ${vol} | <strong>Расст.:</strong> ${dist}</div>
+        <div><strong>Транспорт:</strong> ${x.trucks_count} авто, ${x.truck_type}${temp}</div>
+        <div><strong>Код ТН ВЭД:</strong> ${x.tnved_code || "Не указан на сайте"}</div>
+        <div><strong>Документы:</strong> ${x.documents_req || "Дополнительных документов не требуется"}</div>
+        <div><strong>Погрузка:</strong> ${x.loading_date} | <strong>Ставка:</strong> ${x.rate_info}</div>
+      </div>
+      <div class="card-actions">
+        <button class="btn-action" data-copy="group">Для группы</button>
+        <button class="btn-action" data-copy="full">Расширенный</button>
+        <button class="btn-action primary" data-open="ati">ATI.SU</button>
+      </div>
+    `;
+
+    card.querySelector('[data-copy="group"]').addEventListener("click", (e) => copyText(formatGroupText(x), e.target));
+    card.querySelector('[data-copy="full"]').addEventListener("click", (e) => copyText(formatFullText(x), e.target));
+    card.querySelector('[data-open="ati"]').addEventListener("click", () => openExternalUrl(x.ati_url));
+
+    container.appendChild(card);
+  });
+}
+
+function renderDocsAndVault(container) {
+  const vaultItems = (catalogData.items || []).map(it => ({
+    badge: `${it.country} • ${it.category}`,
+    date: it.date || "",
+    title: it.title,
+    desc: it.desc || "",
+    meta: `Файл: ${it.file} (${it.size})`
+  }));
+
+  const docs = (catalogData.documents || []).map(d => ({
+    badge: `${d.category || "Документ"} • ${(d.file_format || "").toUpperCase()}`,
+    date: d.file_size_kb ? `${Math.round(d.file_size_kb)} КБ` : "",
+    title: d.title,
+    desc: d.description || "",
+    meta: `Путь: ${d.file_path || ""}`
+  }));
+
+  const combined = [...vaultItems, ...docs].filter(item => {
+    if (!state.search) return true;
+    const hay = `${item.badge} ${item.title} ${item.desc} ${item.meta}`.toLowerCase();
+    return hay.includes(state.search);
+  });
+
+  if (combined.length === 0) {
+    container.innerHTML = `<div class="empty-box">Документы по запросу не найдены.</div>`;
+    return;
+  }
+
+  container.innerHTML = "";
+  combined.slice(0, 60).forEach(it => {
+    const card = document.createElement("div");
+    card.className = "item-card";
+    card.innerHTML = `
+      <div class="item-header">
+        <span class="item-badge">${it.badge}</span>
         <span class="item-date">${it.date}</span>
       </div>
       <div class="item-title">${it.title}</div>
-      <div class="item-desc">${it.desc}</div>
-      <div class="item-footer">
-        <span>📎 ${it.file}</span>
-        <span>💾 ${it.size}</span>
+      <div class="item-meta-grid">
+        ${it.desc ? `<div>${it.desc}</div>` : ""}
+        <div><strong>Детали:</strong> ${it.meta}</div>
       </div>
     `;
     container.appendChild(card);
@@ -141,28 +223,49 @@ function renderItems() {
 }
 
 // Event Listeners
-document.querySelectorAll(".country-pill").forEach(btn => {
+document.querySelectorAll(".mode-tab").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".country-pill").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".mode-tab").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    selectedCountry = btn.dataset.country;
-    renderItems();
+    state.mode = btn.dataset.mode;
+    render();
   });
 });
 
-document.querySelectorAll(".chip").forEach(btn => {
+document.querySelectorAll("#ati-filters .filter-pill").forEach(btn => {
   btn.addEventListener("click", () => {
-    document.querySelectorAll(".chip").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll("#ati-filters .filter-pill").forEach(b => b.classList.remove("active"));
     btn.classList.add("active");
-    selectedType = btn.dataset.type;
-    renderItems();
+    state.category = btn.dataset.cat;
+    render();
+  });
+});
+
+document.querySelectorAll("#sub-filters .chip").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll("#sub-filters .chip").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    state.sub = btn.dataset.sub;
+    render();
   });
 });
 
 document.getElementById("search-input").addEventListener("input", (e) => {
-  searchQuery = e.target.value.toLowerCase().trim();
-  renderItems();
+  state.search = e.target.value.toLowerCase().trim();
+  render();
 });
 
-renderItems();
-loadLiveCatalog();
+// Init from catalog.js immediately, then refresh via catalog.json
+updateHeaderCounts();
+render();
+
+fetch(`catalog.json?t=${Date.now()}`)
+  .then(r => r.ok ? r.json() : null)
+  .then(data => {
+    if (data && (data.ati_loads?.length || data.documents?.length || data.items?.length)) {
+      catalogData = data;
+      updateHeaderCounts();
+      render();
+    }
+  })
+  .catch(() => {});

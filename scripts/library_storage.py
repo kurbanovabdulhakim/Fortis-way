@@ -260,13 +260,45 @@ class LibraryStorage:
                 "file": it["file_name"] or "Заметка"
             })
 
+        # Also include ati_loads and documents_registry if present in this DB
+        ati_loads = []
+        docs_registry = []
+        with self._get_connection() as conn:
+            cur = conn.cursor()
+            cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='ati_loads';")
+            if cur.fetchone():
+                cur.execute("""
+                    SELECT ati_id, category, direction, from_location, to_location, distance_km,
+                           cargo_name, weight_t, volume_m3, truck_type, trucks_count, temp_regime,
+                           tnved_code, documents_req, loading_date, added_at, days_on_site,
+                           days_remaining_10d, rate_info, payment_terms, is_direct, ati_url, is_selected
+                    FROM ati_loads
+                    ORDER BY is_selected DESC, days_on_site ASC
+                """)
+                ati_loads = [dict(r) for r in cur.fetchall()]
+
+            cur.execute("SELECT name FROM sqlite_master WHERE type='table' AND name='documents_registry';")
+            if cur.fetchone():
+                cur.execute("""
+                    SELECT id, category, title, file_path, file_format, file_size_kb, description
+                    FROM documents_registry
+                    ORDER BY id DESC
+                    LIMIT 100
+                """)
+                docs_registry = [dict(r) for r in cur.fetchall()]
+
         data = {
             "updated_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
             "stats": stats,
-            "items": formatted_items
+            "items": formatted_items,
+            "ati_loads": ati_loads,
+            "documents": docs_registry
         }
 
         out_file = Path(output_path)
         out_file.parent.mkdir(parents=True, exist_ok=True)
-        out_file.write_text(json.dumps(data, ensure_ascii=False, indent=2), encoding="utf-8")
+        json_str = json.dumps(data, ensure_ascii=False, indent=2)
+        out_file.write_text(json_str, encoding="utf-8")
+        out_js = out_file.with_suffix(".js")
+        out_js.write_text(f"window.FORTIS_CATALOG_DATA = {json_str};\n", encoding="utf-8")
         return data
