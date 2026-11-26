@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FortisWay — Дашборд грузов ATI.SU</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-app: #0d0f12;
+      --bg-sidebar: #14171c;
+      --bg-surface: #181b21;
+      --bg-surface-hover: #1f242c;
+      --bg-active: #252a34;
+      --border: #262b35;
+      --text-main: #e8ecf2;
+      --text-muted: #8b94a5;
+      --text-dim: #5e6778;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --green: #34d399;
+      --green-soft: rgba(52, 211, 153, 0.12);
+      --amber: #fbbf24;
+      --amber-soft: rgba(251, 191, 36, 0.12);
+      --red: #f87171;
+      --red-soft: rgba(248, 113, 113, 0.12);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg-app);
+      color: var(--text-main);
+      display: flex;
+      min-height: 100vh;
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    /* Sidebar (matching dark workspace reference) */
+    .sidebar {
+      width: 268px;
+      flex-shrink: 0;
+      background: var(--bg-sidebar);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 18px 12px;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+    }
+
+    .brand {
+      padding: 6px 10px 16px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+    .brand-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.01em;
+    }
+    .brand-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .nav-section-label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-dim);
+      padding: 8px 10px 6px;
+    }
+
+    .nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      margin-bottom: 14px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 10px;
+      border-radius: 7px;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: background 0.15s, color 0.15s;
+      user-select: none;
+    }
+    .nav-item:hover {
+      background: var(--bg-surface-hover);
+      color: var(--text-main);
+    }
+    .nav-item.active {
+      background: var(--bg-active);
+      color: var(--text-main);
+      font-weight: 600;
+    }
+
+    .nav-count {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 1px 7px;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.06);
+      color: var(--text-muted);
+    }
+    .nav-item.active .nav-count {
+      background: var(--accent-soft);
+      color: var(--accent);
+    }
+
+    .rules-box {
+      margin-top: auto;
+      padding: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .rules-box strong {
+      display: block;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      font-size: 11.5px;
+    }
+    .rules-box ul {
+      padding-left: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    /* Main Content */
+    .main {
+      flex: 1;
+      min-width: 0;
+      padding: 22px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .topbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+    }
+    .page-title {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    .page-meta {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .search-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .search-input {
+      width: 320px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 8px 12px;
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+      transition: border-color 0.15s;
+    }
+    .search-input:focus {
+      border-color: var(--accent);
+    }
+    .search-input::placeholder {
+      color: var(--text-dim);
+    }
+
+    /* KPI Strip */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+    .kpi-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .kpi-label {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .kpi-value {
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 4px;
+      color: var(--text-main);
+    }
+
+    /* Data Table */
+    .table-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    thead th {
+      background: #14171c;
+      color: var(--text-muted);
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    tbody tr:last-child td {
+      border-bottom: none;
+    }
+    tbody tr:hover {
+      background: var(--bg-surface-hover);
+    }
+
+    .route-main {
+      font-weight: 600;
+      color: var(--text-main);
+      font-size: 13.5px;
+    }
+    .route-sub {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 5px;
+      font-size: 11px;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+    .badge-export { background: var(--accent-soft); color: var(--accent); }
+    .badge-import { background: var(--green-soft); color: var(--green); }
+    .badge-direct { background: var(--amber-soft); color: var(--amber); }
+    .badge-fresh { background: var(--green-soft); color: var(--green); }
+    .badge-mid { background: var(--amber-soft); color: var(--amber); }
+    .badge-expiring { background: var(--red-soft); color: var(--red); }
+
+    .btn-ati {
+      display: inline-block;
+      padding: 6px 11px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.15s;
+    }
+    .btn-ati:hover {
+      background: rgba(56, 189, 248, 0.22);
+    }
+
+    .empty-state {
+      padding: 40px;
+      text-align: center;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 960px) {
+      body { flex-direction: column; }
+      .sidebar { width: 100%; height: auto; position: static; }
+      .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+      .search-input { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-title">FortisWay • ATI.SU</div>
+      <div class="brand-sub">База актуальных грузов (РУз)</div>
+    </div>
+
+    <div class="nav-section-label">Категории</div>
+    <ul class="nav-list" id="category-nav">
+      <li class="nav-item active" data-cat="selected">
+        <span>Избранные лиды</span>
+        <span class="nav-count" id="cnt-selected">0</span>
+      </li>
+      <li class="nav-item" data-cat="all">
+        <span>Все грузы</span>
+        <span class="nav-count" id="cnt-all">0</span>
+      </li>
+      <li class="nav-item" data-cat="Турция / Иран / Польша">
+        <span>Турция / Иран / Польша</span>
+        <span class="nav-count" id="cnt-tip">0</span>
+      </li>
+      <li class="nav-item" data-cat="Китай">
+        <span>Китай</span>
+        <span class="nav-count" id="cnt-cn">0</span>
+      </li>
+      <li class="nav-item" data-cat="РФ / СНГ / Европа">
+        <span>РФ / СНГ / Европа</span>
+        <span class="nav-count" id="cnt-other">0</span>
+      </li>
+    </ul>
+
+    <div class="nav-section-label">Направление</div>
+    <ul class="nav-list" id="direction-nav">
+      <li class="nav-item active" data-dir="all">
+        <span>Все направления</span>
+        <span class="nav-count" id="cnt-dir-all">0</span>
+      </li>
+      <li class="nav-item" data-dir="Импорт (в РУз)">
+        <span>Импорт (в РУз)</span>
+        <span class="nav-count" id="cnt-dir-imp">0</span>
+      </li>
+      <li class="nav-item" data-dir="Экспорт (из РУз)">
+        <span>Экспорт (из РУз)</span>
+        <span class="nav-count" id="cnt-dir-exp">0</span>
+      </li>
+    </ul>
+
+    <div class="nav-section-label">Тип кузова</div>
+    <ul class="nav-list" id="truck-nav">
+      <li class="nav-item active" data-truck="all">
+        <span>Любой кузов</span>
+      </li>
+      <li class="nav-item" data-truck="тент">
+        <span>Фура-тент</span>
+      </li>
+      <li class="nav-item" data-truck="реф">
+        <span>Фура-реф</span>
+      </li>
+    </ul>
+
+    <div class="rules-box">
+      <strong>Активные фильтры базы:</strong>
+      <ul>
+        <li>Вес: строго 18 – 24 т</li>
+        <li>Только прямой Экспорт / Импорт РУз</li>
+        <li>Срок на сайте: до 10 дней</li>
+        <li>Исключены: ADR, лес, цитрусы</li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div>
+        <h1 class="page-title" id="active-title">Избранные лиды</h1>
+        <div class="page-meta" id="sync-meta">Загрузка данных из базы...</div>
+      </div>
+      <div class="search-wrap">
+        <input type="text" id="search-input" class="search-input" placeholder="Поиск по городу, грузу, весу, ID..." />
+      </div>
+    </header>
+
+    <section class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Показано грузов</div>
+        <div class="kpi-value" id="kpi-count">0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Прямые заказчики</div>
+        <div class="kpi-value" id="kpi-direct">0</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Ср. время на сайте</div>
+        <div class="kpi-value" id="kpi-age">0 дн.</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Ср. расстояние</div>
+        <div class="kpi-value" id="kpi-dist">0 км</div>
+      </div>
+    </section>
+
+    <section class="table-card">
+      <table>
+        <thead>
+          <tr>
+            <th>Маршрут и расстояние</th>
+            <th>Груз, вес, объём</th>
+            <th>Транспорт и режим</th>
+            <th>Погрузка</th>
+            <th>Ставка и оплата</th>
+            <th>На сайте / Осталось</th>
+            <th>Ссылка</th>
+          </tr>
+        </thead>
+        <tbody id="loads-tbody">
+          <tr><td colspan="7" class="empty-state">Загрузка данных...</td></tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <!-- Local JS bundle fallback so file:/// works without CORS -->
+  <script src="ati_data.js"></script>
+  <script>
+    let allLoads = [];
+    let state = {
+      category: 'selected',
+      direction: 'all',
+      truck: 'all',
+      search: ''
+    };
+
+    function initData(payload) {
+      if (!payload || !Array.isArray(payload.loads)) return;
+      allLoads = payload.loads;
+      document.getElementById('sync-meta').textContent =
+        `Обновлено: ${payload.updated_at || '—'} | Всего в базе: ${allLoads.length} заявок`;
+      updateCounts();
+      render();
+    }
+
+    function updateCounts() {
+      document.getElementById('cnt-selected').textContent = allLoads.filter(x => x.is_selected === 1).length;
+      document.getElementById('cnt-all').textContent = allLoads.length;
+      document.getElementById('cnt-tip').textContent = allLoads.filter(x => x.category === 'Турция / Иран / Польша').length;
+      document.getElementById('cnt-cn').textContent = allLoads.filter(x => x.category === 'Китай').length;
+      document.getElementById('cnt-other').textContent = allLoads.filter(x => x.category === 'РФ / СНГ / Европа').length;
+      document.getElementById('cnt-dir-all').textContent = allLoads.length;
+      document.getElementById('cnt-dir-imp').textContent = allLoads.filter(x => x.direction === 'Импорт (в РУз)').length;
+      document.getElementById('cnt-dir-exp').textContent = allLoads.filter(x => x.direction === 'Экспорт (из РУз)').length;
+    }
+
+    function getFiltered() {
+      return allLoads.filter(x => {
+        if (state.category === 'selected' && x.is_selected !== 1) return false;
+        if (state.category !== 'selected' && state.category !== 'all' && x.category !== state.category) return false;
+        if (state.direction !== 'all' && x.direction !== state.direction) return false;
+        if (state.truck !== 'all' && !x.truck_type.toLowerCase().includes(state.truck)) return false;
+        if (state.search) {
+          const hay = `${x.from_location} ${x.to_location} ${x.cargo_name} ${x.weight_t} ${x.truck_type} ${x.ati_id}`.toLowerCase();
+          if (!hay.includes(state.search)) return false;
+        }
+        return true;
+      });
+    }
+
+    function render() {
+      const items = getFiltered();
+      const tbody = document.getElementById('loads-tbody');
+
+      // KPIs
+      document.getElementById('kpi-count').textContent = items.length;
+      document.getElementById('kpi-direct').textContent = items.filter(x => x.is_direct === 1).length;
+      const avgAge = items.length ? (items.reduce((s, x) => s + (x.days_on_site || 0), 0) / items.length).toFixed(1) : 0;
+      document.getElementById('kpi-age').textContent = `${avgAge} дн.`;
+      const distItems = items.filter(x => x.distance_km > 0);
+      const avgDist = distItems.length ? Math.round(distItems.reduce((s, x) => s + x.distance_km, 0) / distItems.length) : 0;
+      document.getElementById('kpi-dist').textContent = `${avgDist.toLocaleString('ru-RU')} км`;
+
+      if (items.length === 0) {
+        tbody.innerHTML = `<tr><td colspan="7" class="empty-state">По выбранным фильтрам грузы не найдены.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = items.map(x => {
+        const dirClass = x.direction.includes('Экспорт') ? 'badge-export' : 'badge-import';
+        const ageClass = x.days_on_site <= 2 ? 'badge-fresh' : (x.days_on_site <= 6 ? 'badge-mid' : 'badge-expiring');
+        const volStr = x.volume_m3 ? `${x.volume_m3} м³` : 'объём не указан';
+        const distStr = x.distance_km ? `${x.distance_km.toLocaleString('ru-RU')} км` : 'расст. уточняется';
+        const tempBadge = x.temp_regime ? `<div class="route-sub">Режим: ${x.temp_regime}</div>` : '';
+        const directBadge = x.is_direct ? `<span class="badge badge-direct">Прямой заказчик</span>` : '';
+
+        return `
+          <tr>
+            <td>
+              <div class="route-main">${x.from_location} &rarr; ${x.to_location}</div>
+              <div class="route-sub">${distStr} &bull; ${x.category}</div>
+              <span class="badge ${dirClass}">${x.direction}</span>
+            </td>
+            <td>
+              <div class="route-main">${x.cargo_name}</div>
+              <div class="route-sub"><strong>${x.weight_t} т</strong> / ${volStr}</div>
+            </td>
+            <td>
+              <div class="route-main">${x.trucks_count} авто, ${x.truck_type}</div>
+              ${tempBadge}
+            </td>
+            <td>
+              <div class="route-main">${x.loading_date}</div>
+              <div class="route-sub">Выставлен: ${x.added_at}</div>
+            </td>
+            <td>
+              <div class="route-main">${x.rate_info}</div>
+              <div class="route-sub">${x.payment_terms}</div>
+              ${directBadge}
+            </td>
+            <td>
+              <span class="badge ${ageClass}">${x.days_on_site} дн. на сайте</span>
+              <div class="route-sub">Осталось: ${x.days_remaining_10d} дн. из 10</div>
+            </td>
+            <td>
+              <a class="btn-ati" href="${x.ati_url}" target="_blank" rel="noopener">Открыть ATI.SU &nearr;</a>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    // Sidebar click handlers
+    document.querySelectorAll('#category-nav .nav-item').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#category-nav .nav-item').forEach(n => n.classList.remove('active'));
+        el.classList.add('active');
+        state.category = el.dataset.cat;
+        document.getElementById('active-title').textContent = el.querySelector('span').textContent;
+        render();
+      });
+    });
+
+    document.querySelectorAll('#direction-nav .nav-item').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#direction-nav .nav-item').forEach(n => n.classList.remove('active'));
+        el.classList.add('active');
+        state.direction = el.dataset.dir;
+        render();
+      });
+    });
+
+    document.querySelectorAll('#truck-nav .nav-item').forEach(el => {
+      el.addEventListener('click', () => {
+        document.querySelectorAll('#truck-nav .nav-item').forEach(n => n.classList.remove('active'));
+        el.classList.add('active');
+        state.truck = el.dataset.truck;
+        render();
+      });
+    });
+
+    document.getElementById('search-input').addEventListener('input', e => {
+      state.search = e.target.value.trim().toLowerCase();
+      render();
+    });
+
+    // Load from ati_data.js or fallback to fetch ati_data.json
+    if (window.ATI_DASHBOARD_DATA) {
+      initData(window.ATI_DASHBOARD_DATA);
+    } else {
+      fetch('ati_data.json?t=' + Date.now())
+        .then(r => r.json())
+        .then(initData)
+        .catch(() => {
+          document.getElementById('sync-meta').textContent = 'Нет данных для отображения.';
+        });
+    }
+  </script>
+</body>
+</html>

@@ -68,7 +68,9 @@ def get_table_data(conn, table_name, limit=50, where_clause=None, params=()):
         'tariffs_routes',
         'plan_fact',
         'documents_registry',
-        'company_knowledge'
+        'company_knowledge',
+        'cargo_leads',
+        'ati_loads'
     }
     if table_name not in allowed_tables:
         sys.stderr.write(f"Error: Unknown table '{table_name}'. Allowed: {', '.join(sorted(allowed_tables))}\n")
@@ -95,7 +97,9 @@ def get_database_summary(conn):
         ('tariffs_routes', 'Сетка тарифов по маршрутам РУз и международным рейсам'),
         ('plan_fact', 'Ежедневный план-факт журнал работ Курбанова А.'),
         ('documents_registry', 'Реестр коммерческих предложений, презентаций и файлов'),
-        ('company_knowledge', 'Реквизиты, профиль компании, миссия и регламенты')
+        ('company_knowledge', 'Реквизиты, профиль компании, миссия и регламенты'),
+        ('cargo_leads', 'Активные лиды по грузам (Узбекистан: экспорт и импорт)'),
+        ('ati_loads', 'Отфильтрованные заявки с ATI.SU (18-24т, до 10 дней, Узб)')
     ]
     for tbl, desc in tables:
         cursor.execute(f"SELECT COUNT(*) as cnt FROM {tbl}")

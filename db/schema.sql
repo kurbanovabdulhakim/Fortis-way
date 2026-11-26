@@ -114,6 +114,55 @@ CREATE INDEX IF NOT EXISTS idx_library_country ON library_items(country);
 CREATE INDEX IF NOT EXISTS idx_library_category ON library_items(category);
 CREATE INDEX IF NOT EXISTS idx_library_file_unique_id ON library_items(file_unique_id);
 
+-- Active Cargo Leads (processed Uzbekistan import/export freight requests)
+CREATE TABLE IF NOT EXISTS cargo_leads (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    created_at TEXT NOT NULL,
+    direction TEXT NOT NULL,
+    route TEXT NOT NULL,
+    vehicle_type TEXT,
+    cargo_name TEXT,
+    volume TEXT,
+    weight TEXT,
+    units_count TEXT,
+    rate REAL,
+    currency TEXT,
+    payment_terms TEXT,
+    loading_status TEXT,
+    notes TEXT,
+    status TEXT NOT NULL DEFAULT 'Активный лид'
+);
+
+-- ATI.SU Filtered Loads Registry (18-24t, <=10 days, UZ export/import, no ADR/wood/citrus)
+CREATE TABLE IF NOT EXISTS ati_loads (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ati_id TEXT UNIQUE NOT NULL,
+    category TEXT NOT NULL,
+    direction TEXT NOT NULL,
+    from_location TEXT NOT NULL,
+    to_location TEXT NOT NULL,
+    distance_km INTEGER DEFAULT 0,
+    cargo_name TEXT NOT NULL,
+    weight_t REAL NOT NULL,
+    volume_m3 REAL DEFAULT 0,
+    truck_type TEXT,
+    trucks_count INTEGER DEFAULT 1,
+    temp_regime TEXT,
+    loading_date TEXT,
+    added_at TEXT,
+    days_on_site REAL DEFAULT 0,
+    days_remaining_10d REAL DEFAULT 10,
+    rate_info TEXT,
+    payment_terms TEXT,
+    is_direct INTEGER DEFAULT 0,
+    ati_url TEXT NOT NULL,
+    is_selected INTEGER DEFAULT 0,
+    updated_at TEXT NOT NULL
+);
+
+CREATE INDEX IF NOT EXISTS idx_ati_loads_category ON ati_loads(category);
+CREATE INDEX IF NOT EXISTS idx_ati_loads_selected ON ati_loads(is_selected);
+
 -- Full Text Search Virtual Table (FTS5) for sub-millisecond retrieval
 CREATE VIRTUAL TABLE IF NOT EXISTS fts_index USING fts5(
     entity_type,
